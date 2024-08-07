@@ -12,12 +12,11 @@
  * @exports AuthProvider The provider component for the authentication context.
  * @exports useAuthContext A hook to access the authentication context.
  */
-import React, {createContext, useState} from 'react';
-import * as AuthInterfaces from '../interfaces/Auth';
+import React, { createContext, useState } from 'react';
+import * as AuthInterfaces from '../interfaces/Auth.interfaces';
 import * as AuthModel from '../models/Auth';
 import * as SecureStore from 'expo-secure-store';
-import {AuthContextType} from "../interfaces/Auth";
-
+import { AuthContextType } from '../interfaces/Auth.interfaces';
 
 /**
  * Authentication context.
@@ -29,25 +28,22 @@ import {AuthContextType} from "../interfaces/Auth";
  * @context
  * @type {React.Context<AuthContextType>}
  */
-const AuthContext: React.Context<AuthInterfaces.AuthContextType> = createContext<
-    AuthContextType>({
-    user: undefined,
-    setUser(user: AuthInterfaces.User | null): void {
-    },
-    isLoggedIn: false,
-    setIsLoggedIn: (): void => {
-    },
-    login: async (email: string, password: string): Promise<void> => {
-        await AuthModel.login(email, password);
-    },
-    logout: async (): Promise<void> => {
-        await AuthModel.logout();
-    },
-    register: async (email: string, password: string): Promise<void> => {
-        await AuthModel.register(email, password);
-    },
-});
-
+const AuthContext: React.Context<AuthInterfaces.AuthContextType> =
+    createContext<AuthContextType>({
+        user: undefined,
+        setUser(user: AuthInterfaces.User | null): void {},
+        isLoggedIn: false,
+        setIsLoggedIn: (): void => {},
+        login: async (email: string, password: string): Promise<void> => {
+            await AuthModel.login(email, password);
+        },
+        logout: async (): Promise<void> => {
+            await AuthModel.logout();
+        },
+        register: async (email: string, password: string): Promise<void> => {
+            await AuthModel.register(email, password);
+        },
+    });
 
 /**
  * Authentication context provider.
@@ -62,18 +58,13 @@ const AuthContext: React.Context<AuthInterfaces.AuthContextType> = createContext
  * @returns {React.JSX.Element} The provider component wrapping its children, providing them access to
  * the authentication context.
  */
-export const AuthProvider: React.FC = ({children}) => {
-    const [isLoading, setIsLoading] = useState<
-        boolean>(false);
-    const [isLoggedIn, setIsLoggedIn] = useState<
-        boolean>(false);
-    const [user, setUser] = useState<
-        AuthInterfaces.User | null>(null);
-    const [error, setError] = useState<
-        Error | null>(null);
+export const AuthProvider: React.FC = ({ children }) => {
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [user, setUser] = useState<AuthInterfaces.User | null>(null);
+    const [error, setError] = useState<Error | null>(null);
 
-
-    const login = async (email: string, password: string): Promise<void> => {
+    const login = async (email: string, password: string) => {
         setIsLoading(true);
 
         try {
@@ -85,14 +76,20 @@ export const AuthProvider: React.FC = ({children}) => {
 
                 return setIsLoggedIn(true);
             });
-        } catch (err) {
-            setError(err);
+        } catch (error) {
+            setError(error);
         } finally {
-            console.log('AuthProvider -> login -> finally');
-            console.log('isLoggedIn: ', isLoggedIn);
-
+            console.log(
+                'AuthProvider -> login -> finally -> isLoggedIn?',
+                isLoggedIn,
+            );
             setIsLoading(false);
         }
+    };
+
+    const checkLoginStatus = async (): Promise<void> => {
+        const loggedIn = await AuthModel.loggedIn();
+        setIsLoggedIn(loggedIn);
     };
 
     const logout = async (): Promise<void> => {
@@ -100,8 +97,8 @@ export const AuthProvider: React.FC = ({children}) => {
             await SecureStore.deleteItemAsync('token');
             setUser(null);
             setIsLoggedIn(false);
-        } catch (e) {
-            setError(e);
+        } catch (error) {
+            setError(error);
         }
     };
 
@@ -110,13 +107,12 @@ export const AuthProvider: React.FC = ({children}) => {
 
         try {
             await AuthModel.register(email, password);
-        } catch (e) {
-            setError(e);
+        } catch (error) {
+            setError(error);
         } finally {
             setIsLoading(false);
         }
     };
-
 
     return (
         <AuthContext.Provider
@@ -128,6 +124,7 @@ export const AuthProvider: React.FC = ({children}) => {
                 login,
                 logout,
                 register,
+
                 // Optionally expose the error and isLoading to consumers
                 error,
                 isLoading,
@@ -136,7 +133,6 @@ export const AuthProvider: React.FC = ({children}) => {
         </AuthContext.Provider>
     );
 };
-
 
 /**
  * useAuthContext hook.
@@ -148,4 +144,5 @@ export const AuthProvider: React.FC = ({children}) => {
  * @returns {AuthContextType} The authentication context, including the current user, authentication
  * state, and related functions.
  */
-export const useAuthContext = (): AuthContextType => React.useContext(AuthContext);
+export const useAuthContext = (): AuthContextType =>
+    React.useContext(AuthContext);
