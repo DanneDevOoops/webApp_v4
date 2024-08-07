@@ -28,7 +28,6 @@
  * @module interfaces/Auth
  */
 
-
 /**
  * Represents a user with credentials.
  *
@@ -42,7 +41,6 @@ export interface User {
     email: string;
     password: string;
 }
-
 
 /**
  * Defines the structure for the request body to register a new user.
@@ -60,7 +58,6 @@ export interface AuthRegisterRequestBody {
     password: string;
 }
 
-
 /**
  * Defines the structure for the request body for authentication.
  *
@@ -77,26 +74,22 @@ export interface AuthRequestBody {
     password: string;
 }
 
-
-/**
- * Represents the response from the server after an authentication request.
- *
- * This interface is used to type the response received from the server upon a successful or failed login
- * attempt.
- *
- * @interface AuthResponse
- * @property {object} data - The data object containing the response details.
- * @property {string} data.token - The authentication token provided upon successful authentication.
- * @property {string} data.message - A message from the server, typically indicating the success or
- * failure reason.
- */
 export interface AuthResponse {
-    data: {
-        token: string;
+    data?: {
+        title: string;
         message: string;
+        type: string;
+        token: string;
+        user: {
+            api_key: string;
+            email: string;
+        };
+    };
+    errors?: {
+        title: string;
+        detail: string;
     };
 }
-
 
 /**
  * Defines the context for authentication operations within the application.
