@@ -8,7 +8,7 @@ import Root from './Root';
  *
  * @constructor
  */
-export default function App(): React.JSX.Element {
+export default function App(): React.ReactElement {
     return (
         <AuthProvider>
             <AppProvider>
