@@ -27,7 +27,7 @@
     "@expo-google-fonts/oleo-script-swash-caps": "^0.2.3",
     "@expo/metro-runtime": "~4.0.1",
     "@react-native-community/datetimepicker": "8.2.0",
-    "@react-native-masked-view/masked-view": "0.3.1",
+    "@react-native-masked-view/masked-view": "0.3.2",
     "@react-native-picker/picker": "2.9.0",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
