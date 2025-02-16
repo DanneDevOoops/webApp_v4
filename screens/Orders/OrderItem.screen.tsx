@@ -41,7 +41,6 @@ import { useAppContext } from '../../context/App.provider';
 import { showMessage } from 'react-native-flash-message';
 import * as Location from 'expo-location';
 import MapViewDirections from 'react-native-maps-directions';
-import { FontAwesome5 } from '@expo/vector-icons';
 import * as OrderInterfaces from '../../interfaces/Order';
 import * as OrderModel from '../../models/Orders';
 import * as ProductInterfaces from '../../interfaces/Product';
@@ -50,83 +49,80 @@ import * as NominatimModel from '../../models/Nominatim';
 import * as Style from '../../assets/styles';
 
 import * as APP_CONFIG from '../../config/config.json';
+import { flash_message } from '../../assets/utils/animation';
 
-/**
- * Function to check product stock.
- *
- * This function checks the stock status of a product in an order. It returns a React element that displays
- * the product's stock status based on the stock level vs. order amount. The stock status is indicated by
- * different colors and messages.
- *
- * @param {OrderInterfaces.OrderItem} orderItem - The order item to check the stock status for.
- * @returns {React.ReactElement} A React element displaying the product's stock status.
- */
-function productStockStatus(
-    orderItem: OrderInterfaces.OrderItem,
-): React.ReactElement {
-    const stockIndicatorElement: React.JSX.Element = useMemo(() => {
-        let computedData: OrderInterfaces.OrderStockIndicatorElement = {
-            color: '',
-            icon: 'boxes',
-            text: '',
-        };
-
-        // Set the product stock status text and indication color from the stock level vs. order amount.
-        if (orderItem.amount <= orderItem.stock - 10) {
-            computedData.color = Style.Color.indicator.positive[300];
-            computedData.text = `Produkten ${orderItem.name} finns i lager.`;
-        } else if (
-            orderItem.amount > orderItem.stock - 10 &&
-            orderItem.amount <= orderItem.stock
-        ) {
-            computedData.color = Style.Color.indicator.caution[300];
-            computedData.text = `Produkten ${orderItem.name} finns i lager men saldot är lågt.`;
-        } else {
-            computedData.color = Style.Color.indicator.warning[300];
-            computedData.text = `Produkten ${orderItem.name} saknar täckning för ordern i lagersaldot (${orderItem.stock}).`;
+const useFetchData = (
+    order: OrderInterfaces.Order,
+    appContext: any,
+    setErrorMessage: any,
+    setUserPositionMarker: any,
+    setOrderLocationMarker: any,
+) => {
+    const fetchData = useCallback(async () => {
+        try {
+            const permission =
+                await Location.requestForegroundPermissionsAsync();
+            if (permission.status !== 'granted') {
+                setErrorMessage('Permission to access location was denied');
+                return;
+            }
+            const location = await Location.getCurrentPositionAsync({});
+            if (location) {
+                appContext.setUserPosition({
+                    longitude: location.coords.longitude,
+                    latitude: location.coords.latitude,
+                });
+                setUserPositionMarker(
+                    <Marker
+                        coordinate={{
+                            latitude: location.coords.latitude,
+                            longitude: location.coords.longitude,
+                        }}
+                        title='Min position'
+                        pinColor={Style.Color.indicator.info[300]}
+                    />,
+                );
+            } else {
+                setUserPositionMarker(null);
+            }
+            const response = await NominatimModel.getCoordinates(order.address);
+            if (response && response.length > 0) {
+                const pinColor = () =>
+                    order.status_id === 200
+                        ? Style.Color.indicator.warning[300]
+                        : order.status_id === 400
+                          ? Style.Color.indicator.positive[300]
+                          : Style.Color.indicator.info[300];
+                setOrderLocationMarker(
+                    <Marker
+                        coordinate={{
+                            latitude: parseFloat(response[0].lat),
+                            longitude: parseFloat(response[0].lon),
+                        }}
+                        title={order.name + ' position'}
+                        pinColor={pinColor()}
+                    />,
+                );
+            } else {
+                setOrderLocationMarker(null);
+            }
+        } catch (error) {
+            console.error('Error: ', error);
+            flash_message(
+                'danger',
+                `Något gick fel vid hämtning av data\n${error}`,
+            );
         }
+    }, [
+        order,
+        appContext,
+        setErrorMessage,
+        setUserPositionMarker,
+        setOrderLocationMarker,
+    ]);
 
-        return (
-            <View style={Style.Container.grid.row}>
-                <View style={Style.Container.grid.col[1]}>
-                    <Text> </Text>
-                </View>
-
-                <View style={Style.Container.grid.col[7]}>
-                    <View style={Style.Container.grid.row}>
-                        <FontAwesome5
-                            name={computedData.icon}
-                            size={20}
-                            color={computedData.color}
-                            style={Style.Container.grid.col[1]}
-                        />
-
-                        <Text
-                            style={{
-                                fontStyle: 'italic',
-                                fontSize: Style.Typography.fontSize.text,
-                                color: computedData.color,
-                            }}>
-                            {computedData.text}
-                        </Text>
-                    </View>
-                </View>
-            </View>
-        );
-    }, [orderItem.stock, orderItem.amount]);
-
-    return (
-        <View
-            style={{
-                display: 'flex',
-                flexDirection: 'row',
-                gap: Style.Typography.whiteSpace[100],
-                justifyContent: 'space-between',
-            }}>
-            {stockIndicatorElement}
-        </View>
-    );
-}
+    return fetchData;
+};
 
 /**
  * OrderItem screen/view.
