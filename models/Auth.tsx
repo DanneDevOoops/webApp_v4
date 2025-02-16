@@ -16,7 +16,6 @@ export async function loggedIn(): Promise<boolean> {
     return token !== null;
 }
 
-
 /**
  * Handles user login.
  *
@@ -30,7 +29,10 @@ export async function loggedIn(): Promise<boolean> {
  * @returns {Promise<string>} A promise that resolves to a success message upon successful login.
  * @throws {Error} Throws an error if the login request fails.
  */
-export async function login(email: string, password: string): Promise<string> {
+export async function login(
+    email: string,
+    password: string,
+): Promise<AuthInterfaces.AuthResponse | undefined> {
     try {
         const data: AuthInterfaces.AuthRequestBody = {
             api_key: config.api_key,
@@ -38,29 +40,38 @@ export async function login(email: string, password: string): Promise<string> {
             password,
         };
 
-        const response: Response = await fetch(`${config.base_url}/auth/login`, {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                'content-type': 'application/json'
+        const response: Response = await fetch(
+            `${config.base_url}/auth/login`,
+            {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'content-type': 'application/json',
+                },
             },
-        });
-
-        if (!response.ok) {
-            throw new Error(`Server responded with status: ${response.status}`);
-        }
+        );
 
         const result: AuthInterfaces.AuthResponse = await response.json();
-        await SecureStore.setItemAsync('token', result.data.token);
 
+        if (Object.prototype.hasOwnProperty.call(result, 'errors')) {
+            return {
+                title: result.errors.title,
+                message: result.errors.detail,
+                type: 'danger',
+            };
+        } else {
+            await SecureStore.setItemAsync('token', result.data.token);
 
-        return result.data.message;
+            return {
+                title: 'Inloggning',
+                message: result.data.message,
+                type: 'success',
+            };
+        }
     } catch (error) {
-        console.error("login -> ERROR: ", error);
-        throw error; // Re-throw the error for the calling function to handle
+        return;
     }
 }
-
 
 /**
  * Handles new user registration.
