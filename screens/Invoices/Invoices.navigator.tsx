@@ -24,29 +24,25 @@
  */
 // External libraries
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {NativeStackNavigatorProps} from 'react-native-screens/lib/typescript/native-stack/types';
-import {useRoute} from '@react-navigation/native';
-import {SafeAreaView, View} from 'react-native';
-import {StatusBar} from 'expo-status-bar';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaView, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
 
 // Internal components and modules
-import {InvoiceDataTable} from '../../components/Invoice/InvoiceDataTable';
-import {InvoiceItem} from './InvoiceItem.screen';
-import {InvoiceForm} from './InvoiceForm.screen';
-import {CoverImage} from '../../components/Utils/CoverImage';
+import { InvoiceDataTable } from '../../components/Invoice/InvoiceDataTable';
+import { InvoiceItem } from './InvoiceItem.screen';
+import { InvoiceForm } from './InvoiceForm.screen';
+import { CoverImage } from '../../components/Utils/CoverImage';
 
 // Assets & styles
 import coverIMG from '../../assets/img/NutsAndBolts-7.jpg';
 import * as Style from '../../assets/styles';
 
-
 /**
  * Stack navigator for invoices.
  */
-const Stack: NativeStackNavigatorProps = createStackNavigator();
-
+const Stack = createStackNavigator();
 
 /**
  * Invoice Stack Navigator.
@@ -61,33 +57,32 @@ const Stack: NativeStackNavigatorProps = createStackNavigator();
  * @returns {React.ReactElement} The invoice stack navigator component.
  */
 export const InvoiceNavigator: React.FC = (): React.ReactElement => {
-    const route = useRoute();
-
     return (
         <SafeAreaView style={Style.Base.mainContainer}>
-            {CoverImage({headerText: 'Fakturor', image: coverIMG})}
+            {CoverImage({ headerText: 'Fakturor', image: coverIMG })}
 
             <View style={Style.Base.content}>
                 <Stack.Navigator>
-                    <Stack.Screen
-                        name='Fakturor'
-                        component={InvoiceDataTable}
-                        params={{reload: route.params?.reload ?? false}}
-                    />
-                    <Stack.Screen
-                        name='Fakturaspecifikation'
-                        component={InvoiceItem}
-                    />
-                    <Stack.Screen
-                        name='Skapa faktura'
-                        component={InvoiceForm}
-                    />
+                    <Stack.Group>
+                        <Stack.Screen
+                            name='Fakturalista'
+                            component={InvoiceDataTable}
+                        />
+                        <Stack.Screen
+                            name='Fakturaspecifikation'
+                            component={InvoiceItem}
+                        />
+                        <Stack.Screen
+                            name='Skapa faktura'
+                            component={InvoiceForm}
+                        />
+                    </Stack.Group>
                 </Stack.Navigator>
             </View>
 
-            <StatusBar style='auto'/>
+            <StatusBar style='auto' />
 
-            <FlashMessage position="top"/>
+            <FlashMessage position='top' />
         </SafeAreaView>
     );
 };
