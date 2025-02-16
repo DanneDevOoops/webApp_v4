@@ -126,3 +126,8 @@ export async function logout(): Promise<void> {
     // Remove token from Expo-SecureStore.
     await SecureStore.deleteItemAsync('token');
 }
+
+export async function checkLoginStatus(): Promise<boolean> {
+    const loggedIn: string | null = await SecureStore.getItemAsync('token');
+    return loggedIn !== null;
+}
