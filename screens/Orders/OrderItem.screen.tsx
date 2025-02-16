@@ -761,7 +761,6 @@ export const OrderItem: (
                                         : 0,
                             },
                         ]}>
-                        {productStockStatus(orderListItem)}
                     </View>
                 ) : (
                     <View
