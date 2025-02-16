@@ -1,7 +1,6 @@
 import config from "../config/config.json";
 import * as SecureStore from 'expo-secure-store';
-import * as AuthInterfaces from '../interfaces/Auth';
-
+import * as AuthInterfaces from '../interfaces/Auth.interfaces';
 
 /**
  * Checks if the user is currently logged in.
