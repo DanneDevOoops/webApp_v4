@@ -1,10 +1,8 @@
 import React from 'react';
-import {ActivityIndicator, Text, View} from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import * as Style from '../../assets/styles';
 
-
 type ArgumentTypes = { loadingType: string | undefined };
-
 
 /**
  * Activity indicator component.
@@ -13,8 +11,8 @@ type ArgumentTypes = { loadingType: string | undefined };
  * @constructor
  */
 export function LoadingIndicator({
-                                     loadingType = undefined,
-                                 }: ArgumentTypes): React.JSX.Element {
+    loadingType = undefined,
+}: ArgumentTypes): React.ReactElement {
     if (loadingType !== undefined) {
         return (
             <View style={Style.Utils.loadingIndicatorContainer}>
