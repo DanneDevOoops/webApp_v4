@@ -2,9 +2,8 @@
  * Module imports.
  */
 import React from 'react';
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 import * as Style from '../../assets/styles';
-
 
 /**
  * DeliveryListItem object to return a touchable link element to delivery detail view.
@@ -13,7 +12,7 @@ import * as Style from '../../assets/styles';
  * @param delivery
  * @constructor
  */
-export const DeliveryListItem = ({item}): React.JSX.Element => {
+export const DeliveryListItem = ({ item }): React.ReactElement => {
     return (
         <View key={item.id}>
             <View style={Style.Container.grid.row}>
