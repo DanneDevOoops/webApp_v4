@@ -93,13 +93,16 @@ export async function register(email: string, password: string): Promise<any> {
             password: password,
         };
 
-        const response: Response = await fetch(`${config.base_url}/auth/register`, {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                'content-type': 'application/json'
+        const response: Response = await fetch(
+            `${config.base_url}/auth/register`,
+            {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'content-type': 'application/json',
+                },
             },
-        });
+        );
 
         if (!response.ok) {
             throw new Error(`Server responded with status: ${response.status}`);
@@ -107,10 +110,9 @@ export async function register(email: string, password: string): Promise<any> {
 
         return response.json();
     } catch (error) {
-        console.log("ERROR: ", error);
+        console.log('ERROR: ', error);
     }
 }
-
 
 /**
  * Logs out the current user.
