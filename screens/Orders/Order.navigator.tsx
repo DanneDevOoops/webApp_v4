@@ -20,29 +20,27 @@
  * @requires ../../assets/styles
  * @requires ../../assets/img/NutsAndBolts-3.jpg
  */
+
 // External libraries
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
-import {NativeStackNavigatorProps} from 'react-native-screens/lib/typescript/native-stack/types';
-import {createStackNavigator} from '@react-navigation/stack';
-import {StatusBar} from 'expo-status-bar';
+import { SafeAreaView, Text, View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
 
 // Internal components and modules
-import {OrderList} from '../../components/Order/OrderList';
-import {OrderItem} from './OrderItem.screen';
-import {CoverImage} from '../../components/Utils/CoverImage';
+import { OrderList } from '../../components/Order/OrderList';
+import { OrderItem } from './OrderItem.screen';
+import { CoverImage } from '../../components/Utils/CoverImage';
 
 // Assets & styles
 import coverIMG from '../../assets/img/NutsAndBolts-3.jpg';
 import * as Style from '../../assets/styles';
 
-
 /**
  * Stack navigator for orders.
  */
-const Stack: NativeStackNavigatorProps = createStackNavigator();
-
+const Stack = createStackNavigator();
 
 /**
  * Order Stack Navigator.
@@ -58,7 +56,7 @@ const Stack: NativeStackNavigatorProps = createStackNavigator();
 export const OrderNavigator = (): React.ReactElement => {
     return (
         <SafeAreaView style={Style.Base.mainContainer}>
-            {CoverImage({headerText: 'Order', image: coverIMG})}
+            {CoverImage({ headerText: 'Order', image: coverIMG })}
 
             <View style={Style.Container.screenIntroductory}>
                 <Text style={Style.Typography.paragraph}>
@@ -71,7 +69,6 @@ export const OrderNavigator = (): React.ReactElement => {
                 <Stack.Screen
                     name='Orderlista'
                     component={OrderList}
-                    reload={false}
                 />
 
                 <Stack.Screen
@@ -80,9 +77,9 @@ export const OrderNavigator = (): React.ReactElement => {
                 />
             </Stack.Navigator>
 
-            <StatusBar style='auto'/>
+            <StatusBar style='auto' />
 
-            <FlashMessage position="top"/>
+            <FlashMessage position='top' />
         </SafeAreaView>
     );
 };
