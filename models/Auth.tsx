@@ -1,4 +1,4 @@
-import config from "../config/config.json";
+import config from '../config/config.json';
 import * as SecureStore from 'expo-secure-store';
 import * as AuthInterfaces from '../interfaces/Auth.interfaces';
 
