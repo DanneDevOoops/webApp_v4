@@ -217,6 +217,10 @@ export const OrderItem: (
             }
         } catch (error) {
             console.error('Error: ', error);
+            flash_message(
+                'danger',
+                `Något gick fel vid hämtning av data\n${error}`,
+            );
         }
     };
 
@@ -429,26 +433,20 @@ export const OrderItem: (
                                 appContext.setProducts(updatedProductsList);
                                 appContext.setOrders(updatedOrdersList);
 
-                                showMessage({
-                                    message: `Order (${order.id}) har paketerats`,
-                                    description: 'Order har paketerats.',
-                                    type: 'success',
-                                    duration: 3500,
-                                });
-
-                                // Navigate back to the order list and trigger reload.
+                                await flash_message(
+                                    'success',
+                                    'Order har paketerats',
+                                );
+                            } catch (error) {
+                                console.error('Error picking order: ', error);
+                                flash_message(
+                                    'warning',
+                                    'Order gick inte att paketera',
+                                );
+                            } finally {
                                 navigation.navigate('Orderlista', {
                                     reload: true,
                                 });
-                            } catch (error) {
-                                console.error('Error picking order: ', error);
-                                showMessage({
-                                    message: `Order (${order.id}) gick inte att paketera`,
-                                    description: 'Order gick inte paketera',
-                                    type: 'warning',
-                                    duration: 3000,
-                                });
-                            } finally {
                             }
                         }}>
                         <Text style={Style.Typography.buttonText}>
