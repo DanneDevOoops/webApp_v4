@@ -135,9 +135,9 @@ const useFetchData = (
  * @param {OrderInterfaces.OrderItemProps} props - The properties for the OrderItem component.
  * @returns {React.ReactElement} The OrderItem component.
  */
-export const OrderItem: (
+export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
     props: OrderInterfaces.OrderItemProps,
-) => React.ReactElement = (props: OrderInterfaces.OrderItemProps) => {
+) => {
     const appContext = useAppContext();
     const navigation = useNavigation();
     const route = useRoute();
@@ -760,8 +760,7 @@ export const OrderItem: (
                                         ? 0.3
                                         : 0,
                             },
-                        ]}>
-                    </View>
+                        ]}></View>
                 ) : (
                     <View
                         style={[
