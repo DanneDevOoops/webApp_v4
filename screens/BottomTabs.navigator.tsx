@@ -43,6 +43,7 @@ import { InvoiceNavigator } from './Invoices/Invoices.navigator';
 import { LoadingIndicator } from '../components/Utils/LoadingIndicator';
 import { FontAwesome5 } from '@expo/vector-icons';
 import * as Style from '../assets/styles/index';
+import { AuthContextType } from '../interfaces/Auth.interfaces';
 
 /**
  * Bottom tabs navigator.
@@ -52,14 +53,14 @@ const BottomTabs = createBottomTabNavigator();
 /**
  * Bottom tabs navigator icons.
  */
-const routeIcons = {
+const routeIcons: { [key: string]: string } = {
     Faktura: 'file-invoice-dollar',
     Home: 'home',
     Inleveranser: 'dolly',
     Lager: 'layer-group',
-    Login: 'lock',
     Order: 'truck',
-    // Login: 'key',
+    // Login: 'lock',
+    Login: 'key',
 };
 
 /**
@@ -95,15 +96,13 @@ export const BottomTabsNavigator: () => React.ReactElement = () => {
 
 /**
  * Check the user's login status and update the authentication context.
- *
- * @param {object} authContext - The authentication context.
  */
-const checkUserLoginStatus = async (authContext) => {
+const checkUserLoginStatus = async (authContext: AuthContextType) => {
     const isLoggedIn: boolean = await AuthModel.loggedIn();
     authContext.setIsLoggedIn(isLoggedIn);
 
     SecureStore.getItemAsync('user')
-        .then((userString: string): void => {
+        .then((userString: string | null): void => {
             if (userString) {
                 console.log('userString', userString);
             }
@@ -145,31 +144,37 @@ const getScreenOptions = ({
  * @param {object} authContext - The authentication context.
  * @returns {React.ReactElement} The bottom tab screens.
  */
-const getBottomTabScreens = (authContext) => (
+const getBottomTabScreens = (authContext: AuthContextType) => (
     <>
         <BottomTabs.Screen
+            key='Hem'
             name='Hem'
             component={Home}
         />
         <BottomTabs.Screen
+            key='Lager'
             name='Lager'
             component={ProductsNavigator}
         />
         <BottomTabs.Screen
+            key='Order'
             name='Order'
             component={OrderNavigator}
         />
         <BottomTabs.Screen
+            key='Inleveranser'
             name='Inleveranser'
             component={DeliveryNavigator}
         />
         {authContext.isLoggedIn ? (
             <BottomTabs.Screen
+                key='Fakturor'
                 name='Fakturor'
                 component={InvoiceNavigator}
             />
         ) : (
             <BottomTabs.Screen
+                key='Logga in'
                 name='Logga in'
                 component={AuthNavigator}
             />
