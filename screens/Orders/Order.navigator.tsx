@@ -67,11 +67,13 @@ export const OrderNavigator = (): React.ReactElement => {
 
             <Stack.Navigator>
                 <Stack.Screen
+                    key='Orderlista'
                     name='Orderlista'
                     component={OrderList}
                 />
 
                 <Stack.Screen
+                    key='Orderhanterare'
                     name='Orderhanterare'
                     component={OrderItem}
                 />
