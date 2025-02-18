@@ -2,8 +2,7 @@ import * as ProductsInterfaces from './Product';
 import * as OrdersInterfaces from './Order';
 import * as DeliveriesInterfaces from './Delivery';
 import * as InvoicesInterfaces from './Invoice';
-import {UserPosition} from "./UserPosition";
-
+import { UserPosition } from './UserPosition';
 
 /**
  * Defines the structure for the application context.
@@ -53,4 +52,16 @@ export interface AppContext {
 
     userPosition: any;
     setUserPosition: (userPosition: UserPosition) => void;
+}
+
+/**
+ * Defines the properties for the `AppProvider` component.
+ *
+ * This interface outlines the properties that can be passed to the `AppProvider` component.
+ *
+ * @interface
+ * @property {React.ReactNode} children - The child components that will have access to the context.
+ */
+export interface AppProviderProps {
+    children: React.ReactNode;
 }
