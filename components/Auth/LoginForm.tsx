@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { Pressable, Text, TextInput, View, ViewStyle } from 'react-native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useAuthContext } from '../../context/Auth.provider';
 import * as AuthModel from '../../models/Auth';
 import * as Style from '../../assets/styles/index';
 import { flash_message } from '../../assets/utils/animation';
+import { AuthContextType } from '../../interfaces/Auth.interfaces';
 
 /**
  * Create new Login form component.
@@ -52,7 +53,7 @@ export const LoginForm: React.FC = (): React.ReactElement => {
     );
 };
 
-const useLoginEffect = (authContext: any): void => {
+const useLoginEffect = (authContext: AuthContextType): void => {
     useEffect((): void => {
         if (authContext.isLoggedIn) {
             flash_message('info', 'Användaren är inloggad');
@@ -65,7 +66,7 @@ const useLoginEffect = (authContext: any): void => {
 const handleLogin = async (
     email: string | null,
     password: string | null,
-    navigation: any,
+    navigation: NavigationProp,
 ) => {
     if (email && password) {
         try {
@@ -86,10 +87,10 @@ const handleLogin = async (
     }
 };
 
-const FormButtons: React.FC<{ loginUser: () => void; navigation: any }> = ({
-    loginUser,
-    navigation,
-}) => (
+const FormButtons: React.FC<{
+    loginUser: () => void;
+    navigation: NavigationProp;
+}> = ({ loginUser, navigation }) => (
     <View
         style={[
             Style.Container.grid.rowNoPadding as ViewStyle,
@@ -102,8 +103,15 @@ const FormButtons: React.FC<{ loginUser: () => void; navigation: any }> = ({
                 Style.Button.buttonContainer,
                 { opacity: pressed ? 0.5 : 1 },
             ]}
+            as
+            ViewStyle
             onPress={loginUser}>
-            <Text style={Style.Typography.buttonText}>Logga in</Text>
+            <Text
+                style={Style.Typography.buttonText}
+                as
+                ViewStyle>
+                Logga in
+            </Text>
         </Pressable>
 
         <Text>

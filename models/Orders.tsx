@@ -135,12 +135,12 @@ export async function updateOrderStatus(
     new_status_id: number
 ): Promise<void> {
     try {
-        let requestBody: OrderInterfaces.OrderUpdate = {
+        const requestBody: OrderInterfaces.OrderUpdate = {
             id: order_id,
             name: order_name,
             status_id: new_status_id,
             api_key: `${config.api_key}`,
-        }
+        };
 
         await fetch(
             `${config.base_url}/orders?api_key=${config.api_key}`,

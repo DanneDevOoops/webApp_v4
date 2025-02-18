@@ -3,7 +3,6 @@
  */
 import * as Abstract from './abstracts';
 import * as Color from './colors';
-import * as Container from './containers';
 import * as Typography from './typography';
 import * as Variable from './variables';
 

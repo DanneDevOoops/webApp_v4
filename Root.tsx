@@ -1,5 +1,4 @@
-import React, {useEffect, useCallback, useRef} from 'react';
-// eslint-disable-next-line import/namespace
+import React from 'react';
 import {LogBox} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
@@ -23,13 +22,8 @@ import {
     Merriweather_700Bold,
     Merriweather_700Bold_Italic,
 } from '@expo-google-fonts/merriweather';
-import {useAuthContext} from './context/Auth.provider';
 import {useAppContext} from './context/App.provider';
 import {LoadingIndicator} from './components/Utils/LoadingIndicator';
-import * as AuthModel from './models/Auth';
-import * as DeliveryModel from './models/Deliveries';
-import * as OrderModel from './models/Orders';
-import * as ProductModel from './models/Products';
 
 /**
  * LogBox ignore logs.
@@ -51,7 +45,6 @@ LogBox.ignoreLogs([
  * @constructor
  */
 export const App: React.FC = () => {
-    const authContext = useAuthContext();
     const appContext = useAppContext();
     const [fontsLoaded] = useFonts({
         OleoScriptSwashCaps_400Regular,

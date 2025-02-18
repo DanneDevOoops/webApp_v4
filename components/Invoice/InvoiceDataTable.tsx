@@ -66,7 +66,7 @@ export const InvoiceDataTable: React.FC = (): React.ReactElement => {
     const loadInvoices = async (): Promise<void> => {
         try {
             appContext.setIsRefreshing(true);
-            let invoices = await InvoiceModel.getInvoices();
+            const invoices = await InvoiceModel.getInvoices();
             appContext.setInvoices(invoices['data'] || []);
         } catch (error) {
             console.error(error);

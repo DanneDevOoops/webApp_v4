@@ -1,5 +1,4 @@
-import React from 'react';
-import {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Picker from 'react-native-picker';
 import {useAppContext} from '../../context/App.provider';
 import * as InvoiceInterfaces from '../../interfaces/Invoice';

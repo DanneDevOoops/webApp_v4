@@ -1,9 +1,10 @@
 /**
  * Module imports.
  */
-import {Dimensions, StyleProp, ViewStyle, StyleSheet} from 'react-native';
+import { Dimensions, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import * as Color from './colors';
 import * as Typography from './typography';
+
 
 /**
  * Content container
@@ -36,7 +37,7 @@ export const mapContainer: StyleProp<Partial<ViewStyle>> = {
     alignItems: "center",
 };
 
-export const map: StyleProp<any> = {
+export const map: StyleProp<ViewStyle> = {
     ...StyleSheet.absoluteFillObject,
 };
 

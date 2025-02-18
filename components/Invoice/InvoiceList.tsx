@@ -43,7 +43,7 @@ export const InvoiceList: React.FC = (): React.ReactElement => {
     const appContext = useAppContext();
     const navigation = useNavigation();
     const route = useRoute<RouteParams>();
-    let reload: boolean | null = route.params?.reload ?? false;
+    const reload: boolean | null = route.params?.reload ?? false;
 
 
     /**

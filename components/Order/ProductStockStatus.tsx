@@ -20,7 +20,7 @@ export const ProductStockStatus = ({
     orderItem: OrderInterfaces.OrderItem;
 }) => {
     const computedData = useMemo(() => {
-        let data = { color: '', icon: 'boxes', text: '' };
+        const data = { color: '', icon: 'boxes', text: '' };
         if (orderItem.amount <= orderItem.stock - 10) {
             data.color = Style.Color.indicator.positive[300];
             data.text = `Produkten ${orderItem.name} finns i lager.`;

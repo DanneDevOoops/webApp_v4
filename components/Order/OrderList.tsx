@@ -34,7 +34,7 @@ export const OrderList: React.FC = (): React.ReactElement => {
         {key: 'third', title: 'Skickade', icon: 'paper-plane'},
         {key: 'fourth', title: 'Returer', icon: 'undo-alt'},
     ]);
-    let reload: boolean | null = route.params?.reload ?? false;
+    const reload: boolean | null = route.params?.reload ?? false;
 
 
     /**

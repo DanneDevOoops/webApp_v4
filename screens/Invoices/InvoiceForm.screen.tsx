@@ -74,14 +74,14 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
 
 
     useEffect((): void => {
-        selectedOrder
-            ? setNewInvoiceData({
+        if (selectedOrder) {
+            setNewInvoiceData({
                 order_id: selectedOrder.id,
                 total_price: OrderModel.calcOrderTotalPrice(selectedOrder),
                 creation_date: new Date().toLocaleDateString('se-SV'),
                 due_date: getDueDate().toLocaleDateString('se-SV'),
-            })
-            : null;
+            });
+        }
     }, [selectedOrder]);
 
 
