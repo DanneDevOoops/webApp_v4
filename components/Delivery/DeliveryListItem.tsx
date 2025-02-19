@@ -3,37 +3,37 @@
  */
 import React from 'react';
 import { Text, TextStyle, View, ViewStyle } from 'react-native';
-import { Delivery } from '../../interfaces/Delivery';
+import { DeliveryListItemProps } from '../../interfaces/Delivery';
 import * as Style from '../../assets/styles';
 
 
 /**
- * DeliveryListItem object to return a touchable link element to delivery detail view.
+ * Component to display a delivery item in a list.
  *
- * @constructor
- * @param item - The delivery item to be displayed.
+ * @param {DeliveryListItemProps} props - The properties for the DeliveryListItem component.
+ * @returns The rendered React component.
  */
-export const DeliveryListItem = (item: Delivery): React.ReactElement => {
+export const DeliveryListItem = (props: DeliveryListItemProps): React.ReactElement => {
     return (
-        <View key={item.id}>
+        <View key={props.item.id}>
             <View style={Style.Container.grid.row as ViewStyle}>
                 <Text style={Style.Typography.dataLeft as TextStyle}>
-                    {item.id}
+                    {props.item.id}
                 </Text>
                 <Text style={Style.Typography.dataCenter as TextStyle}>
-                    {item.product_name}
+                    {props.item.product_name}
                 </Text>
                 <Text style={Style.Typography.dataLeft as TextStyle}>
-                    {item.delivery_date}
+                    {props.item.delivery_date}
                 </Text>
             </View>
 
             <View style={Style.Container.grid.column as ViewStyle}>
                 <Text style={Style.Typography.dataLeft as TextStyle}>
-                    Kommentar:{' '}
+                    Kommentar:
                 </Text>
                 <Text style={Style.Typography.dataRight as TextStyle}>
-                    {item.comment}
+                    {props.item.comment}
                 </Text>
             </View>
         </View>
