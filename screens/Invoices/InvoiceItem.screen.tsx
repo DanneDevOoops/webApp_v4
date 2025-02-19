@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import { Text, TextStyle, View, ViewStyle } from 'react-native';
 import * as InvoiceInterfaces from '../../interfaces/Invoice';
 import {StatusBar} from 'expo-status-bar';
 import * as Style from '../../assets/styles';
@@ -11,44 +11,54 @@ import * as Style from '../../assets/styles';
  * @constructor
  * @param props
  */
-export const InvoiceItem: (
-    props: InvoiceInterfaces.InvoiceItemProps,
-) => React.JSX.Element = (props: InvoiceInterfaces.InvoiceItemProps) => {
+export const InvoiceItem = (
+    props: InvoiceInterfaces.InvoiceItemProps
+): React.ReactElement => {
     const invoice = props.route.params.item;
 
     return (
-        <View style={[Style.Base.content]}>
-            <Text style={Style.Typography.subHeader}>{invoice.id}</Text>
+        <View style={Style.Base.content as ViewStyle}>
+            <Text style={Style.Typography.subHeader as TextStyle}>
+                {invoice.id}
+            </Text>
 
-            <View style={Style.Container.flexBox.row}>
-                <Text style={Style.Typography.dataLeft}>Faktura id: </Text>
-                <Text style={Style.Typography.dataRight}>
+            <View style={Style.Container.flexBox.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Faktura id:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
                     {invoice.order_id}
                 </Text>
             </View>
 
-            <View style={Style.Container.flexBox.row}>
-                <Text style={Style.Typography.dataLeft}>Fakturanummer: </Text>
-                <Text style={Style.Typography.dataRight}>
+            <View style={Style.Container.flexBox.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Fakturanummer:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
                     {invoice.total_price}
                 </Text>
             </View>
 
-            <View style={Style.Container.flexBox.row}>
-                <Text style={Style.Typography.dataLeft}>Kund: </Text>
-                <Text style={Style.Typography.dataRight}>
-                    {invoice.creation_date}
+            <View style={Style.Container.flexBox.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Kund:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
+                    {invoice.creation_date.toString()}
                 </Text>
             </View>
 
-            <View style={Style.Container.flexBox.row}>
-                <Text style={Style.Typography.dataLeft}>Datum: </Text>
-                <Text style={Style.Typography.dataRight}>
-                    {invoice.due_date}
+            <View style={Style.Container.flexBox.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Datum:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
+                    {invoice.due_date.toString()}
                 </Text>
             </View>
 
-            <StatusBar style='auto'/>
+            <StatusBar style='auto' />
         </View>
     );
 };

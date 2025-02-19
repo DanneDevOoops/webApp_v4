@@ -1,7 +1,14 @@
 import React, {useCallback, useMemo} from 'react';
 import {useAppContext} from '../../context/App.provider';
 import {useFocusEffect, useNavigation, useRoute} from '@react-navigation/native';
-import {FlatList, Pressable, Text, View} from 'react-native';
+import {
+    FlatList,
+    Pressable,
+    Text,
+    TextStyle,
+    View,
+    ViewStyle,
+} from 'react-native';
 import {DeliveryListItem} from './DeliveryListItem';
 import {LoadingIndicator} from '../Utils/LoadingIndicator';
 import * as DeliveriesInterfaces from '../../interfaces/Delivery';
@@ -106,21 +113,21 @@ export const DeliveryList: React.FC = (): React.ReactElement => {
      * @param {Object} props.item - The delivery item data to be rendered.
      * @returns {React.ReactElement} A pressable component representing a single delivery item.
      */
-    const renderItem = ({item}: { item: object; }): React.ReactElement => (
+    const renderItem = ({ item }: { item: object }): React.ReactElement => (
         <Pressable
             key={item.id}
             onPress={(): void => {
-                navigation.navigate('Inleveransspecifikation', {item});
+                navigation.navigate('Inleveransspecifikation', { item });
             }}
-            style={({pressed}) => [
-                Style.Button.listButton,
+            style={({ pressed }) => [
+                Style.Button.listButton as ViewStyle,
                 {
                     backgroundColor: pressed
                         ? Style.Color.schemeOne.primary[200]
                         : Style.Button.listButton.backgroundColor,
                 },
             ]}>
-            <DeliveryListItem item={item}/>
+            <DeliveryListItem item={item} />
         </Pressable>
     );
 
@@ -144,8 +151,8 @@ export const DeliveryList: React.FC = (): React.ReactElement => {
     const renderDeliveriesList: React.ReactElement = useMemo(() => {
         if (!appContext.deliveries) {
             return (
-                <View style={Style.Container.warningMsgContainer}>
-                    <Text style={Style.Typography.warningFlashMsg}>
+                <View style={Style.Container.warningMsgContainer as ViewStyle}>
+                    <Text style={Style.Typography.warningFlashMsg as TextStyle}>
                         Det finns inte några inleveranser...
                     </Text>
                 </View>
@@ -167,29 +174,29 @@ export const DeliveryList: React.FC = (): React.ReactElement => {
 
 
     return appContext.isRefreshing ? (
-        <View style={Style.Container.content}>
+        <View style={Style.Container.content as ViewStyle}>
             <Pressable
                 key={'newDeliveryBTN'}
-                style={Style.Button.buttonContainer}
+                style={Style.Button.buttonContainer as ViewStyle}
                 onPress={(): void => {
                     navigation.navigate('Inleverasformulär');
                 }}>
-                <Text style={Style.Typography.buttonText}>
+                <Text style={Style.Typography.buttonText as TextStyle}>
                     Skapa Inleverans
                 </Text>
             </Pressable>
 
-            <LoadingIndicator loadingType={'Leveranser'}/>
+            <LoadingIndicator loadingType={'Leveranser'} />
         </View>
     ) : (
-        <View style={Style.Container.content}>
+        <View style={Style.Container.content as ViewStyle}>
             <Pressable
                 key={'newDeliveryBTN'}
-                style={Style.Button.buttonContainer}
+                style={Style.Button.buttonContainer as ViewStyle}
                 onPress={(): void => {
                     navigation.navigate('Inleverasformulär');
                 }}>
-                <Text style={Style.Typography.buttonText}>
+                <Text style={Style.Typography.buttonText as TextStyle}>
                     Skapa Inleverans
                 </Text>
             </Pressable>

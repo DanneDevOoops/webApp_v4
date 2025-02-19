@@ -2,7 +2,7 @@
  * Module imports.
  */
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, TextStyle, View, ViewStyle } from 'react-native';
 import * as Style from '../../assets/styles';
 
 /**
@@ -15,19 +15,25 @@ import * as Style from '../../assets/styles';
 export const DeliveryListItem = ({ item }): React.ReactElement => {
     return (
         <View key={item.id}>
-            <View style={Style.Container.grid.row}>
-                <Text style={Style.Typography.dataLeft}>{item.id}</Text>
-                <Text style={Style.Typography.dataCenter}>
+            <View style={Style.Container.grid.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    {item.id}
+                </Text>
+                <Text style={Style.Typography.dataCenter as TextStyle}>
                     {item.product_name}
                 </Text>
-                <Text style={Style.Typography.dataLeft}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
                     {item.delivery_date}
                 </Text>
             </View>
 
-            <View style={Style.Container.grid.column}>
-                <Text style={Style.Typography.dataLeft}>Kommentar: </Text>
-                <Text style={Style.Typography.dataRight}>{item.comment}</Text>
+            <View style={Style.Container.grid.column as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Kommentar:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
+                    {item.comment}
+                </Text>
             </View>
         </View>
     );

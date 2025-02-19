@@ -1,5 +1,11 @@
 import React from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
+import {
+    ActivityIndicator,
+    Text,
+    TextStyle,
+    View,
+    ViewStyle,
+} from 'react-native';
 import * as Style from '../../assets/styles';
 
 type ArgumentTypes = { loadingType: string | undefined };
@@ -15,27 +21,29 @@ export function LoadingIndicator({
 }: ArgumentTypes): React.ReactElement {
     if (loadingType !== undefined) {
         return (
-            <View style={Style.Utils.loadingIndicatorContainer}>
+            <View style={Style.Utils.loadingIndicatorContainer as ViewStyle}>
                 <ActivityIndicator
                     size='large'
                     color={Style.Color.schemeOne.primary[300]}
-                    style={Style.Utils.loadingIndicator}
+                    style={Style.Utils.loadingIndicator as ViewStyle}
                 />
 
-                <Text style={Style.Utils.loadingIndicatorText}>
+                <Text style={Style.Utils.loadingIndicatorText as TextStyle}>
                     Laddar {loadingType}...
                 </Text>
             </View>
         );
     } else {
         return (
-            <View style={Style.Utils.loadingIndicatorContainer}>
+            <View style={Style.Utils.loadingIndicatorContainer as ViewStyle}>
                 <ActivityIndicator
                     size='large'
                     color={Style.Color.schemeOne.primary[300]}
                 />
 
-                <Text style={Style.Utils.loadingIndicatorText}>Laddar...</Text>
+                <Text style={Style.Utils.loadingIndicatorText as TextStyle}>
+                    Laddar...
+                </Text>
             </View>
         );
     }

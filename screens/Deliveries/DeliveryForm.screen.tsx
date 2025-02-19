@@ -28,7 +28,9 @@ import {
     ScrollView,
     Text,
     TextInput,
+    TextStyle,
     View,
+    ViewStyle,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StatusBar } from 'expo-status-bar';
@@ -43,6 +45,7 @@ import { Delivery } from '../../interfaces/Delivery';
 import * as StockInterfaces from '../../interfaces/Product';
 import * as DeliveryModel from '../../models/Deliveries';
 import * as ProductModel from '../../models/Products';
+
 
 /**
  * Create new delivery form component.
@@ -177,17 +180,19 @@ export const DeliveryCreationForm: React.FC = (): React.ReactElement => {
     }
 
     return (
-        <ScrollView style={Style.Container.content}>
+        <ScrollView style={Style.Container.content as ViewStyle}>
             <DeliveryProductPicker
                 newDelivery={newDelivery}
                 setNewDelivery={setNewDelivery}
                 setSelectedProduct={setSelectedProduct}
             />
 
-            <View style={Style.Container.grid.row}>
-                <Text style={Style.Form.labelInputField}>Antal: </Text>
+            <View style={Style.Container.grid.row as ViewStyle}>
+                <Text style={Style.Form.labelInputField as TextStyle}>
+                    Antal:{' '}
+                </Text>
                 <TextInput
-                    style={Style.Form.textInputField}
+                    style={Style.Form.textInputField as TextStyle}
                     onChangeText={(inputAmount: string): void => {
                         setNewDelivery({
                             ...newDelivery,
@@ -200,17 +205,23 @@ export const DeliveryCreationForm: React.FC = (): React.ReactElement => {
                 />
             </View>
 
-            <View style={Style.Container.grid.row}>
-                <Text style={(Style.Form.labelInputField, { width: '50%' })}>
+            <View style={Style.Container.grid.row as ViewStyle}>
+                <Text
+                    style={[
+                        Style.Form.labelInputField as TextStyle,
+                        { width: '50%' },
+                    ]}>
                     Leveransdatum:
                 </Text>
                 {DeliveryDatePicker()}
             </View>
 
-            <View style={Style.Container.grid.row}>
-                <Text style={Style.Form.labelInputField}>Kommentar: </Text>
+            <View style={Style.Container.grid.row as ViewStyle}>
+                <Text style={Style.Form.labelInputField as TextStyle}>
+                    Kommentar:{' '}
+                </Text>
                 <TextInput
-                    style={Style.Form.textInputField}
+                    style={Style.Form.textInputField as TextStyle}
                     onChangeText={(inputComment: string): void => {
                         setNewDelivery({
                             ...newDelivery,
@@ -222,7 +233,7 @@ export const DeliveryCreationForm: React.FC = (): React.ReactElement => {
             </View>
 
             <Pressable
-                style={Style.Button.buttonContainer}
+                style={Style.Button.buttonContainer as ViewStyle}
                 onPress={async (): Promise<void> => {
                     // Create New Delivery, Update Product Stock & Alert User.
                     await handleSubmit();
@@ -232,7 +243,7 @@ export const DeliveryCreationForm: React.FC = (): React.ReactElement => {
                         reload: true,
                     });
                 }}>
-                <Text style={Style.Typography.buttonText}>
+                <Text style={Style.Typography.buttonText as TextStyle}>
                     Skapa Ny Inleverans
                 </Text>
             </Pressable>

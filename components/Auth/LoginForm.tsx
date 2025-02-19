@@ -36,7 +36,7 @@ export const LoginForm: React.FC = (): React.ReactElement => {
             <Text>Email: </Text>
             <TextInput
                 style={Style.Form.textInputField as TextStyle}
-                value={email}
+                value={email as string}
                 onChangeText={setEmail}
                 textContentType='emailAddress'
                 keyboardType='email-address'
@@ -46,7 +46,7 @@ export const LoginForm: React.FC = (): React.ReactElement => {
             <Text>Password: </Text>
             <TextInput
                 style={Style.Form.textInputField as TextStyle}
-                value={password}
+                value={password as string}
                 onChangeText={setPassword}
                 autoCapitalize='none'
                 secureTextEntry={true}

@@ -12,20 +12,21 @@
  */
 // External libraries
 import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, Text, TextStyle, View, ViewStyle } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
 
 // Internal components and modules
-import { DeliveryList } from '../../components/Delivery/DeliveryList';
-import { DeliveryItem } from './DeliveryItem.screen';
-import { DeliveryCreationForm } from './DeliveryForm.screen';
-import { CoverImage } from '../../components/Utils/CoverImage';
+import {DeliveryList} from '../../components/Delivery/DeliveryList';
+import {DeliveryItem} from './DeliveryItem.screen';
+import {DeliveryCreationForm} from './DeliveryForm.screen';
+import {CoverImage} from '../../components/Utils/CoverImage';
 
 // Assets & styles
 import coverIMG from '../../assets/img/NutsAndBolts-6.jpg';
 import * as Style from '../../assets/styles';
+
 
 /**
  * Stack navigator for deliveries.
@@ -46,11 +47,11 @@ const Stack = createStackNavigator();
  */
 export const DeliveryNavigator: React.FC = (): React.ReactElement => {
     return (
-        <SafeAreaView style={Style.Base.mainContainer}>
+        <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
             {CoverImage({ headerText: 'Inleveranser', image: coverIMG })}
 
-            <View style={Style.Container.screenIntroductory}>
-                <Text style={Style.Typography.paragraph}>
+            <View style={Style.Container.screenIntroductory as ViewStyle}>
+                <Text style={Style.Typography.paragraph as TextStyle}>
                     Listan innehåller inleveranser. Varje inleverans har ett
                     inleveransnr. och datum.
                 </Text>
@@ -58,16 +59,18 @@ export const DeliveryNavigator: React.FC = (): React.ReactElement => {
 
             <Stack.Navigator>
                 <Stack.Screen
+                    key='Inleveranslista'
                     name='Inleveranslista'
                     component={DeliveryList}
                 />
                 <Stack.Screen
+                    key='Inleveransspecifikation'
                     name='Inleveransspecifikation'
                     component={DeliveryItem}
                 />
                 <Stack.Screen
+                    key='Inleverasformulär'
                     name='Inleverasformulär'
-                    r
                     component={DeliveryCreationForm}
                 />
             </Stack.Navigator>

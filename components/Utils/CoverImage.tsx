@@ -1,5 +1,12 @@
 import React from 'react';
-import {ImageBackground, ImageSourcePropType, Text, View} from 'react-native';
+import {
+    ImageBackground,
+    ImageSourcePropType,
+    Text,
+    TextStyle,
+    View,
+    ViewStyle,
+} from 'react-native';
 import {ScreenCoverArguments} from '../../interfaces/Utils';
 import * as Style from '../../assets/styles';
 
@@ -20,16 +27,16 @@ import * as Style from '../../assets/styles';
 export function CoverImage({
     image,
     headerText,
-}: ScreenCoverArguments): React.JSX.Element {
-    const imageSource: ImageSourcePropType = typeof image === 'string' ? {uri: image} : image;
-
+}: ScreenCoverArguments): React.ReactElement {
+    const imageSource: ImageSourcePropType =
+        typeof image === 'string' ? { uri: image } : image;
 
     return (
-        <View style={Style.Image.imageContainer}>
+        <View style={Style.Image.imageContainer as ViewStyle}>
             <ImageBackground
                 source={imageSource}
-                style={Style.Image.image}>
-                <Text style={Style.Typography.header}>
+                style={Style.Image.image as ViewStyle}>
+                <Text style={Style.Typography.header as TextStyle}>
                     {headerText}
                 </Text>
             </ImageBackground>

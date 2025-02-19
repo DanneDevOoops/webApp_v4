@@ -4,7 +4,9 @@ import {
     Platform,
     Pressable,
     Text,
+    TextStyle,
     View,
+    ViewStyle,
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {useAppContext} from '../../context/App.provider';
@@ -149,12 +151,15 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
         };
 
         return (
-            <View style={Style.Container.grid.row}>
+            <View style={Style.Container.grid.row as ViewStyle}>
                 <Text
-                    style={
-                        (Style.Form.labelInputField,
-                            {width: '33%', alignSelf: 'center'})
-                    }>
+                    style={[
+                        Style.Form.labelInputField as TextStyle,
+                        {
+                            width: '33%',
+                            alignSelf: 'center',
+                        },
+                    ]}>
                     Fakturadatum
                 </Text>
 
@@ -195,11 +200,11 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
         };
 
         return (
-            <View style={Style.Container.flexBox.row}>
+            <View style={Style.Container.flexBox.row as ViewStyle}>
                 <Text
                     style={
                         (Style.Form.labelInputField,
-                            {width: '33%', alignSelf: 'center'})
+                        { width: '33%', alignSelf: 'center' })
                     }>
                     Förfallodatum
                 </Text>
@@ -235,9 +240,11 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
     const invoiceOrderPicker: React.FC = (): React.JSX.Element => {
         return (
             <View>
-                <Text style={Style.Typography.buttonText}>Välj Order</Text>
+                <Text style={Style.Typography.buttonText as TextStyle}>
+                    Välj Order
+                </Text>
                 <Picker
-                    style={Style.Form.pickers}
+                    style={Style.Form.pickers as ViewStyle}
                     selectedValue={selectedOrder?.id}
                     onValueChange={(
                         itemValue: number,
@@ -249,7 +256,8 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
                         setNewInvoiceData({
                             ...newInvoiceData,
                             order_id: itemValue,
-                            total_price: OrderModel.calcOrderTotalPrice(selectedOrder),
+                            total_price:
+                                OrderModel.calcOrderTotalPrice(selectedOrder),
                         });
                     }}>
                     {packedOrders.map((order: OrderInterfaces.Order) => {
@@ -267,22 +275,24 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
     };
 
     return appContext.isRefreshing ? (
-        <LoadingIndicator loadingType={'Ordrar'}/>
+        <LoadingIndicator loadingType={'Ordrar'} />
     ) : !appContext.isRefreshing && packedOrders.length ? (
-        <View style={Style.Container.content}>
-            <View style={Style.Container.grid.row}>
+        <View style={Style.Container.content as ViewStyle}>
+            <View style={Style.Container.grid.row as ViewStyle}>
                 {creationDatePicker()}
                 {dueDatePicker()}
-                <Text style={Style.Container.grid.row}>
+                <Text style={Style.Container.grid.row as TextStyle}>
                     Fakturabelopp: {newInvoiceData?.total_price} kr
                 </Text>
             </View>
 
-            <View style={Style.Container.content}>{invoiceOrderPicker()}</View>
+            <View style={Style.Container.content as ViewStyle}>
+                {invoiceOrderPicker()}
+            </View>
 
             <Pressable
-                style={({pressed}) => [
-                    Style.Button.buttonContainer,
+                style={({ pressed }) => [
+                    Style.Button.buttonContainer as ViewStyle,
                     {
                         backgroundColor: pressed
                             ? Style.Color.schemeOne.primary[200]
@@ -294,23 +304,24 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
                     await handleSubmit(newInvoiceData);
 
                     // Navigate back to the invoice list and send params.reload: true.
-                    navigation.navigate('Fakturor', {reload: true});
+                    navigation.navigate('Fakturor', { reload: true });
                 }}>
-                <Text style={Style.Typography.buttonText}>Skapa Faktura</Text>
+                <Text style={Style.Typography.buttonText as TextStyle}>
+                    Skapa Faktura
+                </Text>
             </Pressable>
 
-            <StatusBar style='auto'/>
+            <StatusBar style='auto' />
         </View>
     ) : !packedOrders.length ? (
-        <View style={Style.Container.content}>
-            <Text style={Style.Typography.paragraph}>
-                Det finns inga ordrar som är paketerade och redo att
-                faktureras.
+        <View style={Style.Container.content as ViewStyle}>
+            <Text style={Style.Typography.paragraph as TextStyle}>
+                Det finns inga ordrar som är paketerade och redo att faktureras.
             </Text>
         </View>
     ) : (
-        <View style={Style.Container.content}>
-            <LoadingIndicator loadingType={'Ordrar'}/>
+        <View style={Style.Container.content as ViewStyle}>
+            <LoadingIndicator loadingType={'Ordrar'} />
         </View>
     );
 };

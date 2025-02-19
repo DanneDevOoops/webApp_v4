@@ -4,7 +4,9 @@ import {
     RefreshControl,
     ScrollView,
     Text,
+    TextStyle,
     View,
+    ViewStyle,
 } from 'react-native';
 import {useNavigation, useRoute, useFocusEffect} from '@react-navigation/native';
 import {DataTable} from 'react-native-paper';
@@ -118,7 +120,7 @@ export const InvoiceDataTable: React.FC = (): React.ReactElement => {
             !appContext.invoices) {
             // Return fallback component when there are no invoices
             return (
-                <View style={Style.Container.content}>
+                <View style={Style.Container.content as ViewStyle}>
                     <Text>
                         Det finns inga inleveranser... skapa några kanske?
                     </Text>
@@ -133,36 +135,52 @@ export const InvoiceDataTable: React.FC = (): React.ReactElement => {
                         key={index}
                         onPress={async (): Promise<void> => {
                             // Handle row press here
-                            await navigation.navigate('Faktura', {invoice});
+                            await navigation.navigate('Faktura', { invoice });
                         }}
-                        style={({pressed}) => [
-                            Style.Container.content,
+                        style={({ pressed }) => [
+                            Style.Container.content as ViewStyle,
                             {
                                 backgroundColor: pressed
                                     ? Style.Color.schemeOne.primary[100]
                                     : Style.Color.background.light,
                             },
                         ]}>
-                        <DataTable.Row style={Style.Container.grid.row}>
-                            <DataTable.Cell style={Style.Container.grid.col[1]}>
+                        <DataTable.Row
+                            style={Style.Container.grid.row as ViewStyle}>
+                            <DataTable.Cell
+                                style={
+                                    Style.Container.grid.col[1] as TextStyle
+                                }>
                                 {invoice.id.toString()}
                             </DataTable.Cell>
 
-                            <DataTable.Cell style={Style.Container.grid.col[2]}>
+                            <DataTable.Cell
+                                style={
+                                    Style.Container.grid.col[2] as TextStyle
+                                }>
                                 <Text>
                                     {invoice.name.split(' ').join('\n')}
                                 </Text>
                             </DataTable.Cell>
 
-                            <DataTable.Cell style={Style.Container.grid.col[1]}>
+                            <DataTable.Cell
+                                style={
+                                    Style.Container.grid.col[1] as TextStyle
+                                }>
                                 {invoice.order_id.toString()}
                             </DataTable.Cell>
 
-                            <DataTable.Cell style={Style.Container.grid.col[1]}>
+                            <DataTable.Cell
+                                style={
+                                    Style.Container.grid.col[1] as TextStyle
+                                }>
                                 {invoice.total_price.toString()} kr
                             </DataTable.Cell>
 
-                            <DataTable.Cell style={Style.Container.grid.col[2]}>
+                            <DataTable.Cell
+                                style={
+                                    Style.Container.grid.col[2] as TextStyle
+                                }>
                                 {new Date(
                                     invoice.creation_date.toString(),
                                 ).toLocaleString()}
@@ -213,11 +231,11 @@ export const InvoiceDataTable: React.FC = (): React.ReactElement => {
 
     // Data Table
     return appContext.isRefreshing ? (
-        <View style={Style.Container.content}>
-            <View style={Style.Container.grid}>
+        <View style={Style.Container.content as ViewStyle}>
+            <View style={Style.Container.grid as ViewStyle}>
                 <Pressable
-                    style={({pressed}) => [
-                        Style.Button.buttonContainer,
+                    style={({ pressed }) => [
+                        Style.Button.buttonContainer as ViewStyle,
                         {
                             backgroundColor: pressed
                                 ? Style.Color.schemeOne.primary[200]
@@ -229,12 +247,14 @@ export const InvoiceDataTable: React.FC = (): React.ReactElement => {
                         await authContext.logout();
                         await navigation.navigate('Logga in');
                     }}>
-                    <Text style={Style.Typography.buttonText}>Logga ut</Text>
+                    <Text style={Style.Typography.buttonText as TextStyle}>
+                        Logga ut
+                    </Text>
                 </Pressable>
 
                 <Pressable
-                    style={({pressed}) => [
-                        Style.Button.buttonContainer,
+                    style={({ pressed }) => [
+                        Style.Button.buttonContainer as ViewStyle,
                         {
                             backgroundColor: pressed
                                 ? Style.Color.schemeOne.primary[200]
@@ -244,22 +264,22 @@ export const InvoiceDataTable: React.FC = (): React.ReactElement => {
                     onPress={async (): Promise<void> => {
                         await navigation.navigate('Skapa faktura');
                     }}>
-                    <Text style={Style.Typography.buttonText}>
+                    <Text style={Style.Typography.buttonText as TextStyle}>
                         Skapa ny faktura
                     </Text>
                 </Pressable>
 
-                <View style={Style.Container.content}>
-                    <LoadingIndicator loadingType={'Fakturor'}/>
+                <View style={Style.Container.content as ViewStyle}>
+                    <LoadingIndicator loadingType={'Fakturor'} />
                 </View>
             </View>
         </View>
     ) : (
-        <View style={Style.Container.content}>
-            <View style={Style.Container.grid}>
+        <View style={Style.Container.content as ViewStyle}>
+            <View style={Style.Container.grid as ViewStyle}>
                 <Pressable
-                    style={({pressed}) => [
-                        Style.Button.buttonContainer,
+                    style={({ pressed }) => [
+                        Style.Button.buttonContainer as ViewStyle,
                         {
                             backgroundColor: pressed
                                 ? Style.Color.schemeOne.primary[200]
@@ -271,12 +291,14 @@ export const InvoiceDataTable: React.FC = (): React.ReactElement => {
                         await authContext.logout();
                         await navigation.navigate('Logga in');
                     }}>
-                    <Text style={Style.Typography.buttonText}>Logga ut</Text>
+                    <Text style={Style.Typography.buttonText as TextStyle}>
+                        Logga ut
+                    </Text>
                 </Pressable>
 
                 <Pressable
-                    style={({pressed}) => [
-                        Style.Button.buttonContainer,
+                    style={({ pressed }) => [
+                        Style.Button.buttonContainer as ViewStyle,
                         {
                             backgroundColor: pressed
                                 ? Style.Color.schemeOne.primary[200]
@@ -286,14 +308,14 @@ export const InvoiceDataTable: React.FC = (): React.ReactElement => {
                     onPress={async () => {
                         await navigation.navigate('Skapa faktura');
                     }}>
-                    <Text style={Style.Typography.buttonText}>
+                    <Text style={Style.Typography.buttonText as TextStyle}>
                         Skapa ny faktura
                     </Text>
                 </Pressable>
             </View>
 
             <ScrollView
-                style={Style.Container.content}
+                style={Style.Container.content as ViewStyle}
                 refreshControl={
                     <RefreshControl
                         refreshing={appContext.isRefreshing}

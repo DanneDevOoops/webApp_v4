@@ -2,7 +2,7 @@
  * Module imports.
  */
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, TextStyle, View, ViewStyle } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as Style from '../../assets/styles';
 import * as DeliveryInterfaces from '../../interfaces/Delivery';
@@ -20,41 +20,57 @@ export const DeliveryItem: (
     const item = props.route.params.item;
 
     return (
-        <View style={Style.Container.content}>
-            <View style={Style.Container.grid.row}>
-                <Text style={Style.Typography.dataLeft}>Inleverans ID: </Text>
-                <Text style={Style.Typography.dataRight}>{item.id}</Text>
+        <View style={Style.Container.content as ViewStyle}>
+            <View style={Style.Container.grid.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Inleverans ID:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
+                    {item.id}
+                </Text>
             </View>
 
-            <View style={Style.Container.grid.row}>
-                <Text style={Style.Typography.dataLeft}>Produkt ID: </Text>
-                <Text style={Style.Typography.dataRight}>
+            <View style={Style.Container.grid.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Produkt ID:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
                     {item.product_id}
                 </Text>
             </View>
 
-            <View style={Style.Container.grid.row}>
-                <Text style={Style.Typography.dataLeft}>Produktnamn: </Text>
-                <Text style={Style.Typography.dataRight}>
+            <View style={Style.Container.grid.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Produktnamn:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
                     {item.product_name}
                 </Text>
             </View>
 
-            <View style={Style.Container.flexBox.rowNoPadding}>
-                <Text style={Style.Typography.dataLeft}>Antal: </Text>
-                <Text style={Style.Typography.dataRight}>{item.amount} st</Text>
+            <View style={Style.Container.flexBox.rowNoPadding as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Antal:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
+                    {item.amount} st
+                </Text>
             </View>
 
             <View
-                style={
-                    (Style.Container.grid.column,
+                style={[
+                    Style.Container.grid.column as ViewStyle,
                     {
                         paddingTop: Typography.whiteSpace[100],
                         paddingBottom: Typography.whiteSpace[200],
-                    })
-                }>
-                <Text style={Style.Typography.dataLeft}>Kommentar: </Text>
-                <Text style={Style.Typography.dataLeft}>{item.comment}</Text>
+                    },
+                ]}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Kommentar:{' '}
+                </Text>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    {item.comment}
+                </Text>
             </View>
 
             <StatusBar style='auto' />
