@@ -3,6 +3,10 @@ import { useRoute } from '@react-navigation/native';
 import { Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as Style from '../../assets/styles';
+import {
+    TextStyle,
+    ViewStyle,
+} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
 
 /**
  * ProductListItem screen/view.
@@ -13,64 +17,82 @@ export const StockItem: () => React.JSX.Element = () => {
     const product = useRoute().params?.item;
 
     return (
-        <View style={Style.Container.content}>
-            <Text style={Style.Typography.subHeader}>{product.name}</Text>
+        <View style={Style.Container.content as ViewStyle}>
+            <Text style={Style.Typography.subHeader as TextStyle}>
+                {product.name}
+            </Text>
 
-            <View style={Style.Container.grid.row}>
-                <Text style={Style.Typography.dataLeft}>Produkt id: </Text>
-                <Text style={Style.Typography.dataRight}>{product.id}</Text>
+            <View style={Style.Container.grid.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Produkt id:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
+                    {product.id}
+                </Text>
             </View>
 
-            <View style={Style.Container.grid.row}>
-                <Text style={Style.Typography.dataLeft}>Artikel nr: </Text>
-                <Text style={Style.Typography.dataRight}>
+            <View style={Style.Container.grid.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Artikel nr:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
                     {product.article_number}
                 </Text>
             </View>
 
-            <View style={Style.Container.grid.row}>
-                <Text style={Style.Typography.dataLeft}>Lagerplats: </Text>
-                <Text style={Style.Typography.dataRight}>
+            <View style={Style.Container.grid.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Lagerplats:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
                     {product.location}
                 </Text>
             </View>
 
-            <View style={Style.Container.grid.row}>
-                <Text style={Style.Typography.dataLeft}>Lagersaldo: </Text>
-                <Text style={Style.Typography.dataRight}>
+            <View style={Style.Container.grid.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Lagersaldo:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
                     {product.stock} st
                 </Text>
             </View>
 
-            <View style={Style.Container.grid.row}>
-                <Text style={Style.Typography.dataLeft}>Pris: </Text>
-                <Text style={Style.Typography.dataRight}>
+            <View style={Style.Container.grid.row as ViewStyle}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Pris:{' '}
+                </Text>
+                <Text style={Style.Typography.dataRight as TextStyle}>
                     {product.price} kr/st
                 </Text>
             </View>
 
             <View
                 style={[
-                    Style.Container.grid.row,
+                    Style.Container.grid.row as ViewStyle,
                     {
                         paddingVertical: Style.Typography.whiteSpace[50],
                     },
                 ]}>
-                <Text style={Style.Typography.dataLeft}>Beskrivning: </Text>
-                <Text style={Style.Typography.dataLeft}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Beskrivning:{' '}
+                </Text>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
                     {product.description}
                 </Text>
             </View>
 
             <View
                 style={[
-                    Style.Container.grid.row,
+                    Style.Container.grid.row as ViewStyle,
                     {
                         paddingVertical: Style.Typography.whiteSpace[50],
                     },
                 ]}>
-                <Text style={Style.Typography.dataLeft}>Specifikation: </Text>
-                <Text style={Style.Typography.dataLeft}>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
+                    Specifikation:{' '}
+                </Text>
+                <Text style={Style.Typography.dataLeft as TextStyle}>
                     {product.specifiers}
                 </Text>
             </View>

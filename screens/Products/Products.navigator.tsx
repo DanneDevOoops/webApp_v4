@@ -22,8 +22,7 @@
  */
 // External libraries
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
-import {NativeStackNavigatorProps} from 'react-native-screens/lib/typescript/native-stack/types';
+import { SafeAreaView, Text, TextStyle, View, ViewStyle } from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {StatusBar} from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
@@ -39,7 +38,7 @@ import * as Style from '../../assets/styles';
 /**
  * Stack navigator for products.
  */
-const Stack: NativeStackNavigatorProps = createStackNavigator();
+const Stack = createStackNavigator();
 
 
 /**
@@ -55,26 +54,28 @@ const Stack: NativeStackNavigatorProps = createStackNavigator();
  */
 export const ProductsNavigator = (): React.ReactElement => {
     return (
-        <SafeAreaView style={Style.Base.mainContainer}>
+        <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
             {CoverImage({ headerText: 'Lager', image: coverIMG })}
 
-            <View style={Style.Container.screenIntroductory}>
-                <Text style={Style.Typography.paragraph}>
+            <View style={Style.Container.screenIntroductory as ViewStyle}>
+                <Text style={Style.Typography.paragraph as TextStyle}>
                     Listan innehåller lagerförda produkter. Varje produkt har
                     ett namn, ett artikelnr. och antal i lager.
                 </Text>
 
-                <Text style={Style.Typography.paragraph}>
+                <Text style={Style.Typography.paragraph as TextStyle}>
                     Om du klickar på en produkt får du mer information om den.
                 </Text>
             </View>
 
             <Stack.Navigator>
                 <Stack.Screen
+                    key='Produkter'
                     name='Produkter'
                     component={ProductList}
                 />
                 <Stack.Screen
+                    key='Produktspecifikation'
                     name='Produktspecifikation'
                     component={StockItem}
                 />
@@ -82,7 +83,7 @@ export const ProductsNavigator = (): React.ReactElement => {
 
             <StatusBar style='auto' />
 
-            <FlashMessage position="top"/>
+            <FlashMessage position='top' />
         </SafeAreaView>
     );
 };

@@ -16,7 +16,10 @@ import React, { createContext, useState } from 'react';
 import * as AuthInterfaces from '../interfaces/Auth.interfaces';
 import * as AuthModel from '../models/Auth';
 import * as SecureStore from 'expo-secure-store';
-import { AuthContextType } from '../interfaces/Auth.interfaces';
+import {
+    AuthContextType,
+    AuthProviderProps,
+} from '../interfaces/Auth.interfaces';
 
 /**
  * Authentication context.
@@ -58,7 +61,7 @@ const AuthContext: React.Context<AuthInterfaces.AuthContextType> =
  * @returns {React.JSX.Element} The provider component wrapping its children, providing them access to
  * the authentication context.
  */
-export const AuthProvider: React.FC = ({ children }) => {
+export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [user, setUser] = useState<AuthInterfaces.User | null>(null);

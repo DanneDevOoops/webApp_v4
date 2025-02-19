@@ -2,7 +2,7 @@
  * Module imports.
  */
 import React, {useState} from 'react';
-import {Pressable, Text, TextInput, View,} from 'react-native';
+import { Pressable, Text, TextInput, View, ViewStyle } from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import {useAuthContext} from "../../context/Auth.provider";
 import * as Style from '../../assets/styles/index';
@@ -46,14 +46,14 @@ export const RegisterForm: React.FC = () => {
 
 
     return (
-        <View style={Style.Container.content}>
-            <Text style={Style.Typography.subHeader}>
+        <View style={Style.Container.content as ViewStyle}>
+            <Text style={Style.Typography.subHeader as ViewStyle}>
                 Användarregistrering
             </Text>
 
             <Text>Email: </Text>
             <TextInput
-                style={Style.Form.textInputField}
+                style={Style.Form.textInputField as ViewStyle}
                 value={email}
                 onChangeText={setEmail}
                 autoCapitalize='none'
@@ -62,7 +62,7 @@ export const RegisterForm: React.FC = () => {
 
             <Text>Lösenord: </Text>
             <TextInput
-                style={Style.Form.textInputField}
+                style={Style.Form.textInputField as ViewStyle}
                 value={password}
                 onChangeText={setPassword}
                 autoCapitalize='none'
@@ -71,37 +71,41 @@ export const RegisterForm: React.FC = () => {
 
             <Text>Bekräfta Lösenordet: </Text>
             <TextInput
-                style={Style.Form.textInputField}
+                style={Style.Form.textInputField as ViewStyle}
                 value={passwordConfirm}
                 onChangeText={setPasswordConfirm}
                 autoCapitalize='none'
                 secureTextEntry={true}
             />
 
-            <View style={[Style.Container.grid.rowNoPadding, {
-                marginTop: Style.Typography.whiteSpace[100],
-            }]}>
+            <View
+                style={[
+                    Style.Container.grid.rowNoPadding as ViewStyle,
+                    {
+                        marginTop: Style.Typography.whiteSpace[100],
+                    },
+                ]}>
                 <Pressable
-                    style={({pressed}) => [
-                        Style.Button.buttonContainer,
-                        {opacity: pressed ? 0.5 : 1},
+                    style={({ pressed }) => [
+                        Style.Button.buttonContainer as ViewStyle,
+                        { opacity: pressed ? 0.5 : 1 },
                     ]}
                     onPress={registerUser}>
-                    <Text style={Style.Typography.buttonText}>
+                    <Text style={Style.Typography.buttonText as ViewStyle}>
                         Registrera ny användare
                     </Text>
                 </Pressable>
 
                 <Pressable
-                    style={({pressed}) => [
-                        Style.Button.buttonContainer,
-                        {opacity: pressed ? 0.5 : 1},
+                    style={({ pressed }) => [
+                        Style.Button.buttonContainer as ViewStyle,
+                        { opacity: pressed ? 0.5 : 1 },
                     ]}
                     onPress={() => {
                         console.log('Click! -> Gå till logga in...');
                         navigation.navigate('Logga in formulär');
                     }}>
-                    <Text style={Style.Typography.buttonText}>
+                    <Text style={Style.Typography.buttonText as ViewStyle}>
                         Gå till Login
                     </Text>
                 </Pressable>

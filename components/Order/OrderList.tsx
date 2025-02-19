@@ -1,12 +1,11 @@
 import React, {useCallback, useMemo, useState} from 'react';
+import { FlatList, Pressable, Text, View } from 'react-native';
 import {
-    FlatList,
-    Text,
-    Pressable,
-    View,
-} from 'react-native';
-import {useFocusEffect, useNavigation, useRoute} from '@react-navigation/native';
-import {TabBar, TabView, SceneMap} from 'react-native-tab-view';
+    useFocusEffect,
+    useNavigation,
+    useRoute,
+} from '@react-navigation/native';
+import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 import {FontAwesome5} from '@expo/vector-icons';
 import {useAppContext} from '../../context/App.provider';
 import {OrderListItem} from './OrderListItem';
@@ -14,7 +13,7 @@ import {LoadingIndicator} from '../Utils/LoadingIndicator';
 import * as OrderModel from '../../models/Orders';
 import * as OrderInterfaces from '../../interfaces/Order';
 import * as Style from '../../assets/styles';
-
+import { ViewStyle } from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
 
 /**
  * Represents a tab view containing lists of orders categorized by their status (New, Packed, Sent, Returns).
@@ -29,13 +28,12 @@ export const OrderList: React.FC = (): React.ReactElement => {
     const route = useRoute();
     const [index, setIndex] = useState(0);
     const [routes] = useState([
-        {key: 'first', title: 'Nya', icon: 'box-open'},
-        {key: 'second', title: 'Packade', icon: 'box'},
-        {key: 'third', title: 'Skickade', icon: 'paper-plane'},
-        {key: 'fourth', title: 'Returer', icon: 'undo-alt'},
+        { key: 'first', title: 'Nya', icon: 'box-open' },
+        { key: 'second', title: 'Packade', icon: 'box' },
+        { key: 'third', title: 'Skickade', icon: 'paper-plane' },
+        { key: 'fourth', title: 'Returer', icon: 'undo-alt' },
     ]);
     const reload: boolean | null = route.params?.reload ?? false;
-
 
     /**
      * Asynchronously fetches orders from an API and updates the application context with the fetched orders.
@@ -58,7 +56,6 @@ export const OrderList: React.FC = (): React.ReactElement => {
         }
     };
 
-
     /**
      * A hook that triggers the reloading of orders based on specific conditions, such as navigation
      * parameters or the current order list being empty. Ensures that the latest orders are fetched and
@@ -72,12 +69,11 @@ export const OrderList: React.FC = (): React.ReactElement => {
             if (!appContext.orders || reload === true) {
                 void loadOrders().then((): void => {
                     // Reset the reload parameter to false after loading orders
-                    navigation.setParams({reload: false});
+                    navigation.setParams({ reload: false });
                 });
             }
-        }, [reload, appContext.orders, navigation.setParams])
+        }, [reload, appContext.orders, navigation.setParams]),
     );
-
 
     /**
      * Memoized array that filters orders by their status to new orders.
@@ -89,13 +85,13 @@ export const OrderList: React.FC = (): React.ReactElement => {
     const newOrders: OrderInterfaces.Order[] = useMemo(() => {
         if (appContext.orders) {
             return appContext.orders.filter(
-                (order: OrderInterfaces.Order): boolean => order.status_id === 100,
+                (order: OrderInterfaces.Order): boolean =>
+                    order.status_id === 100,
             );
         } else {
             return [];
         }
     }, [appContext.orders]);
-
 
     /**
      * Memoized array that filters orders by their status to packed orders.
@@ -106,14 +102,14 @@ export const OrderList: React.FC = (): React.ReactElement => {
      */
     const packedOrders: OrderInterfaces.Order[] = useMemo(() => {
         if (appContext.orders) {
-        return appContext.orders.filter(
-            (order: OrderInterfaces.Order): boolean => order.status_id === 200,
-        );
+            return appContext.orders.filter(
+                (order: OrderInterfaces.Order): boolean =>
+                    order.status_id === 200,
+            );
         } else {
             return [];
         }
     }, [appContext.orders]);
-
 
     /**
      * Memoized array that filters orders by their status to sent orders.
@@ -124,14 +120,14 @@ export const OrderList: React.FC = (): React.ReactElement => {
      */
     const sentOrders: OrderInterfaces.Order[] = useMemo(() => {
         if (appContext.orders) {
-        return appContext.orders.filter(
-            (order: OrderInterfaces.Order): boolean => order.status_id === 400,
-        );
+            return appContext.orders.filter(
+                (order: OrderInterfaces.Order): boolean =>
+                    order.status_id === 400,
+            );
         } else {
             return [];
         }
     }, [appContext.orders]);
-
 
     /**
      * Memoized array that filters orders by their status to return orders.
@@ -142,13 +138,14 @@ export const OrderList: React.FC = (): React.ReactElement => {
      */
     const returnOrders: OrderInterfaces.Order[] = useMemo(() => {
         if (appContext.orders) {
-            return appContext.orders.filter((order: OrderInterfaces.Order): boolean => order.status_id === 800,
-        );
+            return appContext.orders.filter(
+                (order: OrderInterfaces.Order): boolean =>
+                    order.status_id === 800,
+            );
         } else {
             return [];
         }
     }, [appContext.orders]);
-
 
     /**
      * Renders a list of new orders using a FlatList component.
@@ -172,7 +169,6 @@ export const OrderList: React.FC = (): React.ReactElement => {
         />
     );
 
-
     /**
      * Renders a list of packed orders using a FlatList component.
      *
@@ -194,7 +190,6 @@ export const OrderList: React.FC = (): React.ReactElement => {
             style={Style.Container.flatList}
         />
     );
-
 
     /**
      * Renders a list of sent orders using a FlatList component.
@@ -218,7 +213,6 @@ export const OrderList: React.FC = (): React.ReactElement => {
         />
     );
 
-
     /**
      * Renders a list of return orders using a FlatList component.
      *
@@ -241,7 +235,6 @@ export const OrderList: React.FC = (): React.ReactElement => {
         />
     );
 
-
     /**
      * Renders an individual order item as a pressable component.
      *
@@ -253,11 +246,11 @@ export const OrderList: React.FC = (): React.ReactElement => {
      * @param {Object} {item} - The order item to be rendered. It is an object containing order details.
      * @returns {React.ReactElement} A pressable component representing an individual order item.
      */
-    const renderItem = ({item}: object): React.ReactElement => (
+    const renderItem = ({ item }: object): React.ReactElement => (
         <Pressable
             key={item.id.toString()}
-            style={({pressed}) => [
-                Style.Button.listButton,
+            style={({ pressed }) => [
+                Style.Button.listButton as ViewStyle,
                 {
                     backgroundColor: pressed
                         ? Style.Color.schemeOne.primary[200]
@@ -265,12 +258,14 @@ export const OrderList: React.FC = (): React.ReactElement => {
                 },
             ]}
             onPress={(): void => {
-                navigation.navigate('Orderhanterare', {item: item, reload: true});
+                navigation.navigate('Orderhanterare', {
+                    item: item,
+                    reload: true,
+                });
             }}>
-            <OrderListItem item={item}/>
+            <OrderListItem item={item} />
         </Pressable>
     );
-
 
     /**
      * Maps each tab to its corresponding component for rendering.
@@ -295,7 +290,6 @@ export const OrderList: React.FC = (): React.ReactElement => {
         fourth: ReturnOrdersList,
     });
 
-
     /**
      * Customizes the tab bar for the TabView component.
      *
@@ -316,11 +310,13 @@ export const OrderList: React.FC = (): React.ReactElement => {
             indicatorStyle={{
                 backgroundColor: Style.Color.schemeOne.secondary[300],
             }}
-            style={{
-                backgroundColor: Style.Color.background.light,
-                color: Style.Color.text.dark,
-            }}
-            renderIcon={({route, focused}) => (
+            style={
+                {
+                    backgroundColor: Style.Color.background.light,
+                    color: Style.Color.text.dark,
+                } as ViewStyle
+            }
+            renderIcon={({ route, focused }) => (
                 <FontAwesome5
                     name={route.icon}
                     size={18}
@@ -331,35 +327,36 @@ export const OrderList: React.FC = (): React.ReactElement => {
                     }
                 />
             )}
-            renderLabel={({route, focused}) => (
+            renderLabel={({ route, focused }) => (
                 <Text
-                    style={{
-                        color: focused
-                            ? Style.Color.schemeOne.secondary[300]
-                            : Style.Color.text.dark,
-                        fontWeight: Style.Typography.fontWeight.btn,
-                        fontFamily: Style.Typography.fontFamily.btn,
-                    }}>
+                    style={
+                        {
+                            color: focused
+                                ? Style.Color.schemeOne.secondary[300]
+                                : Style.Color.text.dark,
+                            fontWeight: Style.Typography.fontWeight.btn,
+                            fontFamily: Style.Typography.fontFamily.btn,
+                        } as ViewStyle
+                    }>
                     {route.title}
                 </Text>
             )}
         />
     );
 
-
     // Render LoadingIndicator if state is Refreshing else FlatList Component.
     return appContext.isRefreshing ? (
-        <View style={Style.Container.content}>
-            <LoadingIndicator loadingType={'Ordrar'}/>
+        <View style={Style.Container.content as ViewStyle}>
+            <LoadingIndicator loadingType={'Ordrar'} />
         </View>
     ) : (
         <TabView
-            navigationState={{index, routes}}
+            navigationState={{ index, routes }}
             onIndexChange={setIndex}
             renderTabBar={renderTabBar}
             renderScene={renderScene}
-            initialLayout={{width: 1000}}
-            style={Style.Form.TabBarStyles.tabBar}
+            initialLayout={{ width: 1000 }}
+            style={Style.Form.TabBarStyles.tabBar as ViewStyle}
         />
     );
 };

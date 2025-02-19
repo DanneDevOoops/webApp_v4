@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, ViewStyle } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import FlashMessage from 'react-native-flash-message';
 import { Login } from './Login.screen';
@@ -16,7 +16,9 @@ import { Register } from './Register.screen';
 import * as Style from '../../assets/styles';
 import { StatusBar } from 'expo-status-bar';
 
+
 const Stack = createStackNavigator();
+
 
 /**
  * AuthNavigator component.
@@ -31,7 +33,7 @@ const Stack = createStackNavigator();
 export const AuthNavigator: React.FC = (): React.ReactElement => {
     // const authContext = useAuthContext();
     return (
-        <SafeAreaView style={Style.Base.mainContainer}>
+        <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
             <Stack.Navigator initialRouteName='Logga in formulär'>
                 {
                     <>

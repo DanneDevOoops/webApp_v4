@@ -1,5 +1,5 @@
 import React from 'react';
-import {LogBox} from 'react-native';
+import { LogBox, ViewStyle } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import {BottomTabsNavigator} from './screens/BottomTabs.navigator';
@@ -65,7 +65,7 @@ export const App: React.FC = () => {
     }
 
     return (
-        <SafeAreaView style={Style.Base.mainContainer}>
+        <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
             <NavigationContainer>
                 <BottomTabsNavigator />
             </NavigationContainer>

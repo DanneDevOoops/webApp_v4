@@ -20,11 +20,9 @@ import * as UserPositionInterfaces from "../interfaces/UserPosition";
  */
 const AppContext = createContext<AppContextInterfaces.AppContext>({
     isLoading: false,
-    setIsLoading(): void {
-    },
+    setIsLoading(): void {},
     isRefreshing: false,
-    setIsRefreshing: (): void => {
-    },
+    setIsRefreshing: (): void => {},
 
     products: [],
     setProducts: () => [],
@@ -36,8 +34,7 @@ const AppContext = createContext<AppContextInterfaces.AppContext>({
     setInvoices: () => [],
 
     userPosition: null,
-    setUserPosition: (): void => {
-    },
+    setUserPosition: (): void => {},
 });
 
 
@@ -49,28 +46,26 @@ const AppContext = createContext<AppContextInterfaces.AppContext>({
  * @param {React.ReactNode} children - The child components that will have access
  * to the context.
  */
-export const AppProvider: React.FC = ({children}) => {
+export const AppProvider: React.FC<AppContextInterfaces.AppProviderProps> = ({
+    children,
+}) => {
     // User interaction indicators
-    const [isLoading, setIsLoading] = useState<
-        boolean>(false);
-    const [isRefreshing, setIsRefreshing] = useState<
-        boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
 
     // API Objects
     const [products, setProducts] = useState<
         ProductsInterfaces.Product[] | null
     >(null);
-    const [orders, setOrders] = useState<
-        OrdersInterfaces.Order[] | null>(null);
+    const [orders, setOrders] = useState<OrdersInterfaces.Order[] | null>(null);
     const [deliveries, setDeliveries] = useState<
         DeliveriesInterfaces.Delivery[] | null
     >(null);
     const [invoices, setInvoices] = useState<
         InvoicesInterfaces.Invoice[] | null
     >(null);
-    const [userPosition, setUserPosition] = useState<
-        UserPositionInterfaces.UserPosition | null>(null);
-
+    const [userPosition, setUserPosition] =
+        useState<UserPositionInterfaces.UserPosition | null>(null);
 
     return (
         <AppContext.Provider

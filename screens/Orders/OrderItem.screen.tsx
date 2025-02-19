@@ -29,7 +29,14 @@ import React, {
     useRef,
     useState,
 } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import {
+    Pressable,
+    ScrollView,
+    Text,
+    TextStyle,
+    View,
+    ViewStyle,
+} from 'react-native';
 import {
     useFocusEffect,
     useNavigation,
@@ -414,7 +421,7 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
                 return (
                     <Pressable
                         style={({ pressed }) => [
-                            Style.Button.buttonContainer,
+                            Style.Button.buttonContainer as ViewStyle,
                             {
                                 backgroundColor: pressed
                                     ? Style.Color.schemeOne.primary[200]
@@ -449,7 +456,7 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
                                 });
                             }
                         }}>
-                        <Text style={Style.Typography.buttonText}>
+                        <Text style={Style.Typography.buttonText as TextStyle}>
                             Packetera Order
                         </Text>
                     </Pressable>
@@ -459,7 +466,7 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
                     <View>
                         <Pressable
                             style={({ pressed }) => [
-                                Style.Button.buttonContainer,
+                                Style.Button.buttonContainer as ViewStyle,
                                 {
                                     backgroundColor: pressed
                                         ? Style.Color.schemeOne.primary[200]
@@ -491,13 +498,22 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
                                     );
                                 }
                             }}>
-                            <Text style={Style.Typography.buttonText}>
+                            <Text
+                                style={
+                                    Style.Typography.buttonText as TextStyle
+                                }>
                                 Skicka Order
                             </Text>
                         </Pressable>
 
-                        <View style={Style.Container.infoMsgContainer}>
-                            <Text style={Style.Typography.infoFlashMsg}>
+                        <View
+                            style={
+                                Style.Container.infoMsgContainer as ViewStyle
+                            }>
+                            <Text
+                                style={
+                                    Style.Typography.infoFlashMsg as TextStyle
+                                }>
                                 Ordern är packeterad
                             </Text>
                         </View>
@@ -505,32 +521,48 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
                 );
             } else if (orderIsSent) {
                 return (
-                    <View style={Style.Container.successMsgContainer}>
-                        <Text style={Style.Typography.successFlashMsg}>
+                    <View
+                        style={
+                            Style.Container.successMsgContainer as ViewStyle
+                        }>
+                        <Text
+                            style={
+                                Style.Typography.successFlashMsg as TextStyle
+                            }>
                             Ordern har skickats till kund
                         </Text>
                     </View>
                 );
             } else if (orderIsReturned) {
                 return (
-                    <View style={Style.Container.infoMsgContainer}>
-                        <Text style={Style.Typography.warningFlashMsg}>
+                    <View style={Style.Container.infoMsgContainer as ViewStyle}>
+                        <Text
+                            style={
+                                Style.Typography.warningFlashMsg as TextStyle
+                            }>
                             Kunden har returnerat ordern.
                         </Text>
                     </View>
                 );
             } else if (orderIsRefunded) {
                 return (
-                    <View style={Style.Container.infoMsgContainer}>
-                        <Text style={Style.Typography.infoFlashMsg}>
+                    <View style={Style.Container.infoMsgContainer as ViewStyle}>
+                        <Text
+                            style={Style.Typography.infoFlashMsg as TextStyle}>
                             Ordern är återbetald.
                         </Text>
                     </View>
                 );
             } else if (!orderIsPackable && !orderIsMissingItems) {
                 return (
-                    <View style={Style.Container.warningMsgContainer}>
-                        <Text style={Style.Typography.warningFlashMsg}>
+                    <View
+                        style={
+                            Style.Container.warningMsgContainer as ViewStyle
+                        }>
+                        <Text
+                            style={
+                                Style.Typography.warningFlashMsg as TextStyle
+                            }>
                             Ordern går inte att packetera pga lagersaldo för
                             en/flera av beställda produkter saknas.
                         </Text>
@@ -538,16 +570,28 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
                 );
             } else if (orderIsMissingItems) {
                 return (
-                    <View style={[Style.Container.warningMsgContainer]}>
-                        <Text style={Style.Typography.cautionFlashMsg}>
+                    <View
+                        style={
+                            Style.Container.warningMsgContainer as ViewStyle
+                        }>
+                        <Text
+                            style={
+                                Style.Typography.cautionFlashMsg as TextStyle
+                            }>
                             Order saknar produkter.
                         </Text>
                     </View>
                 );
             } else {
                 return (
-                    <View style={Style.Container.warningMsgContainer}>
-                        <Text style={Style.Typography.warningFlashMsg}>
+                    <View
+                        style={
+                            Style.Container.warningMsgContainer as ViewStyle
+                        }>
+                        <Text
+                            style={
+                                Style.Typography.warningFlashMsg as TextStyle
+                            }>
                             Det är något gick fel på orderns status. Kontakta
                             support!
                         </Text>
@@ -573,46 +617,68 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
      */
     const orderDetails: React.ReactElement = useMemo(() => {
         return (
-            <View style={Style.Container.content}>
-                <View style={Style.Container.grid.row}>
-                    <Text style={Style.Typography.dataLeft}>Order ID: </Text>
-                    <Text style={Style.Typography.dataRight}>{order.id}</Text>
+            <View style={Style.Container.content as ViewStyle}>
+                <View style={Style.Container.grid.row as ViewStyle}>
+                    <Text style={Style.Typography.dataLeft as TextStyle}>
+                        Order ID:{' '}
+                    </Text>
+                    <Text style={Style.Typography.dataRight as TextStyle}>
+                        {order.id}
+                    </Text>
                 </View>
 
-                <View style={Style.Container.grid.row}>
-                    <Text style={Style.Typography.dataLeft}>Status: </Text>
-                    <Text style={Style.Typography.dataRight}>
+                <View style={Style.Container.grid.row as ViewStyle}>
+                    <Text style={Style.Typography.dataLeft as TextStyle}>
+                        Status:{' '}
+                    </Text>
+                    <Text style={Style.Typography.dataRight as TextStyle}>
                         {order.status}
                     </Text>
                 </View>
 
-                <View style={Style.Container.grid.row}>
-                    <Text style={Style.Typography.dataLeft}>Status kod: </Text>
-                    <Text style={Style.Typography.dataRight}>
+                <View style={Style.Container.grid.row as ViewStyle}>
+                    <Text style={Style.Typography.dataLeft as TextStyle}>
+                        Status kod:{' '}
+                    </Text>
+                    <Text style={Style.Typography.dataRight as TextStyle}>
                         {order.status_id}
                     </Text>
                 </View>
 
-                <View style={Style.Container.grid.row}>
-                    <Text style={Style.Typography.dataLeft}>Kund: </Text>
-                    <Text style={Style.Typography.dataRight}>{order.name}</Text>
+                <View style={Style.Container.grid.row as ViewStyle}>
+                    <Text style={Style.Typography.dataLeft as TextStyle}>
+                        Kund:{' '}
+                    </Text>
+                    <Text style={Style.Typography.dataRight as TextStyle}>
+                        {order.name}
+                    </Text>
                 </View>
 
-                <View style={Style.Container.grid.row}>
-                    <Text style={Style.Typography.dataLeft}>Address: </Text>
-                    <Text style={Style.Typography.dataRight}>
+                <View style={Style.Container.grid.row as ViewStyle}>
+                    <Text style={Style.Typography.dataLeft as TextStyle}>
+                        Address:{' '}
+                    </Text>
+                    <Text style={Style.Typography.dataRight as TextStyle}>
                         {order.address}
                     </Text>
                 </View>
 
-                <View style={Style.Container.grid.row}>
-                    <Text style={Style.Typography.dataLeft}>Postkod: </Text>
-                    <Text style={Style.Typography.dataRight}>{order.zip}</Text>
+                <View style={Style.Container.grid.row as ViewStyle}>
+                    <Text style={Style.Typography.dataLeft as TextStyle}>
+                        Postkod:{' '}
+                    </Text>
+                    <Text style={Style.Typography.dataRight as TextStyle}>
+                        {order.zip}
+                    </Text>
                 </View>
 
-                <View style={Style.Container.grid.row}>
-                    <Text style={Style.Typography.dataLeft}>Stad: </Text>
-                    <Text style={Style.Typography.dataRight}>{order.city}</Text>
+                <View style={Style.Container.grid.row as ViewStyle}>
+                    <Text style={Style.Typography.dataLeft as TextStyle}>
+                        Stad:{' '}
+                    </Text>
+                    <Text style={Style.Typography.dataRight as TextStyle}>
+                        {order.city}
+                    </Text>
                 </View>
 
                 {dynamicInteractionElement}
@@ -688,51 +754,69 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
     const orderListItems: React.ReactElement[] = order.order_items.map(
         (orderListItem: OrderInterfaces.OrderItem, index: number) => (
             <View key={index}>
-                <View style={Style.Container.grid}>
-                    <View style={Style.Container.grid.row}>
-                        <View style={Style.Container.grid.col[1]}>
+                <View style={Style.Container.grid as ViewStyle}>
+                    <View style={Style.Container.grid.row as ViewStyle}>
+                        <View style={Style.Container.grid.col[1] as ViewStyle}>
                             <Text>{index + 1}. </Text>
                         </View>
 
-                        <View style={Style.Container.grid.col[7]}>
-                            <View style={Style.Container.grid.row}>
+                        <View style={Style.Container.grid.col[7] as ViewStyle}>
+                            <View style={Style.Container.grid.row as ViewStyle}>
                                 {/* Item article number */}
-                                <Text style={Style.Typography.dataLeft}>
+                                <Text
+                                    style={
+                                        Style.Typography.dataLeft as TextStyle
+                                    }>
                                     {orderListItem.name}
                                 </Text>
 
                                 {/* Item name */}
-                                <Text style={Style.Typography.dataCenter}>
+                                <Text
+                                    style={
+                                        Style.Typography.dataCenter as TextStyle
+                                    }>
                                     {orderListItem.article_number}
                                 </Text>
 
                                 {/* Item amount */}
-                                <Text style={Style.Typography.dataRight}>
+                                <Text
+                                    style={
+                                        Style.Typography.dataRight as TextStyle
+                                    }>
                                     {orderListItem.amount} st.
                                 </Text>
                             </View>
                         </View>
                     </View>
 
-                    <View style={Style.Container.grid.row}>
-                        <View style={Style.Container.grid.col[1]}>
+                    <View style={Style.Container.grid.row as ViewStyle}>
+                        <View style={Style.Container.grid.col[1] as ViewStyle}>
                             <Text> </Text>
                         </View>
 
-                        <View style={Style.Container.grid.col[7]}>
-                            <View style={Style.Container.grid.row}>
+                        <View style={Style.Container.grid.col[7] as ViewStyle}>
+                            <View style={Style.Container.grid.row as ViewStyle}>
                                 {/* Item article number */}
-                                <Text style={Style.Typography.dataLeft}>
+                                <Text
+                                    style={
+                                        Style.Typography.dataLeft as TextStyle
+                                    }>
                                     Lagerplats:
                                 </Text>
 
                                 {/* Item name */}
-                                <Text style={Style.Typography.dataCenter}>
+                                <Text
+                                    style={
+                                        Style.Typography.dataCenter as TextStyle
+                                    }>
                                     {orderListItem.location}
                                 </Text>
 
                                 {/* Item amount */}
-                                <Text style={Style.Typography.dataRight}>
+                                <Text
+                                    style={
+                                        Style.Typography.dataRight as TextStyle
+                                    }>
                                     {orderListItem.stock} st.
                                 </Text>
                             </View>
@@ -743,7 +827,7 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
                 {order.status_id === 100 ? (
                     <View
                         style={[
-                            Style.Container.grid.row,
+                            Style.Container.grid.row as ViewStyle,
                             {
                                 paddingVertical:
                                     Style.Typography.whiteSpace[75],
@@ -764,7 +848,7 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
                 ) : (
                     <View
                         style={[
-                            Style.Container.grid.row,
+                            Style.Container.grid.row as ViewStyle,
                             {
                                 borderBottomColor:
                                     index < order.order_items.length - 1
@@ -784,8 +868,8 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
     const shouldShowMapElement = [200, 400].includes(order.status_id);
 
     return (
-        <View style={Style.Container.content}>
-            <ScrollView style={Style.Container.scrollView}>
+        <View style={Style.Container.content as ViewStyle}>
+            <ScrollView style={Style.Container.scrollView as ViewStyle}>
                 {orderDetails}
 
                 {shouldShowMapElement && mapElement}

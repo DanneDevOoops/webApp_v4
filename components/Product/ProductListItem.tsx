@@ -2,7 +2,7 @@
  * Module imports.
  */
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TextStyle, ViewStyle } from 'react-native';
 import * as Style from '../../assets/styles';
 
 /**
@@ -26,12 +26,14 @@ export const ProductListItem = (props: StockListItemPropsType) => {
     return (
         <View
             key={props.item.id.toString()}
-            style={Style.Container.grid.row}>
-            <Text style={Style.Typography.dataLeft}>{props.item.name}</Text>
-            <Text style={Style.Typography.dataCenter}>
+            style={Style.Container.grid.row as ViewStyle}>
+            <Text style={Style.Typography.dataLeft as TextStyle}>
+                {props.item.name}
+            </Text>
+            <Text style={Style.Typography.dataCenter as TextStyle}>
                 {props.item.article_number}
             </Text>
-            <Text style={Style.Typography.dataRight}>
+            <Text style={Style.Typography.dataRight as TextStyle}>
                 {props.item.stock} st
             </Text>
         </View>
