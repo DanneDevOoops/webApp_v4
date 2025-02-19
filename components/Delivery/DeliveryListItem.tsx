@@ -3,16 +3,17 @@
  */
 import React from 'react';
 import { Text, TextStyle, View, ViewStyle } from 'react-native';
+import { Delivery } from '../../interfaces/Delivery';
 import * as Style from '../../assets/styles';
+
 
 /**
  * DeliveryListItem object to return a touchable link element to delivery detail view.
  *
- * @param navigation
- * @param delivery
  * @constructor
+ * @param item - The delivery item to be displayed.
  */
-export const DeliveryListItem = ({ item }): React.ReactElement => {
+export const DeliveryListItem = (item: Delivery): React.ReactElement => {
     return (
         <View key={item.id}>
             <View style={Style.Container.grid.row as ViewStyle}>
