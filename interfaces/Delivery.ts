@@ -22,6 +22,17 @@ export interface Delivery {
 
 
 /**
+ * Props for the DeliveryListItem component.
+ *
+ * @interface DeliveryListItemProps
+ * @property {Delivery} item - The delivery item to be displayed in the list.
+ */
+export interface DeliveryListItemProps {
+    item: Delivery;
+}
+
+
+/**
  * Used for passing props to the DeliveryItem component, containing delivery details.
  *
  * This interface is specifically designed for use in navigation and component prop passing within a
