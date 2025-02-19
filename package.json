@@ -18,7 +18,8 @@
     "export": "npx expo export --channel stage",
     "test": "jest",
     "ts:check": "tsc",
-    "reinstall-dev": "rm -rf node_modules && rm -rf package-lock.json && rm -rf yarn.lock && yarn install --dev"
+    "reinstall-dev": "rm -rf node_modules && rm -rf package-lock.json && rm -rf yarn.lock && yarn install --dev",
+    "rn-info": "npx react-native info"
   },
   "dependencies": {
     "@babel/preset-env": "^7.26.0",
