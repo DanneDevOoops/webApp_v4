@@ -23,7 +23,7 @@
 
 // External libraries
 import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, Text, TextStyle, View, ViewStyle } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
@@ -55,11 +55,11 @@ const Stack = createStackNavigator();
  */
 export const OrderNavigator = (): React.ReactElement => {
     return (
-        <SafeAreaView style={Style.Base.mainContainer}>
+        <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
             {CoverImage({ headerText: 'Order', image: coverIMG })}
 
-            <View style={Style.Container.screenIntroductory}>
-                <Text style={Style.Typography.paragraph}>
+            <View style={Style.Container.screenIntroductory as ViewStyle}>
+                <Text style={Style.Typography.paragraph as TextStyle}>
                     Orderfliken innehåller en lista över ordrar. Ordrarna har
                     olika status internt innan dem skickas till kund.
                 </Text>

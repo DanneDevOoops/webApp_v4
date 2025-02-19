@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Pressable, Text, TextInput, View, ViewStyle } from 'react-native';
+import {
+    Pressable,
+    Text,
+    TextInput,
+    TextStyle,
+    View,
+    ViewStyle,
+} from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useAuthContext } from '../../context/Auth.provider';
 import * as AuthModel from '../../models/Auth';
@@ -25,10 +32,10 @@ export const LoginForm: React.FC = (): React.ReactElement => {
     };
 
     return (
-        <View style={Style.Container.content}>
+        <View style={Style.Container.content as ViewStyle}>
             <Text>Email: </Text>
             <TextInput
-                style={Style.Form.textInputField}
+                style={Style.Form.textInputField as TextStyle}
                 value={email}
                 onChangeText={setEmail}
                 textContentType='emailAddress'
@@ -38,7 +45,7 @@ export const LoginForm: React.FC = (): React.ReactElement => {
 
             <Text>Password: </Text>
             <TextInput
-                style={Style.Form.textInputField}
+                style={Style.Form.textInputField as TextStyle}
                 value={password}
                 onChangeText={setPassword}
                 autoCapitalize='none'
@@ -96,20 +103,15 @@ const FormButtons: React.FC<{
             Style.Container.grid.rowNoPadding as ViewStyle,
             {
                 marginTop: Style.Typography.whiteSpace[100],
-            } as ViewStyle,
+            },
         ]}>
         <Pressable
             style={({ pressed }) => [
-                Style.Button.buttonContainer,
+                Style.Button.buttonContainer as ViewStyle,
                 { opacity: pressed ? 0.5 : 1 },
             ]}
-            as
-            ViewStyle
             onPress={loginUser}>
-            <Text
-                style={Style.Typography.buttonText}
-                as
-                ViewStyle>
+            <Text style={Style.Typography.buttonText as TextStyle}>
                 Logga in
             </Text>
         </Pressable>
