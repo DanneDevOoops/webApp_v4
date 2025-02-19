@@ -113,13 +113,17 @@ export const DeliveryList: React.FC = (): React.ReactElement => {
      * @param {Object} props.item - The delivery item data to be rendered.
      * @returns {React.ReactElement} A pressable component representing a single delivery item.
      */
-    const renderItem = ({ item }: { item: object }): React.ReactElement => (
+    const renderItem = ({
+        item,
+    }: {
+        item: DeliveriesInterfaces.Delivery;
+    }): React.ReactElement => (
         <Pressable
             key={item.id}
             onPress={(): void => {
                 navigation.navigate('Inleveransspecifikation', { item });
             }}
-            style={({ pressed }) => [
+            style={({ pressed }): ViewStyle[] => [
                 Style.Button.listButton as ViewStyle,
                 {
                     backgroundColor: pressed
