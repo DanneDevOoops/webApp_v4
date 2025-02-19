@@ -2,7 +2,7 @@
  * Module imports.
  */
 import React from "react";
-import {Text, View} from "react-native";
+import { Text, TextStyle, View, ViewStyle } from 'react-native';
 import * as Style from "../../assets/styles";
 
 
@@ -29,17 +29,22 @@ type InvoiceListItemPropsType = {
  * @constructor
  * @param props
  */
-export const InvoiceListItem = (props: InvoiceListItemPropsType) => {
-
-    console.log("props.item ", props.item)
+export const InvoiceListItem = (item: InvoiceListItemPropsType) => {
+    console.log('props.item ', item);
 
     return (
         <View
-            key={props.item.id.toString()}
-            style={Style.Button.listButton}>
-            <Text style={Style.Typography.dataLeft}>{props.item.id}</Text>
-            <Text style={Style.Typography.dataCenter}>{props.item.name}</Text>
-            <Text style={Style.Typography.dataRight}>{props.item.order_id} st</Text>
+            key={item.id.toString()}
+            style={Style.Button.listButton as ViewStyle}>
+            <Text style={Style.Typography.dataLeft as TextStyle}>
+                {item.id}
+            </Text>
+            <Text style={Style.Typography.dataCenter as TextStyle}>
+                {item.name}
+            </Text>
+            <Text style={Style.Typography.dataRight as TextStyle}>
+                {item.order_id} st
+            </Text>
         </View>
     );
 };
