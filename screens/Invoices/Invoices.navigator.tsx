@@ -22,61 +22,62 @@
  * @requires ../../assets/styles
  * @requires ../../assets/img/NutsAndBolts-7.jpg
  */
-// External libraries
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, View, ViewStyle } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
-
-// Internal components and modules
 import { InvoiceDataTable } from '../../components/Invoice/InvoiceDataTable';
 import { InvoiceItem } from './InvoiceItem.screen';
 import { InvoiceForm } from './InvoiceForm.screen';
 import { CoverImage } from '../../components/Utils/CoverImage';
-
-// Assets & styles
 import coverIMG from '../../assets/img/NutsAndBolts-7.jpg';
 import * as Style from '../../assets/styles';
+
 
 /**
  * Stack navigator for invoices.
  */
 const Stack = createStackNavigator();
 
+
 /**
- * Invoice Stack Navigator.
+ * InvoiceNavigator component.
  *
- * This component sets up a stack navigator for the invoice-related screens.
+ * This component sets up a stack navigator for the invoice-related screens in the application.
  * It includes a cover image, introductory text, and three screens:
  * - InvoiceDataTable: Displays a list of invoices.
  * - InvoiceItem: Displays detailed information about a selected invoice.
  * - InvoiceForm: Provides a form for creating a new invoice.
  *
- * @constructor
+ * The navigator is wrapped in a SafeAreaView to ensure it is displayed correctly on all devices.
+ * It also includes a FlashMessage component for displaying notifications and a StatusBar component.
+ *
+ * @component
  * @returns {React.ReactElement} The invoice stack navigator component.
  */
 export const InvoiceNavigator: React.FC = (): React.ReactElement => {
     return (
-        <SafeAreaView style={Style.Base.mainContainer}>
+        <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
             {CoverImage({ headerText: 'Fakturor', image: coverIMG })}
 
-            <View style={Style.Base.content}>
+            <View style={Style.Base.content as ViewStyle}>
                 <Stack.Navigator>
-                    <Stack.Group>
-                        <Stack.Screen
-                            name='Fakturalista'
-                            component={InvoiceDataTable}
-                        />
-                        <Stack.Screen
-                            name='Fakturaspecifikation'
-                            component={InvoiceItem}
-                        />
-                        <Stack.Screen
-                            name='Skapa faktura'
-                            component={InvoiceForm}
-                        />
-                    </Stack.Group>
+                    <Stack.Screen
+                        key='Fakturalista'
+                        name='Fakturalista'
+                        component={InvoiceDataTable}
+                    />
+                    <Stack.Screen
+                        key='Fakturaspecifikation'
+                        name='Fakturaspecifikation'
+                        component={InvoiceItem}
+                    />
+                    <Stack.Screen
+                        key='Skapa faktura'
+                        name='Skapa faktura'
+                        component={InvoiceForm}
+                    />
                 </Stack.Navigator>
             </View>
 
