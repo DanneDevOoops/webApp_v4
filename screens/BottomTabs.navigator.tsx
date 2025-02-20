@@ -1,10 +1,17 @@
 /**
  * @module BottomTabsNavigator
  *
- * This module sets up the bottom tab navigator for the application.
- * It includes various navigators for different sections of the app such as Home, Orders, Products,
- * Deliveries, Invoices, and Authentication.
- * The navigator dynamically adjusts the available tabs based on the user's authentication status.
+ * This module sets up a bottom tab navigator for the main sections of the application.
+ * It includes the following tabs:
+ * - Home: Displays the home screen.
+ * - Products: Displays the products screen.
+ * - Orders: Displays the orders screen.
+ * - Deliveries: Displays the deliveries screen.
+ * - Invoices: Displays the invoices screen (only if the user is logged in).
+ * - Login: Displays the login screen (only if the user is not logged in).
+ *
+ * The navigator is wrapped in a loading indicator to handle the loading state.
+ * It also includes icons for each tab using FontAwesome5.
  *
  * @requires react
  * @requires @react-navigation/bottom-tabs
@@ -22,8 +29,8 @@
  * @requires ../components/Utils/LoadingIndicator
  * @requires @expo/vector-icons
  * @requires ../assets/styles/index
+ * @requires ../interfaces/Auth.interfaces
  */
-
 import React, { useEffect } from 'react';
 import {
     BottomTabNavigationOptions,
@@ -45,10 +52,12 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import * as Style from '../assets/styles/index';
 import { AuthContextType } from '../interfaces/Auth.interfaces';
 
+
 /**
  * Bottom tabs navigator.
  */
 const BottomTabs = createBottomTabNavigator();
+
 
 /**
  * Bottom tabs navigator icons.
@@ -63,17 +72,26 @@ const routeIcons: { [key: string]: string } = {
     Login: 'key',
 };
 
+
 /**
- * Bottom Navigation Bar.
+ * BottomTabsNavigator component.
  *
- * The Navigation bar is the main navigation of the application.
- * It is used to navigate between the different screens.
- * Each screen may have several underlying screens navigated through a nested stack navigator.
+ * This component sets up a bottom tab navigator for the main sections of the application.
+ * It includes the following tabs:
+ * - Home: Displays the home screen.
+ * - Products: Displays the products screen.
+ * - Orders: Displays the orders screen.
+ * - Deliveries: Displays the deliveries screen.
+ * - Invoices: Displays the invoices screen (only if the user is logged in).
+ * - Login: Displays the login screen (only if the user is not logged in).
  *
- * @constructor
+ * The navigator is wrapped in a loading indicator to handle the loading state.
+ * It also includes icons for each tab using FontAwesome5.
+ *
+ * @component
  * @returns {React.ReactElement} The bottom tabs navigator component.
  */
-export const BottomTabsNavigator: () => React.ReactElement = () => {
+export const BottomTabsNavigator: React.FC = (): React.ReactElement => {
     const authContext = useAuthContext();
     const appContext = useAppContext();
 
@@ -94,8 +112,11 @@ export const BottomTabsNavigator: () => React.ReactElement = () => {
     );
 };
 
+
 /**
  * Check the user's login status and update the authentication context.
+ *
+ * @param {AuthContextType} authContext - The authentication context.
  */
 const checkUserLoginStatus = async (authContext: AuthContextType) => {
     const isLoggedIn: boolean = await AuthModel.loggedIn();
@@ -112,10 +133,12 @@ const checkUserLoginStatus = async (authContext: AuthContextType) => {
         });
 };
 
+
 /**
  * Get the screen options for the bottom tab navigator.
  *
- * @param {object} route - The route object.
+ * @param {object} param - The parameter object.
+ * @param {RouteProp<any, any>} param.route - The route prop.
  * @returns {BottomTabNavigationOptions} The screen options.
  */
 const getScreenOptions = ({
@@ -138,13 +161,16 @@ const getScreenOptions = ({
     headerShown: false,
 });
 
+
 /**
  * Get the bottom tab screens based on the user's login status.
  *
- * @param {object} authContext - The authentication context.
+ * @param {AuthContextType} authContext - The authentication context.
  * @returns {React.ReactElement} The bottom tab screens.
  */
-const getBottomTabScreens = (authContext: AuthContextType) => (
+const getBottomTabScreens = (
+    authContext: AuthContextType,
+): React.ReactElement => (
     <>
         <BottomTabs.Screen
             key='Hem'
