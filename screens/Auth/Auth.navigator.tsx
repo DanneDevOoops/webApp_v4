@@ -1,10 +1,17 @@
 /**
- * Auth Navigator module.
+ * @module AuthNavigator
  *
  * This module defines the authentication navigator for the application.
  * It includes screens for user login and registration.
  *
- * @module AuthNavigator
+ * @requires react
+ * @requires react-native
+ * @requires @react-navigation/stack
+ * @requires react-native-flash-message
+ * @requires expo-status-bar
+ * @requires ../../assets/styles
+ * @requires ./Login.screen
+ * @requires ./Register.screen
  */
 
 import React from 'react';
@@ -24,20 +31,21 @@ const Stack = createStackNavigator();
  * AuthNavigator component.
  *
  * This component sets up a stack navigator for the authentication-related screens.
- * If the user is logged in, it shows the InvoiceNavigator. Otherwise, it shows the Login and Register
- * screens.
+ * It includes the following screens:
+ * - Login: Displays the login screen.
+ * - Register: Displays the registration screen.
  *
- * @constructor
+ * @component
  * @returns {React.ReactElement} The authentication stack navigator component.
  */
 export const AuthNavigator: React.FC = (): React.ReactElement => {
-    // const authContext = useAuthContext();
     return (
         <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
             <Stack.Navigator initialRouteName='Logga in formulär'>
                 {
                     <>
                         <Stack.Screen
+                            key='Logga in formulär'
                             name='Logga in formulär'
                             component={Login}
                             options={{
@@ -45,6 +53,7 @@ export const AuthNavigator: React.FC = (): React.ReactElement => {
                             }}
                         />
                         <Stack.Screen
+                            key='Registrera användare'
                             name='Registrera användare'
                             component={Register}
                             options={{
