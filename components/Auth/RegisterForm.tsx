@@ -61,13 +61,13 @@ export const RegisterForm: React.FC = () => {
 
     return (
         <View style={Style.Container.content as ViewStyle}>
-            <Text style={Style.Typography.subHeader as ViewStyle}>
+            <Text style={Style.Typography.subHeader as TextStyle}>
                 Användarregistrering
             </Text>
 
             <Text>Email: </Text>
             <TextInput
-                style={Style.Form.textInputField as ViewStyle}
+                style={Style.Form.textInputField as TextStyle}
                 value={email}
                 onChangeText={setEmail}
                 autoCapitalize='none'
@@ -76,7 +76,7 @@ export const RegisterForm: React.FC = () => {
 
             <Text>Lösenord: </Text>
             <TextInput
-                style={Style.Form.textInputField as ViewStyle}
+                style={Style.Form.textInputField as TextStyle}
                 value={password}
                 onChangeText={setPassword}
                 autoCapitalize='none'
@@ -85,7 +85,7 @@ export const RegisterForm: React.FC = () => {
 
             <Text>Bekräfta Lösenordet: </Text>
             <TextInput
-                style={Style.Form.textInputField as ViewStyle}
+                style={Style.Form.textInputField as TextStyle}
                 value={passwordConfirm}
                 onChangeText={setPasswordConfirm}
                 autoCapitalize='none'
@@ -105,7 +105,7 @@ export const RegisterForm: React.FC = () => {
                         { opacity: pressed ? 0.5 : 1 },
                     ]}
                     onPress={registerUser}>
-                    <Text style={Style.Typography.buttonText as ViewStyle}>
+                    <Text style={Style.Typography.buttonText as TextStyle}>
                         Registrera ny användare
                     </Text>
                 </Pressable>
@@ -130,7 +130,7 @@ export const RegisterForm: React.FC = () => {
                             }),
                         );
                     }}>
-                    <Text style={Style.Typography.buttonText as ViewStyle}>
+                    <Text style={Style.Typography.buttonText as TextStyle}>
                         Gå till Login
                     </Text>
                 </Pressable>
