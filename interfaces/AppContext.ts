@@ -50,7 +50,7 @@ export interface AppContext {
     invoices: InvoicesInterfaces.Invoice[] | null;
     setInvoices: (invoices: InvoicesInterfaces.Invoice[] | null) => void;
 
-    userPosition: any;
+    userPosition: never;
     setUserPosition: (userPosition: UserPosition) => void;
 }
 
