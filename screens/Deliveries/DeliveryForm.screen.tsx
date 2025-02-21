@@ -35,16 +35,17 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StatusBar } from 'expo-status-bar';
 import { showMessage } from 'react-native-flash-message';
-import { useNavigation } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import { DeliveryProductPicker } from '../../components/Delivery/DeliveryProductPicker';
 import { useAppContext } from '../../context/App.provider';
 import config from '../../config/config.json';
-import * as Style from '../../assets/styles';
 import * as DeliveriesInterfaces from '../../interfaces/Delivery';
 import { Delivery } from '../../interfaces/Delivery';
 import * as StockInterfaces from '../../interfaces/Product';
 import * as DeliveryModel from '../../models/Deliveries';
 import * as ProductModel from '../../models/Products';
+import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
+import * as Style from '../../assets/styles';
 
 
 /**
@@ -238,10 +239,17 @@ export const DeliveryCreationForm: React.FC = (): React.ReactElement => {
                     // Create New Delivery, Update Product Stock & Alert User.
                     await handleSubmit();
 
-                    // Navigate back to deliveries list with param.reload = true.
-                    navigation.navigate('Inleveranslista', {
-                        reload: true,
-                    });
+                    // Navigate to DeliveriesList screen and send reload===true to trigger a new
+                    // data query call for Deliveries.
+                    navigation.dispatch(
+                        CommonActions.navigate(
+                            NavPath.Delivery.DeliveriesScreen,
+                            {
+                                screen: NavPath.Delivery.DeliveriesList,
+                                params: { reload: true },
+                            },
+                        ),
+                    );
                 }}>
                 <Text style={Style.Typography.buttonText as TextStyle}>
                     Skapa Ny Inleverans

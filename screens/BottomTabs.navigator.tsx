@@ -49,28 +49,16 @@ import { ProductsNavigator } from './Products/Products.navigator';
 import { InvoiceNavigator } from './Invoices/Invoices.navigator';
 import { LoadingIndicator } from '../components/Utils/LoadingIndicator';
 import { FontAwesome5 } from '@expo/vector-icons';
-import * as Style from '../assets/styles/index';
+import { NavigationPathKeys, routeIcons } from '../constants/Navigation';
+import { AppContext } from '../interfaces/AppContext';
 import { AuthContextType } from '../interfaces/Auth.interfaces';
+import * as Style from '../assets/styles/index';
 
 
 /**
  * Bottom tabs navigator.
  */
 const BottomTabs = createBottomTabNavigator();
-
-
-/**
- * Bottom tabs navigator icons.
- */
-const routeIcons: { [key: string]: string } = {
-    Faktura: 'file-invoice-dollar',
-    Home: 'home',
-    Inleveranser: 'dolly',
-    Lager: 'layer-group',
-    Order: 'truck',
-    // Login: 'lock',
-    Login: 'key',
-};
 
 
 /**
@@ -92,8 +80,8 @@ const routeIcons: { [key: string]: string } = {
  * @returns {React.ReactElement} The bottom tabs navigator component.
  */
 export const BottomTabsNavigator: React.FC = (): React.ReactElement => {
-    const authContext = useAuthContext();
-    const appContext = useAppContext();
+    const authContext: AuthContextType = useAuthContext();
+    const appContext: AppContext = useAppContext();
 
     useEffect((): void => {
         checkUserLoginStatus(authContext);
@@ -173,36 +161,52 @@ const getBottomTabScreens = (
 ): React.ReactElement => (
     <>
         <BottomTabs.Screen
-            key='Hem'
-            name='Hem'
+            key={NavigationPathKeys.Home.HomeScreen}
+            navigationKey={NavigationPathKeys.Home.HomeScreen}
+            name={NavigationPathKeys.Home.HomeScreen}
             component={Home}
+            options={{
+                title: NavigationPathKeys.Home.title,
+            }}
         />
         <BottomTabs.Screen
-            key='Lager'
-            name='Lager'
+            key={NavigationPathKeys.Products.ProductsScreen}
+            navigationKey={NavigationPathKeys.Products.ProductsScreen}
+            name={NavigationPathKeys.Products.ProductsScreen}
             component={ProductsNavigator}
+            options={{
+                title: NavigationPathKeys.Products.title,
+            }}
         />
         <BottomTabs.Screen
-            key='Order'
-            name='Order'
+            key={NavigationPathKeys.Orders.OrdersScreen}
+            navigationKey={NavigationPathKeys.Orders.OrdersScreen}
+            name={NavigationPathKeys.Orders.OrdersScreen}
             component={OrderNavigator}
+            options={{ title: NavigationPathKeys.Orders.title }}
         />
         <BottomTabs.Screen
-            key='Inleveranser'
-            name='Inleveranser'
+            key={NavigationPathKeys.Delivery.DeliveriesScreen}
+            navigationKey={NavigationPathKeys.Delivery.DeliveriesScreen}
+            name={NavigationPathKeys.Delivery.DeliveriesScreen}
             component={DeliveryNavigator}
+            options={{ title: NavigationPathKeys.Delivery.title }}
         />
         {authContext.isLoggedIn ? (
             <BottomTabs.Screen
-                key='Fakturor'
-                name='Fakturor'
+                key={NavigationPathKeys.Invoices.InvoicesScreen}
+                navigationKey={NavigationPathKeys.Invoices.InvoicesScreen}
+                name={NavigationPathKeys.Invoices.InvoicesScreen}
                 component={InvoiceNavigator}
+                options={{ title: NavigationPathKeys.Invoices.title }}
             />
         ) : (
             <BottomTabs.Screen
-                key='Logga in'
-                name='Logga in'
+                key={NavigationPathKeys.Auth.AuthScreen}
+                navigationKey={NavigationPathKeys.Auth.AuthScreen}
+                name={NavigationPathKeys.Auth.AuthScreen}
                 component={AuthNavigator}
+                options={{ title: NavigationPathKeys.Auth.title }}
             />
         )}
     </>

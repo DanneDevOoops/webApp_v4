@@ -14,6 +14,7 @@ import * as Style from '../../assets/styles/index';
 import { flash_message } from '../../assets/utils/animation';
 import { AuthContextType } from '../../interfaces/Auth.interfaces';
 
+
 /**
  * Create new Login form component.
  *

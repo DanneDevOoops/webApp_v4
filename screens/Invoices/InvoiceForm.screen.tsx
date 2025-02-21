@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
     Button,
     Platform,
@@ -8,25 +8,32 @@ import {
     View,
     ViewStyle,
 } from 'react-native';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import {useAppContext} from '../../context/App.provider';
-import {Picker} from '@react-native-picker/picker';
-import {LoadingIndicator} from '../../components/Utils/LoadingIndicator';
-import {StatusBar} from 'expo-status-bar';
+import {
+    CommonActions,
+    RouteProp,
+    useNavigation,
+    useRoute,
+} from '@react-navigation/native';
+import DateTimePicker, {
+    DateTimePickerEvent,
+} from '@react-native-community/datetimepicker';
+import { useAppContext } from '../../context/App.provider';
+import { Picker } from '@react-native-picker/picker';
+import { LoadingIndicator } from '../../components/Utils/LoadingIndicator';
+import { StatusBar } from 'expo-status-bar';
 import * as InvoiceInterfaces from '../../interfaces/Invoice';
 import * as InvoiceModel from '../../models/Invoices';
 import * as OrderInterfaces from './../../interfaces/Order';
 import * as OrderModel from '../../models/Orders';
+import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
+import { RouteParams } from '../../types/Navigation';
 import * as Style from '../../assets/styles';
-import DateTimePicker, {
-    DateTimePickerEvent,
-} from '@react-native-community/datetimepicker';
 
 
 export const InvoiceForm: React.FC = (): React.ReactElement => {
     const appContext = useAppContext();
     const navigation = useNavigation();
-    const route = useRoute();
+    const route = useRoute<RouteProp<RouteParams>>();
     const [selectedOrder, setSelectedOrder] =
         useState<OrderInterfaces.Order | null>(
             (appContext.orders.filter(
@@ -42,7 +49,6 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
     const [newInvoiceData, setNewInvoiceData] =
         useState<InvoiceInterfaces.NewInvoice | null>(null);
 
-
     /**
      * Calculate the due date for the invoice.
      */
@@ -55,10 +61,7 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
     useEffect((): void => {
         console.log(`~> Route.name: ${route.name}`);
 
-        if (
-            !Array.isArray(appContext.orders) ||
-            !appContext.orders.length
-        ) {
+        if (!Array.isArray(appContext.orders) || !appContext.orders.length) {
             try {
                 appContext.setIsRefreshing(true);
                 OrderModel.getOrders().then(
@@ -74,7 +77,6 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
         }
     }, []);
 
-
     useEffect((): void => {
         if (selectedOrder) {
             setNewInvoiceData({
@@ -85,7 +87,6 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
             });
         }
     }, [selectedOrder]);
-
 
     // Compute the packed orders from the appContext.orders.
     const packedOrders: OrderInterfaces.Order[] = useMemo(() => {
@@ -106,7 +107,6 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
 
         return currentlyPackedOrders;
     }, [appContext.orders]);
-
 
     const handleSubmit = async (
         input_invoice: Partial<InvoiceInterfaces.NewInvoice>,
@@ -141,7 +141,13 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
             console.error(error);
         } finally {
             console.log('Invoice created...', newInvoiceData);
-            navigation.navigate('Fakturor', {reload: true});
+            console.log('Navigating back to InvoicesList...');
+            navigation.dispatch(
+                CommonActions.navigate(NavPath.Invoices.InvoicesList, {
+                    screen: NavPath.Invoices.InvoicesList,
+                    params: { reload: true },
+                }),
+            );
         }
     };
 
@@ -304,7 +310,13 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
                     await handleSubmit(newInvoiceData);
 
                     // Navigate back to the invoice list and send params.reload: true.
-                    navigation.navigate('Fakturor', { reload: true });
+                    // navigation.navigate('Fakturor', { reload: true });
+                    navigation.dispatch(
+                        CommonActions.navigate(NavPath.Invoices.InvoicesList, {
+                            screen: NavPath.Invoices.InvoicesList,
+                            params: { reload: true },
+                        }),
+                    );
                 }}>
                 <Text style={Style.Typography.buttonText as TextStyle}>
                     Skapa Faktura

@@ -8,13 +8,19 @@ import {
     View,
     ViewStyle,
 } from 'react-native';
-import {useNavigation, useRoute, useFocusEffect} from '@react-navigation/native';
+import {
+    RouteProp,
+    useFocusEffect,
+    useNavigation,
+    useRoute,
+} from '@react-navigation/native';
 import {DataTable} from 'react-native-paper';
 import {useAppContext} from '../../context/App.provider';
 import {useAuthContext} from '../../context/Auth.provider';
 import {LoadingIndicator} from '../Utils/LoadingIndicator';
 import * as InvoiceModel from '../../models/Invoices';
 import * as InvoiceInterfaces from '../../interfaces/Invoice';
+import { RouteParams } from '../../types/Navigation';
 import * as Style from '../../assets/styles';
 
 
@@ -47,8 +53,8 @@ export const InvoiceDataTable: React.FC = (): React.ReactElement => {
     const authContext = useAuthContext();
     const appContext = useAppContext();
     const navigation = useNavigation();
-    const route = useRoute();
-    let reload: boolean | null = route.params?.reload ?? false;
+    const route = useRoute<RouteProp<RouteParams>>();
+    let reload: boolean = route.params?.reload ?? false;
 
 
     /**

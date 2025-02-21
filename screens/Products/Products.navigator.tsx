@@ -20,17 +20,15 @@
  * @requires ../../assets/styles
  * @requires ../../assets/img/NutsAndBolts-5.jpg
  */
-// External libraries
 import React from 'react';
 import { SafeAreaView, Text, TextStyle, View, ViewStyle } from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {StatusBar} from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
-// Internal components and modules
 import {ProductList} from '../../components/Product/ProductList';
 import {CoverImage} from '../../components/Utils/CoverImage';
-import {StockItem} from './ProductItem.screen';
-// Assets & styles
+import { StockItem } from './ProductItem.screen';
+import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import coverIMG from '../../assets/img/NutsAndBolts-5.jpg';
 import * as Style from '../../assets/styles';
 
@@ -68,17 +66,25 @@ export const ProductsNavigator = (): React.ReactElement => {
                 </Text>
             </View>
 
-            <Stack.Navigator>
-                <Stack.Screen
-                    key='Produkter'
-                    name='Produkter'
-                    component={ProductList}
-                />
-                <Stack.Screen
-                    key='Produktspecifikation'
-                    name='Produktspecifikation'
-                    component={StockItem}
-                />
+            <Stack.Navigator
+                id={NavPath.Products.ProductsScreen}
+                initialRouteName={NavPath.Products.ProductsList}>
+                <Stack.Group navigationKey={NavPath.Products.ProductsScreen}>
+                    <Stack.Screen
+                        key={NavPath.Products.ProductsList}
+                        navigationKey={NavPath.Products.ProductsList}
+                        name={NavPath.Products.ProductsList}
+                        component={ProductList}
+                        options={{ title: 'Produkter' }}
+                    />
+                    <Stack.Screen
+                        key={NavPath.Products.ProductItem}
+                        navigationKey={NavPath.Products.ProductItem}
+                        name={NavPath.Products.ProductItem}
+                        component={StockItem}
+                        options={{ title: 'Produktspecifikation' }}
+                    />
+                </Stack.Group>
             </Stack.Navigator>
 
             <StatusBar style='auto' />

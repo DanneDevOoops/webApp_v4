@@ -1,10 +1,18 @@
 import React, {useCallback} from 'react';
-import {useFocusEffect, useNavigation, useRoute} from '@react-navigation/native';
-import {FlatList, Pressable} from 'react-native';
+import {
+    CommonActions,
+    RouteProp,
+    useFocusEffect,
+    useNavigation,
+    useRoute,
+} from '@react-navigation/native';
+import { FlatList, Pressable, ViewStyle } from 'react-native';
 import {useAppContext} from '../../context/App.provider';
 import {LoadingIndicator} from '../Utils/LoadingIndicator';
 import * as ProductModel from '../../models/Products';
-import {ProductListItem} from './ProductListItem';
+import { ProductListItem } from './ProductListItem';
+import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
+import { RouteParams } from '../../types/Navigation';
 import * as Style from '../../assets/styles';
 
 
@@ -21,9 +29,8 @@ import * as Style from '../../assets/styles';
 export const ProductList: React.FC = (): React.ReactElement => {
     const appContext = useAppContext();
     const navigation = useNavigation();
-    const route = useRoute();
-    let reload: boolean | null = route.params?.reload ?? false;
-
+    const route = useRoute<RouteProp<RouteParams>>();
+    let reload: boolean = route.params?.reload ?? false;
 
     /**
      * Asynchronously fetches products from an API and updates the application context with the fetched
@@ -46,7 +53,6 @@ export const ProductList: React.FC = (): React.ReactElement => {
         }
     }
 
-
     /**
      * Utilizes the `useFocusEffect` hook to reload products when the component is focused.
      * This effect is triggered if the products are not loaded or if the `reload` flag is true.
@@ -62,11 +68,10 @@ export const ProductList: React.FC = (): React.ReactElement => {
             if (!appContext.products || reload) {
                 void loadProducts();
                 reload = false;
-                navigation.setParams({reload: false});
+                navigation.setParams({ reload: false });
             }
         }, [appContext.products, reload, navigation.setParams]),
     );
-
 
     /**
      * Renders a single product item as a `Pressable` component. This function is used as the `renderItem`
@@ -75,27 +80,31 @@ export const ProductList: React.FC = (): React.ReactElement => {
      *
      * @param {Object} item - The product item to render. This object contains the product details.
      */
-    const renderItem = ({item}: object) => (
+    const renderItem = ({ item }) => (
         <Pressable
-            key={item.id}
+            key={item.id.toString()}
             onPress={(): void => {
-                navigation.navigate('Produktspecifikation', {item});
+                navigation.dispatch(
+                    CommonActions.navigate(NavPath.Products.ProductItem, {
+                        screen: NavPath.Products.ProductItem,
+                        params: { item },
+                    }),
+                );
             }}
-            style={({pressed}) => [
-                Style.Button.listButton,
+            style={({ pressed }) => [
+                Style.Button.listButton as ViewStyle,
                 {
                     backgroundColor: pressed
                         ? Style.Color.schemeOne.primary[200]
                         : Style.Button.listButton.backgroundColor,
                 },
             ]}>
-            <ProductListItem item={item}/>
+            <ProductListItem item={item} />
         </Pressable>
     );
 
-
     return appContext.isRefreshing ? (
-        <LoadingIndicator loadingType={'Produkter'}/>
+        <LoadingIndicator loadingType={'Produkter'} />
     ) : (
         <FlatList
             data={appContext.products}

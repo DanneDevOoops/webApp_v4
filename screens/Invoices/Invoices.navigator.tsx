@@ -31,6 +31,7 @@ import { InvoiceDataTable } from '../../components/Invoice/InvoiceDataTable';
 import { InvoiceItem } from './InvoiceItem.screen';
 import { InvoiceForm } from './InvoiceForm.screen';
 import { CoverImage } from '../../components/Utils/CoverImage';
+import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import coverIMG from '../../assets/img/NutsAndBolts-7.jpg';
 import * as Style from '../../assets/styles';
 
@@ -62,22 +63,41 @@ export const InvoiceNavigator: React.FC = (): React.ReactElement => {
             {CoverImage({ headerText: 'Fakturor', image: coverIMG })}
 
             <View style={Style.Base.content as ViewStyle}>
-                <Stack.Navigator>
-                    <Stack.Screen
-                        key='Fakturalista'
-                        name='Fakturalista'
-                        component={InvoiceDataTable}
-                    />
-                    <Stack.Screen
-                        key='Fakturaspecifikation'
-                        name='Fakturaspecifikation'
-                        component={InvoiceItem}
-                    />
-                    <Stack.Screen
-                        key='Skapa faktura'
-                        name='Skapa faktura'
-                        component={InvoiceForm}
-                    />
+                <Stack.Navigator
+                    id={NavPath.Invoices.InvoicesScreen}
+                    initialRouteName={NavPath.Invoices.InvoicesList}>
+                    <Stack.Group
+                        navigationKey={NavPath.Invoices.InvoicesScreen}>
+                        <Stack.Screen
+                            navigationKey={NavPath.Invoices.InvoicesList}
+                            key={NavPath.Invoices.InvoicesList}
+                            name={NavPath.Invoices.InvoicesList}
+                            component={InvoiceDataTable}
+                            options={{
+                                title: 'Fakturalista',
+                            }}
+                        />
+                        <Stack.Screen
+                            navigationKey={
+                                NavPath.Invoices.InvoiceSpecification
+                            }
+                            key={NavPath.Invoices.InvoiceSpecification}
+                            name={NavPath.Invoices.InvoiceSpecification}
+                            component={InvoiceItem}
+                            options={{
+                                title: 'Fakturaspecifikation',
+                            }}
+                        />
+                        <Stack.Screen
+                            navigationKey={NavPath.Invoices.InvoiceForm}
+                            key={NavPath.Invoices.InvoiceForm}
+                            name={NavPath.Invoices.InvoiceForm}
+                            component={InvoiceForm}
+                            options={{
+                                title: 'Skapa faktura',
+                            }}
+                        />
+                    </Stack.Group>
                 </Stack.Navigator>
             </View>
 

@@ -1,20 +1,19 @@
 import React from 'react';
-import { useRoute } from '@react-navigation/native';
-import { Text, View } from 'react-native';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { Text, TextStyle, View, ViewStyle } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { RouteParams } from '../../types/Navigation';
 import * as Style from '../../assets/styles';
-import {
-    TextStyle,
-    ViewStyle,
-} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
+
 
 /**
  * ProductListItem screen/view.
  *
  * @constructor
  */
-export const StockItem: () => React.JSX.Element = () => {
-    const product = useRoute().params?.item;
+export const StockItem: () => React.ReactElement = () => {
+    const route = useRoute<RouteProp<{ params: RouteParams }>>();
+    const product = route.params.params?.item;
 
     return (
         <View style={Style.Container.content as ViewStyle}>

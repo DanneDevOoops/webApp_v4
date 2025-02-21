@@ -2,8 +2,21 @@
  * Module imports.
  */
 import React, {useState} from 'react';
-import { Pressable, Text, TextInput, View, ViewStyle } from 'react-native';
-import {useNavigation} from "@react-navigation/native";
+import {
+    Pressable,
+    Text,
+    TextInput,
+    TextStyle,
+    View,
+    ViewStyle,
+} from 'react-native';
+import {
+    CommonActions,
+    NavigationProp,
+    useNavigation,
+} from '@react-navigation/native';
+import type { RootStackParamList } from '../../types/Navigation';
+import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import {useAuthContext} from "../../context/Auth.provider";
 import * as Style from '../../assets/styles/index';
 
@@ -14,15 +27,15 @@ import * as Style from '../../assets/styles/index';
  * @constructor
  */
 export const RegisterForm: React.FC = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
     const authContext = useAuthContext();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
-
     function registerUser() {
         console.log('Click! -> Registrera ny användare med...');
+
         console.log('Input Email -> ', email);
         console.log('Input Password -> ', password);
         console.log('Input ConfirmedPassword -> ', passwordConfirm);
@@ -37,13 +50,14 @@ export const RegisterForm: React.FC = () => {
             authContext.login(email, password);
             console.log('User logged in!');
 
+            // TODO: Change this to be more secure and only navigate if the user is registered
+            //  and logged in successfully with a API token. This will fix issue #9
             // Navigate to Invoice screen.
             navigation.navigate('Faktura');
         } else {
             console.log('Passwords do not match!');
         }
     }
-
 
     return (
         <View style={Style.Container.content as ViewStyle}>
@@ -101,9 +115,20 @@ export const RegisterForm: React.FC = () => {
                         Style.Button.buttonContainer as ViewStyle,
                         { opacity: pressed ? 0.5 : 1 },
                     ]}
-                    onPress={() => {
-                        console.log('Click! -> Gå till logga in...');
-                        navigation.navigate('Logga in formulär');
+                    onPress={(): void => {
+                        const state = navigation.getState();
+                        console.info('Navigation state...', state);
+                        console.info(
+                            'Navigating to Login screen...',
+                            NavPath.Auth.Login,
+                        );
+
+                        // Navigate to Login screen.
+                        navigation.dispatch(
+                            CommonActions.navigate(NavPath.Auth.AuthScreen, {
+                                screen: NavPath.Auth.Login,
+                            }),
+                        );
                     }}>
                     <Text style={Style.Typography.buttonText as ViewStyle}>
                         Gå till Login

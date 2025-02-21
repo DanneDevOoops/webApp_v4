@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
 import { useAppContext } from '../../context/App.provider';
 import {
+    CommonActions,
+    RouteProp,
     useFocusEffect,
     useNavigation,
     useRoute,
@@ -11,14 +13,16 @@ import { LoadingIndicator } from '../Utils/LoadingIndicator';
 import * as DeliveriesInterfaces from '../../interfaces/Delivery';
 import * as DeliveryModel from '../../models/Deliveries';
 import * as ProductModel from '../../models/Products';
-import * as Style from '../../assets/styles';
 import { DeliveryListView } from './DeliveryListView';
-import { RouteParams } from '../../types/Utils';
+import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
+import { RouteParams } from '../../types/Navigation';
+import * as Style from '../../assets/styles';
+
 
 export const DeliveryList: React.FC = (): React.ReactElement => {
     const appContext = useAppContext();
     const navigation = useNavigation();
-    const route = useRoute<RouteParams>();
+    const route = useRoute<RouteProp<RouteParams>>();
     let reload: boolean | null = route.params?.reload ?? false;
 
     async function loadDeliveries(): Promise<void> {
@@ -39,11 +43,13 @@ export const DeliveryList: React.FC = (): React.ReactElement => {
         useCallback((): void => {
             if (!appContext.deliveries || reload === true) {
                 void loadDeliveries().then((): void => {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-expect-error
                     // Reset the reload parameter to false after loading deliveries
-                    navigation.setParams({ reload: false });
+                    return navigation.setParams({ reload: false });
                 });
             }
-        }, [appContext.deliveries, reload, navigation.setParams]),
+        }, [appContext.deliveries, reload, navigation]),
     );
 
     const renderItem = ({
@@ -54,7 +60,13 @@ export const DeliveryList: React.FC = (): React.ReactElement => {
         <Pressable
             key={item.id}
             onPress={(): void => {
-                navigation.navigate('Inleveransspecifikation', { item });
+                // Navigate to DeliverySpecification screen with item as param.
+                navigation.dispatch(
+                    CommonActions.navigate(NavPath.Delivery.DeliveriesScreen, {
+                        screen: NavPath.Delivery.DeliverySpecification,
+                        params: { item },
+                    }),
+                );
             }}
             style={({ pressed }): ViewStyle[] => [
                 Style.Button.listButton as ViewStyle,
@@ -74,7 +86,15 @@ export const DeliveryList: React.FC = (): React.ReactElement => {
                 key={'newDeliveryBTN'}
                 style={Style.Button.buttonContainer as ViewStyle}
                 onPress={(): void => {
-                    navigation.navigate('Inleverasformulär');
+                    // Navigate to DeliveryForm screen.
+                    navigation.dispatch(
+                        CommonActions.navigate(
+                            NavPath.Delivery.DeliveriesScreen,
+                            {
+                                screen: NavPath.Delivery.DeliveryForm,
+                            },
+                        ),
+                    );
                 }}>
                 <Text style={Style.Typography.buttonText as TextStyle}>
                     Skapa Inleverans
@@ -89,7 +109,15 @@ export const DeliveryList: React.FC = (): React.ReactElement => {
                 key={'newDeliveryBTN'}
                 style={Style.Button.buttonContainer as ViewStyle}
                 onPress={(): void => {
-                    navigation.navigate('Inleverasformulär');
+                    // Navigate to DeliveryForm screen.
+                    navigation.dispatch(
+                        CommonActions.navigate(
+                            NavPath.Delivery.DeliveriesScreen,
+                            {
+                                screen: NavPath.Delivery.DeliveryForm,
+                            },
+                        ),
+                    );
                 }}>
                 <Text style={Style.Typography.buttonText as TextStyle}>
                     Skapa Inleverans

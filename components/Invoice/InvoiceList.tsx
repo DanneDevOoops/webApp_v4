@@ -3,7 +3,12 @@
  */
 import React, {useCallback} from 'react';
 import {FlatList, Pressable} from 'react-native';
-import {useFocusEffect, useNavigation, useRoute} from '@react-navigation/native';
+import {
+    RouteProp,
+    useFocusEffect,
+    useNavigation,
+    useRoute,
+} from '@react-navigation/native';
 import {useAppContext} from '../../context/App.provider';
 import {LoadingIndicator} from '../Utils/LoadingIndicator';
 import {InvoiceListItem} from './InvoiceListItem';
@@ -42,7 +47,7 @@ import * as Style from '../../assets/styles';
 export const InvoiceList: React.FC = (): React.ReactElement => {
     const appContext = useAppContext();
     const navigation = useNavigation();
-    const route = useRoute<RouteParams>();
+    const route = useRoute<RouteProp<RouteParams>>();
     const reload: boolean | null = route.params?.reload ?? false;
 
 

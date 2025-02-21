@@ -1,6 +1,14 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import { FlatList, Pressable, Text, View } from 'react-native';
 import {
+    FlatList,
+    Pressable,
+    Text,
+    TextStyle,
+    View,
+    ViewStyle,
+} from 'react-native';
+import {
+    CommonActions,
     useFocusEffect,
     useNavigation,
     useRoute,
@@ -12,8 +20,9 @@ import {OrderListItem} from './OrderListItem';
 import {LoadingIndicator} from '../Utils/LoadingIndicator';
 import * as OrderModel from '../../models/Orders';
 import * as OrderInterfaces from '../../interfaces/Order';
+import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import * as Style from '../../assets/styles';
-import { ViewStyle } from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
+
 
 /**
  * Represents a tab view containing lists of orders categorized by their status (New, Packed, Sent, Returns).
@@ -248,7 +257,7 @@ export const OrderList: React.FC = (): React.ReactElement => {
      */
     const renderItem = ({ item }: object): React.ReactElement => (
         <Pressable
-            key={item.id.toString()}
+            key={item.index}
             style={({ pressed }) => [
                 Style.Button.listButton as ViewStyle,
                 {
@@ -258,10 +267,12 @@ export const OrderList: React.FC = (): React.ReactElement => {
                 },
             ]}
             onPress={(): void => {
-                navigation.navigate('Orderhanterare', {
-                    item: item,
-                    reload: true,
-                });
+                navigation.dispatch(
+                    CommonActions.navigate(NavPath.Orders.OrdersScreen, {
+                        screen: NavPath.Orders.OrderItem,
+                        params: { item, reload: true },
+                    }),
+                );
             }}>
             <OrderListItem item={item} />
         </Pressable>
@@ -336,7 +347,7 @@ export const OrderList: React.FC = (): React.ReactElement => {
                                 : Style.Color.text.dark,
                             fontWeight: Style.Typography.fontWeight.btn,
                             fontFamily: Style.Typography.fontFamily.btn,
-                        } as ViewStyle
+                        } as TextStyle
                     }>
                     {route.title}
                 </Text>

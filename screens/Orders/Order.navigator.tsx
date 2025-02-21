@@ -20,27 +20,24 @@
  * @requires ../../assets/styles
  * @requires ../../assets/img/NutsAndBolts-3.jpg
  */
-
-// External libraries
 import React from 'react';
 import { SafeAreaView, Text, TextStyle, View, ViewStyle } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
-
-// Internal components and modules
 import { OrderList } from '../../components/Order/OrderList';
 import { OrderItem } from './OrderItem.screen';
 import { CoverImage } from '../../components/Utils/CoverImage';
-
-// Assets & styles
+import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import coverIMG from '../../assets/img/NutsAndBolts-3.jpg';
 import * as Style from '../../assets/styles';
+
 
 /**
  * Stack navigator for orders.
  */
 const Stack = createStackNavigator();
+
 
 /**
  * Order Stack Navigator.
@@ -65,18 +62,26 @@ export const OrderNavigator = (): React.ReactElement => {
                 </Text>
             </View>
 
-            <Stack.Navigator>
-                <Stack.Screen
-                    key='Orderlista'
-                    name='Orderlista'
-                    component={OrderList}
-                />
+            <Stack.Navigator
+                id={NavPath.Orders.OrdersScreen}
+                initialRouteName={NavPath.Orders.OrdersList}>
+                <Stack.Group navigationKey={NavPath.Orders.OrdersScreen}>
+                    <Stack.Screen
+                        key={NavPath.Orders.OrdersList}
+                        navigationKey={NavPath.Orders.OrdersList}
+                        name={NavPath.Orders.OrdersList}
+                        component={OrderList}
+                        options={{ title: 'Orderlista' }}
+                    />
 
-                <Stack.Screen
-                    key='Orderhanterare'
-                    name='Orderhanterare'
-                    component={OrderItem}
-                />
+                    <Stack.Screen
+                        key={NavPath.Orders.OrderItem}
+                        navigationKey={NavPath.Orders.OrderItem}
+                        name={NavPath.Orders.OrderItem}
+                        component={OrderItem}
+                        options={{ title: 'Orderdetaljer' }}
+                    />
+                </Stack.Group>
             </Stack.Navigator>
 
             <StatusBar style='auto' />

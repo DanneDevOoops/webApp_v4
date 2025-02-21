@@ -4,6 +4,9 @@
  * This module defines the authentication navigator for the application.
  * It includes screens for user login and registration.
  *
+ * The navigator is wrapped in a SafeAreaView to ensure it is displayed correctly on all devices.
+ * It also includes a FlashMessage component for displaying notifications and a StatusBar component.
+ *
  * @requires react
  * @requires react-native
  * @requires @react-navigation/stack
@@ -12,19 +15,23 @@
  * @requires ../../assets/styles
  * @requires ./Login.screen
  * @requires ./Register.screen
+ * @requires ../../constants/Navigation
  */
-
 import React from 'react';
 import { SafeAreaView, ViewStyle } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import FlashMessage from 'react-native-flash-message';
 import { Login } from './Login.screen';
 import { Register } from './Register.screen';
+import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import * as Style from '../../assets/styles';
 import { StatusBar } from 'expo-status-bar';
 
 
-const Stack = createStackNavigator();
+/**
+ * Stack navigator for authentication.
+ */
+const AuthStack = createStackNavigator();
 
 
 /**
@@ -41,28 +48,27 @@ const Stack = createStackNavigator();
 export const AuthNavigator: React.FC = (): React.ReactElement => {
     return (
         <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
-            <Stack.Navigator initialRouteName='Logga in formulär'>
-                {
-                    <>
-                        <Stack.Screen
-                            key='Logga in formulär'
-                            name='Logga in formulär'
-                            component={Login}
-                            options={{
-                                headerShown: false,
-                            }}
-                        />
-                        <Stack.Screen
-                            key='Registrera användare'
-                            name='Registrera användare'
-                            component={Register}
-                            options={{
-                                headerShown: false,
-                            }}
-                        />
-                    </>
-                }
-            </Stack.Navigator>
+            <AuthStack.Navigator initialRouteName={NavPath.Auth.Login}>
+                <AuthStack.Screen
+                    navigationKey={NavPath.Auth.Login}
+                    name={NavPath.Auth.Login}
+                    component={Login}
+                    options={{
+                        title: 'Logga in',
+                        headerShown: false,
+                    }}
+                />
+
+                <AuthStack.Screen
+                    key={NavPath.Auth.RegisterUser}
+                    navigationKey={NavPath.Auth.RegisterUser}
+                    name='Registrera användare'
+                    component={Register}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+            </AuthStack.Navigator>
 
             <StatusBar style='auto' />
 

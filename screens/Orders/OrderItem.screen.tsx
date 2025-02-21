@@ -38,6 +38,7 @@ import {
     ViewStyle,
 } from 'react-native';
 import {
+    RouteProp,
     useFocusEffect,
     useNavigation,
     useRoute,
@@ -54,9 +55,10 @@ import * as ProductInterfaces from '../../interfaces/Product';
 import * as ProductModel from '../../models/Products';
 import * as NominatimModel from '../../models/Nominatim';
 import * as Style from '../../assets/styles';
-
 import * as APP_CONFIG from '../../config/config.json';
 import { flash_message } from '../../assets/utils/animation';
+import { RouteParams } from '../../types/Navigation';
+
 
 const useFetchData = (
     order: OrderInterfaces.Order,
@@ -147,7 +149,7 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
 ) => {
     const appContext = useAppContext();
     const navigation = useNavigation();
-    const route = useRoute();
+    const route = useRoute<RouteProp<RouteParams>>();
     const order: OrderInterfaces.Order = props.route.params.item;
     const [errorMessage, setErrorMessage] = useState(null);
     const [orderLocationMarker, setOrderLocationMarker] =

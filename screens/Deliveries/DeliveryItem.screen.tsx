@@ -4,9 +4,9 @@
 import React from 'react';
 import { Text, TextStyle, View, ViewStyle } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import * as Style from '../../assets/styles';
 import * as DeliveryInterfaces from '../../interfaces/Delivery';
-import { Typography } from '../../assets/styles';
+import * as Style from '../../assets/styles';
+
 
 /**
  * DeliveryListItem screen/view.
@@ -61,8 +61,8 @@ export const DeliveryItem: (
                 style={[
                     Style.Container.grid.column as ViewStyle,
                     {
-                        paddingTop: Typography.whiteSpace[100],
-                        paddingBottom: Typography.whiteSpace[200],
+                        paddingTop: Style.Typography.whiteSpace[100],
+                        paddingBottom: Style.Typography.whiteSpace[200],
                     },
                 ]}>
                 <Text style={Style.Typography.dataLeft as TextStyle}>

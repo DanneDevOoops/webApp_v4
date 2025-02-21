@@ -1,7 +1,8 @@
 import React from 'react';
-import { ViewStyle } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 import * as Style from '../../assets/styles';
 import MapView from 'react-native-maps';
+
 
 const MapElement = ({
     appContext,
@@ -27,7 +28,7 @@ const MapElement = ({
         <View style={Style.Container.mapContainer as ViewStyle}>
             <MapView
                 ref={mapRef}
-                style={Style.Container.map}
+                style={Style.Container.map as ViewStyle}
                 initialRegion={{
                     latitude: appContext.userPosition?.latitude,
                     longitude: appContext.userPosition?.longitude,
