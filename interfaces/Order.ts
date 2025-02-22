@@ -1,6 +1,5 @@
 import { NativeStackNavigatorProps } from 'react-native-screens/lib/typescript/native-stack/types';
 
-
 /**
  * Represents the structure of an order within the application.
  *
@@ -31,7 +30,6 @@ export interface Order {
     order_items: OrderItem[] | [];
 }
 
-
 /**
  * Defines the required and optional fields for creating a new order.
  *
@@ -58,7 +56,6 @@ export interface OrderCreate {
     image_url?: string;
     status_id?: number;
 }
-
 
 /**
  * Defines the required and optional fields for updating an existing order.
@@ -89,7 +86,6 @@ export interface OrderUpdate {
     status_id?: number;
 }
 
-
 /**
  * Defines the structure for deleting an existing order.
  *
@@ -101,7 +97,6 @@ export interface OrderDelete {
     id: number;
     api_key: string;
 }
-
 
 /**
  * Represents the structure of an item within an order.
@@ -129,7 +124,6 @@ export interface OrderItem {
     price: number;
 }
 
-
 /**
  * Used for passing props to the OrderItem component, containing order details.
  *
@@ -149,7 +143,6 @@ export interface OrderItemProps {
     navigation: NativeStackNavigatorProps;
 }
 
-
 /**
  * Represents a visual indicator element for the stock status of an order item.
  *
@@ -162,4 +155,14 @@ export interface OrderStockIndicatorElement {
     icon: string;
     color: string;
     text: string;
+}
+/**
+ * Order list item props interface. Used to type input props to component OrderListItem.
+ */
+export interface OrderListItemPropsType {
+    item: {
+        id: number;
+        name: string;
+        status_id: string;
+    };
 }
