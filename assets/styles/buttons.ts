@@ -44,7 +44,7 @@ export const buttonContainer = {
     backgroundColor: Color.schemeOne.primary[300],
 };
 
-export const warningButton = {
-    ...baseButton,
-    backgroundColor: Color.indicator.warning[300],
-};
+// export const warningButton = {
+//     ...baseButton,
+//     backgroundColor: Color.indicator.warning[300],
+// };

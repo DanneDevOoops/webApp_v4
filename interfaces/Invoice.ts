@@ -26,7 +26,6 @@ export interface Invoice {
     due_date: Date;
 }
 
-
 /**
  * Defines the structure for creating a new invoice, typically used when submitting data from a form.
  *
@@ -45,7 +44,6 @@ export interface NewInvoice {
     due_date?: Date;
 }
 
-
 /**
  * Describes the structure for updating an existing invoice's information.
  *
@@ -57,15 +55,14 @@ export interface NewInvoice {
  * @property {Date} [due_date] - Optional. The date by which the invoice should be paid.
  * @property {number} [total_price] - Optional. The total price or cost represented by the invoice.
  */
-export interface UpdateInvoice {
-    api_key: string;
-    id: number;
-    order_id?: number
-    creation_date?: Date;
-    due_date?: Date
-    total_price?: number
-}
-
+// export interface UpdateInvoice {
+//     api_key: string;
+//     id: number;
+//     order_id?: number
+//     creation_date?: Date;
+//     due_date?: Date
+//     total_price?: number
+// }
 
 /**
  * Defines the structure for deleting an existing invoice from the system.
@@ -74,11 +71,10 @@ export interface UpdateInvoice {
  * @property {string} api_key - An API key required for authentication to delete the invoice.
  * @property {number} id - The unique identifier of the invoice to be deleted.
  */
-export interface DeleteInvoice {
-    api_key: string;
-    id: number;
-}
-
+// export interface DeleteInvoice {
+//     api_key: string;
+//     id: number;
+// }
 
 /**
  * Used to pass properties to components or screens that display or interact with an invoice item.
@@ -96,7 +92,6 @@ export interface InvoiceItemProps {
     };
 }
 
-
 /**
  * Describes the properties for updating an invoice, including the invoice ID and attributes to be updated.
  *
@@ -105,7 +100,7 @@ export interface InvoiceItemProps {
  * @property {Partial<Invoice>} invoice_attributes - A partial invoice object containing only the
  * attributes that are to be updated.
  */
-export interface UpdateInvoiceProps {
-    invoice_id: number;
-    invoice_attributes: Partial<Invoice>;
-}
+// export interface UpdateInvoiceProps {
+//     invoice_id: number;
+//     invoice_attributes: Partial<Invoice>;
+// }

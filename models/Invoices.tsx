@@ -1,9 +1,8 @@
-import axios, {AxiosResponse} from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import * as SecureStore from 'expo-secure-store';
 import config from '../config/config.json';
 import * as InvoiceInterfaces from '../interfaces/Invoice';
-import {RequestErrorHandler} from '../components/Utils/ErrorHandler';
-
+import { RequestErrorHandler } from '../components/Utils/ErrorHandler';
 
 /**
  * Fetches all invoices from the API.
@@ -46,7 +45,6 @@ export async function getInvoices() {
     }
 }
 
-
 /**
  * Fetches a specific invoice from the API by its ID.
  *
@@ -61,29 +59,28 @@ export async function getInvoices() {
  * @throws {Error} If there is an error during the request, it is caught, logged, and passed to the
  * RequestErrorHandler function.
  */
-export async function getInvoiceById(
-    invoice_id: number,
-): Promise<InvoiceInterfaces.Invoice | null> {
-    try {
-        const jwtToken = await SecureStore.getItemAsync('token');
-        const response = await axios.get(
-            `${config.base_url}/invoices/${invoice_id}?api_key=${config.api_key}`,
-            {
-                headers: {
-                    Accept: 'application/json',
-                    'x-access-token': jwtToken,
-                },
-                timeout: 3000,
-            },
-        );
-
-        return response.data;
-    } catch (error) {
-        RequestErrorHandler(error);
-        return null;
-    }
-}
-
+// export async function getInvoiceById(
+//     invoice_id: number,
+// ): Promise<InvoiceInterfaces.Invoice | null> {
+//     try {
+//         const jwtToken = await SecureStore.getItemAsync('token');
+//         const response = await axios.get(
+//             `${config.base_url}/invoices/${invoice_id}?api_key=${config.api_key}`,
+//             {
+//                 headers: {
+//                     Accept: 'application/json',
+//                     'x-access-token': jwtToken,
+//                 },
+//                 timeout: 3000,
+//             },
+//         );
+//
+//         return response.data;
+//     } catch (error) {
+//         RequestErrorHandler(error);
+//         return null;
+//     }
+// }
 
 /**
  * Creates a new invoice in the API.
@@ -131,7 +128,6 @@ export async function createInvoice(
     }
 }
 
-
 /**
  * Updates an existing invoice in the API.
  *
@@ -145,30 +141,30 @@ export async function createInvoice(
  * @throws {Error} If there is an error during the request, it is caught, logged, and passed to the
  * RequestErrorHandler function.
  */
-export async function updateInvoice(
-    updated_invoice: Partial<InvoiceInterfaces.Invoice>,
-): Promise<number | null> {
-    try {
-        const jwtToken: string | null = await SecureStore.getItemAsync('token');
-        const response: AxiosResponse = await axios.put(
-            `${config.base_url}/invoices/${updated_invoice.id}`,
-            {
-                ...updated_invoice,
-                api_key: config.api_key,
-            },
-            {
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                    'x-access-token': jwtToken,
-                },
-                timeout: 3000,
-            },
-        );
-
-        return response.status;
-    } catch (error) {
-        RequestErrorHandler(error);
-        return null;
-    }
-}
+// export async function updateInvoice(
+//     updated_invoice: Partial<InvoiceInterfaces.Invoice>,
+// ): Promise<number | null> {
+//     try {
+//         const jwtToken: string | null = await SecureStore.getItemAsync('token');
+//         const response: AxiosResponse = await axios.put(
+//             `${config.base_url}/invoices/${updated_invoice.id}`,
+//             {
+//                 ...updated_invoice,
+//                 api_key: config.api_key,
+//             },
+//             {
+//                 headers: {
+//                     Accept: 'application/json',
+//                     'Content-Type': 'application/json',
+//                     'x-access-token': jwtToken,
+//                 },
+//                 timeout: 3000,
+//             },
+//         );
+//
+//         return response.status;
+//     } catch (error) {
+//         RequestErrorHandler(error);
+//         return null;
+//     }
+// }

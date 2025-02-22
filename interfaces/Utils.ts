@@ -20,11 +20,11 @@ export interface ScreenCoverArguments {
  * image source itself.
  * - `uri`: An optional string for specifying the URL of a remote image.
  */
-export interface ImageSourcePropType {
-    headerText: string;
-    image: string;
-    uri?: string;
-}
+// export interface ImageSourcePropType {
+//     headerText: string;
+//     image: string;
+//     uri?: string;
+// }
 
 /**
  * Describes the properties for specifying an image source in components.
@@ -49,5 +49,5 @@ export interface CoordinatesResponse {
     place_id?: number;
     place_rank?: number;
     type?: string;
-    [key: string]: any;
+    // [key: string]: any;
 }

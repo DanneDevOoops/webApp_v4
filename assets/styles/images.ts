@@ -14,11 +14,11 @@ export const coverAspectRation = {
 /**
  * Cover Image attributes.
  */
-export const images = {
-    coverAspectRation: 16 / 6,
-    coverWidth: Dimensions.get('screen').width,
-    coverHeight: (Dimensions.get('screen').width / 16) * 6,
-};
+// export const images = {
+//     coverAspectRation: 16 / 6,
+//     coverWidth: Dimensions.get('screen').width,
+//     coverHeight: (Dimensions.get('screen').width / 16) * 6,
+// };
 
 /**
  * Image attributes.

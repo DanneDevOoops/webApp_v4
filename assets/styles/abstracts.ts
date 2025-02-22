@@ -1,8 +1,6 @@
 /**
  * Module imports.
  */
-import * as Color from './colors';
-import * as Typography from './typography';
 
 /**
  * Abstracts Attributes.
@@ -34,9 +32,9 @@ export const shadow = {
 /**
  * Activity Indicator Attributes.
  */
-export const activityIndicator = {
-    size: 'large',
-    marginVertical: Typography.whiteSpace[100],
-    marginHorizontal: Typography.whiteSpace[100],
-    color: Color.schemeOne.primary[300],
-};
+// export const activityIndicator = {
+//     size: 'large',
+//     marginVertical: Typography.whiteSpace[100],
+//     marginHorizontal: Typography.whiteSpace[100],
+//     color: Color.schemeOne.primary[300],
+// };

@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
-import {Picker} from '@react-native-picker/picker';
-import {useAppContext} from '../../context/App.provider';
+import React, { FC, ReactElement, useEffect } from 'react';
+import { Text, TextStyle, View } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+import { useAppContext } from '../../context/App.provider';
 import * as DeliveriesInterfaces from '../../interfaces/Delivery';
 import * as StockInterfaces from '../../interfaces/Product';
 import * as ProductModel from '../../models/Products';
 import * as Style from '../../assets/styles/index';
-
+import { AppContext } from '../../interfaces/AppContext';
 
 /**
  * Type for DeliveryProductPicker Component input props.
@@ -14,7 +14,7 @@ import * as Style from '../../assets/styles/index';
 type NewDeliveryPropsType = {
     newDelivery: Partial<DeliveriesInterfaces.Delivery>;
     setNewDelivery: () => void;
-    setSelectedProduct: (productsHash: any) => void;
+    setSelectedProduct: (productsHash: never) => void;
 };
 
 /**
@@ -23,11 +23,11 @@ type NewDeliveryPropsType = {
  * @constructor
  * @param props
  */
-export const DeliveryProductPicker: (
+export const DeliveryProductPicker: FC<NewDeliveryPropsType> = (
     props: NewDeliveryPropsType,
-) => React.JSX.Element = (props: NewDeliveryPropsType): React.JSX.Element => {
-    const appContext = useAppContext();
-    const productsHash: any = {};
+): ReactElement => {
+    const appContext: AppContext = useAppContext();
+    const productsHash = {};
 
     useEffect(() => {
         async function loadProducts() {
@@ -37,8 +37,12 @@ export const DeliveryProductPicker: (
         void loadProducts();
     }, []); //
 
-    const pickerProductsList: React.JSX.Element[] = appContext.products.map(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const pickerProductsList: ReactElement[] = appContext.products.map(
         (product: StockInterfaces.Product, index: number) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             productsHash[product.id] = product;
 
             return (
@@ -53,7 +57,9 @@ export const DeliveryProductPicker: (
 
     return (
         <View>
-            <Text style={Style.Form.labelInputField}>Produkt: </Text>
+            <Text style={Style.Form.labelInputField as TextStyle}>
+                Produkt:{' '}
+            </Text>
 
             <Picker
                 selectedValue={props.newDelivery?.product_id}

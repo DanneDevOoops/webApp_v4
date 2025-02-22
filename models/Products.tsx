@@ -1,7 +1,6 @@
-import {RequestErrorHandler} from '../components/Utils/ErrorHandler';
+import { RequestErrorHandler } from '../components/Utils/ErrorHandler';
 import * as ProductInterfaces from '../interfaces/Product';
 import config from '../config/config.json';
-
 
 /**
  * Fetches all available products from the API.
@@ -27,7 +26,6 @@ export async function getProducts(): Promise<ProductInterfaces.Product[]> {
     }
 }
 
-
 /**
  * Fetches a specific product by its ID from the API.
  *
@@ -39,20 +37,19 @@ export async function getProducts(): Promise<ProductInterfaces.Product[]> {
  * @returns {Promise<any>} A promise that resolves to the product data if successful, or undefined if an
  * error occurs.
  */
-export async function getProductById(product_id: string) {
-    try {
-        const response = await fetch(
-            `${config.base_url}/products/${product_id}?api_key=${config.api_key}`,
-        );
-
-        const result = await response.json();
-
-        return result;
-    } catch (error) {
-        RequestErrorHandler(error);
-    }
-}
-
+// export async function getProductById(product_id: string) {
+//     try {
+//         const response = await fetch(
+//             `${config.base_url}/products/${product_id}?api_key=${config.api_key}`,
+//         );
+//
+//         const result = await response.json();
+//
+//         return result;
+//     } catch (error) {
+//         RequestErrorHandler(error);
+//     }
+// }
 
 /**
  * Updates a product in the API.

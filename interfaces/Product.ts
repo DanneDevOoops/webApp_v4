@@ -26,7 +26,6 @@ export interface Product {
     api_key: string;
 }
 
-
 /**
  * Defines the structure for creating a new product within the system.
  * This interface specifies the required and optional fields needed when adding a new product.
@@ -41,17 +40,16 @@ export interface Product {
  * @property {string} [location] - Optional. Initial storage location of the product.
  * @property {number} [price] - Optional. Selling price of the product.
  */
-export interface ProductCreate {
-    api_key: string;
-    name: string;
-    article_number?: string;
-    description?: string;
-    specifiers?: string;
-    stock?: number;
-    location?: string;
-    price?: number;
-}
-
+// export interface ProductCreate {
+//     api_key: string;
+//     name: string;
+//     article_number?: string;
+//     description?: string;
+//     specifiers?: string;
+//     stock?: number;
+//     location?: string;
+//     price?: number;
+// }
 
 /**
  * Describes the structure for updating an existing product's information.
@@ -82,7 +80,6 @@ export interface ProductUpdate {
     price?: number;
 }
 
-
 /**
  * Defines the structure for deleting an existing product from the system.
  * This interface requires the minimal information necessary to identify and delete a product.
@@ -91,7 +88,7 @@ export interface ProductUpdate {
  * @property {number} id - The unique identifier of the product to be deleted.
  * @property {string} api_key - An API key required for product deletion operations.
  */
-export interface ProductDelete {
-    id: number;
-    api_key: string;
-}
+// export interface ProductDelete {
+//     id: number;
+//     api_key: string;
+// }

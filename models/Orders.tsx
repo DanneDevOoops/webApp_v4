@@ -42,23 +42,23 @@ export const getOrders = async (): Promise<OrderInterfaces.Order[]> => {
  * @returns {Promise<OrderInterfaces.Order | undefined>} A promise that resolves to the order data if
  * successful, or undefined if an error occurs.
  */
-export const getOrderById = async (
-    orderId: number,
-): Promise<OrderInterfaces.Order | undefined> => {
-    try {
-        // Fetch orders from API.
-        const response: Response = await fetch(
-            `${config.base_url}/orders/${orderId}?api_key=${config.api_key}`,
-        );
-
-        // Await JSON response.
-        const result = await response.json();
-
-        return result.data;
-    } catch (error) {
-        RequestErrorHandler(error);
-    }
-};
+// export const getOrderById = async (
+//     orderId: number,
+// ): Promise<OrderInterfaces.Order | undefined> => {
+//     try {
+//         // Fetch orders from API.
+//         const response: Response = await fetch(
+//             `${config.base_url}/orders/${orderId}?api_key=${config.api_key}`,
+//         );
+//
+//         // Await JSON response.
+//         const result = await response.json();
+//
+//         return result.data;
+//     } catch (error) {
+//         RequestErrorHandler(error);
+//     }
+// };
 
 /**
  * Updates the stock of a product based on an order.

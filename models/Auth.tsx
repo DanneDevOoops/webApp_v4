@@ -131,7 +131,10 @@ export async function logout(): Promise<void> {
     await SecureStore.deleteItemAsync('token');
 }
 
-export async function checkLoginStatus(): Promise<boolean> {
-    const loggedIn: string | null = await SecureStore.getItemAsync('token');
-    return loggedIn !== null;
-}
+/**
+ * Check login status function.
+ */
+// export async function checkLoginStatus(): Promise<boolean> {
+//     const loggedIn: string | null = await SecureStore.getItemAsync('token');
+//     return loggedIn !== null;
+// }

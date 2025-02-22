@@ -1,7 +1,7 @@
 /**
  * Module imports.
  */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
     Pressable,
     Text,
@@ -17,9 +17,8 @@ import {
 } from '@react-navigation/native';
 import type { RootStackParamList } from '../../types/Navigation';
 import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
-import {useAuthContext} from "../../context/Auth.provider";
+import { useAuthContext } from '../../context/Auth.provider';
 import * as Style from '../../assets/styles/index';
-
 
 /**
  * Create new Login form component.
@@ -33,7 +32,7 @@ export const RegisterForm: React.FC = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
-    function registerUser() {
+    function registerUser(): void {
         console.log('Click! -> Registrera ny användare med...');
 
         console.log('Input Email -> ', email);

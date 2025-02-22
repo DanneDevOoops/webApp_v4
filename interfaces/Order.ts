@@ -43,19 +43,19 @@ export interface Order {
  * @property {string} [image_url] - Optional URL of the image associated with the order.
  * @property {number} [status_id] - Optional numeric identifier for the order's status.
  */
-export interface OrderCreate {
-    // Required fields.
-    name: string;
-    api_key: string;
-
-    // Optional fields.
-    address?: string;
-    zip?: string;
-    city?: string;
-    country?: string;
-    image_url?: string;
-    status_id?: number;
-}
+// export interface OrderCreate {
+//     // Required fields.
+//     name: string;
+//     api_key: string;
+//
+//     // Optional fields.
+//     address?: string;
+//     zip?: string;
+//     city?: string;
+//     country?: string;
+//     image_url?: string;
+//     status_id?: number;
+// }
 
 /**
  * Defines the required and optional fields for updating an existing order.
@@ -93,10 +93,10 @@ export interface OrderUpdate {
  * @property {number} id - Unique identifier for the order to be deleted.
  * @property {string} api_key - API key required for deleting the order.
  */
-export interface OrderDelete {
-    id: number;
-    api_key: string;
-}
+// export interface OrderDelete {
+//     id: number;
+//     api_key: string;
+// }
 
 /**
  * Represents the structure of an item within an order.
@@ -151,11 +151,12 @@ export interface OrderItemProps {
  * @property {string} color - Color code representing the stock status visually.
  * @property {string} text - Text description of the stock status.
  */
-export interface OrderStockIndicatorElement {
-    icon: string;
-    color: string;
-    text: string;
-}
+// export interface OrderStockIndicatorElement {
+//     icon: string;
+//     color: string;
+//     text: string;
+// }
+
 /**
  * Order list item props interface. Used to type input props to component OrderListItem.
  */
