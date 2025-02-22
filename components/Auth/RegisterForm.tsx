@@ -43,11 +43,11 @@ export const RegisterForm: React.FC = () => {
         // Register user.
         if (password === passwordConfirm) {
             // Register user in API.
-            authContext.register(email, password);
+            void authContext.register(email, password);
             console.log('User registered!');
 
             // Login user in API.
-            authContext.login(email, password);
+            void authContext.login(email, password);
             console.log('User logged in!');
 
             // TODO: Change this to be more secure and only navigate if the user is registered
