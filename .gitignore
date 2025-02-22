@@ -147,3 +147,5 @@ ios/
 prod/
 production/
 public/
+docs/
+out/
