@@ -26,27 +26,5 @@ export type RootStackParamList = {
     ProductsScreen: undefined;
     ProductsList: undefined;
     ProductSpecification: undefined;
-    SignInForm: undefined; // Add this line
+    SignInForm: undefined;
 };
-
-// export type NavigationPathKeys = {
-//     Auth: {
-//         AuthScreen: string;
-//         Login: string;
-//         RegisterUser: string;
-//     };
-//     Delivery: {
-//         DeliveriesScreen: string;
-//         DeliveriesList: string;
-//         DeliverySpecification: string;
-//         DeliveryForm: string;
-//     };
-//     Home: {
-//         HomeScreen: string;
-//         Home: string;
-//     };
-//     Invoices: {
-//         InvoicesScreen: string;
-//         InvoicesList: string;
-//     };
-// }
