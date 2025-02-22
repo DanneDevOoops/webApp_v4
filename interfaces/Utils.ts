@@ -11,7 +11,6 @@ export interface ScreenCoverArguments {
     headerText: string;
 }
 
-
 /**
  * Describes the properties for specifying an image source in components.
  *
@@ -25,4 +24,30 @@ export interface ImageSourcePropType {
     headerText: string;
     image: string;
     uri?: string;
+}
+
+/**
+ * Describes the properties for specifying an image source in components.
+ *
+ * This interface is used to define the source of an image, supporting both local and remote images.
+ * - `image`: A string specifying the path to a local image when using a local source.
+ * - `headerText`: A string intended for accompanying text or description, not directly related to the
+ * image source itself.
+ * - `uri`: An optional string for specifying the URL of a remote image.
+ */
+export interface CoordinatesResponse {
+    addresstype?: string;
+    boundingbox?: string[];
+    category?: string;
+    display_name?: string;
+    importance?: number;
+    lat?: string;
+    lon?: string;
+    licence?: string;
+    name?: string;
+    osm_id?: number;
+    place_id?: number;
+    place_rank?: number;
+    type?: string;
+    [key: string]: any;
 }
