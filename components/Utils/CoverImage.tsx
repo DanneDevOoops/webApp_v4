@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import {
     ImageBackground,
     ImageSourcePropType,
@@ -7,9 +7,8 @@ import {
     View,
     ViewStyle,
 } from 'react-native';
-import {ScreenCoverArguments} from '../../interfaces/Utils';
+import { ScreenCoverArguments } from '../../interfaces/Utils';
 import * as Style from '../../assets/styles';
-
 
 /**
  * Renders a cover image with an overlay text.
@@ -22,12 +21,12 @@ import * as Style from '../../assets/styles';
  * @param {string | ImageSourcePropType} props.image The source of the image. Can be a URI string for
  * remote images or an ImageSourcePropType object for local images.
  * @param {string} props.headerText The text to display on top of the image.
- * @returns {React.JSX.Element} A React component representing the cover image with text.
+ * @returns {ReactElement} A React component representing the cover image with text.
  */
 export function CoverImage({
     image,
     headerText,
-}: ScreenCoverArguments): React.ReactElement {
+}: ScreenCoverArguments): ReactElement {
     const imageSource: ImageSourcePropType =
         typeof image === 'string' ? { uri: image } : image;
 

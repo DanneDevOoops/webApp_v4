@@ -1,9 +1,8 @@
 import config from '../config/config.json';
-import {RequestErrorHandler} from '../components/Utils/ErrorHandler';
+import { RequestErrorHandler } from '../components/Utils/ErrorHandler';
 import * as ProductModel from './Products';
 import * as OrderInterfaces from '../interfaces/Order';
 import * as ProductInterfaces from '../interfaces/Product';
-
 
 /**
  * Fetches all orders from the API.
@@ -32,7 +31,6 @@ export const getOrders = async (): Promise<OrderInterfaces.Order[]> => {
     return [];
 };
 
-
 /**
  * Fetches a specific order by its ID from the API.
  *
@@ -44,7 +42,9 @@ export const getOrders = async (): Promise<OrderInterfaces.Order[]> => {
  * @returns {Promise<OrderInterfaces.Order | undefined>} A promise that resolves to the order data if
  * successful, or undefined if an error occurs.
  */
-export const getOrderById = async (orderId: number): Promise<OrderInterfaces.Order | undefined> => {
+export const getOrderById = async (
+    orderId: number,
+): Promise<OrderInterfaces.Order | undefined> => {
     try {
         // Fetch orders from API.
         const response: Response = await fetch(
@@ -58,8 +58,7 @@ export const getOrderById = async (orderId: number): Promise<OrderInterfaces.Ord
     } catch (error) {
         RequestErrorHandler(error);
     }
-}
-
+};
 
 /**
  * Updates the stock of a product based on an order.
@@ -71,9 +70,7 @@ export const getOrderById = async (orderId: number): Promise<OrderInterfaces.Ord
  * @param {OrderInterfaces.Order} order - The order containing items to update stock for.
  * @returns {Promise<void>} A promise that resolves when all product stocks have been updated.
  */
-export async function pickOrder(
-    order: OrderInterfaces.Order
-): Promise<void> {
+export async function pickOrder(order: OrderInterfaces.Order): Promise<void> {
     try {
         let leftOverStock: number;
 
@@ -83,7 +80,11 @@ export async function pickOrder(
                 leftOverStock = orderItem.stock - orderItem.amount;
 
                 if (leftOverStock <= 0) {
-                    throw new Error('Not enough stock to pick order.');
+                    console.error('Not enough stock to pick order.');
+                    RequestErrorHandler(
+                        new Error('Not enough stock to pick order.'),
+                    );
+                    continue;
                 }
 
                 const productUpdates: ProductInterfaces.ProductUpdate = {
@@ -95,7 +96,6 @@ export async function pickOrder(
 
                 // Update product stock.
                 await ProductModel.updateProduct(productUpdates);
-
             } catch (error) {
                 console.error(error);
                 RequestErrorHandler(error);
@@ -115,7 +115,6 @@ export async function pickOrder(
     }
 }
 
-
 /**
  * Updates the status of an order in the API.
  *
@@ -132,7 +131,7 @@ export async function pickOrder(
 export async function updateOrderStatus(
     order_id: number,
     order_name: string,
-    new_status_id: number
+    new_status_id: number,
 ): Promise<void> {
     try {
         const requestBody: OrderInterfaces.OrderUpdate = {
@@ -142,23 +141,19 @@ export async function updateOrderStatus(
             api_key: `${config.api_key}`,
         };
 
-        await fetch(
-            `${config.base_url}/orders?api_key=${config.api_key}`,
-            {
-                method: 'PUT',
-                headers: {
-                    Accept: 'application/json',
-                    'content-type': 'application/json',
-                },
-                body: JSON.stringify(requestBody),
+        await fetch(`${config.base_url}/orders?api_key=${config.api_key}`, {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                'content-type': 'application/json',
             },
-        );
+            body: JSON.stringify(requestBody),
+        });
     } catch (error) {
         console.error(error);
         RequestErrorHandler(error);
     }
 }
-
 
 /**
  * Calculates the total price of an order.
@@ -178,9 +173,9 @@ export function calcOrderTotalPrice(
         try {
             order.order_items?.forEach(
                 (orderItem: OrderInterfaces.OrderItem): void => {
-                    orderItem.amount > 0 && orderItem.price > 0
-                        ? (total_price += orderItem.price * orderItem.amount)
-                        : null;
+                    if (orderItem.amount > 0 && orderItem.price > 0) {
+                        total_price += orderItem.price * orderItem.amount;
+                    }
                 },
             );
         } catch (error) {

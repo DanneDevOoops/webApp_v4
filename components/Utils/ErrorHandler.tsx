@@ -1,14 +1,22 @@
+import { stdErrorType } from '../../types/Utils.';
+
 /**
  * Error Handler for API requests.
  */
-export function RequestErrorHandler(thisError: object | any | never): void {
-    const errorObject = {
+export function RequestErrorHandler(inputError?: stdErrorType): void {
+    if (!inputError) {
+        console.error('Request Error: Unknown error occurred.');
+        return;
+    }
+
+    const errorObject: object = {
         errors: {
-            title: thisError.name,
-            message: thisError.message,
-            stack: thisError.stack,
+            title: inputError?.name || 'Error',
+            message: inputError?.message || 'An unknown error occurred.',
+            stack: inputError?.stack || 'No stack trace available.',
         },
     };
 
-    return console.error(`Error Handler\n${errorObject}`);
+    console.error(`Request Error: \n${errorObject}`);
+    return;
 }

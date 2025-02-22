@@ -8,19 +8,8 @@
  *
  * The navigator is wrapped in a SafeAreaView to ensure it is displayed correctly on all devices.
  * It also includes a FlashMessage component for displaying notifications and a StatusBar component.
- *
- * @requires react
- * @requires react-native
- * @requires react-native-screens
- * @requires react-native-flash-message
- * @requires expo-status-bar
- * @requires ../../components/Order/OrderList
- * @requires ./OrderItem.screen
- * @requires ../../components/Utils/CoverImage
- * @requires ../../assets/styles
- * @requires ../../assets/img/NutsAndBolts-3.jpg
  */
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import { SafeAreaView, Text, TextStyle, View, ViewStyle } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
@@ -48,9 +37,9 @@ const Stack = createStackNavigator();
  * - OrderItem: Displays detailed information about a selected order.
  *
  * @constructor
- * @returns {React.ReactElement} The order stack navigator component.
+ * @returns {ReactElement} The order stack navigator component.
  */
-export const OrderNavigator = (): React.ReactElement => {
+export const OrderNavigator: FC = (): ReactElement => {
     return (
         <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
             {CoverImage({ headerText: 'Order', image: coverIMG })}

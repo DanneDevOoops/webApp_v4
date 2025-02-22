@@ -1,37 +1,15 @@
-/**
- * Module imports.
- */
-import React from "react";
+import React, { FC, ReactElement } from 'react';
 import { Text, TextStyle, View, ViewStyle } from 'react-native';
-import * as Style from "../../assets/styles";
-
-
-/**
- * Product list item props type object. Used to type input props to component ProductListItem.
- */
-type InvoiceListItemPropsType = {
-    id: number;
-    order_id: number;
-    name: string,
-    address: string,
-    zip: string,
-    city: string,
-    country: string,
-    total_price: number,
-    creation_date: string,
-    due_date: string
-};
-
+import { Invoice } from '../../interfaces/Invoice';
+import * as Style from '../../assets/styles';
 
 /**
- * ProductListItem object to return a touchable link element to item detail view.
+ * InvoiceListItem component displays a single invoice item in a list.
  *
- * @constructor
- * @param props
+ * @param {Invoice} item - The invoice item to be displayed.
+ * @returns {ReactElement} A React element representing the invoice item.
  */
-export const InvoiceListItem = (item: InvoiceListItemPropsType) => {
-    console.log('props.item ', item);
-
+export const InvoiceListItem: FC<Invoice> = (item: Invoice): ReactElement => {
     return (
         <View
             key={item.id.toString()}

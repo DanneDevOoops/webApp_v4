@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { FC, ReactElement, useEffect, useMemo, useState } from 'react';
 import {
     Button,
     Platform,
@@ -24,13 +24,13 @@ import { StatusBar } from 'expo-status-bar';
 import * as InvoiceInterfaces from '../../interfaces/Invoice';
 import * as InvoiceModel from '../../models/Invoices';
 import * as OrderInterfaces from './../../interfaces/Order';
+import { Order } from './../../interfaces/Order';
 import * as OrderModel from '../../models/Orders';
 import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import { RouteParams } from '../../types/Navigation';
 import * as Style from '../../assets/styles';
 
-
-export const InvoiceForm: React.FC = (): React.ReactElement => {
+export const InvoiceForm: FC = (): ReactElement => {
     const appContext = useAppContext();
     const navigation = useNavigation();
     const route = useRoute<RouteProp<RouteParams>>();
@@ -89,7 +89,7 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
     }, [selectedOrder]);
 
     // Compute the packed orders from the appContext.orders.
-    const packedOrders: OrderInterfaces.Order[] = useMemo(() => {
+    const packedOrders: OrderInterfaces.Order[] = useMemo((): Order[] => {
         console.log('Memoizing packedOrders...');
         const currentlyPackedOrders: OrderInterfaces.Order[] =
             appContext.orders.filter(
@@ -151,8 +151,8 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
         }
     };
 
-    const creationDatePicker: React.FC = (): React.JSX.Element => {
-        const showDatePicker = () => {
+    const creationDatePicker: FC = (): ReactElement => {
+        const showDatePicker = (): void => {
             setShowCreationDate(true);
         };
 
@@ -195,12 +195,7 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
         );
     };
 
-    /**
-     *
-     * @param input_date
-     * @constructor
-     */
-    const dueDatePicker: React.FC = (): React.JSX.Element => {
+    const dueDatePicker: FC = (): ReactElement => {
         const showDatePicker = (): void => {
             setShowDueDate(true);
         };
@@ -208,10 +203,10 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
         return (
             <View style={Style.Container.flexBox.row as ViewStyle}>
                 <Text
-                    style={
-                        (Style.Form.labelInputField,
-                        { width: '33%', alignSelf: 'center' })
-                    }>
+                    style={[
+                        Style.Form.labelInputField as TextStyle,
+                        { width: '33%', alignSelf: 'center' },
+                    ]}>
                     Förfallodatum
                 </Text>
 
@@ -226,7 +221,7 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
                         onChange={(
                             event: DateTimePickerEvent,
                             date: Date | undefined,
-                        ) => {
+                        ): void => {
                             if (date) {
                                 setDueDate(date);
                                 setNewInvoiceData({
@@ -243,7 +238,7 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
         );
     };
 
-    const invoiceOrderPicker: React.FC = (): React.JSX.Element => {
+    const invoiceOrderPicker: FC = (): ReactElement => {
         return (
             <View>
                 <Text style={Style.Typography.buttonText as TextStyle}>
@@ -305,7 +300,7 @@ export const InvoiceForm: React.FC = (): React.ReactElement => {
                             : Style.Color.schemeOne.primary[300],
                     },
                 ]}
-                onPress={async () => {
+                onPress={async (): Promise<void> => {
                     // Create the new invoice.
                     await handleSubmit(newInvoiceData);
 

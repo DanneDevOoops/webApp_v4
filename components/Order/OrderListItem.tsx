@@ -1,28 +1,19 @@
-/**
- * Module imports.
- */
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import { Text, TextStyle, View, ViewStyle } from 'react-native';
+import { OrderListItemPropsType } from '../../interfaces/Order';
 import * as Style from '../../assets/styles';
-
-/**
- * Order list item props type object. Used to type input props to component OrderListItem.
- */
-type OrderListItemPropsType = {
-    item: {
-        id: number;
-        name: string;
-        status_id: string;
-    };
-};
 
 /**
  * OrderListItem object to return a touchable link element to order detail view.
  *
  * @constructor
- * @param props
+ * @param {OrderListItemPropsType} props - The props of the component.
+ * @returns {ReactElement} - A React element representing a touchable link to order detail view.
+ * @exports OrderListItem
  */
-export const OrderListItem = (props): React.ReactElement => {
+export const OrderListItem: FC<OrderListItemPropsType> = (
+    props: OrderListItemPropsType,
+): ReactElement => {
     return (
         <View
             key={props.item.id}

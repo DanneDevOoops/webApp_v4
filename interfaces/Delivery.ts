@@ -1,3 +1,5 @@
+import React from 'react';
+
 /**
  * Represents the structure of a delivery within the application.
  *

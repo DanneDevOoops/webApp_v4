@@ -6,26 +6,16 @@
  *
  * The navigator is wrapped in a SafeAreaView to ensure it is displayed correctly on all devices.
  * It also includes a FlashMessage component for displaying notifications and a StatusBar component.
- *
- * @requires react
- * @requires react-native
- * @requires @react-navigation/stack
- * @requires react-native-flash-message
- * @requires expo-status-bar
- * @requires ../../assets/styles
- * @requires ./Login.screen
- * @requires ./Register.screen
- * @requires ../../constants/Navigation
  */
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import { SafeAreaView, ViewStyle } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import FlashMessage from 'react-native-flash-message';
+import { StatusBar } from 'expo-status-bar';
 import { Login } from './Login.screen';
 import { Register } from './Register.screen';
 import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import * as Style from '../../assets/styles';
-import { StatusBar } from 'expo-status-bar';
 
 
 /**
@@ -43,9 +33,9 @@ const AuthStack = createStackNavigator();
  * - Register: Displays the registration screen.
  *
  * @component
- * @returns {React.ReactElement} The authentication stack navigator component.
+ * @returns {ReactElement} The authentication stack navigator component.
  */
-export const AuthNavigator: React.FC = (): React.ReactElement => {
+export const AuthNavigator: FC = (): ReactElement => {
     return (
         <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
             <AuthStack.Navigator initialRouteName={NavPath.Auth.Login}>

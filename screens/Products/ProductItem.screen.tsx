@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { Text, TextStyle, View, ViewStyle } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { RouteParams } from '../../types/Navigation';
+import { Product } from '../../interfaces/Product';
 import * as Style from '../../assets/styles';
-
 
 /**
  * ProductListItem screen/view.
  *
  * @constructor
  */
-export const StockItem: () => React.ReactElement = () => {
+export const StockItem: FC = (): ReactElement => {
     const route = useRoute<RouteProp<{ params: RouteParams }>>();
-    const product = route.params.params?.item;
+    const product: Product | null = route.params.params?.item ?? null;
 
     return (
         <View style={Style.Container.content as ViewStyle}>
             <Text style={Style.Typography.subHeader as TextStyle}>
-                {product.name}
+                {product?.name}
             </Text>
 
             <View style={Style.Container.grid.row as ViewStyle}>
@@ -26,7 +26,7 @@ export const StockItem: () => React.ReactElement = () => {
                     Produkt id:{' '}
                 </Text>
                 <Text style={Style.Typography.dataRight as TextStyle}>
-                    {product.id}
+                    {product?.id}
                 </Text>
             </View>
 
@@ -35,7 +35,7 @@ export const StockItem: () => React.ReactElement = () => {
                     Artikel nr:{' '}
                 </Text>
                 <Text style={Style.Typography.dataRight as TextStyle}>
-                    {product.article_number}
+                    {product?.article_number}
                 </Text>
             </View>
 
@@ -44,7 +44,7 @@ export const StockItem: () => React.ReactElement = () => {
                     Lagerplats:{' '}
                 </Text>
                 <Text style={Style.Typography.dataRight as TextStyle}>
-                    {product.location}
+                    {product?.location}
                 </Text>
             </View>
 
@@ -53,7 +53,7 @@ export const StockItem: () => React.ReactElement = () => {
                     Lagersaldo:{' '}
                 </Text>
                 <Text style={Style.Typography.dataRight as TextStyle}>
-                    {product.stock} st
+                    {product?.stock} st
                 </Text>
             </View>
 
@@ -62,7 +62,7 @@ export const StockItem: () => React.ReactElement = () => {
                     Pris:{' '}
                 </Text>
                 <Text style={Style.Typography.dataRight as TextStyle}>
-                    {product.price} kr/st
+                    {product?.price} kr/st
                 </Text>
             </View>
 
@@ -77,7 +77,7 @@ export const StockItem: () => React.ReactElement = () => {
                     Beskrivning:{' '}
                 </Text>
                 <Text style={Style.Typography.dataLeft as TextStyle}>
-                    {product.description}
+                    {product?.description}
                 </Text>
             </View>
 
@@ -92,7 +92,7 @@ export const StockItem: () => React.ReactElement = () => {
                     Specifikation:{' '}
                 </Text>
                 <Text style={Style.Typography.dataLeft as TextStyle}>
-                    {product.specifiers}
+                    {product?.specifiers}
                 </Text>
             </View>
 

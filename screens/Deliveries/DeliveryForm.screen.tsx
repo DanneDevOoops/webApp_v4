@@ -4,23 +4,8 @@
  * This module provides a form for creating a new delivery. It includes fields for product selection,
  * amount, delivery date, and comments. The form also includes a date picker for selecting the delivery date.
  * Upon form submission, a new delivery is created and the selected product's stock is updated.
- *
- * @requires react
- * @requires react-native
- * @requires @react-native-community/datetimepicker
- * @requires expo-status-bar
- * @requires react-native-flash-message
- * @requires @react-navigation/native
- * @requires ../../components/Delivery/DeliveryProductPicker
- * @requires ../../context/App.provider
- * @requires ../../config/config.json
- * @requires ../../assets/styles
- * @requires ../../interfaces/Delivery
- * @requires ../../interfaces/Product
- * @requires ../../models/Deliveries
- * @requires ../../models/Products
  */
-import React, { useEffect, useState } from 'react';
+import React, { FC, ReactElement, useEffect, useState } from 'react';
 import {
     Button,
     Platform,
@@ -42,8 +27,10 @@ import config from '../../config/config.json';
 import * as DeliveriesInterfaces from '../../interfaces/Delivery';
 import { Delivery } from '../../interfaces/Delivery';
 import * as StockInterfaces from '../../interfaces/Product';
+import { Product } from '../../interfaces/Product';
 import * as DeliveryModel from '../../models/Deliveries';
 import * as ProductModel from '../../models/Products';
+import { AppContext } from '../../interfaces/AppContext';
 import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import * as Style from '../../assets/styles';
 
@@ -56,11 +43,11 @@ import * as Style from '../../assets/styles';
  * Upon form submission, a new delivery is created and the selected product's stock is updated.
  *
  * @constructor
- * @returns {React.ReactElement} The delivery creation form component.
+ * @returns {ReactElement} The delivery creation form component.
  */
-export const DeliveryCreationForm: React.FC = (): React.ReactElement => {
+export const DeliveryCreationForm: FC = (): ReactElement => {
     const navigation = useNavigation();
-    const appContext = useAppContext();
+    const appContext: AppContext = useAppContext();
 
     const [newDelivery, setNewDelivery] =
         useState<Partial<DeliveriesInterfaces.Delivery>>();
@@ -75,22 +62,22 @@ export const DeliveryCreationForm: React.FC = (): React.ReactElement => {
      * delivery_date, amount, comment, and api_key. The product_id is set to the id of the first product,
      * the delivery_date is set to the current date, the amount is set to 0, the comment is set to an
      * empty string, and the api_key is set from the config.
-     *
-     * @requires react
-     * @requires ../../models/Products
-     * @requires ../../context/App.provider
-     * @requires ../../config/config.json
-     * @requires ../../interfaces/Delivery
      */
     useEffect((): void => {
         const fetchProductsAndSetInitialValues = async (): Promise<void> => {
-            if (appContext.products.length === 0) {
-                await ProductModel.getProducts().then((products): void => {
-                    appContext.setProducts(products);
-                });
+            if (appContext.products?.length === 0) {
+                await ProductModel.getProducts().then(
+                    (products: Product[]): void => {
+                        appContext.setProducts(products);
+                    },
+                );
             }
 
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             const initialDeliveryValues: Delivery = {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
                 product_id: appContext.products[0].id.toString(),
                 delivery_date: new Date().toLocaleDateString('se-SV'),
                 amount: 0,
@@ -101,7 +88,7 @@ export const DeliveryCreationForm: React.FC = (): React.ReactElement => {
             setNewDelivery(initialDeliveryValues);
         };
 
-        fetchProductsAndSetInitialValues();
+        void fetchProductsAndSetInitialValues();
     }, []);
 
     /**
@@ -112,9 +99,9 @@ export const DeliveryCreationForm: React.FC = (): React.ReactElement => {
      * then set as the delivery date.
      *
      * @constructor
-     * @returns {React.ReactElement} The date picker component.
+     * @returns {ReactElement} The date picker component.
      */
-    function DeliveryDatePicker(): React.ReactElement {
+    function DeliveryDatePicker(): ReactElement {
         const [dropDownDate, setDropDownDate] = useState<Date>(new Date());
         const [show, setShow] = useState<boolean>(false);
         const showDatePicker = () => {

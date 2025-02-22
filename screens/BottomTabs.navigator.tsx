@@ -12,26 +12,8 @@
  *
  * The navigator is wrapped in a loading indicator to handle the loading state.
  * It also includes icons for each tab using FontAwesome5.
- *
- * @requires react
- * @requires @react-navigation/bottom-tabs
- * @requires @react-navigation/native
- * @requires expo-secure-store
- * @requires ../models/Auth
- * @requires ../context/Auth.provider
- * @requires ../context/App.provider
- * @requires ./Home.screen
- * @requires ./Deliveries/Delivery.navigator
- * @requires ./Auth/Auth.navigator
- * @requires ./Orders/Order.navigator
- * @requires ./Products/Products.navigator
- * @requires ./Invoices/Invoices.navigator
- * @requires ../components/Utils/LoadingIndicator
- * @requires @expo/vector-icons
- * @requires ../assets/styles/index
- * @requires ../interfaces/Auth.interfaces
  */
-import React, { useEffect } from 'react';
+import React, { FC, ReactElement, useEffect } from 'react';
 import {
     BottomTabNavigationOptions,
     createBottomTabNavigator,
@@ -54,12 +36,10 @@ import { AppContext } from '../interfaces/AppContext';
 import { AuthContextType } from '../interfaces/Auth.interfaces';
 import * as Style from '../assets/styles/index';
 
-
 /**
  * Bottom tabs navigator.
  */
 const BottomTabs = createBottomTabNavigator();
-
 
 /**
  * BottomTabsNavigator component.
@@ -77,14 +57,14 @@ const BottomTabs = createBottomTabNavigator();
  * It also includes icons for each tab using FontAwesome5.
  *
  * @component
- * @returns {React.ReactElement} The bottom tabs navigator component.
+ * @returns {ReactElement} The bottom tabs navigator component.
  */
-export const BottomTabsNavigator: React.FC = (): React.ReactElement => {
+export const BottomTabsNavigator: FC = (): ReactElement => {
     const authContext: AuthContextType = useAuthContext();
     const appContext: AppContext = useAppContext();
 
     useEffect((): void => {
-        checkUserLoginStatus(authContext);
+        void checkUserLoginStatus(authContext);
     }, []);
 
     if (appContext.isLoading) {
@@ -100,13 +80,14 @@ export const BottomTabsNavigator: React.FC = (): React.ReactElement => {
     );
 };
 
-
 /**
  * Check the user's login status and update the authentication context.
  *
  * @param {AuthContextType} authContext - The authentication context.
  */
-const checkUserLoginStatus = async (authContext: AuthContextType) => {
+const checkUserLoginStatus = async (
+    authContext: AuthContextType,
+): Promise<void> => {
     const isLoggedIn: boolean = await AuthModel.loggedIn();
     authContext.setIsLoggedIn(isLoggedIn);
 
@@ -114,13 +95,15 @@ const checkUserLoginStatus = async (authContext: AuthContextType) => {
         .then((userString: string | null): void => {
             if (userString) {
                 console.log('userString', userString);
+                return JSON.parse(userString);
+            } else {
+                console.log('No user found, is user logged in?', isLoggedIn);
             }
         })
         .catch((error): void => {
             console.log(error);
         });
 };
-
 
 /**
  * Get the screen options for the bottom tab navigator.
@@ -132,7 +115,7 @@ const checkUserLoginStatus = async (authContext: AuthContextType) => {
 const getScreenOptions = ({
     route,
 }: {
-    route: RouteProp<any, any>;
+    route: RouteProp<never, never>;
 }): BottomTabNavigationOptions => ({
     tabBarIcon: ({ color, size }) => {
         const iconName = routeIcons[route.name] || 'list';
@@ -149,16 +132,13 @@ const getScreenOptions = ({
     headerShown: false,
 });
 
-
 /**
  * Get the bottom tab screens based on the user's login status.
  *
  * @param {AuthContextType} authContext - The authentication context.
- * @returns {React.ReactElement} The bottom tab screens.
+ * @returns {ReactElement} The bottom tab screens.
  */
-const getBottomTabScreens = (
-    authContext: AuthContextType,
-): React.ReactElement => (
+const getBottomTabScreens = (authContext: AuthContextType): ReactElement => (
     <>
         <BottomTabs.Screen
             key={NavigationPathKeys.Home.HomeScreen}

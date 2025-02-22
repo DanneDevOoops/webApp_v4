@@ -28,7 +28,7 @@
  * @module interfaces/Auth
  */
 
-import React from 'react';
+import { ReactNode } from 'react';
 
 /**
  * Represents a user with credentials.
@@ -127,9 +127,9 @@ export interface AuthContextType {
  * This interface defines the properties that the `AuthProvider` component accepts.
  *
  * @interface AuthProviderProps
- * @property {React.ReactNode} children - The child components that will have access to the authentication
+ * @property {ReactNode} children - The child components that will have access to the authentication
  * context.
  */
 export interface AuthProviderProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }

@@ -9,20 +9,8 @@
  *
  * The navigator is wrapped in a SafeAreaView to ensure it is displayed correctly on all devices.
  * It also includes a FlashMessage component for displaying notifications and a StatusBar component.
- *
- * @requires react
- * @requires react-native
- * @requires react-native-screens
- * @requires react-native-flash-message
- * @requires expo-status-bar
- * @requires ../../components/Delivery/DeliveryList
- * @requires ./DeliveryItem.screen
- * @requires ./DeliveryForm.screen
- * @requires ../../components/Utils/CoverImage
- * @requires ../../assets/styles
- * @requires ../../assets/img/NutsAndBolts-6.jpg
  */
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import { SafeAreaView, Text, TextStyle, View, ViewStyle } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
@@ -30,7 +18,7 @@ import FlashMessage from 'react-native-flash-message';
 import {DeliveryList} from '../../components/Delivery/DeliveryList';
 import {DeliveryItem} from './DeliveryItem.screen';
 import {DeliveryCreationForm} from './DeliveryForm.screen';
-import {CoverImage} from '../../components/Utils/CoverImage';
+import { CoverImage } from '../../components/Utils/CoverImage';
 import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import coverIMG from '../../assets/img/NutsAndBolts-6.jpg';
 import * as Style from '../../assets/styles';
@@ -55,9 +43,9 @@ const Stack = createStackNavigator();
  * It also includes a FlashMessage component for displaying notifications and a StatusBar component.
  *
  * @component
- * @returns {React.ReactElement} The delivery stack navigator component.
+ * @returns {ReactElement} The delivery stack navigator component.
  */
-export const DeliveryNavigator: React.FC = (): React.ReactElement => {
+export const DeliveryNavigator: FC = (): ReactElement => {
     return (
         <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
             {CoverImage({ headerText: 'Inleveranser', image: coverIMG })}

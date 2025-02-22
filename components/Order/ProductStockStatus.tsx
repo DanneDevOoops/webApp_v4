@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import { Text, TextStyle, View, ViewStyle } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import * as OrderInterfaces from '../../interfaces/Order';
@@ -12,13 +12,13 @@ import * as Style from '../../assets/styles';
  * different colors and messages.
  *
  * @param {OrderInterfaces.OrderItem} orderItem - The order item to check the stock status for.
- * @returns {React.ReactElement} A React element displaying the product's stock status.
+ * @returns {ReactElement} A React element displaying the product's stock status.
  */
 export const ProductStockStatus = ({
     orderItem,
 }: {
     orderItem: OrderInterfaces.OrderItem;
-}) => {
+}): ReactElement => {
     const computedData = useMemo(() => {
         const data = { color: '', icon: 'boxes', text: '' };
         if (orderItem.amount <= orderItem.stock - 10) {
@@ -48,7 +48,7 @@ export const ProductStockStatus = ({
                         name={computedData.icon}
                         size={20}
                         color={computedData.color}
-                        style={Style.Container.grid.col[1]}
+                        style={Style.Container.grid.col[1] as ViewStyle}
                     />
                     <Text
                         style={

@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useState} from 'react';
+import React, { FC, ReactElement, useCallback, useMemo, useState } from 'react';
 import {
     FlatList,
     Pressable,
@@ -14,24 +14,24 @@ import {
     useRoute,
 } from '@react-navigation/native';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
-import {FontAwesome5} from '@expo/vector-icons';
-import {useAppContext} from '../../context/App.provider';
-import {OrderListItem} from './OrderListItem';
-import {LoadingIndicator} from '../Utils/LoadingIndicator';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { useAppContext } from '../../context/App.provider';
+import { OrderListItem } from './OrderListItem';
+import { LoadingIndicator } from '../Utils/LoadingIndicator';
 import * as OrderModel from '../../models/Orders';
 import * as OrderInterfaces from '../../interfaces/Order';
 import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import * as Style from '../../assets/styles';
 
-
 /**
- * Represents a tab view containing lists of orders categorized by their status (New, Packed, Sent, Returns).
- * Utilizes the React Native Tab View for navigation between these lists. Each list can refresh to fetch the latest orders.
- * Handles loading states and displays a loading indicator accordingly.
+ * Represents a tab view containing lists of orders categorized by their status (New, Packed,
+ * Sent, Returns). Utilizes the React Native Tab View for navigation between these lists. Each
+ * list can refresh to fetch the latest orders. Handles loading states and displays a loading
+ * indicator accordingly.
  *
- * @returns {React.ReactElement} A component that renders a tab view with lists of orders.
+ * @returns {ReactElement} A component that renders a tab view with lists of orders.
  */
-export const OrderList: React.FC = (): React.ReactElement => {
+export const OrderList: FC = (): ReactElement => {
     const appContext = useAppContext();
     const navigation = useNavigation();
     const route = useRoute();
@@ -45,13 +45,14 @@ export const OrderList: React.FC = (): React.ReactElement => {
     const reload: boolean | null = route.params?.reload ?? false;
 
     /**
-     * Asynchronously fetches orders from an API and updates the application context with the fetched orders.
-     * Sets the refreshing state during the loading process and logs any errors encountered.
+     * Asynchronously fetches orders from an API and updates the application context with the
+     * fetched orders. Sets the refreshing state during the loading process and logs any errors
+     * encountered.
      *
      * @async
      * @function loadOrders
-     * @returns {Promise<void>} A promise that resolves when orders have been fetched and the application
-     * context has been updated.
+     * @returns {Promise<void>} A promise that resolves when orders have been fetched and the
+     * application context has been updated.
      */
     const loadOrders = async (): Promise<void> => {
         appContext.setIsRefreshing(true);
@@ -66,9 +67,9 @@ export const OrderList: React.FC = (): React.ReactElement => {
     };
 
     /**
-     * A hook that triggers the reloading of orders based on specific conditions, such as navigation
-     * parameters or the current order list being empty. Ensures that the latest orders are fetched and
-     * displayed whenever the component comes into focus.
+     * A hook that triggers the reloading of orders based on specific conditions, such as
+     * navigation parameters or the current order list being empty. Ensures that the latest
+     * orders are fetched and displayed whenever the component comes into focus.
      *
      * @hook useFocusEffect
      * @effect Triggers order reloading based on navigation parameters or order list length.
@@ -160,14 +161,14 @@ export const OrderList: React.FC = (): React.ReactElement => {
      * Renders a list of new orders using a FlatList component.
      *
      * This component displays orders that have been marked as new (status_id of 100). It uses the
-     * `newOrders` array for its data source. Each item in the list is rendered using the `renderItem`
-     * function. The list supports pull-to-refresh, which triggers the `loadOrders` function to reload the
-     * orders from the API.
+     * `newOrders` array for its data source. Each item in the list is rendered using the
+     * `renderItem` function. The list supports pull-to-refresh, which triggers the `loadOrders`
+     * function to reload the orders from the API.
      *
      * @component
-     * @returns {React.ReactElement} A FlatList component displaying new orders.
+     * @returns {ReactElement} A FlatList component displaying new orders.
      */
-    const NewOrdersList = (): React.ReactElement => (
+    const NewOrdersList = (): ReactElement => (
         <FlatList
             data={newOrders}
             keyExtractor={(item: OrderInterfaces.Order) => item.id.toString()}
@@ -181,15 +182,15 @@ export const OrderList: React.FC = (): React.ReactElement => {
     /**
      * Renders a list of packed orders using a FlatList component.
      *
-     * This component displays orders that have been marked as packed (status_id of 200). It uses the
-     * `packedOrders` array for its data source. Each item in the list is rendered using the `renderItem`
-     * function. The list supports pull-to-refresh, which triggers the `loadOrders` function to reload the
-     * orders from the API.
+     * This component displays orders that have been marked as packed (status_id of 200). It
+     * uses the `packedOrders` array for its data source. Each item in the list is rendered
+     * using the `renderItem` function. The list supports pull-to-refresh, which triggers the
+     * `loadOrders` function to reload the orders from the API.
      *
      * @component
-     * @returns {React.ReactElement} A FlatList component displaying packed orders.
+     * @returns {ReactElement} A FlatList component displaying packed orders.
      */
-    const PackedOrdersList = (): React.ReactElement => (
+    const PackedOrdersList = (): ReactElement => (
         <FlatList
             data={packedOrders}
             keyExtractor={(item: OrderInterfaces.Order) => item.id.toString()}
@@ -204,14 +205,14 @@ export const OrderList: React.FC = (): React.ReactElement => {
      * Renders a list of sent orders using a FlatList component.
      *
      * This component displays orders that have been marked as sent (status_id of 400). It uses the
-     * `sentOrders` array for its data source. Each item in the list is rendered using the `renderItem`
-     * function. The list supports pull-to-refresh, which triggers the `loadOrders` function to reload the
-     * orders from the API.
+     * `sentOrders` array for its data source. Each item in the list is rendered using the
+     * `renderItem` function. The list supports pull-to-refresh, which triggers the `loadOrders`
+     * function to reload the orders from the API.
      *
      * @component
-     * @returns {React.ReactElement} A FlatList component displaying sent orders.
+     * @returns {ReactElement} A FlatList component displaying sent orders.
      */
-    const SentOrdersList = (): React.ReactElement => (
+    const SentOrdersList = (): ReactElement => (
         <FlatList
             data={sentOrders}
             keyExtractor={(item: OrderInterfaces.Order) => item.id.toString()}
@@ -225,15 +226,15 @@ export const OrderList: React.FC = (): React.ReactElement => {
     /**
      * Renders a list of return orders using a FlatList component.
      *
-     * This component displays orders that have been marked as returns (status_id of 800). It uses the
-     * `returnOrders` array for its data source. Each item in the list is rendered using the `renderItem`
-     * function. The list supports pull-to-refresh, which triggers the `loadOrders` function to reload the
-     * orders from the API.
+     * This component displays orders that have been marked as returns (status_id of 800). It
+     * uses the `returnOrders` array for its data source. Each item in the list is rendered
+     * using the `renderItem` function. The list supports pull-to-refresh, which triggers the
+     * `loadOrders` function to reload the orders from the API.
      *
      * @component
-     * @returns {React.ReactElement} A FlatList component displaying return orders.
+     * @returns {ReactElement} A FlatList component displaying return orders.
      */
-    const ReturnOrdersList = (): React.ReactElement => (
+    const ReturnOrdersList = (): ReactElement => (
         <FlatList
             data={returnOrders}
             keyExtractor={(item: OrderInterfaces.Order) => item.id.toString()}
@@ -247,15 +248,16 @@ export const OrderList: React.FC = (): React.ReactElement => {
     /**
      * Renders an individual order item as a pressable component.
      *
-     * This function component takes an order item and renders it within a `Pressable` component to make
-     * it interactive. The `Pressable` component changes its background color based on the press state to
-     * provide visual feedback to the user. Upon pressing, it navigates to the 'Orderhanterare' screen
-     * with the pressed order item as a parameter.
+     * This function component takes an order item and renders it within a `Pressable`
+     * component to make it interactive. The `Pressable` component changes its background color
+     * based on the press state to provide visual feedback to the user. Upon pressing, it
+     * navigates to the 'Orderhanterare' screen with the pressed order item as a parameter.
      *
-     * @param {Object} {item} - The order item to be rendered. It is an object containing order details.
-     * @returns {React.ReactElement} A pressable component representing an individual order item.
+     * @param {Object} {item} - The order item to be rendered. It is an object containing order
+     *      details.
+     * @returns {ReactElement} A pressable component representing an individual order item.
      */
-    const renderItem = ({ item }: object): React.ReactElement => (
+    const renderItem = ({ item }: object): ReactElement => (
         <Pressable
             key={item.index}
             style={({ pressed }) => [
@@ -282,9 +284,10 @@ export const OrderList: React.FC = (): React.ReactElement => {
      * Maps each tab to its corresponding component for rendering.
      *
      * This constant utilizes the `SceneMap` function from `react-native-tab-view` to map each tab
-     * identified by a key to its respective component. The keys 'first', 'second', 'third', and 'fourth'
-     * correspond to tabs for new orders, packed orders, sent orders, and return orders, respectively.
-     * Each key is associated with a component that renders a list of orders based on their status.
+     * identified by a key to its respective component. The keys 'first', 'second', 'third',
+     * and 'fourth' correspond to tabs for new orders, packed orders, sent orders, and return
+     * orders, respectively. Each key is associated with a component that renders a list of
+     * orders based on their status.
      *
      * - 'first' maps to `NewOrdersList`, which renders a list of new orders.
      * - 'second' maps to `PackedOrdersList`, which renders a list of packed orders.
@@ -304,18 +307,20 @@ export const OrderList: React.FC = (): React.ReactElement => {
     /**
      * Customizes the tab bar for the TabView component.
      *
-     * This function component renders a custom tab bar for the `TabView` component using the `TabBar` from
-     * `react-native-tab-view`. It customizes the appearance of the tab bar and its items, including the
-     * indicator and label styles, based on the application's color scheme and typography settings.
+     * This function component renders a custom tab bar for the `TabView` component using the
+     * `TabBar` from `react-native-tab-view`. It customizes the appearance of the tab bar and
+     * its items, including the indicator and label styles, based on the application's color
+     * scheme and typography settings.
      *
-     * The tab bar's indicator style and the tab label's style change dynamically based on whether the
-     * tab is focused, providing visual feedback to the user. Icons for each tab are rendered using the
-     * `FontAwesome5` component, with their appearance also changing based on the tab's focus state.
+     * The tab bar's indicator style and the tab label's style change dynamically based on
+     * whether the tab is focused, providing visual feedback to the user. Icons for each tab are
+     * rendered using the `FontAwesome5` component, with their appearance also changing based on
+     * the tab's focus state.
      *
      * @param {Object} props - The props passed to the `TabBar` component.
-     * @returns {React.ReactElement} A `TabBar` component with customized styling and behavior.
+     * @returns {ReactElement} A `TabBar` component with customized styling and behavior.
      */
-    const renderTabBar = (props: object): React.ReactElement => (
+    const renderTabBar = (props: object): ReactElement => (
         <TabBar
             {...props}
             indicatorStyle={{
@@ -327,7 +332,7 @@ export const OrderList: React.FC = (): React.ReactElement => {
                     color: Style.Color.text.dark,
                 } as ViewStyle
             }
-            renderIcon={({ route, focused }) => (
+            renderIcon={({ route, focused }): ReactElement => (
                 <FontAwesome5
                     name={route.icon}
                     size={18}
@@ -338,7 +343,7 @@ export const OrderList: React.FC = (): React.ReactElement => {
                     }
                 />
             )}
-            renderLabel={({ route, focused }) => (
+            renderLabel={({ route, focused }): ReactElement => (
                 <Text
                     style={
                         {

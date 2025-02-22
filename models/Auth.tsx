@@ -68,6 +68,7 @@ export async function login(
             };
         }
     } catch (error) {
+        console.error('ERROR: ', error);
         return;
     }
 }
@@ -82,10 +83,11 @@ export async function login(
  *
  * @param {string} email - The email address for the new account.
  * @param {string} password - The password for the new account.
- * @returns {Promise<any>} A promise that resolves to the server's response upon successful registration.
+ * @returns {Promise<void>} A promise that resolves to the server's response upon successful
+ * registration.
  * @throws {Error} Throws an error if the registration request fails.
  */
-export async function register(email: string, password: string): Promise<any> {
+export async function register(email: string, password: string): Promise<void> {
     try {
         const data: AuthInterfaces.AuthRegisterRequestBody = {
             api_key: config.api_key,
@@ -105,7 +107,9 @@ export async function register(email: string, password: string): Promise<any> {
         );
 
         if (!response.ok) {
-            throw new Error(`Server responded with status: ${response.status}`);
+            return Promise.reject(
+                new Error(`Server responded with status: ${response.status}`),
+            );
         }
 
         return response.json();

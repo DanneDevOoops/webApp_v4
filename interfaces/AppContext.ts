@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import * as ProductsInterfaces from './Product';
 import * as OrdersInterfaces from './Order';
 import * as DeliveriesInterfaces from './Delivery';
@@ -63,5 +64,5 @@ export interface AppContext {
  * @property {React.ReactNode} children - The child components that will have access to the context.
  */
 export interface AppProviderProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }

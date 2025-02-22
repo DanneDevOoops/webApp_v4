@@ -8,25 +8,14 @@
  *
  * The navigator is wrapped in a SafeAreaView to ensure it is displayed correctly on all devices.
  * It also includes a FlashMessage component for displaying notifications and a StatusBar component.
- *
- * @requires react
- * @requires react-native
- * @requires react-native-screens
- * @requires react-native-flash-message
- * @requires expo-status-bar
- * @requires ../../components/Product/ProductList
- * @requires ./ProductItem.screen
- * @requires ../../components/Utils/CoverImage
- * @requires ../../assets/styles
- * @requires ../../assets/img/NutsAndBolts-5.jpg
  */
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import { SafeAreaView, Text, TextStyle, View, ViewStyle } from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {StatusBar} from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
-import {ProductList} from '../../components/Product/ProductList';
-import {CoverImage} from '../../components/Utils/CoverImage';
+import { ProductList } from '../../components/Product/ProductList';
+import { CoverImage } from '../../components/Utils/CoverImage';
 import { StockItem } from './ProductItem.screen';
 import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import coverIMG from '../../assets/img/NutsAndBolts-5.jpg';
@@ -39,6 +28,7 @@ import * as Style from '../../assets/styles';
 const Stack = createStackNavigator();
 
 
+
 /**
  * Product Stack Navigator.
  *
@@ -48,9 +38,9 @@ const Stack = createStackNavigator();
  * - StockItem: Displays detailed information about a selected product.
  *
  * @constructor
- * @returns {React.ReactElement} The product stack navigator component.
+ * @returns {ReactElement} The product stack navigator component.
  */
-export const ProductsNavigator = (): React.ReactElement => {
+export const ProductsNavigator: FC = (): ReactElement => {
     return (
         <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
             {CoverImage({ headerText: 'Lager', image: coverIMG })}

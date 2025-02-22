@@ -9,20 +9,8 @@
  *
  * The navigator is wrapped in a SafeAreaView to ensure it is displayed correctly on all devices.
  * It also includes a FlashMessage component for displaying notifications and a StatusBar component.
- *
- * @requires react
- * @requires react-native
- * @requires react-native-screens
- * @requires react-native-flash-message
- * @requires expo-status-bar
- * @requires ../../components/Invoice/InvoiceDataTable
- * @requires ./InvoiceItem.screen
- * @requires ./InvoiceForm.screen
- * @requires ../../components/Utils/CoverImage
- * @requires ../../assets/styles
- * @requires ../../assets/img/NutsAndBolts-7.jpg
  */
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaView, View, ViewStyle } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -55,9 +43,9 @@ const Stack = createStackNavigator();
  * It also includes a FlashMessage component for displaying notifications and a StatusBar component.
  *
  * @component
- * @returns {React.ReactElement} The invoice stack navigator component.
+ * @returns {ReactElement} The invoice stack navigator component.
  */
-export const InvoiceNavigator: React.FC = (): React.ReactElement => {
+export const InvoiceNavigator: FC = (): ReactElement => {
     return (
         <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
             {CoverImage({ headerText: 'Fakturor', image: coverIMG })}

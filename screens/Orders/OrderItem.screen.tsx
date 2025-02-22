@@ -1,28 +1,15 @@
 /**
  * @module OrderItem
  *
- * This module provides a detailed view of a specific order. It includes information about the order such as
- * order ID, status, customer name, address, postal code, and city. It also displays a map with markers for
- * the user's current location and the order location if available. The module allows the user to pack the
- * order, send the order, or shows relevant status messages based on the order status.
- *
- * @requires react
- * @requires react-native
- * @requires @react-navigation/native
- * @requires react-native-maps
- * @requires expo-status-bar
- * @requires ../../context/App.provider
- * @requires ../../interfaces/Order
- * @requires ../../models/Orders
- * @requires ../../interfaces/Product
- * @requires ../../models/Products
- * @requires ../../assets/styles
- * @requires @expo/vector-icons
- * @requires ../../models/Nominatim
- * @requires expo-location
- * @requires react-native-flash-message
+ * This module provides a detailed view of a specific order. It includes information about the
+ * order such as order ID, status, customer name, address, postal code, and city. It also
+ * displays a map with markers for the user's current location and the order location if
+ * available. The module allows the user to pack the order, send the order, or shows relevant
+ * status messages based on the order status.
  */
 import React, {
+    FC,
+    ReactElement,
     useCallback,
     useEffect,
     useMemo,
@@ -49,127 +36,132 @@ import { useAppContext } from '../../context/App.provider';
 import { showMessage } from 'react-native-flash-message';
 import * as Location from 'expo-location';
 import MapViewDirections from 'react-native-maps-directions';
+import * as APP_CONFIG from '../../config/config.json';
 import * as OrderInterfaces from '../../interfaces/Order';
 import * as OrderModel from '../../models/Orders';
 import * as ProductInterfaces from '../../interfaces/Product';
 import * as ProductModel from '../../models/Products';
 import * as NominatimModel from '../../models/Nominatim';
-import * as Style from '../../assets/styles';
-import * as APP_CONFIG from '../../config/config.json';
 import { flash_message } from '../../assets/utils/animation';
 import { RouteParams } from '../../types/Navigation';
+import * as Style from '../../assets/styles';
 
-
-const useFetchData = (
-    order: OrderInterfaces.Order,
-    appContext: any,
-    setErrorMessage: any,
-    setUserPositionMarker: any,
-    setOrderLocationMarker: any,
-) => {
-    const fetchData = useCallback(async () => {
-        try {
-            const permission =
-                await Location.requestForegroundPermissionsAsync();
-            if (permission.status !== 'granted') {
-                setErrorMessage('Permission to access location was denied');
-                return;
-            }
-            const location = await Location.getCurrentPositionAsync({});
-            if (location) {
-                appContext.setUserPosition({
-                    longitude: location.coords.longitude,
-                    latitude: location.coords.latitude,
-                });
-                setUserPositionMarker(
-                    <Marker
-                        coordinate={{
-                            latitude: location.coords.latitude,
-                            longitude: location.coords.longitude,
-                        }}
-                        title='Min position'
-                        pinColor={Style.Color.indicator.info[300]}
-                    />,
-                );
-            } else {
-                setUserPositionMarker(null);
-            }
-            const response = await NominatimModel.getCoordinates(order.address);
-            if (response && response.length > 0) {
-                const pinColor = () =>
-                    order.status_id === 200
-                        ? Style.Color.indicator.warning[300]
-                        : order.status_id === 400
-                          ? Style.Color.indicator.positive[300]
-                          : Style.Color.indicator.info[300];
-                setOrderLocationMarker(
-                    <Marker
-                        coordinate={{
-                            latitude: parseFloat(response[0].lat),
-                            longitude: parseFloat(response[0].lon),
-                        }}
-                        title={order.name + ' position'}
-                        pinColor={pinColor()}
-                    />,
-                );
-            } else {
-                setOrderLocationMarker(null);
-            }
-        } catch (error) {
-            console.error('Error: ', error);
-            flash_message(
-                'danger',
-                `Något gick fel vid hämtning av data\n${error}`,
-            );
-        }
-    }, [
-        order,
-        appContext,
-        setErrorMessage,
-        setUserPositionMarker,
-        setOrderLocationMarker,
-    ]);
-
-    return fetchData;
-};
+// const useFetchData = (
+//     order: OrderInterfaces.Order,
+//     appContext: AppContext,
+//     setErrorMessage: never,
+//     setUserPositionMarker: never,
+//     setOrderLocationMarker: never,
+// ) => {
+//     const fetchData = useCallback(async () => {
+//         try {
+//             const permission =
+//                 await Location.requestForegroundPermissionsAsync();
+//             if (permission.status !== 'granted') {
+//                 setErrorMessage('Permission to access location was denied');
+//                 return;
+//             }
+//             const location = await Location.getCurrentPositionAsync({});
+//             if (location) {
+//                 appContext.setUserPosition({
+//                     longitude: location.coords.longitude,
+//                     latitude: location.coords.latitude,
+//                 });
+//                 setUserPositionMarker(
+//                     <Marker
+//                         coordinate={{
+//                             latitude: location.coords.latitude,
+//                             longitude: location.coords.longitude,
+//                         }}
+//                         title='Min position'
+//                         pinColor={Style.Color.indicator.info[300]}
+//                     />,
+//                 );
+//             } else {
+//                 setUserPositionMarker(null);
+//             }
+//             const response = await NominatimModel.getCoordinates(order.address);
+//
+//             console.info('1. getCoordinates Response: ', response);
+//
+//             if (response && response.length > 0) {
+//                 const pinColor = () =>
+//                     order.status_id === 200
+//                         ? Style.Color.indicator.warning[300]
+//                         : order.status_id === 400
+//                           ? Style.Color.indicator.positive[300]
+//                           : Style.Color.indicator.info[300];
+//                 setOrderLocationMarker(
+//                     <Marker
+//                         coordinate={{
+//                             latitude: parseFloat(response[0].lat),
+//                             longitude: parseFloat(response[0].lon),
+//                         }}
+//                         title={order.name + ' position'}
+//                         pinColor={pinColor()}
+//                     />,
+//                 );
+//             } else {
+//                 setOrderLocationMarker(null);
+//             }
+//         } catch (error) {
+//             console.error('Error: ', error);
+//             flash_message(
+//                 'danger',
+//                 `Något gick fel vid hämtning av data\n${error}`,
+//             );
+//         }
+//     }, [
+//         order,
+//         appContext,
+//         setErrorMessage,
+//         setUserPositionMarker,
+//         setOrderLocationMarker,
+//     ]);
+//
+//     return fetchData;
+// };
 
 /**
  * OrderItem screen/view.
  *
- * This component displays a detailed view of a specific order. It includes information about the order
- * such as order ID, status, customer name, address, postal code, and city. It also displays a map with
- * markers for the user's current location and the order location if available. The component allows the
- * user to pack the order, send the order, or shows relevant status messages based on the order status.
+ * This component displays a detailed view of a specific order. It includes information about
+ * the order such as order ID, status, customer name, address, postal code, and city. It also
+ * displays a map with markers for the user's current location and the order location if
+ * available. The component allows the user to pack the order, send the order, or shows relevant
+ * status messages based on the order status.
  *
  * @param {OrderInterfaces.OrderItemProps} props - The properties for the OrderItem component.
- * @returns {React.ReactElement} The OrderItem component.
+ * @returns {ReactElement} The OrderItem component.
  */
-export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
+export const OrderItem: FC<OrderInterfaces.OrderItemProps> = (
     props: OrderInterfaces.OrderItemProps,
-) => {
+): ReactElement => {
     const appContext = useAppContext();
     const navigation = useNavigation();
     const route = useRoute<RouteProp<RouteParams>>();
     const order: OrderInterfaces.Order = props.route.params.item;
     const [errorMessage, setErrorMessage] = useState(null);
     const [orderLocationMarker, setOrderLocationMarker] =
-        useState<React.ReactElement | null>(null);
+        useState<ReactElement | null>(null);
     const [userPositionMarker, setUserPositionMarker] =
-        useState<React.ReactElement | null>(null);
+        useState<ReactElement | null>(null);
     const mapRef = useRef<MapView>(null);
     const reload: boolean | null = route.params?.reload ?? false;
 
     /**
-     * Fetches the current user location and the order location, then sets the respective markers on the map.
+     * Fetches the current user location and the order location, then sets the respective
+     * markers on the map.
      *
-     * This function requests permission to access the user's location. If granted, it retrieves the current
-     * location coordinates and sets the user position in the application context. It also fetches the
-     * coordinates for the order address using the Nominatim model and sets the order location marker on
-     * the map. If the order address is not found, the order location marker is set to null. Additionally,
-     * it sets the user location marker on the map.
+     * This function requests permission to access the user's location. If granted, it
+     * retrieves the current location coordinates and sets the user position in the application
+     * context. It also fetches the coordinates for the order address using the Nominatim model
+     * and sets the order location marker on the map. If the order address is not found, the
+     * order location marker is set to null. Additionally, it sets the user location marker on
+     * the map.
      *
-     * @returns {Promise<void>} A promise that resolves when the data fetching and marker setting are
-     *  complete.
+     * @returns {Promise<void>} A promise that resolves when the data fetching and marker
+     * setting are complete.
      */
     const fetchData = async (): Promise<void> => {
         try {
@@ -178,6 +170,8 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
 
             if (permission.status !== 'granted') {
                 setErrorMessage('Permission to access location was denied');
+
+                console.info(errorMessage);
                 return;
             }
 
@@ -203,6 +197,9 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
             }
 
             const response = await NominatimModel.getCoordinates(order.address);
+
+            console.info('2. getCoordinates Response: ', response);
+
             if (response && response.length > 0) {
                 const pinColor = (): string =>
                     order.status_id === 200
@@ -236,10 +233,10 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
     /**
      * Hook to handle focus effect for fetching user and order locations.
      *
-     * This hook uses `useFocusEffect` to trigger the `fetchData` function when the screen comes into focus.
-     * It checks if the user position is not set or if a reload is required. If either condition is true,
-     * it calls the `fetchData` function to update the user and order locations. After fetching the data,
-     * it resets the reload parameter to false.
+     * This hook uses `useFocusEffect` to trigger the `fetchData` function when the screen
+     * comes into focus. It checks if the user position is not set or if a reload is required.
+     * If either condition is true, it calls the `fetchData` function to update the user and
+     * order locations. After fetching the data, it resets the reload parameter to false.
      *
      * Dependencies:
      * - `appContext.userPosition`: The current user position from the application context.
@@ -258,13 +255,10 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
     /**
      * Hook to fit map view to user and order locations.
      *
-     * This hook is executed after the component renders and whenever the user or order location markers change.
-     * It checks if the map reference, user position marker, and order location marker are available. If they are,
-     * it adjusts the map view to fit the coordinates of the user and order locations with appropriate padding.
-     *
-     * @requires react
-     * @requires react-native-maps
-     * @requires ../../context/App.provider
+     * This hook is executed after the component renders and whenever the user or order
+     * location markers change. It checks if the map reference, user position marker, and order
+     * location marker are available. If they are, it adjusts the map view to fit the
+     * coordinates of the user and order locations with appropriate padding.
      */
     useEffect((): void => {
         if (mapRef.current && userPositionMarker && orderLocationMarker) {
@@ -294,9 +288,9 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
     /**
      * Compute boolean value to indicate if order is packable.
      *
-     * This memoized value determines if the order is packable based on the order status and stock levels.
-     * It checks if the order status is 100, the order has items, and every item in the order has
-     * sufficient stock.
+     * This memoized value determines if the order is packable based on the order status and
+     * stock levels. It checks if the order status is 100, the order has items, and every item
+     * in the order has sufficient stock.
      *
      * Dependencies:
      * - `order.status_id`: The current status ID of the order.
@@ -319,8 +313,8 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
     /**
      * Compute boolean value to indicate if order is missing items.
      *
-     * This memoized value determines if the order is missing items based on the order status and the number of items.
-     * It checks if the order status is 100 and the order has no items.
+     * This memoized value determines if the order is missing items based on the order status
+     * and the number of items. It checks if the order status is 100 and the order has no items.
      *
      * Dependencies:
      * - `order.status_id`: The current status ID of the order.
@@ -401,10 +395,10 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
     /**
      * Compute dynamic interaction element based on order status.
      *
-     * This memoized value determines the appropriate interaction element to display based on the order
-     * status and stock levels. It returns different elements for various order statuses, such as
-     * packable, packed, sent, returned, and refunded. The element displayed allows the user to pack the
-     * order, send the order, or shows relevant status messages.
+     * This memoized value determines the appropriate interaction element to display based on
+     * the order status and stock levels. It returns different elements for various order
+     * statuses, such as packable, packed, sent, returned, and refunded. The element displayed
+     * allows the user to pack the order, send the order, or shows relevant status messages.
      *
      * Dependencies:
      * - `orderIsPackable`: Boolean indicating if the order is packable.
@@ -415,10 +409,10 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
      * - `orderIsMissingItems`: Boolean indicating if the order is missing items.
      * - `order.status_id`: The current status ID of the order.
      *
-     * @returns {React.ReactElement} The interaction element to display based on the order status.
+     * @returns {ReactElement} The interaction element to display based on the order status.
      */
-    const dynamicInteractionElement: React.ReactElement =
-        useMemo((): React.ReactElement => {
+    const dynamicInteractionElement: ReactElement =
+        useMemo((): ReactElement => {
             if (orderIsPackable) {
                 return (
                     <Pressable
@@ -605,19 +599,19 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
     /**
      * Compute and render order details.
      *
-     * This memoized value returns a React element that displays the details of an order, including the
-     * order ID, status, customer name, address, postal code, and city. It also includes a dynamic
-     * interaction element based on the order status.
+     * This memoized value returns a React element that displays the details of an order,
+     * including the order ID, status, customer name, address, postal code, and city. It also
+     * includes a dynamic interaction element based on the order status.
      *
      * Dependencies:
-     * - `order`: The order object containing details such as ID, status, customer name, address, postal
-     *      code, and city.
+     * - `order`: The order object containing details such as ID, status, customer name,
+     *      address, postal code, and city.
      * - `dynamicInteractionElement`: The interaction element to display based on the order status.
      *
-     * @returns {React.ReactElement} The React element displaying the order details and dynamic
+     * @returns {ReactElement} The React element displaying the order details and dynamic
      *      interaction element.
      */
-    const orderDetails: React.ReactElement = useMemo(() => {
+    const orderDetails: ReactElement = useMemo((): ReactElement => {
         return (
             <View style={Style.Container.content as ViewStyle}>
                 <View style={Style.Container.grid.row as ViewStyle}>
@@ -711,18 +705,19 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
     /**
      * Compute and render map element based on user and order locations.
      *
-     * This memoized value returns a React element that displays a map centered around the user's position.
-     * It includes markers for the user's current location and the order location if available.
+     * This memoized value returns a React element that displays a map centered around the
+     * user's position. It includes markers for the user's current location and the order
+     * location if available.
      *
      * Dependencies:
      * - `appContext.userPosition`: The current user position from the application context.
      * - `userPositionMarker`: The marker element for the user's position.
      * - `orderLocationMarker`: The marker element for the order location.
      *
-     * @returns {React.ReactElement | null} The React element displaying the map with markers, or null if
+     * @returns {ReactElement | null} The React element displaying the map with markers, or null if
      *      the user position is not available.
      */
-    const mapElement: React.ReactElement | null = useMemo(() => {
+    const mapElement: ReactElement | null = useMemo(() => {
         if (
             !appContext.userPosition?.latitude ||
             !appContext.userPosition?.longitude
@@ -753,7 +748,7 @@ export const OrderItem: React.FC<OrderInterfaces.OrderItemProps> = (
         );
     }, [appContext.userPosition, userPositionMarker, orderLocationMarker]);
 
-    const orderListItems: React.ReactElement[] = order.order_items.map(
+    const orderListItems: ReactElement[] = order.order_items.map(
         (orderListItem: OrderInterfaces.OrderItem, index: number) => (
             <View key={index}>
                 <View style={Style.Container.grid as ViewStyle}>

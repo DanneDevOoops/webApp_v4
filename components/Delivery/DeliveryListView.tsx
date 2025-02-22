@@ -1,9 +1,8 @@
-import React, {useMemo} from 'react';
-import {FlatList, Text, TextStyle, View, ViewStyle} from 'react-native';
+import React, { FC, ReactElement, useMemo } from 'react';
+import { FlatList, Text, TextStyle, View, ViewStyle } from 'react-native';
 import * as DeliveriesInterfaces from '../../interfaces/Delivery';
-import {DeliveryListViewProps} from '../../interfaces/Delivery';
+import { DeliveryListViewProps } from '../../interfaces/Delivery';
 import * as Style from '../../assets/styles';
-
 
 /**
  * DeliveryListView component.
@@ -19,17 +18,17 @@ import * as Style from '../../assets/styles';
  * being refreshed.
  * @param {() => void} props.onRefresh - A callback function to be called when the list needs
  * to be refreshed.
- * @param {(item: DeliveriesInterfaces.Delivery) => React.ReactElement} props.renderItem -
+ * @param {(item: DeliveriesInterfaces.Delivery) => ReactElement} props.renderItem -
  *      A function to render each delivery item.
- * @returns {React.ReactElement} The rendered DeliveryListView component.
+ * @returns {ReactElement} The rendered DeliveryListView component.
  */
-export const DeliveryListView: React.FC<DeliveryListViewProps> = ({
+export const DeliveryListView: FC<DeliveryListViewProps> = ({
     deliveries,
     isRefreshing,
     onRefresh,
     renderItem,
-}: DeliveryListViewProps): React.ReactElement => {
-    return useMemo((): React.ReactElement => {
+}: DeliveryListViewProps): ReactElement => {
+    return useMemo((): ReactElement => {
         if (!deliveries) {
             return (
                 <View style={Style.Container.warningMsgContainer as ViewStyle}>
@@ -42,9 +41,9 @@ export const DeliveryListView: React.FC<DeliveryListViewProps> = ({
             return (
                 <FlatList
                     data={deliveries}
-                    keyExtractor={(item: DeliveriesInterfaces.Delivery) =>
-                        item.id.toString()
-                    }
+                    keyExtractor={(
+                        item: DeliveriesInterfaces.Delivery,
+                    ): string => item.id.toString()}
                     renderItem={renderItem}
                     refreshing={isRefreshing}
                     onRefresh={onRefresh}
