@@ -7,6 +7,7 @@
  */
 // import * as Color from './colors';  // Use this if more colors are needed in the module styles.
 import { background as bgColors } from './colors';
+import { ViewStyle } from 'react-native';
 
 /**
  * Main Container attributes.
@@ -23,7 +24,7 @@ import { background as bgColors } from './colors';
  * @property {number} gap - The gap between the flex items in the main container.
  * @property {string} backgroundColor - The background color of the main container.
  */
-export const mainContainer = {
+export const mainContainer: ViewStyle = {
     width: '100%',
     height: 'auto',
     padding: 0,
@@ -43,7 +44,7 @@ export const mainContainer = {
  * @property {number} flex - The flex grow factor of the content.
  * @property {string} backgroundColor - The background color of the content.
  */
-export const content = {
+export const content: ViewStyle = {
     flex: 1,
     backgroundColor: bgColors.light,
 };
