@@ -8,6 +8,14 @@
  * application.
  */
 
+import {
+    BgColorInterface,
+    ColorAttributeType,
+    ColorResponseInterface,
+    ColorSchemeInterface,
+    TextColorInterface,
+} from '../../types/StyleTypes';
+
 /**
  * Color Scheme One.
  *
@@ -46,7 +54,7 @@
  * @property {string} quintary.400 - Medium quintary color.
  * @property {string} quintary.500 - Dark quintary color.
  */
-export const schemeOne = {
+export const schemeOne: ColorSchemeInterface = {
     primary: {
         100: '#F3F9F7',
         200: '#D0E8DE',
@@ -90,7 +98,7 @@ export const schemeOne = {
  * @property {string} light - The light background color.
  * @property {string} dark - The dark background color.
  */
-export const background = {
+export const background: BgColorInterface = {
     light: '#ffffff',
     dark: '#2a2a2a',
 };
@@ -102,7 +110,7 @@ export const background = {
  * @property {string} disabled - The disabled text color.
  * @property {string} light - The light text color.
  */
-export const text = {
+export const text: TextColorInterface = {
     dark: '#1c1c1c',
     disabled: '#BFBFBF',
     light: '#fafafa',
@@ -123,7 +131,7 @@ export const text = {
  * @property {string} 900 - The darkest gray color.
  * @property {string} 1000 - The deepest gray color.
  */
-export const grayScale = {
+export const grayScale: ColorAttributeType = {
     50: '#F2F2F2',
     100: '#BFBFBF',
     200: '#8C8C8C',
@@ -213,7 +221,7 @@ export const grayScale = {
  * @property {string} visited.900 - Darkest visited link color.
  * @property {string} visited.1000 - Deepest visited link color.
  */
-export const indicator = {
+export const indicator: ColorResponseInterface = {
     info: {
         50: '#D9E8F3',
         100: '#D5E3F8',
@@ -298,7 +306,7 @@ export const indicator = {
  * @property {string} 400 - A dark shadow color.
  * @property {string} 500 - The darkest shadow color.
  */
-export const shadows = {
+export const shadows: ColorAttributeType = {
     100: '#BFBFBF',
     200: '#8C8C8C',
     300: '#3F3F3F',
