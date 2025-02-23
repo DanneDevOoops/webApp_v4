@@ -1,10 +1,9 @@
 /**
- * This module defines style attributes for UI components, specifically focusing on shadow
+ * This module defines style attributes for UI components, specifically focusing on abstract
  * properties.
  *
- * It includes two main objects, `abstracts` and `shadow`, which contain properties related to
- * the offset, opacity, radius, and elevation of button shadows.
- * These attributes are used to style the visual appearance of buttons in the user interface.
+ * It includes objects, which contain properties related to abstracts, such as shadows, etc.
+ *
  */
 
 /**
