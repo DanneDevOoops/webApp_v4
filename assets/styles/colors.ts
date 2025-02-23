@@ -10,9 +10,9 @@
 
 import {
     BgColorInterface,
-    ColorAttributeType,
     ColorResponseInterface,
     ColorSchemeInterface,
+    NumKeyStrValuesAttributeType,
     TextColorInterface,
 } from '../../types/StyleTypes';
 
@@ -131,7 +131,7 @@ export const text: TextColorInterface = {
  * @property {string} 900 - The darkest gray color.
  * @property {string} 1000 - The deepest gray color.
  */
-export const grayScale: ColorAttributeType = {
+export const grayScale: NumKeyStrValuesAttributeType = {
     50: '#F2F2F2',
     100: '#BFBFBF',
     200: '#8C8C8C',
@@ -306,7 +306,7 @@ export const indicator: ColorResponseInterface = {
  * @property {string} 400 - A dark shadow color.
  * @property {string} 500 - The darkest shadow color.
  */
-export const shadows: ColorAttributeType = {
+export const shadows: NumKeyStrValuesAttributeType = {
     100: '#BFBFBF',
     200: '#8C8C8C',
     300: '#3F3F3F',
