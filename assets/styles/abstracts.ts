@@ -4,6 +4,7 @@
  *
  * It includes objects, which contain properties related to abstracts, such as shadows, etc.
  *
+ * @module abstracts
  */
 
 /**
