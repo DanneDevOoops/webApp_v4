@@ -9,6 +9,7 @@
  * components in the user interface.
  */
 
+import { ViewStyle } from 'react-native';
 import * as Abstract from './abstracts';
 import * as Color from './colors';
 import * as Typography from './typography';
@@ -26,7 +27,6 @@ import * as Variable from './variables';
  * @property {number} marginHorizontal - The horizontal margin outside the button.
  * @property {string} alignSelf - The alignment of the button itself.
  * @property {number} borderRadius - The border radius of the button.
- * @property {string} color - The text color of the button.
  * @property {string} backgroundColor - The background color of the button.
  * @property {string} shadowColor - The color of the button shadow.
  * @property {Object} shadowOffset - The offset of the button shadow.
@@ -36,7 +36,7 @@ import * as Variable from './variables';
  * @property {number} shadowRadius - The radius of the button shadow.
  * @property {number} elevation - The elevation of the button.
  */
-export const baseButton = {
+export const baseButton: ViewStyle = {
     overflow: 'hidden',
     width: '100%',
     height: 'auto',
@@ -46,7 +46,6 @@ export const baseButton = {
     marginHorizontal: Typography.whiteSpace[10],
     alignSelf: 'center',
     borderRadius: Variable.borderRadius.button,
-    color: Color.text.dark,
     backgroundColor: Color.background.light,
     shadowColor: Color.shadows[400],
     shadowOffset: Abstract.shadow.btnOffset,
@@ -62,7 +61,7 @@ export const baseButton = {
  *
  * @property {string} backgroundColor - The background color of the list button.
  */
-export const listButton = {
+export const listButton: ViewStyle = {
     ...baseButton,
     backgroundColor: Color.schemeOne.primary[300],
 };
@@ -74,7 +73,7 @@ export const listButton = {
  *
  * @property {string} backgroundColor - The background color of the button container.
  */
-export const buttonContainer = {
+export const buttonContainer: ViewStyle = {
     ...baseButton,
     backgroundColor: Color.schemeOne.primary[300],
 };
