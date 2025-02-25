@@ -1,15 +1,25 @@
 /**
- * Module imports.
+ * Typography module.
+ *
+ * This module defines various typography-related styles used throughout the application.
+ * It includes definitions for font sizes, font weights, font families, white space values,
+ * and specific text styles for headers, sub-headers, paragraphs, data fields, buttons, and flash messages.
+ *
+ * The styles are organized into objects that can be imported and used in React Native components
+ * to ensure consistent typography across the application.
+ *
+ * @module typography
  */
 
 import { TextStyle } from 'react-native';
 
 import * as Color from './colors';
+import { FlashMessageInterface } from '../../interfaces/UtilsInterfaces';
 import {
     NumKeyNumValueAttributeType,
     StrKeyNumValueAttributeType,
     StrKeyStrValueAttributeType,
-} from '../../types/StyleTypes';
+} from '../../interfaces/StyleInterfaces';
 
 /**
  * White space values for typography.
@@ -148,7 +158,7 @@ export const header: TextStyle = {
 
     textAlign: 'center',
     fontSize: fontSize.h1,
-    fontWeight: fontWeight.h1,
+    fontWeight: fontWeight.h1 as TextStyle['fontWeight'],
     fontFamily: fontFamily.header,
 
     color: Color.text.light,
@@ -218,7 +228,7 @@ export const paragraph: TextStyle = {
     flexWrap: 'wrap',
     textAlign: 'left',
     fontSize: fontSize.text,
-    fontWeight: fontWeight.text,
+    fontWeight: fontWeight.text as TextStyle['fontWeight'],
     fontFamily: fontFamily.text,
 };
 
@@ -247,7 +257,7 @@ export const baseDataField: TextStyle = {
     paddingHorizontal: whiteSpace[25],
     paddingBottom: whiteSpace[25],
     fontSize: fontSize.text,
-    fontWeight: fontWeight.text,
+    fontWeight: fontWeight.text as TextStyle['fontWeight'],
     fontFamily: fontFamily.text,
 };
 
@@ -382,7 +392,7 @@ export const buttonText: TextStyle = {
     textAlign: 'center',
     fontFamily: fontFamily.btn,
     fontSize: fontSize.h5,
-    fontWeight: fontWeight.btn,
+    fontWeight: fontWeight.btn as TextStyle['fontWeight'],
     color: Color.text.dark,
 };
 
@@ -401,9 +411,9 @@ export const buttonText: TextStyle = {
  *      typography fontFamily scale.
  * @property {string} color - Sets the color of the flash message text based on the color scheme.
  */
-const baseFlashMessage: TextStyle = {
+const baseFlashMessage: FlashMessageInterface = {
     textAlign: 'center',
-    fontWeight: fontWeight.text,
+    fontWeight: fontWeight.text as TextStyle['fontWeight'],
     fontFamily: fontFamily.btn,
     color: Color.text.light,
 };
