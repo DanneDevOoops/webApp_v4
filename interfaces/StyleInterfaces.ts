@@ -131,23 +131,23 @@ export interface ColorResponseInterface {
 /**
  * Represents background color interface with light and dark color attributes.
  *
- * @property {NumKeyStrValuesAttributeType} light - Light background color attributes.
- * @property {NumKeyStrValuesAttributeType} dark - Dark background color attributes.
+ * @property {string} light - Light background color attributes.
+ * @property {string} dark - Dark background color attributes.
  */
 export interface BgColorInterface {
-    light: NumKeyStrValuesAttributeType;
-    dark: NumKeyStrValuesAttributeType;
+    light: string;
+    dark: string;
 }
 
 /**
  * Represents text color interface with light, dark, and disabled color attributes.
  *
- * @property {NumKeyStrValuesAttributeType} light - Light text color attributes.
- * @property {NumKeyStrValuesAttributeType} dark - Dark text color attributes.
- * @property {NumKeyStrValuesAttributeType} disabled - Disabled text color attributes.
+ * @property {string} light - Light text color attributes.
+ * @property {string} dark - Dark text color attributes.
+ * @property {string} disabled - Disabled text color attributes.
  */
 export interface TextColorInterface {
-    light: NumKeyStrValuesAttributeType;
-    dark: NumKeyStrValuesAttributeType;
-    disabled: NumKeyStrValuesAttributeType;
+    light: string;
+    dark: string;
+    disabled: string;
 }
