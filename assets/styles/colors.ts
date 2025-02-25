@@ -11,7 +11,7 @@
 import {
     BgColorInterface,
     ColorResponseInterface,
-    ColorSchemeInterface,
+    ColorSchemeGroupInterface,
     NumKeyStrValuesAttributeType,
     TextColorInterface,
 } from '../../types/StyleTypes';
@@ -54,7 +54,7 @@ import {
  * @property {string} quintary.400 - Medium quintary color.
  * @property {string} quintary.500 - Dark quintary color.
  */
-export const schemeOne: ColorSchemeInterface = {
+export const schemeOne: ColorSchemeGroupInterface = {
     primary: {
         100: '#F3F9F7',
         200: '#D0E8DE',
