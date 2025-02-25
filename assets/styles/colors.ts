@@ -14,7 +14,7 @@ import {
     ColorSchemeGroupInterface,
     NumKeyStrValuesAttributeType,
     TextColorInterface,
-} from '../../types/StyleTypes';
+} from '../../interfaces/StyleInterfaces';
 
 /**
  * Color Scheme One.
