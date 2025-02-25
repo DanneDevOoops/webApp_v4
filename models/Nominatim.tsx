@@ -1,4 +1,4 @@
-import { CoordinatesResponse } from '../interfaces/Utils';
+import { CoordinatesResponse } from '../interfaces/UtilsInterfaces';
 
 /**
  * Fetches the geographical coordinates for a given address using the Nominatim API.

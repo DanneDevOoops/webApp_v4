@@ -7,7 +7,7 @@ import {
     View,
     ViewStyle,
 } from 'react-native';
-import { ScreenCoverArguments } from '../../interfaces/Utils';
+import { ScreenCoverArguments } from '../../interfaces/UtilsInterfaces';
 import * as Style from '../../assets/styles';
 
 /**

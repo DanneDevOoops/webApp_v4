@@ -4,35 +4,16 @@
  * This module provides style definitions for application associated elements. It includes
  * styles for the loading indicator itself, its container, and any text associated with the
  * loading indicator as an example but you can put any style utils here.
- *
- * @requires react-native
- * @requires ./colors
- * @requires ./typography
  */
 
-import { ColorValue, TextStyle, ViewStyle } from 'react-native';
+import { TextStyle, ViewStyle } from 'react-native';
 import * as Color from './colors';
 import * as Typography from './typography';
-
-/**
- * LoadingIndicatorStyleType interface.
- *
- * This interface extends the `ViewStyle` interface from React Native to include additional
- * properties specific to the loading indicator.
- *
- * @interface
- * @extends {ViewStyle}
- * @property {string} [size] - Optional. Sets the size of the loading indicator.
- * @property {string} [color] - Optional. Sets the color of the loading indicator.
- */
-interface LoadingIndicatorStyleType extends ViewStyle {
-    size?: string;
-    color?: string;
-}
-
-interface LoadingIndicatorContainerStyleType extends ViewStyle {
-    backgroundColor?: ColorValue;
-}
+import {
+    LoadingIndicatorContainerStyleType,
+    LoadingIndicatorStyleType,
+    LoadingIndicatorTextType,
+} from '../../interfaces/UtilsInterfaces';
 
 /**
  * Loading indicator attributes.
@@ -52,7 +33,7 @@ export const loadingIndicator: LoadingIndicatorStyleType = {
     size: 'large',
     width: '100%',
     height: 'auto',
-    color: Color.schemeOne.primary[300],
+    color: Color.schemeOne.primary[300] as string,
 };
 
 /**
@@ -81,7 +62,7 @@ export const loadingIndicatorContainer: LoadingIndicatorContainerStyleType = {
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-    backgroundColor: Color.background.light,
+    backgroundColor: Color.background.light as string,
 };
 
 /**
@@ -105,12 +86,12 @@ export const loadingIndicatorContainer: LoadingIndicatorContainerStyleType = {
  *      fontFamily scale.
  * @property {string} textAlign - Aligns the text in the center.
  */
-export const loadingIndicatorText: TextStyle = {
+export const loadingIndicatorText: LoadingIndicatorTextType = {
     paddingVertical: Typography.whiteSpace[100],
     paddingHorizontal: Typography.whiteSpace[100],
-    color: Color.text.dark,
+    color: Color.text.dark as string,
     fontSize: 16,
-    fontWeight: Typography.fontWeight.h4,
+    fontWeight: Typography.fontWeight.h4 as TextStyle['fontWeight'],
     fontFamily: Typography.fontFamily.subHeader,
     textAlign: 'center',
 };
