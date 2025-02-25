@@ -14,7 +14,6 @@
 import { TextStyle } from 'react-native';
 
 import * as Color from './colors';
-import { FlashMessageInterface } from '../../interfaces/UtilsInterfaces';
 import {
     NumKeyNumValueAttributeType,
     StrKeyNumValueAttributeType,
@@ -411,11 +410,11 @@ export const buttonText: TextStyle = {
  *      typography fontFamily scale.
  * @property {string} color - Sets the color of the flash message text based on the color scheme.
  */
-const baseFlashMessage: FlashMessageInterface = {
+const baseFlashMessage: TextStyle = {
     textAlign: 'center',
     fontWeight: fontWeight.text as TextStyle['fontWeight'],
     fontFamily: fontFamily.btn,
-    color: Color.text.light,
+    color: Color.text.light as TextStyle['color'],
 };
 
 /**
