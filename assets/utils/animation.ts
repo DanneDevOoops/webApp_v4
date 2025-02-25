@@ -1,13 +1,22 @@
+/**
+ * This module defines style attributes for UI components, specifically focusing on animations
+ * properties. It includes objects, which contain properties related to animations, such as
+ * flash_message, etc.
+ *
+ * @module animation
+ */
+
 import { showMessage } from 'react-native-flash-message';
+import { FlashMessageType, MessageType } from '../../types/AnimationTypes';
 
-type MessageType = 'info' | 'warning' | 'danger' | 'success' | 'default';
-type FlashMessageType = {
-    duration: number;
-    type: MessageType;
-    description: string;
-    message: string;
-};
-
+/**
+ * Displays a flash message using the `react-native-flash-message` library.
+ *
+ * @param {MessageType} type - The type of the message. Can be 'info', 'warning', 'danger', 'success', or 'default'.
+ * @param {string} message - The message to be displayed.
+ *
+ * @returns {void}
+ */
 export const flash_message = (type: MessageType, message: string) => {
     const messageTypes: Record<MessageType, FlashMessageType> = {
         info: {
@@ -42,7 +51,8 @@ export const flash_message = (type: MessageType, message: string) => {
         },
     };
 
-    const messageConfig = messageTypes[type] || messageTypes.default;
+    const messageConfig: FlashMessageType =
+        messageTypes[type] || messageTypes.default;
     messageConfig.message = message;
 
     return showMessage(messageConfig);
