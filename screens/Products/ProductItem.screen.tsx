@@ -2,8 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { Text, TextStyle, View, ViewStyle } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { RouteParams } from '../../types/Navigation';
-import { Product } from '../../interfaces/Product';
+import { Product, ProductListItemProps } from '../../interfaces/Product';
 import * as Style from '../../assets/styles';
 
 /**
@@ -12,8 +11,10 @@ import * as Style from '../../assets/styles';
  * @constructor
  */
 export const StockItem: FC = (): ReactElement => {
-    const route = useRoute<RouteProp<{ params: RouteParams }>>();
-    const product: Product | null = route.params.params?.item ?? null;
+    const route: RouteProp<ProductListItemProps> =
+        useRoute<RouteProp<ProductListItemProps>>();
+    // @ts-expect-error
+    const product: Product | null = route.params?.item ?? null;
 
     return (
         <View style={Style.Container.content as ViewStyle}>

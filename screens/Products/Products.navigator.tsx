@@ -11,23 +11,21 @@
  */
 import React, { FC, ReactElement } from 'react';
 import { SafeAreaView, Text, TextStyle, View, ViewStyle } from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {StatusBar} from 'expo-status-bar';
+import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
 import { ProductList } from '../../components/Product/ProductList';
 import { CoverImage } from '../../components/Utils/CoverImage';
 import { StockItem } from './ProductItem.screen';
 import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
+import { ProductsNavigatorParams } from '../../interfaces/Product';
 import coverIMG from '../../assets/img/NutsAndBolts-5.jpg';
 import * as Style from '../../assets/styles';
-
 
 /**
  * Stack navigator for products.
  */
-const Stack = createStackNavigator();
-
-
+const Stack = createStackNavigator<ProductsNavigatorParams>();
 
 /**
  * Product Stack Navigator.

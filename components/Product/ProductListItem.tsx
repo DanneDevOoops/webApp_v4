@@ -1,40 +1,32 @@
 /**
  * Module imports.
  */
-import React from 'react';
-import { View, Text, TextStyle, ViewStyle } from 'react-native';
+import React, { FC, ReactElement } from 'react';
+import { Text, TextStyle, View, ViewStyle } from 'react-native';
+import { ProductListItemProps } from '../../interfaces/Product';
 import * as Style from '../../assets/styles';
-
-/**
- * Product list item props type object. Used to type input props to component ProductListItem.
- */
-type StockListItemPropsType = {
-    item: {
-        name: string;
-        article_number: string;
-        stock: number;
-    };
-};
 
 /**
  * ProductListItem object to return a touchable link element to item detail view.
  *
  * @constructor
- * @param props
+ * @param {ProductListItemProps} props - The properties of the ProductListItem component.
  */
-export const ProductListItem = (props: StockListItemPropsType) => {
+export const ProductListItem: FC<ProductListItemProps> = ({
+    item,
+}: ProductListItemProps): ReactElement => {
     return (
         <View
-            key={props.item.id.toString()}
+            key={item.id}
             style={Style.Container.grid.row as ViewStyle}>
             <Text style={Style.Typography.dataLeft as TextStyle}>
-                {props.item.name}
+                {item.name}
             </Text>
             <Text style={Style.Typography.dataCenter as TextStyle}>
-                {props.item.article_number}
+                {item.article_number}
             </Text>
             <Text style={Style.Typography.dataRight as TextStyle}>
-                {props.item.stock} st
+                {item.stock} st
             </Text>
         </View>
     );

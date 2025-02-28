@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, { FC, ReactElement, useCallback } from 'react';
 import {
     CommonActions,
     RouteProp,
@@ -6,15 +6,22 @@ import {
     useNavigation,
     useRoute,
 } from '@react-navigation/native';
-import { FlatList, Pressable, ViewStyle } from 'react-native';
-import {useAppContext} from '../../context/App.provider';
-import {LoadingIndicator} from '../Utils/LoadingIndicator';
-import * as ProductModel from '../../models/Products';
+import {
+    FlatList,
+    ListRenderItemInfo,
+    Pressable,
+    PressableStateCallbackType,
+    ViewStyle,
+} from 'react-native';
+import { useAppContext } from '../../context/App.provider';
+import { LoadingIndicator } from '../Utils/LoadingIndicator';
+import { getProducts } from '../../models/Products';
 import { ProductListItem } from './ProductListItem';
 import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import { RouteParams } from '../../types/Navigation';
+import { Product } from '../../interfaces/Product';
 import * as Style from '../../assets/styles';
-
+import { AppContext } from '../../interfaces/AppContext';
 
 /**
  * `ProductList` is a functional component that displays a list of products fetched from an API.
@@ -26,10 +33,11 @@ import * as Style from '../../assets/styles';
  * The component also handles loading states and displays a `LoadingIndicator` component while
  * products are being fetched.
  */
-export const ProductList: React.FC = (): React.ReactElement => {
-    const appContext = useAppContext();
+export const ProductList: FC = (): ReactElement => {
+    const appContext: AppContext = useAppContext();
     const navigation = useNavigation();
-    const route = useRoute<RouteProp<RouteParams>>();
+    const route: RouteProp<RouteParams> = useRoute<RouteProp<RouteParams>>();
+    // @ts-expect-error
     let reload: boolean = route.params?.reload ?? false;
 
     /**
@@ -45,7 +53,7 @@ export const ProductList: React.FC = (): React.ReactElement => {
         appContext.setIsRefreshing(true);
 
         try {
-            appContext.setProducts(await ProductModel.getProducts());
+            appContext.setProducts(await getProducts());
         } catch (error) {
             console.warn(error);
         } finally {
@@ -68,30 +76,32 @@ export const ProductList: React.FC = (): React.ReactElement => {
             if (!appContext.products || reload) {
                 void loadProducts();
                 reload = false;
+                // @ts-expect-error
                 navigation.setParams({ reload: false });
             }
         }, [appContext.products, reload, navigation.setParams]),
     );
 
     /**
-     * Renders a single product item as a `Pressable` component. This function is used as the `renderItem`
-     * prop for the `FlatList` component. It styles the item based on the press state and navigates to the
-     * product specification view with the product details on press.
+     * Renders a single product item as a `Pressable` component. This function is used as the
+     * `renderItem` prop for the `FlatList` component. It styles the item based on the press
+     * state and navigates to the product specification view with the product details on press.
      *
-     * @param {Object} item - The product item to render. This object contains the product details.
+     * @param {Product} item - The product item to render.
      */
-    const renderItem = ({ item }) => (
+    const renderItem: (item: ListRenderItemInfo<Product>) => ReactElement = ({
+        item,
+    }: ListRenderItemInfo<Product>): ReactElement => (
         <Pressable
-            key={item.id.toString()}
+            key={item.id}
             onPress={(): void => {
                 navigation.dispatch(
                     CommonActions.navigate(NavPath.Products.ProductItem, {
-                        screen: NavPath.Products.ProductItem,
-                        params: { item },
+                        item,
                     }),
                 );
             }}
-            style={({ pressed }) => [
+            style={({ pressed }: PressableStateCallbackType): ViewStyle[] => [
                 Style.Button.listButton as ViewStyle,
                 {
                     backgroundColor: pressed
@@ -108,7 +118,7 @@ export const ProductList: React.FC = (): React.ReactElement => {
     ) : (
         <FlatList
             data={appContext.products}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item: Product): string => item.id.toString()}
             renderItem={renderItem}
             refreshing={appContext.isRefreshing}
             onRefresh={loadProducts}

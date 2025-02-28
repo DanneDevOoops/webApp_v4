@@ -1,3 +1,13 @@
+import { ParamListBase } from '@react-navigation/native';
+
+/**
+ * Represents the parameters for the `ProductsNavigator` stack navigator.
+ */
+export interface ProductsNavigatorParams extends ParamListBase {
+    ProductsList: undefined;
+    ProductItem: { item: Product };
+}
+
 /**
  * Represents the structure of a product entity within the application.
  * This interface is utilized for type-checking and ensuring consistency in product data handling.
@@ -24,6 +34,19 @@ export interface Product {
     location: string;
     price: number;
     api_key: string;
+}
+
+/**
+ * Interface representing the properties for the `ProductListItem` component.
+ *
+ * This interface defines the structure of the props that are passed to the `ProductListItem` component.
+ * It includes a single property `item` which is of type `Product`.
+ *
+ * @interface ProductListItemProps
+ * @property {Product} item - The product item to be displayed by the `ProductListItem` component.
+ */
+export interface ProductListItemProps extends ParamListBase {
+    item: Product;
 }
 
 /**
