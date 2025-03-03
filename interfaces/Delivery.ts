@@ -1,4 +1,13 @@
-import React from 'react';
+import { ReactElement } from 'react';
+import { ParamListBase } from '@react-navigation/native';
+
+/**
+ * Represents the parameters for the `DeliveriesNavigator` stack navigator.
+ */
+export interface DeliveriesNavigatorParams extends ParamListBase {
+    ProductsList: undefined;
+    ProductItem: { item: Delivery };
+}
 
 /**
  * Represents the structure of a delivery within the application.
@@ -22,7 +31,6 @@ export interface Delivery {
     api_key: string;
 }
 
-
 /**
  * Props for the DeliveryListItem component.
  *
@@ -32,7 +40,6 @@ export interface Delivery {
 export interface DeliveryListItemProps {
     item: Delivery;
 }
-
 
 /**
  * Used for passing props to the DeliveryItem component, containing delivery details.
@@ -54,7 +61,6 @@ export interface DeliveryItemProps {
         };
     };
 }
-
 
 /**
  * Props for the DeliveryListView component.
