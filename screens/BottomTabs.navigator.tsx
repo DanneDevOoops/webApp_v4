@@ -138,7 +138,9 @@ const getScreenOptions = ({
  * @param {AuthContextType} authContext - The authentication context.
  * @returns {ReactElement} The bottom tab screens.
  */
-const getBottomTabScreens = (authContext: AuthContextType): ReactElement => (
+const getBottomTabScreens: FC<AuthContextType> = (
+    authContext: AuthContextType,
+): ReactElement => (
     <>
         <BottomTabs.Screen
             key={NavigationPathKeys.Home.HomeScreen}

@@ -1,8 +1,8 @@
-import React from 'react';
-import { LogBox, ViewStyle } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {NavigationContainer} from '@react-navigation/native';
-import {BottomTabsNavigator} from './screens/BottomTabs.navigator';
+import React, { FC, ReactElement } from 'react';
+import { LogBox } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { BottomTabsNavigator } from './screens/BottomTabs.navigator';
 import * as Style from './assets/styles/index';
 import {
     OleoScriptSwashCaps_400Regular,
@@ -22,8 +22,9 @@ import {
     Merriweather_700Bold,
     Merriweather_700Bold_Italic,
 } from '@expo-google-fonts/merriweather';
-import {useAppContext} from './context/App.provider';
-import {LoadingIndicator} from './components/Utils/LoadingIndicator';
+import { useAppContext } from './context/App.provider';
+import { LoadingIndicator } from './components/Utils/LoadingIndicator';
+import { AppContext } from './interfaces/AppContext';
 
 /**
  * LogBox ignore logs.
@@ -44,8 +45,8 @@ LogBox.ignoreLogs([
  *
  * @constructor
  */
-export const App: React.FC = () => {
-    const appContext = useAppContext();
+export const App: FC = (): ReactElement => {
+    const appContext: AppContext = useAppContext();
     const [fontsLoaded] = useFonts({
         OleoScriptSwashCaps_400Regular,
         OleoScriptSwashCaps_700Bold,
@@ -65,7 +66,7 @@ export const App: React.FC = () => {
     }
 
     return (
-        <SafeAreaView style={Style.Base.mainContainer as ViewStyle}>
+        <SafeAreaView style={Style.Base.mainContainer}>
             <NavigationContainer>
                 <BottomTabsNavigator />
             </NavigationContainer>

@@ -1,4 +1,5 @@
-import { ParamListBase } from '@react-navigation/native';
+import { ParamListBase, RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 /**
  * Represents the parameters for the `ProductsNavigator` stack navigator.
@@ -49,20 +50,44 @@ export interface ProductListItemProps extends ParamListBase {
     item: Product;
 }
 
-/**
- * Defines the structure for creating a new product within the system.
- * This interface specifies the required and optional fields needed when adding a new product.
- *
- * @interface ProductCreate
- * @property {string} api_key - An API key required for product creation operations.
- * @property {string} name - The name of the new product.
- * @property {string} [article_number] - Optional. Article number of the product.
- * @property {string} [description] - Optional. A brief description of the product.
- * @property {string} [specifiers] - Optional. Detailed specifications or characteristics of the product.
- * @property {number} [stock] - Optional. Initial stock quantity for the product.
- * @property {string} [location] - Optional. Initial storage location of the product.
- * @property {number} [price] - Optional. Selling price of the product.
- */
+type StockItemRouteProp = RouteProp<ProductsNavigatorParams, 'ProductItem'>;
+type StockItemNavigationProp = StackNavigationProp<
+    ProductsNavigatorParams,
+    'ProductItem'
+>;
+
+export interface ProductItemProps {
+    route: StockItemRouteProp;
+    navigation?: StockItemNavigationProp;
+}
+
+// export interface ProductItemProps {
+//     route: {
+//         params: {
+//             item: Product;
+//         };
+//     };
+// }
+
+// export interface ProductItemProps {
+//   route: StockItemRouteProp;
+//   navigation: StockItemNavigationProp;
+// }
+
+// /**
+//  * Defines the structure for creating a new product within the system.
+//  * This interface specifies the required and optional fields needed when adding a new product.
+//  *
+//  * @interface ProductCreate
+//  * @property {string} api_key - An API key required for product creation operations.
+//  * @property {string} name - The name of the new product.
+//  * @property {string} [article_number] - Optional. Article number of the product.
+//  * @property {string} [description] - Optional. A brief description of the product.
+//  * @property {string} [specifiers] - Optional. Detailed specifications or characteristics of the product.
+//  * @property {number} [stock] - Optional. Initial stock quantity for the product.
+//  * @property {string} [location] - Optional. Initial storage location of the product.
+//  * @property {number} [price] - Optional. Selling price of the product.
+//  */
 // export interface ProductCreate {
 //     api_key: string;
 //     name: string;
@@ -103,14 +128,14 @@ export interface ProductUpdate {
     price?: number;
 }
 
-/**
- * Defines the structure for deleting an existing product from the system.
- * This interface requires the minimal information necessary to identify and delete a product.
- *
- * @interface ProductDelete
- * @property {number} id - The unique identifier of the product to be deleted.
- * @property {string} api_key - An API key required for product deletion operations.
- */
+// /**
+//  * Defines the structure for deleting an existing product from the system.
+//  * This interface requires the minimal information necessary to identify and delete a product.
+//  *
+//  * @interface ProductDelete
+//  * @property {number} id - The unique identifier of the product to be deleted.
+//  * @property {string} api_key - An API key required for product deletion operations.
+//  */
 // export interface ProductDelete {
 //     id: number;
 //     api_key: string;

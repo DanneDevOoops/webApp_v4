@@ -73,10 +73,15 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     const [user, setUser] = useState<AuthInterfaces.User | undefined>(
         undefined,
     );
-    const [error, setError] = useState<Error | null>(null);
+    // const [error, setError] = useState<Error | null>(null);
 
-    const login = async (email: string, password: string) => {
-        setIsLoading(true);
+    const login: (email: string, password: string) => Promise<void> = async (
+        email: string,
+        password: string,
+    ): Promise<void> => {
+        if (isLoading === false) {
+            setIsLoading(true);
+        }
 
         try {
             // Assuming AuthModel.login() sets some kind of global state or does something else
@@ -94,7 +99,8 @@ export const AuthProvider: FC<AuthProviderProps> = ({
                 }
             });
         } catch (error) {
-            setError(error);
+            // setError(error);
+            console.error('AuthProvider -> login -> error\n', error);
         } finally {
             console.log(
                 'AuthProvider -> login -> finally -> isLoggedIn?',
@@ -115,7 +121,8 @@ export const AuthProvider: FC<AuthProviderProps> = ({
             setUser(undefined);
             setIsLoggedIn(false);
         } catch (error) {
-            setError(error);
+            // setError(error);
+            console.error('AuthProvider -> logout -> error\n', error);
         }
     };
 
@@ -125,7 +132,8 @@ export const AuthProvider: FC<AuthProviderProps> = ({
         try {
             await AuthModel.register(email, password);
         } catch (error) {
-            setError(error);
+            // setError(error);
+            console.error('AuthProvider -> register -> error\n', error);
         } finally {
             setIsLoading(false);
         }

@@ -1,36 +1,33 @@
-/**
- * Module imports.
- */
 // import { ReactElement } from 'react';
 
-/**
- * A functional component that renders a list of invoices.
- *
- * This component utilizes the application context to manage and display invoices. It listens
- * for focus events to determine when to reload invoices, either based on a specific request or
- * the absence of invoices in the context. The component provides functionality to refresh the
- * invoice list manually. Each invoice item is rendered as a pressable component, allowing users
- * to navigate to a detailed view upon interaction.
- *
- * The component's rendering behavior is conditional: it displays a loading indicator while
- * invoices are being fetched or refreshed; otherwise, it displays a list of invoices. The list
- * is interactive, with each item leading to a detailed invoice specification screen upon press.
- *
- * Key Functions:
- * - `loadInvoices`: Asynchronously fetches invoices from the server and updates the
- *      application context.
- * - `useFocusEffect`: React hook that triggers `loadInvoices` based on component focus and
- *      specific conditions.
- * - `renderItem`: Renders individual invoice items as pressable components for interaction.
- *
- * Usage:
- * This component should be used within a navigation context where the invoice list needs to be
- * displayed and interacted with. It requires the application context to be properly initialized
- * and available.
- *
- * @returns {ReactElement} A component that displays a list of invoices or a loading indicator
- * based on the application state.
- */
+// /**
+//  * A functional component that renders a list of invoices.
+//  *
+//  * This component utilizes the application context to manage and display invoices. It listens
+//  * for focus events to determine when to reload invoices, either based on a specific request or
+//  * the absence of invoices in the context. The component provides functionality to refresh the
+//  * invoice list manually. Each invoice item is rendered as a pressable component, allowing users
+//  * to navigate to a detailed view upon interaction.
+//  *
+//  * The component's rendering behavior is conditional: it displays a loading indicator while
+//  * invoices are being fetched or refreshed; otherwise, it displays a list of invoices. The list
+//  * is interactive, with each item leading to a detailed invoice specification screen upon press.
+//  *
+//  * Key Functions:
+//  * - `loadInvoices`: Asynchronously fetches invoices from the server and updates the
+//  *      application context.
+//  * - `useFocusEffect`: React hook that triggers `loadInvoices` based on component focus and
+//  *      specific conditions.
+//  * - `renderItem`: Renders individual invoice items as pressable components for interaction.
+//  *
+//  * Usage:
+//  * This component should be used within a navigation context where the invoice list needs to be
+//  * displayed and interacted with. It requires the application context to be properly initialized
+//  * and available.
+//  *
+//  * @returns {ReactElement} A component that displays a list of invoices or a loading indicator
+//  * based on the application state.
+//  */
 // export const InvoiceList: FC = (): ReactElement => {
 //     const appContext = useAppContext();
 //     const navigation = useNavigation();

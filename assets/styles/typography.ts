@@ -258,6 +258,7 @@ export const baseDataField: TextStyle = {
     fontSize: fontSize.text,
     fontWeight: fontWeight.text as TextStyle['fontWeight'],
     fontFamily: fontFamily.text,
+    color: Color.text.dark,
 };
 
 /**
@@ -285,6 +286,7 @@ export const baseDataField: TextStyle = {
 export const dataLeft: TextStyle = {
     ...baseDataField,
     textAlign: 'left',
+    color: Color.text.dark,
 };
 
 /**
@@ -312,6 +314,7 @@ export const dataLeft: TextStyle = {
 export const dataCenter: TextStyle = {
     ...baseDataField,
     textAlign: 'center',
+    color: Color.text.dark,
 };
 
 /**

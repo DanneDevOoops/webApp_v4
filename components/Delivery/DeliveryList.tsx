@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { FC, ReactElement, useCallback } from 'react';
 import { useAppContext } from '../../context/App.provider';
 import {
     CommonActions,
@@ -7,7 +7,14 @@ import {
     useNavigation,
     useRoute,
 } from '@react-navigation/native';
-import { Pressable, Text, TextStyle, View, ViewStyle } from 'react-native';
+import {
+    Pressable,
+    PressableStateCallbackType,
+    Text,
+    TextStyle,
+    View,
+    ViewStyle,
+} from 'react-native';
 import { DeliveryListItem } from './DeliveryListItem';
 import { LoadingIndicator } from '../Utils/LoadingIndicator';
 import * as DeliveriesInterfaces from '../../interfaces/Delivery';
@@ -15,15 +22,16 @@ import * as DeliveryModel from '../../models/Deliveries';
 import * as ProductModel from '../../models/Products';
 import { DeliveryListView } from './DeliveryListView';
 import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
+import { AppContext } from '../../interfaces/AppContext';
 import { RouteParams } from '../../types/Navigation';
 import * as Style from '../../assets/styles';
 
-
-export const DeliveryList: React.FC = (): React.ReactElement => {
-    const appContext = useAppContext();
+export const DeliveryList: FC = (): ReactElement => {
+    const appContext: AppContext = useAppContext();
     const navigation = useNavigation();
-    const route = useRoute<RouteProp<RouteParams>>();
-    let reload: boolean | null = route.params?.reload ?? false;
+    const route: RouteProp<RouteParams> = useRoute<RouteProp<RouteParams>>();
+    // @ts-expect-error  this is hard to type correctly, cant fint the correct type or interface
+    let reload: boolean = route.params?.reload ?? false;
 
     async function loadDeliveries(): Promise<void> {
         appContext.setIsRefreshing(true);
@@ -41,7 +49,7 @@ export const DeliveryList: React.FC = (): React.ReactElement => {
 
     useFocusEffect(
         useCallback((): void => {
-            if (!appContext.deliveries || reload === true) {
+            if (!appContext.deliveries || reload) {
                 void loadDeliveries().then((): void => {
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-expect-error
@@ -56,7 +64,7 @@ export const DeliveryList: React.FC = (): React.ReactElement => {
         item,
     }: {
         item: DeliveriesInterfaces.Delivery;
-    }): React.ReactElement => (
+    }): ReactElement => (
         <Pressable
             key={item.id}
             onPress={(): void => {
@@ -68,7 +76,7 @@ export const DeliveryList: React.FC = (): React.ReactElement => {
                     }),
                 );
             }}
-            style={({ pressed }): ViewStyle[] => [
+            style={({ pressed }: PressableStateCallbackType): ViewStyle[] => [
                 Style.Button.listButton as ViewStyle,
                 {
                     backgroundColor: pressed

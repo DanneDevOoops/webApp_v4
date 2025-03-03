@@ -30,19 +30,19 @@ export interface Order {
     order_items: OrderItem[] | [];
 }
 
-/**
- * Defines the required and optional fields for creating a new order.
- *
- * @interface OrderCreate
- * @property {string} name - Name associated with the order.
- * @property {string} api_key - API key required for order creation.
- * @property {string} [address] - Optional delivery address for the order.
- * @property {string} [zip] - Optional ZIP/postal code for the delivery address.
- * @property {string} [city] - Optional city of the delivery address.
- * @property {string} [country] - Optional country of the delivery address.
- * @property {string} [image_url] - Optional URL of the image associated with the order.
- * @property {number} [status_id] - Optional numeric identifier for the order's status.
- */
+// /**
+//  * Defines the required and optional fields for creating a new order.
+//  *
+//  * @interface OrderCreate
+//  * @property {string} name - Name associated with the order.
+//  * @property {string} api_key - API key required for order creation.
+//  * @property {string} [address] - Optional delivery address for the order.
+//  * @property {string} [zip] - Optional ZIP/postal code for the delivery address.
+//  * @property {string} [city] - Optional city of the delivery address.
+//  * @property {string} [country] - Optional country of the delivery address.
+//  * @property {string} [image_url] - Optional URL of the image associated with the order.
+//  * @property {number} [status_id] - Optional numeric identifier for the order's status.
+//  */
 // export interface OrderCreate {
 //     // Required fields.
 //     name: string;
@@ -86,13 +86,13 @@ export interface OrderUpdate {
     status_id?: number;
 }
 
-/**
- * Defines the structure for deleting an existing order.
- *
- * @interface OrderDelete
- * @property {number} id - Unique identifier for the order to be deleted.
- * @property {string} api_key - API key required for deleting the order.
- */
+// /**
+//  * Defines the structure for deleting an existing order.
+//  *
+//  * @interface OrderDelete
+//  * @property {number} id - Unique identifier for the order to be deleted.
+//  * @property {string} api_key - API key required for deleting the order.
+//  */
 // export interface OrderDelete {
 //     id: number;
 //     api_key: string;
@@ -143,14 +143,14 @@ export interface OrderItemProps {
     navigation: NativeStackNavigatorProps;
 }
 
-/**
- * Represents a visual indicator element for the stock status of an order item.
- *
- * @interface OrderStockIndicatorElement
- * @property {string} icon - Icon representing the stock status.
- * @property {string} color - Color code representing the stock status visually.
- * @property {string} text - Text description of the stock status.
- */
+// /**
+//  * Represents a visual indicator element for the stock status of an order item.
+//  *
+//  * @interface OrderStockIndicatorElement
+//  * @property {string} icon - Icon representing the stock status.
+//  * @property {string} color - Color code representing the stock status visually.
+//  * @property {string} text - Text description of the stock status.
+//  */
 // export interface OrderStockIndicatorElement {
 //     icon: string;
 //     color: string;

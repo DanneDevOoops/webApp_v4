@@ -69,11 +69,11 @@ export interface DeliveryItemProps {
  * @property {Delivery[] | null} deliveries - An array of delivery items or null if no deliveries are available.
  * @property {boolean} isRefreshing - A boolean indicating whether the list is currently being refreshed.
  * @property {() => void} onRefresh - A function to be called when the list needs to be refreshed.
- * @property {({ item }: { item: Delivery }) => React.ReactElement} renderItem - A function that renders a delivery item.
+ * @property {({ item }: { item: Delivery }) => ReactElement} renderItem - A function that renders a delivery item.
  */
 export interface DeliveryListViewProps {
     deliveries: Delivery[] | null;
     isRefreshing: boolean;
     onRefresh: () => void;
-    renderItem: ({item}: { item: Delivery }) => React.ReactElement;
+    renderItem: ({ item }: { item: Delivery }) => ReactElement;
 }

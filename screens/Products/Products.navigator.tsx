@@ -7,7 +7,8 @@
  * - StockItem: Displays detailed information about a selected product.
  *
  * The navigator is wrapped in a SafeAreaView to ensure it is displayed correctly on all devices.
- * It also includes a FlashMessage component for displaying notifications and a StatusBar component.
+ * It also includes a FlashMessage component for displaying notifications and a StatusBar
+ * component.
  */
 import React, { FC, ReactElement } from 'react';
 import { SafeAreaView, Text, TextStyle, View, ViewStyle } from 'react-native';

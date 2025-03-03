@@ -18,22 +18,23 @@ import DateTimePicker, {
     DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
 import { useAppContext } from '../../context/App.provider';
+import { AppContext } from '../../interfaces/AppContext';
 import { Picker } from '@react-native-picker/picker';
 import { LoadingIndicator } from '../../components/Utils/LoadingIndicator';
 import { StatusBar } from 'expo-status-bar';
 import * as InvoiceInterfaces from '../../interfaces/Invoice';
 import * as InvoiceModel from '../../models/Invoices';
 import * as OrderInterfaces from './../../interfaces/Order';
-import { Order } from './../../interfaces/Order';
+import { Order } from '../../interfaces/Order';
 import * as OrderModel from '../../models/Orders';
 import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import { RouteParams } from '../../types/Navigation';
 import * as Style from '../../assets/styles';
 
 export const InvoiceForm: FC = (): ReactElement => {
-    const appContext = useAppContext();
+    const appContext: AppContext = useAppContext();
     const navigation = useNavigation();
-    const route = useRoute<RouteProp<RouteParams>>();
+    const route: RouteProp<RouteParams> = useRoute<RouteProp<RouteParams>>();
     const [selectedOrder, setSelectedOrder] =
         useState<OrderInterfaces.Order | null>(
             (appContext.orders.filter(

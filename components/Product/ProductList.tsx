@@ -19,9 +19,9 @@ import { getProducts } from '../../models/Products';
 import { ProductListItem } from './ProductListItem';
 import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
 import { RouteParams } from '../../types/Navigation';
+import { AppContext } from '../../interfaces/AppContext';
 import { Product } from '../../interfaces/Product';
 import * as Style from '../../assets/styles';
-import { AppContext } from '../../interfaces/AppContext';
 
 /**
  * `ProductList` is a functional component that displays a list of products fetched from an API.
@@ -37,7 +37,7 @@ export const ProductList: FC = (): ReactElement => {
     const appContext: AppContext = useAppContext();
     const navigation = useNavigation();
     const route: RouteProp<RouteParams> = useRoute<RouteProp<RouteParams>>();
-    // @ts-expect-error
+    // @ts-expect-error  this is hard to type correctly, cant fint the correct type or interface
     let reload: boolean = route.params?.reload ?? false;
 
     /**
@@ -76,7 +76,7 @@ export const ProductList: FC = (): ReactElement => {
             if (!appContext.products || reload) {
                 void loadProducts();
                 reload = false;
-                // @ts-expect-error
+                // @ts-expect-error  this is hard to type correctly, cant fint the correct type or interface
                 navigation.setParams({ reload: false });
             }
         }, [appContext.products, reload, navigation.setParams]),

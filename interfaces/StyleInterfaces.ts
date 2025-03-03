@@ -13,7 +13,7 @@ import { ColorValue } from 'react-native';
  * Interface representing an object with numeric keys and string values.
  *
  * @interface NumKeyStrValuesAttributeType
- * @property {string} [key: number] - The value associated with the numeric key.
+ * @property {string} [key] - The value associated with the numeric key.
  */
 export interface NumKeyStrValuesAttributeType {
     [key: number]: string;
@@ -23,7 +23,7 @@ export interface NumKeyStrValuesAttributeType {
  * Interface representing an object with string keys and numeric values.
  *
  * @interface StrKeyNumValueAttributeType
- * @property {number} [key: string] - The value associated with the string key.
+ * @property {number} [key] - The value associated with the string key.
  */
 export interface StrKeyNumValueAttributeType {
     [key: string]: number;
@@ -33,7 +33,7 @@ export interface StrKeyNumValueAttributeType {
  * Interface representing an object with numeric keys and numeric values.
  *
  * @interface NumKeyNumValueAttributeType
- * @property {number} [key: number] - The value associated with the numeric key.
+ * @property {number} [key] - The value associated with the numeric key.
  */
 export interface NumKeyNumValueAttributeType {
     [key: number]: number;
@@ -43,7 +43,7 @@ export interface NumKeyNumValueAttributeType {
  * Interface representing an object with string keys and string values.
  *
  * @interface StrKeyStrValueAttributeType
- * @property {string} [key: string] - The value associated with the string key.
+ * @property {string} [key] - The value associated with the string key.
  */
 export interface StrKeyStrValueAttributeType {
     [key: string]: string;

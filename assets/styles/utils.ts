@@ -6,7 +6,7 @@
  * loading indicator as an example but you can put any style utils here.
  */
 
-import { TextStyle, ViewStyle } from 'react-native';
+import { TextStyle } from 'react-native';
 import * as Color from './colors';
 import * as Typography from './typography';
 import {
@@ -44,7 +44,6 @@ export const loadingIndicator: LoadingIndicatorStyleType = {
  * overflow.
  *
  * @constant
- * @type {ViewStyle}
  * @property {string} width - Sets the width of the container to 100%.
  * @property {string} height - Sets the height of the container to auto, allowing it to be
  *      determined by the content.
