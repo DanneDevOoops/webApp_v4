@@ -120,6 +120,8 @@ export const grid = {
         flexWrap: 'wrap',
         gap: Typography.whiteSpace[25],
         justifyContent: 'space-between',
+
+        color: Color.text.dark,
     },
     rowNoPadding: {
         width: '100%',
@@ -254,62 +256,3 @@ export const cautionMsgContainer = {
     ...baseMsgContainer,
     backgroundColor: Color.indicator.caution[300],
 };
-
-/**
- * Containers.
- */
-// export const containers = {
-//     // Paddings & Margins
-//
-//     // Markers explained:
-//     // H = Horizontal, V = Vertical,
-//     // T = Top, B = Bottom, L = Left, R = Right,
-//
-//     //Base
-//     basePaddingH: (Dimensions.get('screen').width / 100) * 3, // 3% of screen size
-//     basePaddingV: 10,
-//     baseMarginH: (Dimensions.get('screen').width / 100) * 3, // 3% of screen size,
-//     baseMarginV: 10,
-//
-//     // Container
-//     containerPaddingH: 12,
-//     containerPaddingV: 12,
-//     containerMarginH: 10,
-//     containerMarginV: 10,
-//     containerMarginB: 10,
-//
-//     // Header
-//     headerPaddingH: 12,
-//     headerPaddingV: 40,
-//     headerMarginT: 12,
-//     headerMarginB: 24,
-//     headerMarginH: 12,
-//     headerMarginV: 10,
-//
-//     // subHeader
-//     subHeaderPaddingH: 12,
-//     subHeaderPaddingV: 10,
-//     subHeaderMarginH: 12,
-//     subHeaderMarginV: 10,
-//     subHeaderMarginT: 12,
-//     subHeaderMarginB: 22,
-//
-//     // Paragraph
-//     textPaddingH: 12,
-//     textPaddingV: 10,
-//     textPaddingT: 10,
-//     textPaddingB: 10,
-//     textMarginH: 12,
-//     textMarginV: 10,
-//
-//     // Buttons
-//     btnPaddingH: 15,
-//     btnPaddingV: 8,
-//     btnMarginH: 10,
-//     btnMarginV: 10,
-//     btnBigMarginB: 1,
-//     btnSmallMarginB: 10,
-//
-//     // BorderRadius
-//     bthRadius: 5,
-// };
