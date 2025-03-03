@@ -36,7 +36,13 @@ module.exports = {
             version: 'detect',
         },
     },
-    plugins: ['react', '@typescript-eslint', 'import', 'jsx-a11y', 'react-native'],
+    plugins: [
+        'react',
+        '@typescript-eslint',
+        'import',
+        'jsx-a11y',
+        'react-native',
+    ],
     rules: {
         'no-array-constructor': 'off',
         '@typescript-eslint/no-array-constructor': ['error'],
@@ -48,7 +54,7 @@ module.exports = {
         '@typescript-eslint/no-implied-eval': ['error'],
         'no-loss-of-precision': 'off',
         '@typescript-eslint/no-loss-of-precision': ['error'],
-        'no-unused-vars': 'off',
+        'no-unused-vars': 'warn',
         '@typescript-eslint/no-unused-vars': ['error'],
         'require-await': 'off',
         '@typescript-eslint/require-await': 'error',
