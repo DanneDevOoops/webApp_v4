@@ -9,7 +9,7 @@
  */
 
 import { Dimensions, ImageStyle } from 'react-native';
-import { whiteSpace } from './typography';
+import { TypographyStyles as Typography } from './typography';
 // import * as Typography from './typography';  // Uncomment this line to import full typography
 // styles module.
 
@@ -55,5 +55,5 @@ export const imageContainer: ImageStyle = {
     alignItems: 'center',
     width: Dimensions.get('screen').width,
     height: (Dimensions.get('screen').width / 16) * 6,
-    marginBottom: whiteSpace[100],
+    marginBottom: Typography.whiteSpace[100],
 };

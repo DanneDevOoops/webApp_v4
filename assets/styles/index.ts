@@ -5,13 +5,15 @@
  */
 import * as Abstract from './abstracts';
 import * as Base from './base';
-import * as Button from './buttons';
+import { ButtonStyles as Button } from './buttons';
 import * as Color from './colors';
-import * as Container from './containers';
-import * as Form from './forms';
+// import * as Container from './containers';
+import { ContainerStyles as Container } from './containers';
+import { FormStyles as Form } from './forms';
+import { MenuStyles as Menu } from './menus';
 import * as Image from './images';
-import * as Typography from './typography';
-import * as Utils from './utils';
+import { TypographyStyles as Typography } from './typography';
+import { UtilityStyles as Utils } from './utils';
 import * as Variable from './variables';
 
 /**
@@ -27,6 +29,7 @@ export {
     Container,
     Form,
     Image,
+    Menu,
     Typography,
     Utils,
     Variable,

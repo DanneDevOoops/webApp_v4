@@ -9,10 +9,10 @@
  * components in the user interface.
  */
 
-import { ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
 import * as Abstract from './abstracts';
 import * as Color from './colors';
-import * as Typography from './typography';
+import { TypographyStyles as Typography } from './typography';
 import * as Variable from './variables';
 
 /**
@@ -36,44 +36,34 @@ import * as Variable from './variables';
  * @property {number} shadowRadius - The radius of the button shadow.
  * @property {number} elevation - The elevation of the button.
  */
-export const baseButton: ViewStyle = {
-    overflow: 'hidden',
-    width: '100%',
-    height: 'auto',
-    paddingHorizontal: Typography.whiteSpace[50],
-    paddingVertical: Typography.whiteSpace[25],
-    marginVertical: Typography.whiteSpace[25],
-    marginHorizontal: Typography.whiteSpace[10],
-    alignSelf: 'center',
-    borderRadius: Variable.borderRadius.button,
-    backgroundColor: Color.background.light,
-    shadowColor: Color.shadows[400],
-    shadowOffset: Abstract.shadow.btnOffset,
-    shadowOpacity: Abstract.shadow.buttonOpacity,
-    shadowRadius: Abstract.shadow.buttonRadius,
-    elevation: Abstract.abstracts.buttonElevation,
-};
 
-/**
- * List button properties.
- *
- * Inherits properties from `baseButton` and overrides the background color.
- *
- * @property {string} backgroundColor - The background color of the list button.
- */
-export const listButton: ViewStyle = {
-    ...baseButton,
-    backgroundColor: Color.schemeOne.primary[300],
-};
+const ButtonBase = StyleSheet.create({
+    button: {
+        overflow: 'hidden',
+        width: '100%',
+        height: 'auto',
+        paddingHorizontal: Typography.whiteSpace[50],
+        paddingVertical: Typography.whiteSpace[25],
+        marginVertical: Typography.whiteSpace[25],
+        marginHorizontal: Typography.whiteSpace[10],
+        alignSelf: 'center',
+        borderRadius: Variable.borderRadius.button,
+        backgroundColor: Color.background.light,
+        shadowColor: Color.shadows[400],
+        shadowOffset: Abstract.shadow.btnOffset,
+        shadowOpacity: Abstract.shadow.buttonOpacity,
+        shadowRadius: Abstract.shadow.buttonRadius,
+        elevation: Abstract.abstracts.buttonElevation,
+    },
+});
 
-/**
- * Button container properties.
- *
- * Inherits properties from `baseButton` and overrides the background color.
- *
- * @property {string} backgroundColor - The background color of the button container.
- */
-export const buttonContainer: ViewStyle = {
-    ...baseButton,
-    backgroundColor: Color.schemeOne.primary[300],
-};
+export const ButtonStyles = StyleSheet.create({
+    listButton: {
+        ...ButtonBase.button,
+        backgroundColor: Color.schemeOne.primary[300],
+    },
+    buttonContainer: {
+        ...ButtonBase.button,
+        backgroundColor: Color.schemeOne.primary[300],
+    },
+});

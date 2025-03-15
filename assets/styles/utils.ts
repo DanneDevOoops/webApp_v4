@@ -6,14 +6,37 @@
  * loading indicator as an example but you can put any style utils here.
  */
 
-import { TextStyle } from 'react-native';
+import { StyleSheet, TextStyle } from 'react-native';
+import { TypographyStyles as Typography } from './typography';
 import * as Color from './colors';
-import * as Typography from './typography';
-import {
-    LoadingIndicatorContainerStyleType,
-    LoadingIndicatorStyleType,
-    LoadingIndicatorTextType,
-} from '../../interfaces/UtilsInterfaces';
+
+export const UtilityStyles = StyleSheet.create({
+    loadingIndicator: {
+        width: '100%',
+        height: 'auto',
+        color: Color.schemeOne.primary[300] as string,
+    },
+
+    loadingIndicatorContainer: {
+        width: '100%',
+        height: 'auto',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        backgroundColor: Color.background.light,
+    },
+
+    loadingIndicatorText: {
+        paddingVertical: Typography.whiteSpace[100],
+        paddingHorizontal: Typography.whiteSpace[100],
+        color: Color.text.dark,
+        fontSize: 16,
+        fontWeight: Typography.fontWeight.h4 as TextStyle['fontWeight'],
+        fontFamily: Typography.fontFamily.subHeader,
+        textAlign: 'center',
+    },
+});
 
 /**
  * Loading indicator attributes.
@@ -29,12 +52,12 @@ import {
  *      be determined by the content.
  * @property {string} color - Sets the color of the loading indicator based on the color scheme.
  */
-export const loadingIndicator: LoadingIndicatorStyleType = {
-    size: 'large',
-    width: '100%',
-    height: 'auto',
-    color: Color.schemeOne.primary[300] as string,
-};
+// export const loadingIndicator: LoadingIndicatorStyleType = {
+//     size: 'large',
+//     width: '100%',
+//     height: 'auto',
+//     color: Color.schemeOne.primary[300] as string,
+// };
 
 /**
  * Loading indicator container attributes.
@@ -54,15 +77,15 @@ export const loadingIndicator: LoadingIndicatorStyleType = {
  * @property {string} overflow - Sets the overflow property to hidden, preventing content from
  *      overflowing the container.
  */
-export const loadingIndicatorContainer: LoadingIndicatorContainerStyleType = {
-    width: '100%',
-    height: 'auto',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    backgroundColor: Color.background.light as string,
-};
+// export const loadingIndicatorContainer: LoadingIndicatorContainerStyleType = {
+//     width: '100%',
+//     height: 'auto',
+//     flex: 1,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     overflow: 'hidden',
+//     backgroundColor: Color.background.light,
+// };
 
 /**
  * Loading indicator text attributes.
@@ -85,12 +108,12 @@ export const loadingIndicatorContainer: LoadingIndicatorContainerStyleType = {
  *      fontFamily scale.
  * @property {string} textAlign - Aligns the text in the center.
  */
-export const loadingIndicatorText: LoadingIndicatorTextType = {
-    paddingVertical: Typography.whiteSpace[100],
-    paddingHorizontal: Typography.whiteSpace[100],
-    color: Color.text.dark as string,
-    fontSize: 16,
-    fontWeight: Typography.fontWeight.h4 as TextStyle['fontWeight'],
-    fontFamily: Typography.fontFamily.subHeader,
-    textAlign: 'center',
-};
+// export const loadingIndicatorText: LoadingIndicatorTextType = {
+//     paddingVertical: Typography.whiteSpace[100],
+//     paddingHorizontal: Typography.whiteSpace[100],
+//     color: Color.text.dark,
+//     fontSize: 16,
+//     fontWeight: Typography.fontWeight.h4 as TextStyle['fontWeight'],
+//     fontFamily: Typography.fontFamily.subHeader,
+//     textAlign: 'center',
+// };
