@@ -4,25 +4,31 @@
  * products, orders, deliveries, and invoices. It facilitates state management
  * across the application by providing a context provider and a custom hook.
  */
-import React, { createContext, useState } from 'react';
-import * as AppContextInterfaces from '../interfaces/AppContext';
-import * as DeliveriesInterfaces from '../interfaces/Delivery';
-import * as OrdersInterfaces from '../interfaces/Order';
-import * as ProductsInterfaces from '../interfaces/Product';
-import * as InvoicesInterfaces from '../interfaces/Invoice';
-import * as UserPositionInterfaces from '../interfaces/UserPosition';
+import React, { createContext, ReactElement, useState } from 'react';
+import { AppContextType, AppProviderProps } from '../interfaces/app-interfaces';
+import { Delivery } from '../interfaces/delivery-interfaces';
+import { Order } from '../interfaces/order-interfaces';
+import { Product } from '../interfaces/product-interfaces';
+import { Invoice } from '../interfaces/invoice-interfaces';
+import { UserPosition } from '../interfaces/user-interfaces';
 
 /**
- * `AppContext` is a React context object initialized with default values for
+ * `AppContextType` is a React context object initialized with default values for
  * application state management, including loading indicators, lists of products,
  * orders, deliveries, and invoices, along with functions to update these states.
  */
-const AppContext = createContext<AppContextInterfaces.AppContext>({
+const AppContext = createContext<AppContextType>({
+    // App data
     isLoading: false,
-    setIsLoading(): void {},
+    setIsLoading(): void {
+        return;
+    },
     isRefreshing: false,
-    setIsRefreshing: (): void => {},
+    setIsRefreshing: (): void => {
+        return;
+    },
 
+    // Warehouse data
     products: [],
     setProducts: () => [],
     orders: [],
@@ -32,38 +38,34 @@ const AppContext = createContext<AppContextInterfaces.AppContext>({
     invoices: [],
     setInvoices: () => [],
 
+    // User data
     userPosition: null,
-    setUserPosition: (): void => {},
+    setUserPosition: (): void => {
+        return;
+    },
 });
 
 /**
  * `AppProvider` is a React functional component that wraps its children with the
- * `AppContext.Provider`, allowing them to access and manipulate the application's
+ * `AppContextType.Provider`, allowing them to access and manipulate the application's
  * state such as loading indicators, products, orders, deliveries, and invoices.
  *
  * @param children - The child components that will have access
  * to the context.
  */
-export const AppProvider: React.FC<AppContextInterfaces.AppProviderProps> = ({
+export const AppProvider: React.FC<AppProviderProps> = ({
     children,
-}) => {
+}: AppProviderProps): ReactElement => {
     // User interaction indicators
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
 
     // API Objects
-    const [products, setProducts] = useState<
-        ProductsInterfaces.Product[] | null
-    >(null);
-    const [orders, setOrders] = useState<OrdersInterfaces.Order[] | null>(null);
-    const [deliveries, setDeliveries] = useState<
-        DeliveriesInterfaces.Delivery[] | null
-    >(null);
-    const [invoices, setInvoices] = useState<
-        InvoicesInterfaces.Invoice[] | null
-    >(null);
-    const [userPosition, setUserPosition] =
-        useState<UserPositionInterfaces.UserPosition | null>(null);
+    const [products, setProducts] = useState<Product[] | null>(null);
+    const [orders, setOrders] = useState<Order[] | null>(null);
+    const [deliveries, setDeliveries] = useState<Delivery[] | null>(null);
+    const [invoices, setInvoices] = useState<Invoice[] | null>(null);
+    const [userPosition, setUserPosition] = useState<UserPosition | null>(null);
 
     return (
         <AppContext.Provider
@@ -95,7 +97,6 @@ export const AppProvider: React.FC<AppContextInterfaces.AppProviderProps> = ({
  * context. It returns the context value, providing access to the application's state
  * and functions to manipulate it.
  *
- * @returns {AppContextInterfaces.AppContext} The application context value.
+ * @returns {AppContextType} The application context value.
  */
-export const useAppContext = (): AppContextInterfaces.AppContext =>
-    React.useContext(AppContext);
+export const useAppContext = (): AppContextType => React.useContext(AppContext);

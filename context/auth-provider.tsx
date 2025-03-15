@@ -19,12 +19,11 @@ import React, {
     useState,
 } from 'react';
 import * as SecureStore from 'expo-secure-store';
-import * as AuthInterfaces from '../interfaces/Auth.interfaces';
 import {
     AuthContextType,
     AuthProviderProps,
-} from '../interfaces/Auth.interfaces';
-import * as AuthModel from '../models/Auth';
+} from '../interfaces/auth-interfaces';
+import * as AuthModel from '../models/auth-models';
 
 /**
  * Authentication context.
@@ -35,19 +34,19 @@ import * as AuthModel from '../models/Auth';
  *
  * @context
  */
-const AuthContext: React.Context<AuthInterfaces.AuthContextType> =
+const AuthContext: React.Context<AuthContextType> =
     createContext<AuthContextType>({
-        user: undefined,
-        setUser(user: AuthInterfaces.User | undefined): void {},
         isLoggedIn: false,
-        setIsLoggedIn: (): void => {},
-        login: async (email: string, password: string): Promise<void> => {
-            await AuthModel.login(email, password);
+        setIsLoggedIn: (value: boolean): boolean => {
+            return value;
+        },
+        login: async (email: string, password: string) => {
+            return !!(await AuthModel.login(email, password));
         },
         logout: async (): Promise<void> => {
             await AuthModel.logout();
         },
-        register: async (email: string, password: string): Promise<void> => {
+        register: async (email: string, password: string) => {
             await AuthModel.register(email, password);
         },
     });
@@ -70,58 +69,49 @@ export const AuthProvider: FC<AuthProviderProps> = ({
 }: AuthProviderProps): ReactElement => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-    const [user, setUser] = useState<AuthInterfaces.User | undefined>(
-        undefined,
-    );
-    // const [error, setError] = useState<Error | null>(null);
 
-    const login: (email: string, password: string) => Promise<void> = async (
-        email: string,
-        password: string,
-    ): Promise<void> => {
-        if (isLoading === false) {
-            setIsLoading(true);
+    const login = async (email: string, password: string) => {
+        if (isLoading !== true) {
+            setIsLoggedIn(true);
         }
+
+        console.info(
+            `2.1. AuthProvider.login(\n    email: ${email}\n    password: ${password}\n)`,
+        );
 
         try {
-            // Assuming AuthModel.login() sets some kind of global state or does something else
-            // that makes the user "logged in" from the system's perspective.
-            await AuthModel.login(email, password).then((user) => {
-                console.info('AuthProvider -> login -> user\n', user);
+            const authResponse:
+                | {
+                      title: string;
+                      message: string | undefined;
+                      type: string;
+                  }
+                | undefined = await AuthModel.login(email, password);
 
-                if (typeof user !== 'undefined') {
-                    setUser(user);
-                    setIsLoggedIn(true);
-                    return true;
-                } else {
-                    setIsLoggedIn(false);
-                    return false;
-                }
-            });
+            if (authResponse && authResponse.type === 'success') {
+                setIsLoggedIn(true);
+                return true;
+            } else {
+                setIsLoggedIn(false);
+                return false;
+            }
         } catch (error) {
-            // setError(error);
             console.error('AuthProvider -> login -> error\n', error);
         } finally {
-            console.log(
-                'AuthProvider -> login -> finally -> isLoggedIn?',
-                isLoggedIn,
-            );
             setIsLoading(false);
         }
-    };
 
-    // const checkLoginStatus = async (): Promise<void> => {
-    //     const loggedIn = await AuthModel.loggedIn();
-    //     setIsLoggedIn(loggedIn);
-    // };
+        return false;
+    };
 
     const logout = async (): Promise<void> => {
         try {
-            await SecureStore.deleteItemAsync('token');
-            setUser(undefined);
-            setIsLoggedIn(false);
+            await SecureStore.deleteItemAsync('token').then((): void => {
+                setIsLoggedIn(false);
+
+                return;
+            });
         } catch (error) {
-            // setError(error);
             console.error('AuthProvider -> logout -> error\n', error);
         }
     };
@@ -132,7 +122,6 @@ export const AuthProvider: FC<AuthProviderProps> = ({
         try {
             await AuthModel.register(email, password);
         } catch (error) {
-            // setError(error);
             console.error('AuthProvider -> register -> error\n', error);
         } finally {
             setIsLoading(false);
@@ -142,8 +131,6 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     return (
         <AuthContext.Provider
             value={{
-                user,
-                setUser,
                 isLoggedIn,
                 setIsLoggedIn,
                 login,
