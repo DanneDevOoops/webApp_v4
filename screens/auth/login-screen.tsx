@@ -9,7 +9,7 @@
 import React, { ReactElement } from 'react';
 import { View } from 'react-native';
 
-import { LoginForm } from '../../components/auth/LoginForm';
+import { LoginForm } from '../../components/auth/login-form';
 import { CoverImage } from '../../components/utils/cover-image';
 import coverIMG from '../../assets/img/NutsAndBolts-5.jpg';
 import * as Style from '../../assets/styles';
