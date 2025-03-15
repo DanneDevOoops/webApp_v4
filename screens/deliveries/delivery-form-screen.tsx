@@ -5,7 +5,7 @@
  * amount, delivery date, and comments. The form also includes a date picker for selecting the delivery date.
  * Upon form submission, a new delivery is created and the selected product's stock is updated.
  */
-import React, { FC, ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import {
     Button,
     Platform,
@@ -13,27 +13,25 @@ import {
     ScrollView,
     Text,
     TextInput,
-    TextStyle,
     View,
-    ViewStyle,
 } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker, {
+    DateTimePickerEvent,
+} from '@react-native-community/datetimepicker';
 import { StatusBar } from 'expo-status-bar';
 import { showMessage } from 'react-native-flash-message';
 import { CommonActions, useNavigation } from '@react-navigation/native';
-import { DeliveryProductPicker } from '../../components/Delivery/DeliveryProductPicker';
-import { useAppContext } from '../../context/App.provider';
+import { DeliveryProductPicker } from '../../components/delivery/delivery-product-picker';
+import { useAppContext } from '../../context/app-provider';
 import config from '../../config/config.json';
-import * as DeliveriesInterfaces from '../../interfaces/Delivery';
-import { Delivery } from '../../interfaces/Delivery';
-import * as StockInterfaces from '../../interfaces/Product';
-import { Product } from '../../interfaces/Product';
-import * as DeliveryModel from '../../models/Deliveries';
-import * as ProductModel from '../../models/Products';
-import { AppContext } from '../../interfaces/AppContext';
-import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
+import * as DeliveriesInterfaces from '../../interfaces/delivery-interfaces';
+import { Delivery } from '../../interfaces/delivery-interfaces';
+import { Product } from '../../interfaces/product-interfaces';
+import * as DeliveryModel from '../../models/deliveries-models';
+import * as ProductModel from '../../models/products-models';
+import { AppContextType } from '../../interfaces/app-interfaces';
 import * as Style from '../../assets/styles';
-
+import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
 
 /**
  * Create new delivery form component.
@@ -45,14 +43,15 @@ import * as Style from '../../assets/styles';
  * @constructor
  * @returns {ReactElement} The delivery creation form component.
  */
-export const DeliveryCreationForm: FC = (): ReactElement => {
+export const DeliveryCreationForm: React.FC = (): ReactElement => {
     const navigation = useNavigation();
-    const appContext: AppContext = useAppContext();
+    const appContext: AppContextType = useAppContext();
 
     const [newDelivery, setNewDelivery] =
         useState<Partial<DeliveriesInterfaces.Delivery>>();
-    const [selectedProduct, setSelectedProduct] =
-        useState<StockInterfaces.Product>(appContext.products[0]);
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(
+        appContext.products ? appContext.products[0] : null,
+    );
 
     /**
      * Hook to set initial values for the delivery form.
@@ -118,13 +117,19 @@ export const DeliveryCreationForm: FC = (): ReactElement => {
                 )}
                 {(show || Platform.OS === 'ios') && (
                     <DateTimePicker
-                        onChange={(event: Event, date: Date): void => {
-                            setDropDownDate(date);
-                            setNewDelivery({
-                                ...newDelivery,
-                                delivery_date: date.toLocaleDateString('se-SV'),
-                            });
-                            setShow(false);
+                        onChange={(
+                            event: DateTimePickerEvent,
+                            date?: Date,
+                        ): void => {
+                            if (date) {
+                                setDropDownDate(date);
+                                setNewDelivery({
+                                    ...newDelivery,
+                                    delivery_date:
+                                        date.toLocaleDateString('se-SV'),
+                                });
+                                setShow(false);
+                            }
                         }}
                         value={dropDownDate}
                     />
@@ -142,45 +147,60 @@ export const DeliveryCreationForm: FC = (): ReactElement => {
      */
     async function handleSubmit(): Promise<void> {
         try {
-            const updatedProduct = {
-                ...selectedProduct,
-                stock: (selectedProduct.stock || 0) + (newDelivery.amount || 0),
-            };
+            if (selectedProduct && selectedProduct.id !== undefined) {
+                const updatedProduct = {
+                    ...selectedProduct,
+                    stock:
+                        (selectedProduct ? selectedProduct.stock : 0) +
+                        (newDelivery?.amount ?? 0),
+                };
 
-            await DeliveryModel.createDelivery(newDelivery);
-            await ProductModel.updateProduct(updatedProduct);
+                await DeliveryModel.createDelivery(
+                    newDelivery ? newDelivery : {},
+                );
+                await ProductModel.updateProduct(updatedProduct);
 
-            showMessage({
-                message:
-                    'Ny Inleverans har skapats.\n \n' +
-                    `Produkt id: ${newDelivery.product_id}\n` +
-                    `Antal: ${newDelivery.amount}\n` +
-                    `Leveransdatum: ${newDelivery.delivery_date}\n` +
-                    `Kommentar: ${newDelivery.comment}\n` +
-                    `Nytt lagersaldo: ${updatedProduct.stock}`,
-                description: 'Inleverans skapad och lagersaldo är uppdaterat.',
-                type: 'success',
-                duration: 3500,
-            });
+                showMessage({
+                    message:
+                        'Ny Inleverans har skapats.\n \n' +
+                        `Produkt id: ${newDelivery?.product_id}\n` +
+                        `Antal: ${newDelivery?.amount}\n` +
+                        `Leveransdatum: ${newDelivery?.delivery_date}\n` +
+                        `Kommentar: ${newDelivery?.comment}\n` +
+                        `Nytt lagersaldo: ${updatedProduct.stock}`,
+                    description:
+                        'Inleverans skapad och lagersaldo är uppdaterat.',
+                    type: 'success',
+                    duration: 3500,
+                });
+
+                navigation.dispatch(
+                    CommonActions.navigate(NavPath.Delivery.DeliveriesScreen, {
+                        screen: NavPath.Delivery.DeliveriesList,
+                        params: { reload: true },
+                    }),
+                );
+            } else {
+                console.error('Selected product is missing an id.');
+            }
         } catch (error) {
             console.error('Handle Submit Error: ', error);
         }
     }
 
     return (
-        <ScrollView style={Style.Container.content as ViewStyle}>
+        <ScrollView style={Style.Container.content}>
             <DeliveryProductPicker
-                newDelivery={newDelivery}
+                newDelivery={newDelivery ?? {}}
+                // @ts-expect-error Some sort of type error here...
                 setNewDelivery={setNewDelivery}
+                // @ts-expect-error Some sort of type error here...
                 setSelectedProduct={setSelectedProduct}
             />
-
-            <View style={Style.Container.grid.row as ViewStyle}>
-                <Text style={Style.Form.labelInputField as TextStyle}>
-                    Antal:{' '}
-                </Text>
+            <View style={Style.Container.row}>
+                <Text style={Style.Form.labelInputField}>Antal: </Text>
                 <TextInput
-                    style={Style.Form.textInputField as TextStyle}
+                    style={Style.Form.textInputField}
                     onChangeText={(inputAmount: string): void => {
                         setNewDelivery({
                             ...newDelivery,
@@ -192,24 +212,16 @@ export const DeliveryCreationForm: FC = (): ReactElement => {
                     placeholder='Antal av levererad produkt.'
                 />
             </View>
-
-            <View style={Style.Container.grid.row as ViewStyle}>
-                <Text
-                    style={[
-                        Style.Form.labelInputField as TextStyle,
-                        { width: '50%' },
-                    ]}>
+            <View style={Style.Container.row}>
+                <Text style={[Style.Form.labelInputField, { width: '50%' }]}>
                     Leveransdatum:
                 </Text>
                 {DeliveryDatePicker()}
             </View>
-
-            <View style={Style.Container.grid.row as ViewStyle}>
-                <Text style={Style.Form.labelInputField as TextStyle}>
-                    Kommentar:{' '}
-                </Text>
+            <View style={Style.Container.row}>
+                <Text style={Style.Form.labelInputField}>Kommentar: </Text>
                 <TextInput
-                    style={Style.Form.textInputField as TextStyle}
+                    style={Style.Form.textInputField}
                     onChangeText={(inputComment: string): void => {
                         setNewDelivery({
                             ...newDelivery,
@@ -219,30 +231,17 @@ export const DeliveryCreationForm: FC = (): ReactElement => {
                     value={newDelivery?.comment}
                 />
             </View>
-
             <Pressable
-                style={Style.Button.buttonContainer as ViewStyle}
-                onPress={async (): Promise<void> => {
-                    // Create New Delivery, Update Product Stock & Alert User.
-                    await handleSubmit();
-
-                    // Navigate to DeliveriesList screen and send reload===true to trigger a new
-                    // data query call for Deliveries.
-                    navigation.dispatch(
-                        CommonActions.navigate(
-                            NavPath.Delivery.DeliveriesScreen,
-                            {
-                                screen: NavPath.Delivery.DeliveriesList,
-                                params: { reload: true },
-                            },
-                        ),
-                    );
+                style={Style.Button.buttonContainer}
+                onPress={(): void => {
+                    handleSubmit().catch((error): void => {
+                        console.error('Error in handleSubmit: ', error);
+                    });
                 }}>
-                <Text style={Style.Typography.buttonText as TextStyle}>
+                <Text style={Style.Typography.buttonText}>
                     Skapa Ny Inleverans
                 </Text>
             </Pressable>
-
             <StatusBar style='auto' />
         </ScrollView>
     );

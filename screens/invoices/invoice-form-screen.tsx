@@ -1,13 +1,5 @@
-import React, { FC, ReactElement, useEffect, useMemo, useState } from 'react';
-import {
-    Button,
-    Platform,
-    Pressable,
-    Text,
-    TextStyle,
-    View,
-    ViewStyle,
-} from 'react-native';
+import React, { ReactElement, useEffect, useMemo, useState } from 'react';
+import { Button, Platform, Pressable, Text, View } from 'react-native';
 import {
     CommonActions,
     RouteProp,
@@ -17,38 +9,37 @@ import {
 import DateTimePicker, {
     DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
-import { useAppContext } from '../../context/App.provider';
-import { AppContext } from '../../interfaces/AppContext';
+import { useAppContext } from '../../context/app-provider';
+import { AppContextType } from '../../interfaces/app-interfaces';
 import { Picker } from '@react-native-picker/picker';
-import { LoadingIndicator } from '../../components/Utils/LoadingIndicator';
+import { LoadingIndicator } from '../../components/utils/loading-indicator';
 import { StatusBar } from 'expo-status-bar';
-import * as InvoiceInterfaces from '../../interfaces/Invoice';
-import * as InvoiceModel from '../../models/Invoices';
-import * as OrderInterfaces from './../../interfaces/Order';
-import { Order } from '../../interfaces/Order';
-import * as OrderModel from '../../models/Orders';
-import { NavigationPathKeys as NavPath } from '../../constants/Navigation';
-import { RouteParams } from '../../types/Navigation';
+import * as InvoiceInterfaces from '../../interfaces/invoice-interfaces';
+import { Invoice, NewInvoice } from '../../interfaces/invoice-interfaces';
+import * as InvoiceModel from '../../models/invoices-models';
+import { Order } from '../../interfaces/order-interfaces';
+import * as OrderModel from '../../models/orders-models';
+import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
+import { RouteParams } from '../../types/navigation-types';
 import * as Style from '../../assets/styles';
 
-export const InvoiceForm: FC = (): ReactElement => {
-    const appContext: AppContext = useAppContext();
+export const InvoiceForm: React.FC = (): ReactElement => {
+    const appContext: AppContextType = useAppContext();
     const navigation = useNavigation();
     const route: RouteProp<RouteParams> = useRoute<RouteProp<RouteParams>>();
-    const [selectedOrder, setSelectedOrder] =
-        useState<OrderInterfaces.Order | null>(
-            (appContext.orders.filter(
-                (order: OrderInterfaces.Order): boolean => {
-                    return order.status_id === 500;
-                },
-            )[0] as OrderInterfaces.Order) || null,
-        );
+    const [selectedOrder, setSelectedOrder] = useState<Order | null>(
+        appContext.orders
+            ? appContext.orders.filter((order: Order): boolean => {
+                  return order.status_id === 500;
+              })[0]
+            : null,
+    );
     const [creationDate, setCreationDate] = useState<Date>(new Date());
     const [showCreationDate, setShowCreationDate] = useState<boolean>(false);
     const [dueDate, setDueDate] = useState<Date>(new Date());
     const [showDueDate, setShowDueDate] = useState<boolean>(false);
     const [newInvoiceData, setNewInvoiceData] =
-        useState<InvoiceInterfaces.NewInvoice | null>(null);
+        useState<Partial<NewInvoice> | null>(null);
 
     /**
      * Calculate the due date for the invoice.
@@ -65,11 +56,9 @@ export const InvoiceForm: FC = (): ReactElement => {
         if (!Array.isArray(appContext.orders) || !appContext.orders.length) {
             try {
                 appContext.setIsRefreshing(true);
-                OrderModel.getOrders().then(
-                    (orders: OrderInterfaces.Order[]): void => {
-                        appContext.setOrders(orders);
-                    },
-                );
+                void OrderModel.getOrders().then((orders: Order[]): void => {
+                    appContext.setOrders(orders);
+                });
             } catch (error) {
                 console.error(error);
             } finally {
@@ -80,23 +69,27 @@ export const InvoiceForm: FC = (): ReactElement => {
 
     useEffect((): void => {
         if (selectedOrder) {
+            const formatDate: (date: Date) => string = (date: Date): string => {
+                return date.toISOString().split(', ')[0];
+            };
+
             setNewInvoiceData({
                 order_id: selectedOrder.id,
                 total_price: OrderModel.calcOrderTotalPrice(selectedOrder),
-                creation_date: new Date().toLocaleDateString('se-SV'),
-                due_date: getDueDate().toLocaleDateString('se-SV'),
+                creation_date: formatDate(new Date()),
+                due_date: formatDate(getDueDate()),
             });
         }
     }, [selectedOrder]);
 
     // Compute the packed orders from the appContext.orders.
-    const packedOrders: OrderInterfaces.Order[] = useMemo((): Order[] => {
+    const packedOrders: Order[] = useMemo((): Order[] => {
         console.log('Memoizing packedOrders...');
-        const currentlyPackedOrders: OrderInterfaces.Order[] =
-            appContext.orders.filter(
-                (order: OrderInterfaces.Order): boolean =>
-                    order.status_id === 200,
-            );
+        const currentlyPackedOrders: Order[] = appContext.orders
+            ? appContext.orders.filter(
+                  (order: Order): boolean => order.status_id === 200,
+              )
+            : [];
 
         if (
             Array.isArray(currentlyPackedOrders) &&
@@ -119,7 +112,7 @@ export const InvoiceForm: FC = (): ReactElement => {
 
             // Create the new invoice.
             await InvoiceModel.createInvoice(input_invoice).then(
-                (createdInvoice): void => {
+                (createdInvoice: Invoice | void): void => {
                     console.info(
                         'RESPONSE NEW INVOICE: ',
                         createdInvoice,
@@ -129,19 +122,28 @@ export const InvoiceForm: FC = (): ReactElement => {
                 },
             );
 
-            // Update order status to invoiced.
-            await OrderModel.updateOrderStatus(
-                input_invoice.order_id,
-                selectedOrder.name,
-                600,
-            );
+            if (!!input_invoice.order_id && !!selectedOrder?.name) {
+                // Update order status to invoiced.
+                await OrderModel.updateOrderStatus(
+                    input_invoice.order_id,
+                    selectedOrder.name,
+                    600,
+                );
+            }
 
             // Update the state of the appContext.orders & appContext.packedOrders.
             appContext.setOrders(await OrderModel.getOrders());
+
+            navigation.dispatch(
+                CommonActions.navigate(NavPath.Invoices.InvoicesList, {
+                    screen: NavPath.Invoices.InvoicesList,
+                    params: { reload: true },
+                }),
+            );
         } catch (error) {
             console.error(error);
         } finally {
-            console.log('Invoice created...', newInvoiceData);
+            console.log('invoice created...', newInvoiceData);
             console.log('Navigating back to InvoicesList...');
             navigation.dispatch(
                 CommonActions.navigate(NavPath.Invoices.InvoicesList, {
@@ -152,16 +154,16 @@ export const InvoiceForm: FC = (): ReactElement => {
         }
     };
 
-    const creationDatePicker: FC = (): ReactElement => {
+    const creationDatePicker = (): ReactElement => {
         const showDatePicker = (): void => {
             setShowCreationDate(true);
         };
 
         return (
-            <View style={Style.Container.grid.row as ViewStyle}>
+            <View style={Style.Container.row}>
                 <Text
                     style={[
-                        Style.Form.labelInputField as TextStyle,
+                        Style.Form.labelInputField,
                         {
                             width: '33%',
                             alignSelf: 'center',
@@ -180,13 +182,17 @@ export const InvoiceForm: FC = (): ReactElement => {
                     <DateTimePicker
                         onChange={(
                             event: DateTimePickerEvent,
-                            date: Date,
+                            date: Date | undefined,
                         ): void => {
-                            setCreationDate(date);
-                            setNewInvoiceData({
-                                ...newInvoiceData,
-                                creation_date: date.toLocaleString(),
-                            });
+                            if (date) {
+                                setCreationDate(date);
+                                setNewInvoiceData({
+                                    ...newInvoiceData,
+                                    creation_date:
+                                        date?.toLocaleString() ||
+                                        new Date().toLocaleString(),
+                                });
+                            }
                             setShowCreationDate(false);
                         }}
                         value={creationDate}
@@ -196,16 +202,16 @@ export const InvoiceForm: FC = (): ReactElement => {
         );
     };
 
-    const dueDatePicker: FC = (): ReactElement => {
+    const dueDatePicker = (): ReactElement => {
         const showDatePicker = (): void => {
             setShowDueDate(true);
         };
 
         return (
-            <View style={Style.Container.flexBox.row as ViewStyle}>
+            <View style={Style.Container.row}>
                 <Text
                     style={[
-                        Style.Form.labelInputField as TextStyle,
+                        Style.Form.labelInputField,
                         { width: '33%', alignSelf: 'center' },
                     ]}>
                     Förfallodatum
@@ -239,21 +245,18 @@ export const InvoiceForm: FC = (): ReactElement => {
         );
     };
 
-    const invoiceOrderPicker: FC = (): ReactElement => {
+    const invoiceOrderPicker = (): ReactElement => {
         return (
             <View>
-                <Text style={Style.Typography.buttonText as TextStyle}>
-                    Välj Order
-                </Text>
+                <Text style={Style.Typography.buttonText}>Välj Order</Text>
                 <Picker
-                    style={Style.Form.pickers as ViewStyle}
+                    style={Style.Form.pickers}
                     selectedValue={selectedOrder?.id}
                     onValueChange={(
                         itemValue: number,
                         itemIndex: number,
                     ): void => {
-                        const selectedOrder: OrderInterfaces.Order =
-                            packedOrders[itemIndex];
+                        const selectedOrder: Order = packedOrders[itemIndex];
                         setSelectedOrder(selectedOrder);
                         setNewInvoiceData({
                             ...newInvoiceData,
@@ -262,7 +265,7 @@ export const InvoiceForm: FC = (): ReactElement => {
                                 OrderModel.calcOrderTotalPrice(selectedOrder),
                         });
                     }}>
-                    {packedOrders.map((order: OrderInterfaces.Order) => {
+                    {packedOrders.map((order: Order) => {
                         return (
                             <Picker.Item
                                 key={order.id}
@@ -279,56 +282,46 @@ export const InvoiceForm: FC = (): ReactElement => {
     return appContext.isRefreshing ? (
         <LoadingIndicator loadingType={'Ordrar'} />
     ) : !appContext.isRefreshing && packedOrders.length ? (
-        <View style={Style.Container.content as ViewStyle}>
-            <View style={Style.Container.grid.row as ViewStyle}>
+        <View style={Style.Container.content}>
+            <View style={Style.Container.grid}>
                 {creationDatePicker()}
                 {dueDatePicker()}
-                <Text style={Style.Container.grid.row as TextStyle}>
+                <Text style={Style.Container.row}>
                     Fakturabelopp: {newInvoiceData?.total_price} kr
                 </Text>
             </View>
 
-            <View style={Style.Container.content as ViewStyle}>
-                {invoiceOrderPicker()}
-            </View>
+            <View style={Style.Container.content}>{invoiceOrderPicker()}</View>
 
             <Pressable
                 style={({ pressed }) => [
-                    Style.Button.buttonContainer as ViewStyle,
+                    Style.Button.buttonContainer,
                     {
                         backgroundColor: pressed
                             ? Style.Color.schemeOne.primary[200]
                             : Style.Color.schemeOne.primary[300],
                     },
                 ]}
-                onPress={async (): Promise<void> => {
-                    // Create the new invoice.
-                    await handleSubmit(newInvoiceData);
-
-                    // Navigate back to the invoice list and send params.reload: true.
-                    // navigation.navigate('Fakturor', { reload: true });
-                    navigation.dispatch(
-                        CommonActions.navigate(NavPath.Invoices.InvoicesList, {
-                            screen: NavPath.Invoices.InvoicesList,
-                            params: { reload: true },
-                        }),
-                    );
+                onPress={(): void => {
+                    if (newInvoiceData !== null) {
+                        handleSubmit(newInvoiceData).catch((error): void => {
+                            console.error('Error in handleSubmit: ', error);
+                        });
+                    }
                 }}>
-                <Text style={Style.Typography.buttonText as TextStyle}>
-                    Skapa Faktura
-                </Text>
+                <Text style={Style.Typography.buttonText}>Skapa Faktura</Text>
             </Pressable>
 
             <StatusBar style='auto' />
         </View>
     ) : !packedOrders.length ? (
-        <View style={Style.Container.content as ViewStyle}>
-            <Text style={Style.Typography.paragraph as TextStyle}>
+        <View style={Style.Container.content}>
+            <Text style={Style.Typography.paragraph}>
                 Det finns inga ordrar som är paketerade och redo att faktureras.
             </Text>
         </View>
     ) : (
-        <View style={Style.Container.content as ViewStyle}>
+        <View style={Style.Container.content}>
             <LoadingIndicator loadingType={'Ordrar'} />
         </View>
     );

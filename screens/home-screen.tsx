@@ -1,0 +1,50 @@
+/**
+ * @module home-screen.tsx
+ *
+ * This module defines the home screen component for the application.
+ * It displays a welcome message and an image, providing information about the current
+ * functionality and future updates of the app.
+ */
+
+import React, { ReactElement } from 'react';
+import { SafeAreaView, Text, View } from 'react-native';
+
+import { CoverImage } from '../components/utils/cover-image';
+import coverIMG from '../assets/img/NutsAndBolts-4.jpg';
+import * as Style from '../assets/styles';
+
+/**
+ * Home screen component.
+ *
+ * This component represents the home screen of the application, displaying a welcome message
+ * and an image. It provides information about the current functionality and future updates.
+ *
+ * @component
+ * @returns {ReactElement} The rendered home screen component.
+ */
+export const Home: React.FC = (): ReactElement => {
+    return (
+        <SafeAreaView style={Style.Base.mainContainer}>
+            {CoverImage({ headerText: 'Infinity', image: coverIMG })}
+
+            <View style={Style.Container.content}>
+                <Text style={Style.Typography.paragraph}>
+                    Välkommen till vår fiktiva mobila lagerapp. Idag lagrar vi
+                    skruv och skrot, imorgon kanske något helt annat och den som
+                    lever då får se. Hoppas ni trivs med att använda vår app och
+                    hittar något riktigt rostigt i vårt lager.
+                </Text>
+                <Text
+                    style={[
+                        Style.Typography.paragraph,
+                        Style.Typography.endMarginText,
+                    ]}>
+                    För tillfället finns endast begränsad funktionalitet men
+                    inom kort tillkommer mer. Ni kan se vårat produktlager,
+                    titta på ordrar av produkter och hantera inleveranser av
+                    produkter.
+                </Text>
+            </View>
+        </SafeAreaView>
+    );
+};

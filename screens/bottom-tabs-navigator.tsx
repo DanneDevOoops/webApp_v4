@@ -1,67 +1,57 @@
 /**
- * @module BottomTabsNavigator
+ * @module bottom-tabs-navigator.tsx
  *
- * This module sets up a bottom tab navigator for the main sections of the application.
- * It includes the following tabs:
- * - Home: Displays the home screen.
- * - Products: Displays the products screen.
- * - Orders: Displays the orders screen.
- * - Deliveries: Displays the deliveries screen.
- * - Invoices: Displays the invoices screen (only if the user is logged in).
- * - Login: Displays the login screen (only if the user is not logged in).
- *
- * The navigator is wrapped in a loading indicator to handle the loading state.
- * It also includes icons for each tab using FontAwesome5.
+ * This module defines the bottom tab navigator for the application.
+ * It sets up a bottom tab navigator with screens for home, products, orders,
+ * deliveries, and conditional screens for invoices or authentication based on
+ * the user's login status.
  */
-import React, { FC, ReactElement, useEffect } from 'react';
+
+import React, { ReactElement, useEffect } from 'react';
 import {
     BottomTabNavigationOptions,
     createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import { RouteProp } from '@react-navigation/native';
-import * as SecureStore from 'expo-secure-store';
-import * as AuthModel from '../models/Auth';
-import { useAuthContext } from '../context/Auth.provider';
-import { useAppContext } from '../context/App.provider';
-import { Home } from './Home.screen';
-import { DeliveryNavigator } from './Deliveries/Delivery.navigator';
-import { AuthNavigator } from './Auth/Auth.navigator';
-import { OrderNavigator } from './Orders/Order.navigator';
-import { ProductsNavigator } from './Products/Products.navigator';
-import { InvoiceNavigator } from './Invoices/Invoices.navigator';
-import { LoadingIndicator } from '../components/Utils/LoadingIndicator';
+import { ParamListBase, RouteProp } from '@react-navigation/native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { NavigationPathKeys, routeIcons } from '../constants/Navigation';
-import { AppContext } from '../interfaces/AppContext';
-import { AuthContextType } from '../interfaces/Auth.interfaces';
+import * as SecureStore from 'expo-secure-store';
+
+import * as AuthModel from '../models/auth-models';
+import { useAuthContext } from '../context/auth-provider';
+import { useAppContext } from '../context/app-provider';
+import { Home } from './home-screen';
+import { DeliveryNavigator } from './deliveries/delivery-navigator';
+import { AuthNavigator } from './auth/auth-navigator';
+import { OrderNavigator } from './orders/order-navigator';
+import { ProductsNavigator } from './products/products-navigator';
+import { InvoiceNavigator } from './invoices/invoices-navigator';
+import { LoadingIndicator } from '../components/utils/loading-indicator';
+import {
+    NavigationPathKeys,
+    routeIcons,
+} from '../constants/navigation-constants';
+import { AppContextType } from '../interfaces/app-interfaces';
+import { AuthContextType } from '../interfaces/auth-interfaces';
 import * as Style from '../assets/styles/index';
 
 /**
- * Bottom tabs navigator.
+ * @constant BottomTabs - The bottom tab navigator for the application.
  */
 const BottomTabs = createBottomTabNavigator();
 
 /**
  * BottomTabsNavigator component.
  *
- * This component sets up a bottom tab navigator for the main sections of the application.
- * It includes the following tabs:
- * - Home: Displays the home screen.
- * - Products: Displays the products screen.
- * - Orders: Displays the orders screen.
- * - Deliveries: Displays the deliveries screen.
- * - Invoices: Displays the invoices screen (only if the user is logged in).
- * - Login: Displays the login screen (only if the user is not logged in).
- *
- * The navigator is wrapped in a loading indicator to handle the loading state.
- * It also includes icons for each tab using FontAwesome5.
+ * This component sets up a bottom tab navigator for the application.
+ * It includes screens for home, products, orders, deliveries, and conditional
+ * screens for invoices or authentication based on the user's login status.
  *
  * @component
- * @returns {ReactElement} The bottom tabs navigator component.
+ * @returns {ReactElement} The rendered bottom tabs navigator component.
  */
-export const BottomTabsNavigator: FC = (): ReactElement => {
+export const BottomTabsNavigator: React.FC = (): ReactElement => {
+    const appContext: AppContextType = useAppContext();
     const authContext: AuthContextType = useAuthContext();
-    const appContext: AppContext = useAppContext();
 
     useEffect((): void => {
         void checkUserLoginStatus(authContext);
@@ -81,41 +71,39 @@ export const BottomTabsNavigator: FC = (): ReactElement => {
 };
 
 /**
- * Check the user's login status and update the authentication context.
+ * Checks the user's login status and updates the authentication context.
  *
+ * @function
  * @param {AuthContextType} authContext - The authentication context.
+ * @returns {Promise<void>} A promise that resolves when the login status is checked.
  */
 const checkUserLoginStatus = async (
     authContext: AuthContextType,
 ): Promise<void> => {
-    const isLoggedIn: boolean = await AuthModel.loggedIn();
+    const isLoggedIn: boolean = await AuthModel.checkLoggedInStatus();
     authContext.setIsLoggedIn(isLoggedIn);
-
-    SecureStore.getItemAsync('user')
-        .then((userString: string | null): void => {
-            if (userString) {
-                console.log('userString', userString);
-                return JSON.parse(userString);
-            } else {
-                console.log('No user found, is user logged in?', isLoggedIn);
-            }
+    await SecureStore.getItemAsync('token')
+        .then((userString: string | null): boolean => {
+            return !!(userString && userString.length > 0);
         })
-        .catch((error): void => {
-            console.log(error);
+        .catch((error): boolean => {
+            console.error(error);
+            return false;
         });
 };
 
 /**
- * Get the screen options for the bottom tab navigator.
+ * Returns the screen options for the bottom tab navigator.
  *
- * @param {object} param - The parameter object.
- * @param {RouteProp<any, any>} param.route - The route prop.
- * @returns {BottomTabNavigationOptions} The screen options.
+ * @function
+ * @param {Object} param - The parameter object.
+ * @param {RouteProp<ParamListBase, string>} param.route - The route prop.
+ * @returns {BottomTabNavigationOptions} The screen options for the bottom tab navigator.
  */
 const getScreenOptions = ({
     route,
 }: {
-    route: RouteProp<never, never>;
+    route: RouteProp<ParamListBase, string>;
 }): BottomTabNavigationOptions => ({
     tabBarIcon: ({ color, size }) => {
         const iconName = routeIcons[route.name] || 'list';
@@ -127,18 +115,19 @@ const getScreenOptions = ({
             />
         );
     },
-    tabBarActiveTintColor: Style.Color.schemeOne.secondary[300],
-    tabBarInactiveTintColor: Style.Color.grayScale[200],
+    tabBarActiveTintColor: Style.Color.schemeOne.secondary[300] as string,
+    tabBarInactiveTintColor: Style.Color.grayScale[200] as string,
     headerShown: false,
 });
 
 /**
- * Get the bottom tab screens based on the user's login status.
+ * Returns the bottom tab screens based on the user's login status.
  *
+ * @function
  * @param {AuthContextType} authContext - The authentication context.
  * @returns {ReactElement} The bottom tab screens.
  */
-const getBottomTabScreens: FC<AuthContextType> = (
+const getBottomTabScreens: React.FC<AuthContextType> = (
     authContext: AuthContextType,
 ): ReactElement => (
     <>
