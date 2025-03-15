@@ -1,5 +1,4 @@
-import { ParamListBase, RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { ParamListBase } from '@react-navigation/native';
 
 /**
  * Represents the parameters for the `ProductsNavigator` stack navigator.
@@ -38,10 +37,24 @@ export interface Product {
 }
 
 /**
+ * Represents the response structure for fetching products data from the API.
+ *
+ * This interface defines the expected structure of the response when retrieving
+ * a list of products from the API. It includes a single property `data` which is
+ * an array of `product` objects.
+ *
+ * @interface ProductsDataResponse
+ * @property {Product[]} data - An array of `product` objects representing the products data.
+ */
+export interface ProductsDataResponse {
+    data: Product[];
+}
+
+/**
  * Interface representing the properties for the `ProductListItem` component.
  *
  * This interface defines the structure of the props that are passed to the `ProductListItem` component.
- * It includes a single property `item` which is of type `Product`.
+ * It includes a single property `item` which is of type `product`.
  *
  * @interface ProductListItemProps
  * @property {Product} item - The product item to be displayed by the `ProductListItem` component.
@@ -50,21 +63,21 @@ export interface ProductListItemProps extends ParamListBase {
     item: Product;
 }
 
-type StockItemRouteProp = RouteProp<ProductsNavigatorParams, 'ProductItem'>;
-type StockItemNavigationProp = StackNavigationProp<
-    ProductsNavigatorParams,
-    'ProductItem'
->;
-
-export interface ProductItemProps {
-    route: StockItemRouteProp;
-    navigation?: StockItemNavigationProp;
-}
+// type StockItemRouteProp = RouteProp<ProductsNavigatorParams, 'ProductItem'>;
+// type StockItemNavigationProp = StackNavigationProp<
+//     ProductsNavigatorParams,
+//     'ProductItem'
+// >;
+//
+// export interface ProductItemProps {
+//     route: StockItemRouteProp;
+//     navigation?: StockItemNavigationProp;
+// }
 
 // export interface ProductItemProps {
 //     route: {
 //         params: {
-//             item: Product;
+//             item: product;
 //         };
 //     };
 // }

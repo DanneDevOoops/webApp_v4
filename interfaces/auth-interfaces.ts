@@ -19,10 +19,10 @@
  * the server, manage user session state, and guide the development of authentication-related UI components.
  *
  * Related Modules:
- * - `models/Auth`: Defines the data models related to authentication.
- * - `components/Auth`: Contains React components that utilize these interfaces for prop types and state
+ * - `models/auth`: Defines the data models related to authentication.
+ * - `components/auth`: Contains React components that utilize these interfaces for prop types and state
  * management.
- * - `screens/Auth`: Screens in the application that involve authentication, leveraging these interfaces
+ * - `screens/auth`: Screens in the application that involve authentication, leveraging these interfaces
  * for consistency.
  *
  * @module interfaces/Auth
@@ -93,6 +93,12 @@ export interface AuthResponse {
     };
 }
 
+export interface AuthResponseObject {
+    title: string;
+    message: string;
+    type: string;
+}
+
 /**
  * Defines the context for authentication operations within the application.
  *
@@ -111,15 +117,14 @@ export interface AuthResponse {
  * user registration.
  */
 export interface AuthContextType {
-    user: User | undefined;
-    setUser: (user: User) => void;
+    user?: User | undefined;
+    setUser?: (user: User) => void;
     isLoggedIn: boolean;
     setIsLoggedIn: (authIndicator: boolean) => void;
-    login: (username: string, password: string) => Promise<void>;
+    login: (username: string, password: string) => Promise<boolean>;
     logout: () => Promise<void>;
     register: (username: string, password: string) => Promise<void>;
 }
-
 
 /**
  * Authentication provider properties.

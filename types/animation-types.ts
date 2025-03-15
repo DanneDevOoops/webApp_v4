@@ -10,6 +10,7 @@
 /**
  * Represents the type of flash message.
  *
+ * @typedef {('info' | 'warning' | 'danger' | 'success' | 'default')} MessageType
  * @property {string} info - Informative message type.
  * @property {string} warning - Warning message type.
  * @property {string} danger - Danger message type.
@@ -21,10 +22,11 @@ export type MessageType = 'info' | 'warning' | 'danger' | 'success' | 'default';
 /**
  * Represents the configuration for a flash message.
  *
+ * @typedef {Object} FlashMessageType
  * @property {number} duration - The duration for which the flash message is displayed (in
- *      milliseconds).
+ * milliseconds).
  * @property {MessageType} type - The type of the flash message. Can be 'info', 'warning',
- *      'danger', 'success', or 'default'.
+ * 'danger', 'success', or 'default'.
  * @property {string} description - A brief description of the flash message.
  * @property {string} message - The actual message to be displayed.
  */

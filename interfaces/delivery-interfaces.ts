@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { ParamListBase } from '@react-navigation/native';
+import { Product } from './product-interfaces';
 
 /**
  * Represents the parameters for the `DeliveriesNavigator` stack navigator.
@@ -19,7 +20,8 @@ export interface DeliveriesNavigatorParams extends ParamListBase {
  * @property {number} amount - Quantity of the product being delivered.
  * @property {string} delivery_date - Scheduled date for the delivery.
  * @property {string} comment - Additional comments or instructions for the delivery.
- * @property {string} api_key - API key required for authentication to perform delivery-related operations.
+ * @property {string} api_key - API key required for authentication to perform delivery-related
+ * operations.
  */
 export interface Delivery {
     id: number;
@@ -29,6 +31,10 @@ export interface Delivery {
     delivery_date: string;
     comment: string;
     api_key: string;
+}
+
+export interface DeliveryDataResponse {
+    data: Delivery[];
 }
 
 /**
@@ -44,9 +50,9 @@ export interface DeliveryListItemProps {
 /**
  * Used for passing props to the DeliveryItem component, containing delivery details.
  *
- * This interface is specifically designed for use in navigation and component prop passing within a
- * React or React Native application, where the delivery item is passed as a parameter through navigation
- * routes.
+ * This interface is specifically designed for use in navigation and component prop passing
+ * within a React or React Native application, where the delivery item is passed as a parameter
+ * through navigation routes.
  *
  * @interface DeliveryItemProps
  * @property {object} route - Object containing navigation route information.
@@ -55,7 +61,7 @@ export interface DeliveryListItemProps {
  * @property {Delivery} route.params.item - The delivery item being passed as a parameter.
  */
 export interface DeliveryItemProps {
-    route: {
+    route?: {
         params: {
             item: Delivery;
         };
@@ -66,10 +72,13 @@ export interface DeliveryItemProps {
  * Props for the DeliveryListView component.
  *
  * @interface DeliveryListViewProps
- * @property {Delivery[] | null} deliveries - An array of delivery items or null if no deliveries are available.
- * @property {boolean} isRefreshing - A boolean indicating whether the list is currently being refreshed.
+ * @property {Delivery[] | null} deliveries - An array of delivery items or null if no
+ * deliveries are available.
+ * @property {boolean} isRefreshing - A boolean indicating whether the list is currently being
+ * refreshed.
  * @property {() => void} onRefresh - A function to be called when the list needs to be refreshed.
- * @property {({ item }: { item: Delivery }) => ReactElement} renderItem - A function that renders a delivery item.
+ * @property {({ item }: { item: delivery }) => ReactElement} renderItem - A function that
+ * renders a delivery item.
  */
 export interface DeliveryListViewProps {
     deliveries: Delivery[] | null;
@@ -77,3 +86,20 @@ export interface DeliveryListViewProps {
     onRefresh: () => void;
     renderItem: ({ item }: { item: Delivery }) => ReactElement;
 }
+
+/**
+ * Props for the DeliveryProductPicker component.
+ *
+ * @property {Partial<Delivery>} newDelivery - Partial delivery object containing the new
+ * delivery details.
+ * @property {Function} setNewDelivery - Function to update the new delivery details.
+ * @property {Function} setSelectedProduct - Function to set the selected product based on the
+ * product hash.
+ * @property {Object.<string, Product>} setSelectedProduct - Hash map of products keyed by their
+ * IDs.
+ */
+export type NewDeliveryPropsType = {
+    newDelivery: Partial<Delivery>;
+    setNewDelivery: () => void;
+    setSelectedProduct: (productsHash: { [key: string]: Product }) => void;
+};

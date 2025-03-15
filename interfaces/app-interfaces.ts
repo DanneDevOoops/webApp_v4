@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
-import * as ProductsInterfaces from './Product';
-import * as OrdersInterfaces from './Order';
-import * as DeliveriesInterfaces from './Delivery';
-import * as InvoicesInterfaces from './Invoice';
-import { UserPosition } from './UserPosition';
+import * as ProductsInterfaces from './product-interfaces';
+import * as OrdersInterfaces from './order-interfaces';
+import * as DeliveriesInterfaces from './delivery-interfaces';
+import * as InvoicesInterfaces from './invoice-interfaces';
+import { UserPosition } from './user-interfaces';
 
 /**
  * Defines the structure for the application context.
@@ -28,31 +28,31 @@ import { UserPosition } from './UserPosition';
  * loaded.
  * @property {Function} setInvoices - Function to update the list of invoices.
  */
-export interface AppContext {
+export interface AppContextType {
     // Loading state
     isLoading: boolean;
     setIsLoading: (isLoading: boolean) => void;
     isRefreshing: boolean;
     setIsRefreshing: (isRefreshing: boolean) => void;
 
-    // Products
+    // products
     products: ProductsInterfaces.Product[] | null;
     setProducts: (products: ProductsInterfaces.Product[] | null) => void;
 
-    // Orders
+    // orders
     orders: OrdersInterfaces.Order[] | null;
     setOrders: (orders: OrdersInterfaces.Order[] | null) => void;
 
-    // Delivery
+    // delivery
     deliveries: DeliveriesInterfaces.Delivery[] | null;
     setDeliveries: (deliveries: DeliveriesInterfaces.Delivery[] | null) => void;
 
-    // Invoices
+    // invoices
     invoices: InvoicesInterfaces.Invoice[] | null;
     setInvoices: (invoices: InvoicesInterfaces.Invoice[] | null) => void;
 
-    userPosition: never;
-    setUserPosition: (userPosition: UserPosition) => void;
+    userPosition: UserPosition | null;
+    setUserPosition: (userPosition: UserPosition | null) => void;
 }
 
 /**

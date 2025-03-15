@@ -1,3 +1,10 @@
+/**
+ * Type definitions for navigation parameters used in the application.
+ *
+ * This module contains type definitions for route parameters and the root stack parameter list,
+ * which are used for navigation within the application.
+ */
+
 import { ParamListBase } from '@react-navigation/native';
 
 /**
@@ -16,6 +23,8 @@ export interface RouteParams extends ParamListBase {
 
 /**
  * Type definition for the root stack parameter list.
+ *
+ * This type represents the possible routes and their parameters in the root stack navigator.
  *
  * @property {undefined} AuthScreen - Parameter for AuthScreen.
  * @property {undefined} RegisterNewUser - Parameter for RegisterNewUser.

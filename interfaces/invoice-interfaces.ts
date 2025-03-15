@@ -26,6 +26,10 @@ export interface Invoice {
     due_date: Date;
 }
 
+export interface InvoiceDataResponse {
+    data: Invoice[];
+}
+
 /**
  * Defines the structure for creating a new invoice, typically used when submitting data from a form.
  *
@@ -40,8 +44,8 @@ export interface NewInvoice {
     api_key: string;
     order_id: number;
     total_price: number;
-    creation_date?: Date;
-    due_date?: Date;
+    creation_date?: string;
+    due_date?: string;
 }
 
 /**
@@ -53,7 +57,7 @@ export interface NewInvoice {
  * @property {Invoice} route.params.item - The invoice item to be displayed or interacted with.
  */
 export interface InvoiceItemProps {
-    route: {
+    route?: {
         params: {
             item: Invoice;
         };
@@ -97,10 +101,10 @@ export interface InvoiceItemProps {
 //  *
 //  * @interface UpdateInvoiceProps
 //  * @property {number} invoice_id - The unique identifier of the invoice to be updated.
-//  * @property {Partial<Invoice>} invoice_attributes - A partial invoice object containing only the
+//  * @property {Partial<invoice>} invoice_attributes - A partial invoice object containing only the
 //  * attributes that are to be updated.
 //  */
 // export interface UpdateInvoiceProps {
 //     invoice_id: number;
-//     invoice_attributes: Partial<Invoice>;
+//     invoice_attributes: Partial<invoice>;
 // }
