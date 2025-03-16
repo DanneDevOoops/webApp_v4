@@ -1,3 +1,11 @@
+/**
+ * @module invoice-data-table.tsx
+ *
+ * This module defines the InvoiceDataTable component for rendering a table of invoices.
+ * It integrates with the application's contexts to fetch and display invoice data, leveraging
+ * React Navigation for navigation and using focus effects to reload data as needed.
+ */
+
 import {
     CommonActions,
     RouteProp,
@@ -26,33 +34,14 @@ import { RouteParams } from 'types/navigation-types';
 import { FunctionVoidType } from 'types/utils-types';
 
 /**
- * `InvoiceDataTable` is a functional component that displays a table of invoices. It
- * integrates with the application's contexts to fetch and display invoice data, leveraging React
- * Navigation for navigation and using focus effects to reload data as needed. This component is
- * responsible for fetching invoice data asynchronously, handling user interactions to navigate
- * to detailed views, and providing visual feedback during data loading states.
+ * InvoiceDataTable component.
  *
- * The component performs the following key functions:
- * - Fetches invoice data asynchronously from a model and updates the application contexts with
- *      this data.
- * - Utilizes the `useFocusEffect` hook to reload data when the component gains focus, based on
- *      specific conditions such as the `reload` flag being true or the invoices list being empty.
- * - Renders a table of invoices using the `DataTable` component from react-native-paper, with
- *      each row being pressable to navigate to a detailed view of the invoice.
- * - Provides a visual indication of loading state and the ability to refresh the invoice list
- *      via a pull-down gesture.
- * - Offers buttons to navigate to a form for creating a new invoice and logging out.
+ * This component displays a table of invoices. It fetches invoice data asynchronously,
+ * handles user interactions to navigate to detailed views, and provides visual feedback
+ * during data loading states.
  *
- * Props: None
- *
- * State:
- * - Uses contexts state for managing invoices, authentication, and the refreshing state.
- * - Local state `reload` is derived from navigation parameters to determine if data should be
- *      reloaded.
- *
- * Returns:
- * - A React element that conditionally renders either a loading indicator or the table of
- *      invoices, along with buttons for creating new invoices and logging out.
+ * @component
+ * @returns {ReactElement} The rendered invoice data table component.
  */
 export const InvoiceDataTable: React.FC = (): ReactElement => {
     const authContext = useAuthContext();
@@ -66,19 +55,12 @@ export const InvoiceDataTable: React.FC = (): ReactElement => {
     let reload: boolean = route.params?.reload ?? false;
 
     /**
-     * Asynchronously fetches invoices from the backend and updates the application contexts
-     * with the fetched data. It attempts to fetch invoices using the `InvoiceModel.getInvoices`
-     * method. Upon success, the fetched invoices are stored in the application contexts. It also
-     * manages the refreshing state of the application by setting `isRefreshing` to true at the
-     * beginning of the fetch operation and to false upon completion, regardless of the outcome.
-     * If an error occurs during the fetch operation, it is logged to the console. The `reload`
-     * flag is reset to false after the operation to prevent repeated fetches on subsequent
-     * renders or focus events.
+     * Asynchronously fetches invoices from the backend and updates the application context
+     * with the fetched data.
      *
      * @async
      * @function loadInvoices
-     * @returns {Promise<void>} A promise that resolves when the operation is complete, without
-     *      returning any value.
+     * @returns {Promise<void>} A promise that resolves when the operation is complete.
      */
     const loadInvoices = async (): Promise<void> => {
         try {
@@ -95,14 +77,21 @@ export const InvoiceDataTable: React.FC = (): ReactElement => {
     };
 
     /**
-     * Refreshes the invoice list by calling the `loadInvoices` function. This function is
-     * intended to be used as a callback for the `RefreshControl` component, which triggers a
-     * refresh when the user pulls down on the screen.
+     * Refreshes the invoice list by calling the loadInvoices function.
+     *
+     * @function refreshLoadInvoices
+     * @returns {void}
      */
     const refreshLoadInvoices: FunctionVoidType = (): void => {
         void loadInvoices();
     };
 
+    /**
+     * Logs out the user and navigates to the login screen.
+     *
+     * @function handleLogout
+     * @returns {void}
+     */
     const handleLogout: FunctionVoidType = (): void => {
         void authContext.logout();
 
@@ -114,6 +103,12 @@ export const InvoiceDataTable: React.FC = (): ReactElement => {
         );
     };
 
+    /**
+     * Navigates to the form for creating a new invoice.
+     *
+     * @function handleCreateNewInvoice
+     * @returns {void}
+     */
     const handleCreateNewInvoice: FunctionVoidType = (): void => {
         navigation.dispatch(
             CommonActions.navigate(NavPath.Invoices.InvoicesScreen, {
@@ -124,15 +119,11 @@ export const InvoiceDataTable: React.FC = (): ReactElement => {
     };
 
     /**
-     * Triggers the `loadInvoices` function when the component gains focus and either the
-     * `reload` flag is set to true or there are no invoices in the app contexts. This effect is
-     * designed to ensure that the invoice list is up-to-date whenever the user navigates to the
-     * component. After successfully loading the invoices, it resets the `reload` parameter to
-     * false to prevent unnecessary reloads on subsequent focus events.
+     * Triggers the loadInvoices function when the component gains focus and either the
+     * reload flag is set to true or there are no invoices in the app context.
      *
-     * The effect is dependent on the `appContext.invoices`, `reload` flag, and the
-     * `navigation.setParams` method, meaning it will re-run only when any of these dependencies
-     * change.
+     * @hook useFocusEffect
+     * @effect Ensures the invoice list is up-to-date whenever the user navigates to the component.
      */
     useFocusEffect(
         useCallback((): void => {
@@ -146,18 +137,9 @@ export const InvoiceDataTable: React.FC = (): ReactElement => {
 
     /**
      * Memoizes and constructs a data table of invoices or a fallback message based on the
-     * presence of invoices. If there are no invoices available in the application contexts, a
-     * message suggesting the creation of invoices is displayed. Otherwise, it generates a list
-     * of pressable rows, each representing an invoice with key details such as ID, name, order
-     * ID, total price, and creation date. Pressing a row navigates to a detailed view of the
-     * invoice. The memoization ensures that the component only re-renders when
-     * `appContext.invoices` changes, optimizing performance by avoiding unnecessary re-renders.
+     * presence of invoices.
      *
-     * The dataTableRows are constructed by mapping over `appContext.invoices`, creating a
-     * pressable DataTable.Row for each invoice. The onPress event of each row is configured to
-     * navigate to a detailed view of the invoice. The style of each row changes upon pressing
-     * to provide visual feedback.
-     *
+     * @memo dataTable
      * @returns {ReactElement} A React element that either displays a message indicating the
      * absence of invoices or renders a data table with invoice details.
      */
