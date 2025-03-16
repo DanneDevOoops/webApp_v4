@@ -1,8 +1,7 @@
 /**
- * @module StyleTypes
+ * @module style-interfaces.ts
  *
  * This module defines various TypeScript interfaces for styling attributes.
- *
  * It includes interfaces for objects with numeric and string keys and values, as well as interfaces
  * for color schemes, color responses, background colors, and text colors.
  */
@@ -53,9 +52,9 @@ export interface StrKeyStrValueAttributeType {
  * ColorScheme interface.
  *
  * This interface defines a color scheme with optional color values for different shades.
- * Each property represents a shade of the color, ranging from 50 to 900.
+ * Each property represents a shade of the color, ranging from 50 to 1000.
  *
- * @interface
+ * @interface ColorScheme
  * @property {ColorValue} [50] - Optional. The lightest shade of the color.
  * @property {ColorValue} [100] - Optional. A very light shade of the color.
  * @property {ColorValue} [200] - Optional. A light shade of the color.
@@ -88,7 +87,7 @@ export interface ColorScheme {
  * This interface defines a color scheme with multiple color categories. Each category
  * (primary, secondary, tertiary, quarternary, quintary) is represented by a `ColorScheme`.
  *
- * @interface
+ * @interface ColorSchemeGroupInterface
  * @property {ColorScheme} primary - The primary color scheme.
  * @property {ColorScheme} secondary - The secondary color scheme.
  * @property {ColorScheme} tertiary - The tertiary color scheme.
@@ -104,15 +103,18 @@ export interface ColorSchemeGroupInterface {
 }
 
 /**
- * Represents a color response interface with various indicator colors.
+ * ColorResponseInterface interface.
  *
+ * This interface represents a color response with various indicator colors.
+ *
+ * @interface ColorResponseInterface
  * @property {ColorScheme} info - Info indicator colors.
  * @property {ColorScheme} positive - Positive indicator colors.
- * @property {ColorScheme} [success] - Success indicator colors (optional).
+ * @property {ColorScheme} [success] - Optional. Success indicator colors.
  * @property {ColorScheme} caution - Caution indicator colors.
  * @property {ColorScheme} warning - Warning indicator colors.
- * @property {ColorScheme} [critical] - Critical indicator colors (optional).
- * @property {ColorScheme} [error] - Error indicator colors (optional).
+ * @property {ColorScheme} [critical] - Optional. Critical indicator colors.
+ * @property {ColorScheme} [error] - Optional. Error indicator colors.
  * @property {ColorScheme} link - Link indicator colors.
  * @property {ColorScheme} visited - Visited link indicator colors.
  */
@@ -129,8 +131,11 @@ export interface ColorResponseInterface {
 }
 
 /**
- * Represents background color interface with light and dark color attributes.
+ * BgColorInterface interface.
  *
+ * This interface represents background color attributes with light and dark color properties.
+ *
+ * @interface BgColorInterface
  * @property {string} light - Light background color attributes.
  * @property {string} dark - Dark background color attributes.
  */
@@ -140,8 +145,11 @@ export interface BgColorInterface {
 }
 
 /**
- * Represents text color interface with light, dark, and disabled color attributes.
+ * TextColorInterface interface.
  *
+ * This interface represents text color attributes with light, dark, and disabled color properties.
+ *
+ * @interface TextColorInterface
  * @property {string} light - Light text color attributes.
  * @property {string} dark - Dark text color attributes.
  * @property {string} disabled - Disabled text color attributes.

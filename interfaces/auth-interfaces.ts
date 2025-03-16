@@ -1,31 +1,10 @@
 /**
- * Module: Authentication Interfaces
+ * @module auth-interfaces.ts
  *
- * Overview:
- * This module defines a cohesive set of TypeScript interfaces that outline the structure and types of data
- * involved in authentication processes within the application. It includes interfaces for user credentials,
- * request bodies for registration and login, responses from authentication requests, and the contexts for
- * managing authentication state and operations.
- *
- * Purpose:
- * The primary purpose of these interfaces is to ensure type safety and consistency across the application's
- * authentication flow, from the presentation layer down to the network communication with the backend
- * server. By adhering to these interfaces, the application can facilitate secure and efficient user
- * authentication, registration, and state management.
- *
- * Usage:
- * These interfaces are integral to the authentication system, interacting with models, components, and
- * screens that handle user authentication. They are used to type-check the data sent to and received from
- * the server, manage user session state, and guide the development of authentication-related UI components.
- *
- * Related Modules:
- * - `models/auth`: Defines the data models related to authentication.
- * - `components/auth`: Contains React components that utilize these interfaces for prop types and state
- * management.
- * - `screens/auth`: Screens in the application that involve authentication, leveraging these interfaces
- * for consistency.
- *
- * @module interfaces/Auth
+ * This module defines a cohesive set of TypeScript interfaces that outline the structure and
+ * types of data involved in authentication processes within the application. It includes
+ * interfaces for user credentials, request bodies for registration and login, responses from
+ * authentication requests, and the contexts for managing authentication state and operations.
  */
 
 import { ReactNode } from 'react';
@@ -76,6 +55,25 @@ export interface AuthRequestBody {
     password: string;
 }
 
+/**
+ * Represents the response from an authentication request.
+ *
+ * This interface defines the structure of the response data received after an authentication
+ * request.
+ *
+ * @interface AuthResponse
+ * @property {Object} [data] - The data object containing authentication details.
+ * @property {string} data.title - The title of the response.
+ * @property {string} data.message - The message of the response.
+ * @property {string} data.type - The type of the response.
+ * @property {string} data.token - The authentication token.
+ * @property {Object} data.user - The user object containing user details.
+ * @property {string} data.user.api_key - The API key of the user.
+ * @property {string} data.user.email - The email address of the user.
+ * @property {Object} [errors] - The errors object containing error details.
+ * @property {string} errors.title - The title of the error.
+ * @property {string} errors.detail - The detail of the error.
+ */
 export interface AuthResponse {
     data?: {
         title: string;
@@ -93,6 +91,17 @@ export interface AuthResponse {
     };
 }
 
+/**
+ * Represents the structure of an authentication response object.
+ *
+ * This interface defines the structure of the response object received after an authentication
+ * request.
+ *
+ * @interface AuthResponseObject
+ * @property {string} title - The title of the response.
+ * @property {string} message - The message of the response.
+ * @property {string} type - The type of the response.
+ */
 export interface AuthResponseObject {
     title: string;
     message: string;
@@ -102,19 +111,20 @@ export interface AuthResponseObject {
 /**
  * Defines the contexts for authentication operations within the application.
  *
- * This interface provides the structure for the authentication contexts, which manages user state and
- * authentication operations such as login, logout, and registration.
+ * This interface provides the structure for the authentication contexts, which manages user
+ * state and authentication operations such as login, logout, and registration.
  *
  * @interface AuthContextType
- * @property {User | undefined} user - The current user object or undefined if no user is logged in.
+ * @property {User | undefined} user - The current user object or undefined if no user is
+ * logged in.
  * @property {(user: User) => void} setUser - Function to update the current user state.
  * @property {boolean} isLoggedIn - Boolean indicating if a user is currently logged in.
  * @property {(authIndicator: boolean) => void} setIsLoggedIn - Function to update the login state.
- * @property {(username: string, password: string) => Promise<void>} login - Async function to handle
- * user login.
+ * @property {(username: string, password: string) => Promise<void>} login - Async function to
+ * handle user login.
  * @property {() => Promise<void>} logout - Async function to handle user logout.
- * @property {(username: string, password: string) => Promise<void>} register - Async function to handle
- * user registration.
+ * @property {(username: string, password: string) => Promise<void>} register - Async function
+ * to handle user registration.
  */
 export interface AuthContextType {
     user?: User | undefined;
@@ -132,8 +142,8 @@ export interface AuthContextType {
  * This interface defines the properties that the `AuthProvider` component accepts.
  *
  * @interface AuthProviderProps
- * @property {ReactNode} children - The child components that will have access to the authentication
- * contexts.
+ * @property {ReactNode} children - The child components that will have access to the
+ * authentication contexts.
  */
 export interface AuthProviderProps {
     children: ReactNode;

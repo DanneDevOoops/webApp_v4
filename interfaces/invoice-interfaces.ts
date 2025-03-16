@@ -1,4 +1,11 @@
 /**
+ * @module invoice-interfaces.ts
+ *
+ * This module defines various TypeScript interfaces related to invoice data and interactions.
+ * These interfaces include properties for invoice entities, API responses, and invoice item types.
+ */
+
+/**
  * Represents the structure and data of an invoice in the system.
  *
  * @interface Invoice
@@ -26,12 +33,22 @@ export interface Invoice {
     due_date: Date;
 }
 
+/**
+ * Represents the response structure for fetching multiple invoices' data from the API.
+ *
+ * This interface defines the expected structure of the response when retrieving a list of
+ * invoices from the API.
+ *
+ * @interface InvoiceDataResponse
+ * @property {Invoice[]} data - An array of `Invoice` objects representing the invoices data.
+ */
 export interface InvoiceDataResponse {
     data: Invoice[];
 }
 
 /**
- * Defines the structure for creating a new invoice, typically used when submitting data from a form.
+ * Defines the structure for creating a new invoice, typically used when submitting data from a
+ * form.
  *
  * @interface NewInvoice
  * @property {string} api_key - An API key required for authentication to create an invoice.
@@ -53,7 +70,8 @@ export interface NewInvoice {
  *
  * @interface InvoiceItemProps
  * @property {object} route - The route object containing navigation and parameter information.
- * @property {object} route.params - Parameters passed through the route, including the invoice item.
+ * @property {object} route.params - Parameters passed through the route, including the invoice
+ * item.
  * @property {Invoice} route.params.item - The invoice item to be displayed or interacted with.
  */
 export interface InvoiceItemProps {
@@ -64,47 +82,35 @@ export interface InvoiceItemProps {
     };
 }
 
-// /**
-//  * Describes the structure for updating an existing invoice's information.
-//  *
-//  * @interface UpdateInvoice
-//  * @property {string} api_key - An API key required for authentication to update the invoice.
-//  * @property {number} id - The unique identifier of the invoice to be updated.
-//  * @property {number} [order_id] - Optional. The identifier of the order associated with the invoice.
-//  * @property {Date} [creation_date] - Optional. The date when the invoice was or is to be created.
-//  * @property {Date} [due_date] - Optional. The date by which the invoice should be paid.
-//  * @property {number} [total_price] - Optional. The total price or cost represented by the invoice.
-//  */
-// export interface UpdateInvoice {
-//     api_key: string;
-//     id: number;
-//     order_id?: number
-//     creation_date?: Date;
-//     due_date?: Date
-//     total_price?: number
-// }
+/**
+ * Describes the structure for updating an existing invoice's information.
+ *
+ * @interface UpdateInvoice
+ * @property {string} api_key - An API key required for authentication to update the invoice.
+ * @property {number} id - The unique identifier of the invoice to be updated.
+ * @property {number} [order_id] - Optional. The identifier of the order associated with the
+ * invoice.
+ * @property {Date} [creation_date] - Optional. The date when the invoice was or is to be created.
+ * @property {Date} [due_date] - Optional. The date by which the invoice should be paid.
+ * @property {number} [total_price] - Optional. The total price or cost represented by the invoice.
+ */
+export interface UpdateInvoice {
+    api_key: string;
+    id: number;
+    order_id?: number;
+    creation_date?: Date;
+    due_date?: Date;
+    total_price?: number;
+}
 
-// /**
-//  * Defines the structure for deleting an existing invoice from the system.
-//  *
-//  * @interface DeleteInvoice
-//  * @property {string} api_key - An API key required for authentication to delete the invoice.
-//  * @property {number} id - The unique identifier of the invoice to be deleted.
-//  */
-// export interface DeleteInvoice {
-//     api_key: string;
-//     id: number;
-// }
-
-// /**
-//  * Describes the properties for updating an invoice, including the invoice ID and attributes to be updated.
-//  *
-//  * @interface UpdateInvoiceProps
-//  * @property {number} invoice_id - The unique identifier of the invoice to be updated.
-//  * @property {Partial<invoice>} invoice_attributes - A partial invoice object containing only the
-//  * attributes that are to be updated.
-//  */
-// export interface UpdateInvoiceProps {
-//     invoice_id: number;
-//     invoice_attributes: Partial<invoice>;
-// }
+/**
+ * Defines the structure for deleting an existing invoice from the system.
+ *
+ * @interface DeleteInvoice
+ * @property {string} api_key - An API key required for authentication to delete the invoice.
+ * @property {number} id - The unique identifier of the invoice to be deleted.
+ */
+export interface DeleteInvoice {
+    api_key: string;
+    id: number;
+}
