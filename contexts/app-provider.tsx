@@ -1,9 +1,12 @@
 /**
- * This module defines the application-wide contexts and provides mechanisms
+ * @module app-provider.tsx
+ *
+ * This module defines the application-wide context and provides mechanisms
  * for managing and accessing application state such as loading indicators,
  * products, orders, deliveries, and invoices. It facilitates state management
- * across the application by providing a contexts provider and a custom hook.
+ * across the application by providing a context provider and a custom hook.
  */
+
 import React, { ReactElement, createContext, useState } from 'react';
 
 import { AppContextType, AppProviderProps } from 'interfaces/app-interfaces';
@@ -14,9 +17,13 @@ import { Product } from 'interfaces/product-interfaces';
 import { UserPosition } from 'interfaces/user-interfaces';
 
 /**
- * `AppContextType` is a React contexts object initialized with default values for
+ * AppContext
+ *
+ * This context initializes with default values and provides types for the
  * application state management, including loading indicators, lists of products,
  * orders, deliveries, and invoices, along with functions to update these states.
+ *
+ * @context
  */
 const AppContext = createContext<AppContextType>({
     // App data
@@ -47,12 +54,17 @@ const AppContext = createContext<AppContextType>({
 });
 
 /**
- * `AppProvider` is a React functional component that wraps its children with the
- * `AppContextType.Provider`, allowing them to access and manipulate the application's
- * state such as loading indicators, products, orders, deliveries, and invoices.
+ * AppProvider component.
  *
- * @param children - The child components that will have access
- * to the contexts.
+ * This component manages the application state, including loading indicators,
+ * lists of products, orders, deliveries, and invoices. It provides functions to
+ * update these states. Children components can access the application state and
+ * functions through the `useAppContext` hook.
+ *
+ * @component
+ * @param {AppProviderProps} props - The properties for the AppProvider component.
+ * @returns {ReactElement} The provider component wrapping its children, providing them access
+ * to the application context.
  */
 export const AppProvider: React.FC<AppProviderProps> = ({
     children,
@@ -94,10 +106,12 @@ export const AppProvider: React.FC<AppProviderProps> = ({
 };
 
 /**
- * `useAppContext` is a custom hook that allows components to access the application
- * contexts. It returns the contexts value, providing access to the application's state
- * and functions to manipulate it.
+ * useAppContext hook.
  *
- * @returns {AppContextType} The application contexts value.
+ * A custom hook that provides access to the application context.
+ * Components using this hook can access the current state and functions to update it.
+ *
+ * @returns {AppContextType} The application context, including the current state and related
+ * functions.
  */
 export const useAppContext = (): AppContextType => React.useContext(AppContext);
