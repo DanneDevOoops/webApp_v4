@@ -16,8 +16,8 @@
  */
 
 import * as ProductModel from './products-models';
-import config from '../config/config.json';
 import { RequestErrorHandler } from 'components/utils/error-handler';
+import config from 'config/config.json';
 import {
     MultipleOrdersDataResponse,
     Order,

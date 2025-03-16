@@ -10,7 +10,7 @@
  * Nominatim API.
  */
 
-import { CoordinatesResponse } from '../interfaces/utils-interfaces';
+import { CoordinatesResponse } from 'interfaces/utils-interfaces';
 
 /**
  * Fetches the geographical coordinates for a given address using the Nominatim API.

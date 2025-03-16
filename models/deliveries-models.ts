@@ -10,9 +10,9 @@
  * - createDelivery: Creates a new delivery in the API.
  */
 
-import config from '../config/config.json';
-import * as DeliveriesInterfaces from '../interfaces/delivery-interfaces';
-import { DeliveryDataResponse } from '../interfaces/delivery-interfaces';
+import config from 'config/config.json';
+import * as DeliveriesInterfaces from 'interfaces/delivery-interfaces';
+import { DeliveryDataResponse } from 'interfaces/delivery-interfaces';
 
 /**
  * Fetches all deliveries from the API.
