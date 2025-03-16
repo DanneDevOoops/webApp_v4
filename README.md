@@ -1,3 +1,5 @@
+[![ESLint and TypeScript Check](https://github.com/DanneDevOoops/webApp_v4/actions/workflows/lint_and_check_actions.yml/badge.svg)](https://github.com/DanneDevOoops/webApp_v4/actions/workflows/lint_and_check_actions.yml)
+
 # WebApp v4
 
 Course repo for studies in webApp version 4 at BTH spring of 2022. We are going to create a 
