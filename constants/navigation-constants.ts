@@ -1,7 +1,18 @@
 /**
- * @constant {Object} NavigationPathKeys
- * @description This constant defines the navigation keys for various screens in the application.
- * It is used to manage navigation paths and ensure consistency across the application.
+ * @module navigation-constants.ts
+ *
+ * This module stores constants related to navigation, including navigation keys and icons
+ * for various screens in the application. It ensures consistency and manageability of
+ * navigation paths across different sections such as authentication, deliveries, home,
+ * invoices, orders, and products.
+ */
+
+/**
+ * @constant NavigationPathKeys
+ *
+ * This constant defines the navigation keys for various screens in the application.
+ * It is organized into namespaces for different sections of the application, such as
+ * authentication, deliveries, home, invoices, orders, and products.
  */
 export const NavigationPathKeys = {
     /**
@@ -135,7 +146,10 @@ export const NavigationPathKeys = {
 };
 
 /**
- * Bottom tabs navigator icons.
+ * @constant routeIcons
+ *
+ * This constant defines the icons for the bottom tabs navigator.
+ * It maps screen keys to their corresponding icon names.
  */
 export const routeIcons: { [key: string]: string } = {
     InvoicesScreen: 'file-invoice-dollar',
