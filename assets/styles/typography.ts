@@ -1,5 +1,5 @@
 /**
- * Typography module.
+ * @module typography.ts
  *
  * This module defines various typography-related styles used throughout the application.
  * It includes definitions for font sizes, font weights, font families, white space values,
@@ -8,8 +8,6 @@
  *
  * The styles are organized into objects that can be imported and used in React Native components
  * to ensure consistent typography across the application.
- *
- * @module typography
  */
 
 import { StyleSheet, TextStyle } from 'react-native';
@@ -526,6 +524,19 @@ TypographyStyles.warningFlashMsg = {
     fontSize: TypographyStyles.fontSize.text,
 };
 
+/**
+ * @constant TabBarStyle - Style definitions for the tab bar.
+ *
+ * This object contains style definitions for the tab bar in the application.
+ * It includes styles for the tab bar label.
+ *
+ * @type {object}
+ * @property {object} label - Styles for the tab bar label.
+ * @property {number} label.fontSize - The font size of the tab bar label.
+ * @property {string} label.fontWeight - The font weight of the tab bar label.
+ * @property {string} label.fontFamily - The font family of the tab bar label.
+ * @property {string} label.color - The color of the tab bar label text.
+ */
 export const TabBarStyle = StyleSheet.create({
     label: {
         fontSize: TypographyStyles.fontSize.h5,

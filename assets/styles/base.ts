@@ -1,9 +1,11 @@
 /**
  * @module base.ts
- * This module defines base style attributes for UI components.
  *
- * It includes objects that specify the layout and appearance properties for the main container and content elements.
- * These attributes are used to style the visual appearance and layout behavior of these components in the user interface.
+ * This module defines base style attributes for UI components.
+ * It includes objects that specify the layout and appearance properties for the main container
+ * and content elements.
+ * These attributes are used to style the visual appearance and layout behavior of these
+ * components in the user interface.
  */
 
 import { ViewStyle } from 'react-native';
@@ -13,6 +15,10 @@ import { background as bgColors } from './colors';
 /**
  * Main Container attributes.
  *
+ * This object defines the style attributes for the main container.
+ *
+ * @constant
+ * @type {ViewStyle}
  * @property {string} width - The width of the main container.
  * @property {string} height - The height of the main container.
  * @property {number} padding - The padding inside the main container.
@@ -42,6 +48,10 @@ export const mainContainer: ViewStyle = {
 /**
  * Base Content Attributes.
  *
+ * This object defines the style attributes for the content.
+ *
+ * @constant
+ * @type {ViewStyle}
  * @property {number} flex - The flex grow factor of the content.
  * @property {string} backgroundColor - The background color of the content.
  */

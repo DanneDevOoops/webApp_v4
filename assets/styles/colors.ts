@@ -1,8 +1,7 @@
 /**
- * @module colors
+ * @module colors.ts
  *
  * This module defines the color attributes for the application.
- *
  * It includes objects that specify various properties related to color. These attributes are
  * used to style the visual appearance and layout behavior of the components throughout the
  * application.
@@ -19,34 +18,32 @@ import {
 /**
  * Color Scheme One.
  *
+ * @constant
+ * @type {ColorSchemeGroupInterface}
  * @property {Object} primary - Primary colors.
  * @property {string} primary.100 - Lightest primary color.
  * @property {string} primary.200 - Light primary color.
  * @property {string} primary.300 - Light-medium primary color.
  * @property {string} primary.400 - Medium primary color.
  * @property {string} primary.500 - Dark primary color.
- *
  * @property {Object} secondary - Secondary colors.
  * @property {string} secondary.100 - Lightest secondary color.
  * @property {string} secondary.200 - Light secondary color.
  * @property {string} secondary.300 - Light-medium secondary color.
  * @property {string} secondary.400 - Medium secondary color.
  * @property {string} secondary.500 - Dark secondary color.
- *
  * @property {Object} tertiary - Tertiary colors.
  * @property {string} tertiary.100 - Lightest tertiary color.
  * @property {string} tertiary.200 - Light tertiary color.
  * @property {string} tertiary.300 - Light-medium tertiary color.
  * @property {string} tertiary.400 - Medium tertiary color.
  * @property {string} tertiary.500 - Dark tertiary color.
- *
  * @property {Object} quarternary - Quarternary colors.
  * @property {string} quarternary.100 - Lightest quarternary color.
  * @property {string} quarternary.200 - Light quarternary color.
  * @property {string} quarternary.300 - Light-medium quarternary color.
  * @property {string} quarternary.400 - Medium quarternary color.
  * @property {string} quarternary.500 - Dark quarternary color.
- *
  * @property {Object} quintary - Quintary colors.
  * @property {string} quintary.100 - Lightest quintary color.
  * @property {string} quintary.200 - Light quintary color.
@@ -95,6 +92,8 @@ export const schemeOne: ColorSchemeGroupInterface = {
 /**
  * Background colors.
  *
+ * @constant
+ * @type {BgColorInterface}
  * @property {string} light - The light background color.
  * @property {string} dark - The dark background color.
  */
@@ -106,6 +105,8 @@ export const background: BgColorInterface = {
 /**
  * Text colors.
  *
+ * @constant
+ * @type {TextColorInterface}
  * @property {string} dark - The dark text color.
  * @property {string} disabled - The disabled text color.
  * @property {string} light - The light text color.
@@ -119,6 +120,8 @@ export const text: TextColorInterface = {
 /**
  * Gray Scale colors.
  *
+ * @constant
+ * @type {ColorScheme}
  * @property {string} 50 - The lightest gray color.
  * @property {string} 100 - A light gray color.
  * @property {string} 200 - A medium-light gray color.
@@ -148,6 +151,8 @@ export const grayScale: ColorScheme = {
 /**
  * Indicator colors, good for user guidance.
  *
+ * @constant
+ * @type {ColorResponseInterface}
  * @property {Object} info - Information indicator colors.
  * @property {string} info.50 - Lightest info color.
  * @property {string} info.100 - Light info color.
@@ -160,7 +165,6 @@ export const grayScale: ColorScheme = {
  * @property {string} info.800 - Very dark info color.
  * @property {string} info.900 - Darkest info color.
  * @property {string} info.1000 - Deepest info color.
- *
  * @property {Object} positive - Positive indicator colors.
  * @property {string} positive.100 - Lightest positive color.
  * @property {string} positive.200 - Light positive color.
@@ -172,7 +176,6 @@ export const grayScale: ColorScheme = {
  * @property {string} positive.800 - Very dark positive color.
  * @property {string} positive.900 - Darkest positive color.
  * @property {string} positive.1000 - Deepest positive color.
- *
  * @property {Object} caution - Caution indicator colors.
  * @property {string} caution.100 - Lightest caution color.
  * @property {string} caution.200 - Light caution color.
@@ -184,7 +187,6 @@ export const grayScale: ColorScheme = {
  * @property {string} caution.800 - Very dark caution color.
  * @property {string} caution.900 - Darkest caution color.
  * @property {string} caution.1000 - Deepest caution color.
- *
  * @property {Object} warning - Warning indicator colors.
  * @property {string} warning.100 - Lightest warning color.
  * @property {string} warning.200 - Light warning color.
@@ -196,7 +198,6 @@ export const grayScale: ColorScheme = {
  * @property {string} warning.800 - Very dark warning color.
  * @property {string} warning.900 - Darkest warning color.
  * @property {string} warning.1000 - Deepest warning color.
- *
  * @property {Object} link - Link indicator colors.
  * @property {string} link.100 - Lightest link color.
  * @property {string} link.200 - Light link color.
@@ -208,7 +209,6 @@ export const grayScale: ColorScheme = {
  * @property {string} link.800 - Very dark link color.
  * @property {string} link.900 - Darkest link color.
  * @property {string} link.1000 - Deepest link color.
- *
  * @property {Object} visited - Visited link indicator colors.
  * @property {string} visited.100 - Lightest visited link color.
  * @property {string} visited.200 - Light visited link color.
@@ -300,6 +300,8 @@ export const indicator: ColorResponseInterface = {
 /**
  * Shadow colors.
  *
+ * @constant
+ * @type {ColorScheme}
  * @property {string} 100 - The lightest shadow color.
  * @property {string} 200 - A light shadow color.
  * @property {string} 300 - A medium shadow color.

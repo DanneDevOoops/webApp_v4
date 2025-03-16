@@ -1,7 +1,33 @@
+/**
+ * @module menus.ts
+ *
+ * This module defines the styles for various menu components in the application.
+ * It includes styles for the tab bar, individual tabs, and the tab indicator.
+ */
+
 import { StyleSheet, ViewStyle } from 'react-native';
 
 import * as Color from './colors';
 
+/**
+ * MenuStyles object.
+ *
+ * This object contains style definitions for various menu components in the application.
+ * It includes styles for the tab bar, individual tabs, and the tab indicator.
+ *
+ * @constant
+ * @type {object}
+ * @property {object} tabBar - Styles for the tab bar container.
+ * @property {string} tabBar.width - Sets the width of the tab bar to 100%.
+ * @property {string} tabBar.height - Sets the height of the tab bar to auto.
+ * @property {number} tabBar.paddingHorizontal - Sets the horizontal padding to 0.
+ * @property {string} tabBar.backgroundColor - Sets the background color of the tab bar.
+ * @property {object} tab - Styles for individual tabs.
+ * @property {string} tab.width - Sets the width of the tab to auto.
+ * @property {number} tab.padding - Sets the padding of the tab to 0.
+ * @property {object} indicator - Styles for the tab indicator.
+ * @property {string} indicator.backgroundColor - Sets the background color of the tab indicator.
+ */
 export const MenuStyles = StyleSheet.create({
     /**
      * Style for the tab bar container.

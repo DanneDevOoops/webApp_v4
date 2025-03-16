@@ -1,16 +1,19 @@
 /**
+ * @module abstracts.ts
+ *
  * This module defines style attributes for UI components, specifically focusing on abstract
- * properties.
- *
- * It includes objects, which contain properties related to abstracts, such as shadows, etc.
- *
- * @module abstracts
+ * properties. It includes objects that contain properties related to shadows and other abstract
+ * styling attributes.
  */
 
 /**
  * Abstracts Attributes.
  *
- * @property {Object} buttonOffset - The offset of the button shadow.
+ * This object defines the abstract style attributes for UI components.
+ *
+ * @constant
+ * @type {object}
+ * @property {object} buttonOffset - The offset of the button shadow.
  * @property {number} buttonOffset.width - The horizontal offset of the button shadow.
  * @property {number} buttonOffset.height - The vertical offset of the button shadow.
  * @property {number} buttonOpacity - The opacity of the button shadow.
@@ -31,7 +34,11 @@ export const abstracts = {
 /**
  * Shadows Attributes.
  *
- * @property {Object} btnOffset - The offset of the button shadow.
+ * This object defines the shadow style attributes for UI components.
+ *
+ * @constant
+ * @type {object}
+ * @property {object} btnOffset - The offset of the button shadow.
  * @property {number} btnOffset.width - The horizontal offset of the button shadow.
  * @property {number} btnOffset.height - The vertical offset of the button shadow.
  * @property {number} buttonOpacity - The opacity of the button shadow.

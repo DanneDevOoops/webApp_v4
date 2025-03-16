@@ -1,12 +1,10 @@
 /**
- * @module buttons
+ * @module buttons.ts
  *
  * This module defines style attributes for various button components.
- *
  * It includes objects that specify the layout, appearance, and shadow properties for base
  * buttons, list buttons, and button containers. These attributes are used to style the visual
- * appearance and layout behavior of these button
- * components in the user interface.
+ * appearance and layout behavior of these button components in the user interface.
  */
 
 import { StyleSheet } from 'react-native';
@@ -19,6 +17,8 @@ import * as Variable from './variables';
 /**
  * Base button properties.
  *
+ * @constant
+ * @type {object}
  * @property {string} overflow - The overflow behavior of the button.
  * @property {string} width - The width of the button.
  * @property {string} height - The height of the button.
@@ -30,7 +30,7 @@ import * as Variable from './variables';
  * @property {number} borderRadius - The border radius of the button.
  * @property {string} backgroundColor - The background color of the button.
  * @property {string} shadowColor - The color of the button shadow.
- * @property {Object} shadowOffset - The offset of the button shadow.
+ * @property {object} shadowOffset - The offset of the button shadow.
  * @property {number} shadowOffset.width - The horizontal offset of the button shadow.
  * @property {number} shadowOffset.height - The vertical offset of the button shadow.
  * @property {number} shadowOpacity - The opacity of the button shadow.
@@ -58,11 +58,25 @@ const ButtonBase = StyleSheet.create({
     },
 });
 
+/**
+ * ButtonStyles object.
+ *
+ * This object contains style definitions for various button components in the application.
+ * It includes styles for list buttons and button containers.
+ *
+ * @constant
+ * @type {object}
+ * @property {object} listButton - Styles for list buttons.
+ * @property {string} listButton.backgroundColor - The background color of the list button.
+ * @property {object} buttonContainer - Styles for button containers.
+ * @property {string} buttonContainer.backgroundColor - The background color of the button container.
+ */
 export const ButtonStyles = StyleSheet.create({
     listButton: {
         ...ButtonBase.button,
         backgroundColor: Color.schemeOne.primary[300],
     },
+
     buttonContainer: {
         ...ButtonBase.button,
         backgroundColor: Color.schemeOne.primary[300],
