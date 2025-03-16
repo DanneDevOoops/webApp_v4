@@ -6,17 +6,23 @@ import pluginReact from 'eslint-plugin-react';
 import pluginPrettier from 'eslint-plugin-prettier';
 import jsdoc from 'eslint-plugin-jsdoc';
 import reactNative from 'eslint-plugin-react-native';
+import importPlugin from 'eslint-plugin-import';
 
 /**
  * @type {import('eslint').Linter.Config[]}
  */
 export default [
+    pluginJs.configs.recommended,
+    pluginReact.configs.flat.recommended,
+    pluginReact.configs.flat['jsx-runtime'],
+    eslint.configs.recommended,
+    ...tseslint.configs.recommendedTypeChecked,
     {
         files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
     },
     {
         ignores: [
-            'node_modules',
+            'node_modules/**/*',
             'dist',
             'build',
             'coverage',
@@ -33,30 +39,68 @@ export default [
     },
     {
         plugins: {
+            import: importPlugin,
             react: pluginReact,
             prettier: pluginPrettier,
             jsdoc: jsdoc,
             'react-native': reactNative,
         },
         rules: {
+            // eslint-plugin-react
             'react/jsx-uses-react': 'error',
             'react/jsx-uses-vars': 'error',
+
+            // prettier
             'prettier/prettier': 'error',
+
+            // eslint-plugin-jsdoc
             'jsdoc/require-description': 'error',
             'jsdoc/check-values': 'error',
 
-            // My Rules...
-            'no-array-constructor': 'off',
+            // sort imports - https://eslint.org/docs/latest/rules/sort-imports
+            'sort-imports': [
+                'error',
+                {
+                    ignoreCase: false,
+                    ignoreDeclarationSort: true, // don"t want to sort import lines, use eslint-plugin-import instead
+                    ignoreMemberSort: false,
+                    memberSyntaxSortOrder: [
+                        'none',
+                        'all',
+                        'multiple',
+                        'single',
+                    ],
+                    allowSeparatedGroups: true,
+                },
+            ],
+
+            // eslint-plugin-import
+            'import/order': [
+                'error',
+                {
+                    groups: [
+                        ['builtin', 'external'],
+                        ['internal', 'parent', 'sibling', 'index'],
+                        ['object', 'type'],
+                    ],
+                    'newlines-between': 'always',
+                    alphabetize: {
+                        order: 'asc',
+                        caseInsensitive: true,
+                    },
+                },
+            ],
+            'import/no-duplicates': 'error',
+            'import/no-self-import': 'error',
+            'import/no-useless-path-segments': 'error',
+            'import/no-unresolved': 'error',
+            'import/no-absolute-path': 'error',
+
+            // typescript-eslint
             '@typescript-eslint/no-array-constructor': ['error'],
-            'no-empty-function': 'off',
             '@typescript-eslint/no-empty-function': ['error'],
-            'no-extra-semi': 'off',
-            '@/no-extra-semi': 'error',
-            'no-implied-eval': 'off',
             '@typescript-eslint/no-implied-eval': ['error'],
-            'no-loss-of-precision': 'off',
             '@typescript-eslint/no-loss-of-precision': ['error'],
-            'no-unused-vars': 'warn',
             '@typescript-eslint/no-unused-vars': ['error'],
             'require-await': 'off',
             '@typescript-eslint/require-await': 'error',
@@ -74,13 +118,23 @@ export default [
             '@typescript-eslint/prefer-as-const': 'error',
             '@typescript-eslint/prefer-namespace-keyword': 'error',
             '@typescript-eslint/restrict-plus-operands': 'error',
+
+            // other rules
+            '@/no-extra-semi': 'error',
+            'no-array-constructor': 'off',
+            'no-empty-function': 'off',
+            'no-extra-semi': 'off',
+            'no-implied-eval': 'off',
+            'no-loss-of-precision': 'off',
+            'no-unused-vars': 'off',
         },
         languageOptions: {
             parserOptions: {
+                parser: '@typescript-eslint/parser',
                 ecmaFeatures: {
                     jsx: true,
                 },
-                projectService: true,
+                project: './tsconfig.json',
                 tsconfigRootDir: import.meta.dirname,
             },
             globals: {
@@ -88,10 +142,27 @@ export default [
                 ...globals.node,
             },
         },
+        settings: {
+            'import/resolver': {
+                node: {
+                    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                    paths: [
+                        'assets/',
+                        'components/',
+                        'constants/',
+                        'contexts/',
+                        'hooks/',
+                        'interfaces/',
+                        'models/',
+                        'screens/',
+                        'types/',
+                    ],
+                },
+                typescript: {
+                    alwaysTryTypes: true,
+                    project: './tsconfig.json',
+                },
+            },
+        },
     },
-    pluginJs.configs.recommended,
-    pluginReact.configs.flat.recommended,
-    pluginReact.configs.flat['jsx-runtime'],
-    eslint.configs.recommended,
-    ...tseslint.configs.recommendedTypeChecked,
 ];
