@@ -147,3 +147,6 @@ ios/
 prod/
 production/
 public/
+
+# Generate Docs
+docs/
