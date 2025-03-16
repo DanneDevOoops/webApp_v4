@@ -1,3 +1,10 @@
+/**
+ * @module login-form-buttons.tsx
+ *
+ * This module defines the buttons for the login form.
+ * It includes a button for logging in and a link for navigating to the registration screen.
+ */
+
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import React, { ReactElement } from 'react';
 import {
@@ -11,6 +18,18 @@ import * as Style from 'assets/styles';
 import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
 import { FunctionVoidType } from 'types/utils-types';
 
+/**
+ * LoginFormButtons component.
+ *
+ * This component renders the buttons for the login form. It includes a button for logging in
+ * and a link for navigating to the registration screen.
+ *
+ * @component
+ * @param {Object} props - The properties for the LoginFormButtons component.
+ * @param {FunctionVoidType} props.signInUserCallback - The callback function to be called  when
+ * the login button is pressed.
+ * @returns {ReactElement} The rendered LoginFormButtons component.
+ */
 export const LoginFormButtons: React.FC<{
     signInUserCallback: FunctionVoidType;
 }> = ({ signInUserCallback }): ReactElement => {

@@ -1,6 +1,11 @@
 /**
- * Module imports.
+ * @module register-form.tsx
+ *
+ * This module defines the form component for user registration.
+ * It handles user input for email, password, and password confirmation,
+ * and manages the registration process.
  */
+
 import {
     CommonActions,
     NavigationProp,
@@ -16,9 +21,13 @@ import { useAuthContext } from 'contexts/auth-provider';
 import type { RootStackParamList } from 'types/navigation-types';
 
 /**
- * Create new Login form component.
+ * RegisterForm component.
  *
- * @constructor
+ * This component renders a form for user registration. It handles user input for email,
+ * password, and password confirmation, and manages the registration process.
+ *
+ * @component
+ * @returns {ReactElement} The rendered RegisterForm component.
  */
 export const RegisterForm: React.FC = () => {
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -27,6 +36,15 @@ export const RegisterForm: React.FC = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
+    /**
+     * Registers a new user.
+     *
+     * This function handles the registration process by validating the input and
+     * calling the register and login functions from the auth context.
+     *
+     * @function registerUser
+     * @returns {void}
+     */
     function registerUser(): void {
         console.log('Click! -> Registrera ny användare med...');
 

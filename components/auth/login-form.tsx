@@ -1,3 +1,10 @@
+/**
+ * @module login-form.tsx
+ *
+ * This module defines the form component for user login.
+ * It handles user input for email and password, and manages the login process.
+ */
+
 import React, { ReactElement, useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 
@@ -8,15 +15,28 @@ import { useSignInUser } from 'hooks/auth-hooks';
 import { FunctionVoidType } from 'types/utils-types';
 
 /**
- * Create new Login form component.
+ * LoginForm component.
  *
- * @constructor
+ * This component renders a form for user login. It handles user input for email
+ * and password, and manages the login process.
+ *
+ * @component
+ * @returns {ReactElement} The rendered LoginForm component.
  */
 export const LoginForm: React.FC = (): ReactElement => {
     const [email, setEmail] = useState<string | null>(null);
     const [password, setPassword] = useState<string | null>(null);
     const { signInUser } = useSignInUser();
 
+    /**
+     * Handles the user sign-in process.
+     *
+     * This function validates the input and calls the signInUser function
+     * from the auth hooks.
+     *
+     * @function handleSignInUser
+     * @returns {void}
+     */
     const handleSignInUser: FunctionVoidType = (): void => {
         if (email && password) {
             void signInUser(email, password);
