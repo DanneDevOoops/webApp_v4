@@ -1,27 +1,28 @@
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import { Button, Platform, Pressable, Text, View } from 'react-native';
+import DateTimePicker, {
+    DateTimePickerEvent,
+} from '@react-native-community/datetimepicker';
+import { Picker } from '@react-native-picker/picker';
 import {
     CommonActions,
     RouteProp,
     useNavigation,
     useRoute,
 } from '@react-navigation/native';
-import DateTimePicker, {
-    DateTimePickerEvent,
-} from '@react-native-community/datetimepicker';
-import { useAppContext } from '../../context/app-provider';
-import { AppContextType } from '../../interfaces/app-interfaces';
-import { Picker } from '@react-native-picker/picker';
-import { LoadingIndicator } from '../../components/utils/loading-indicator';
 import { StatusBar } from 'expo-status-bar';
-import * as InvoiceInterfaces from '../../interfaces/invoice-interfaces';
-import { Invoice, NewInvoice } from '../../interfaces/invoice-interfaces';
-import * as InvoiceModel from '../../models/invoices-models';
-import { Order } from '../../interfaces/order-interfaces';
-import * as OrderModel from '../../models/orders-models';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
-import { RouteParams } from '../../types/navigation-types';
-import * as Style from '../../assets/styles';
+import React, { ReactElement, useEffect, useMemo, useState } from 'react';
+import { Button, Platform, Pressable, Text, View } from 'react-native';
+
+import * as Style from 'assets/styles';
+import { LoadingIndicator } from 'components/utils/loading-indicator';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
+import { useAppContext } from 'contexts/app-provider';
+import { AppContextType } from 'interfaces/app-interfaces';
+import * as InvoiceInterfaces from 'interfaces/invoice-interfaces';
+import { Invoice, NewInvoice } from 'interfaces/invoice-interfaces';
+import { Order } from 'interfaces/order-interfaces';
+import * as InvoiceModel from 'models/invoices-models';
+import * as OrderModel from 'models/orders-models';
+import { RouteParams } from 'types/navigation-types';
 
 export const InvoiceForm: React.FC = (): ReactElement => {
     const appContext: AppContextType = useAppContext();

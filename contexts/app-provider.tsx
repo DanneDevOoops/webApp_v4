@@ -1,19 +1,20 @@
 /**
- * This module defines the application-wide context and provides mechanisms
+ * This module defines the application-wide contexts and provides mechanisms
  * for managing and accessing application state such as loading indicators,
  * products, orders, deliveries, and invoices. It facilitates state management
- * across the application by providing a context provider and a custom hook.
+ * across the application by providing a contexts provider and a custom hook.
  */
-import React, { createContext, ReactElement, useState } from 'react';
-import { AppContextType, AppProviderProps } from '../interfaces/app-interfaces';
-import { Delivery } from '../interfaces/delivery-interfaces';
-import { Order } from '../interfaces/order-interfaces';
-import { Product } from '../interfaces/product-interfaces';
-import { Invoice } from '../interfaces/invoice-interfaces';
-import { UserPosition } from '../interfaces/user-interfaces';
+import React, { ReactElement, createContext, useState } from 'react';
+
+import { AppContextType, AppProviderProps } from 'interfaces/app-interfaces';
+import { Delivery } from 'interfaces/delivery-interfaces';
+import { Invoice } from 'interfaces/invoice-interfaces';
+import { Order } from 'interfaces/order-interfaces';
+import { Product } from 'interfaces/product-interfaces';
+import { UserPosition } from 'interfaces/user-interfaces';
 
 /**
- * `AppContextType` is a React context object initialized with default values for
+ * `AppContextType` is a React contexts object initialized with default values for
  * application state management, including loading indicators, lists of products,
  * orders, deliveries, and invoices, along with functions to update these states.
  */
@@ -51,7 +52,7 @@ const AppContext = createContext<AppContextType>({
  * state such as loading indicators, products, orders, deliveries, and invoices.
  *
  * @param children - The child components that will have access
- * to the context.
+ * to the contexts.
  */
 export const AppProvider: React.FC<AppProviderProps> = ({
     children,
@@ -94,9 +95,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({
 
 /**
  * `useAppContext` is a custom hook that allows components to access the application
- * context. It returns the context value, providing access to the application's state
+ * contexts. It returns the contexts value, providing access to the application's state
  * and functions to manipulate it.
  *
- * @returns {AppContextType} The application context value.
+ * @returns {AppContextType} The application contexts value.
  */
 export const useAppContext = (): AppContextType => React.useContext(AppContext);

@@ -1,5 +1,3 @@
-import React, { ReactElement, useCallback } from 'react';
-import { useAppContext } from '../../context/app-provider';
 import {
     CommonActions,
     RouteProp,
@@ -7,6 +5,7 @@ import {
     useNavigation,
     useRoute,
 } from '@react-navigation/native';
+import React, { ReactElement, useCallback } from 'react';
 import {
     Pressable,
     PressableStateCallbackType,
@@ -14,16 +13,18 @@ import {
     View,
     ViewStyle,
 } from 'react-native';
+
 import { DeliveryListItem } from './delivery-list-item';
-import { LoadingIndicator } from '../utils/loading-indicator';
-import * as DeliveriesInterfaces from '../../interfaces/delivery-interfaces';
-import * as DeliveryModel from '../../models/deliveries-models';
-import * as ProductModel from '../../models/products-models';
 import { DeliveryListView } from './delivery-list-view';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
-import { AppContextType } from '../../interfaces/app-interfaces';
-import { RouteParams } from '../../types/navigation-types';
-import * as Style from '../../assets/styles';
+import * as Style from 'assets/styles';
+import { LoadingIndicator } from 'components/utils/loading-indicator';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
+import { useAppContext } from 'contexts/app-provider';
+import { AppContextType } from 'interfaces/app-interfaces';
+import * as DeliveriesInterfaces from 'interfaces/delivery-interfaces';
+import * as DeliveryModel from 'models/deliveries-models';
+import * as ProductModel from 'models/products-models';
+import { RouteParams } from 'types/navigation-types';
 
 export const DeliveryList: React.FC = (): ReactElement => {
     const appContext: AppContextType = useAppContext();

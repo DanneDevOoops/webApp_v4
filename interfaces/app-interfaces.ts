@@ -1,12 +1,13 @@
 import { ReactNode } from 'react';
-import * as ProductsInterfaces from './product-interfaces';
-import * as OrdersInterfaces from './order-interfaces';
+
 import * as DeliveriesInterfaces from './delivery-interfaces';
 import * as InvoicesInterfaces from './invoice-interfaces';
+import * as OrdersInterfaces from './order-interfaces';
+import * as ProductsInterfaces from './product-interfaces';
 import { UserPosition } from './user-interfaces';
 
 /**
- * Defines the structure for the application context.
+ * Defines the structure for the application contexts.
  *
  * This interface outlines the types and functions available for managing the application's global state,
  * including loading indicators, and the state for products, orders, deliveries, and invoices.
@@ -61,7 +62,7 @@ export interface AppContextType {
  * This interface outlines the properties that can be passed to the `AppProvider` component.
  *
  * @interface
- * @property {React.ReactNode} children - The child components that will have access to the context.
+ * @property {React.ReactNode} children - The child components that will have access to the contexts.
  */
 export interface AppProviderProps {
     children: ReactNode;

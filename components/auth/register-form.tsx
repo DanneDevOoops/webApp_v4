@@ -1,17 +1,19 @@
 /**
  * Module imports.
  */
-import React, { useState } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
 import {
     CommonActions,
     NavigationProp,
     useNavigation,
 } from '@react-navigation/native';
-import type { RootStackParamList } from '../../types/navigation-types';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
-import { useAuthContext } from '../../context/auth-provider';
-import * as Style from '../../assets/styles/index';
+import React, { useState } from 'react';
+import { Pressable, Text, TextInput, View } from 'react-native';
+
+import * as Style from 'assets/styles/index';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
+import { useAuthContext } from 'contexts/auth-provider';
+
+import type { RootStackParamList } from 'types/navigation-types';
 
 /**
  * Create new Login form component.

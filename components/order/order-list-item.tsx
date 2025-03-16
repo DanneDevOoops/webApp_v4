@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
 import { Text, View } from 'react-native';
-import { OrderListItemPropsType } from '../../interfaces/order-interfaces';
-import * as Style from '../../assets/styles';
+
+import * as Style from 'assets/styles';
+import { OrderListItemPropsType } from 'interfaces/order-interfaces';
 
 /**
  * OrderListItem object to return a touchable link element to order detail view.

@@ -7,11 +7,12 @@
  * constants.
  */
 
+import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement } from 'react';
 import { Text, View } from 'react-native';
-import { Invoice, InvoiceItemProps } from '../../interfaces/invoice-interfaces';
-import { StatusBar } from 'expo-status-bar';
-import * as Style from '../../assets/styles';
+
+import * as Style from 'assets/styles';
+import { Invoice, InvoiceItemProps } from 'interfaces/invoice-interfaces';
 
 /**
  * InvoiceItem screen/view.

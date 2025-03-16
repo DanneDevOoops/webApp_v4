@@ -6,16 +6,13 @@
  * specifiers. The screen is styled using the application's style constants.
  */
 
-import React, { ReactElement } from 'react';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import React, { ReactElement } from 'react';
+import { Text, View } from 'react-native';
 
-import {
-    Product,
-    ProductListItemProps,
-} from '../../interfaces/product-interfaces';
-import * as Style from '../../assets/styles';
+import * as Style from 'assets/styles';
+import { Product, ProductListItemProps } from 'interfaces/product-interfaces';
 
 /**
  * StockItem component.

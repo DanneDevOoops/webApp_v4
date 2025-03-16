@@ -6,18 +6,18 @@
  * detailed information about a selected order.
  */
 
+import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement } from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
-import { createStackNavigator } from '@react-navigation/stack';
 
-import { OrderList } from '../../components/order/order-list';
 import { OrderItem } from './order-item-screen';
-import { CoverImage } from '../../components/utils/cover-image';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
-import coverIMG from '../../assets/img/NutsAndBolts-3.jpg';
-import * as Style from '../../assets/styles';
+import coverIMG from 'assets/img/NutsAndBolts-3.jpg';
+import * as Style from 'assets/styles';
+import { OrderList } from 'components/order/order-list';
+import { CoverImage } from 'components/utils/cover-image';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
 
 /**
  * @constant OrderStack - The stack navigator for the orders section.

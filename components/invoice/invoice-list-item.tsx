@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
 import { Text, View } from 'react-native';
-import { Invoice } from '../../interfaces/invoice-interfaces';
-import * as Style from '../../assets/styles';
+
+import * as Style from 'assets/styles';
+import { Invoice } from 'interfaces/invoice-interfaces';
 
 /**
  * InvoiceListItem component displays a single invoice item in a list.

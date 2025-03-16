@@ -4,7 +4,7 @@
  * Overview:
  * This module defines a cohesive set of TypeScript interfaces that outline the structure and types of data
  * involved in authentication processes within the application. It includes interfaces for user credentials,
- * request bodies for registration and login, responses from authentication requests, and the context for
+ * request bodies for registration and login, responses from authentication requests, and the contexts for
  * managing authentication state and operations.
  *
  * Purpose:
@@ -100,9 +100,9 @@ export interface AuthResponseObject {
 }
 
 /**
- * Defines the context for authentication operations within the application.
+ * Defines the contexts for authentication operations within the application.
  *
- * This interface provides the structure for the authentication context, which manages user state and
+ * This interface provides the structure for the authentication contexts, which manages user state and
  * authentication operations such as login, logout, and registration.
  *
  * @interface AuthContextType
@@ -133,7 +133,7 @@ export interface AuthContextType {
  *
  * @interface AuthProviderProps
  * @property {ReactNode} children - The child components that will have access to the authentication
- * context.
+ * contexts.
  */
 export interface AuthProviderProps {
     children: ReactNode;

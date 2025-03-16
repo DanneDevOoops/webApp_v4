@@ -1,8 +1,9 @@
 import React, { ReactElement, useMemo } from 'react';
 import { FlatList, Text, View } from 'react-native';
-import * as DeliveriesInterfaces from '../../interfaces/delivery-interfaces';
-import { DeliveryListViewProps } from '../../interfaces/delivery-interfaces';
-import * as Style from '../../assets/styles';
+
+import * as Style from 'assets/styles';
+import * as DeliveriesInterfaces from 'interfaces/delivery-interfaces';
+import { DeliveryListViewProps } from 'interfaces/delivery-interfaces';
 
 /**
  * DeliveryListView component.

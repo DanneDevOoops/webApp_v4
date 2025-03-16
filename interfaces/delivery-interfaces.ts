@@ -1,5 +1,6 @@
-import { ReactElement } from 'react';
 import { ParamListBase } from '@react-navigation/native';
+import { ReactElement } from 'react';
+
 import { Product } from './product-interfaces';
 
 /**

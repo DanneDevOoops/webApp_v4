@@ -5,6 +5,11 @@
  * amount, delivery date, and comments. The form also includes a date picker for selecting the delivery date.
  * Upon form submission, a new delivery is created and the selected product's stock is updated.
  */
+import DateTimePicker, {
+    DateTimePickerEvent,
+} from '@react-native-community/datetimepicker';
+import { CommonActions, useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement, useEffect, useState } from 'react';
 import {
     Button,
@@ -15,23 +20,19 @@ import {
     TextInput,
     View,
 } from 'react-native';
-import DateTimePicker, {
-    DateTimePickerEvent,
-} from '@react-native-community/datetimepicker';
-import { StatusBar } from 'expo-status-bar';
 import { showMessage } from 'react-native-flash-message';
-import { CommonActions, useNavigation } from '@react-navigation/native';
-import { DeliveryProductPicker } from '../../components/delivery/delivery-product-picker';
-import { useAppContext } from '../../context/app-provider';
-import config from '../../config/config.json';
-import * as DeliveriesInterfaces from '../../interfaces/delivery-interfaces';
-import { Delivery } from '../../interfaces/delivery-interfaces';
-import { Product } from '../../interfaces/product-interfaces';
-import * as DeliveryModel from '../../models/deliveries-models';
-import * as ProductModel from '../../models/products-models';
-import { AppContextType } from '../../interfaces/app-interfaces';
-import * as Style from '../../assets/styles';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
+
+import * as Style from 'assets/styles';
+import { DeliveryProductPicker } from 'components/delivery/delivery-product-picker';
+import config from 'config/config.json';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
+import { useAppContext } from 'contexts/app-provider';
+import { AppContextType } from 'interfaces/app-interfaces';
+import * as DeliveriesInterfaces from 'interfaces/delivery-interfaces';
+import { Delivery } from 'interfaces/delivery-interfaces';
+import { Product } from 'interfaces/product-interfaces';
+import * as DeliveryModel from 'models/deliveries-models';
+import * as ProductModel from 'models/products-models';
 
 /**
  * Create new delivery form component.

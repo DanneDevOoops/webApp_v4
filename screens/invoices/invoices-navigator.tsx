@@ -6,19 +6,19 @@
  * detailed information about a selected invoice, and a form for creating new invoices.
  */
 
+import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement } from 'react';
 import { SafeAreaView, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
-import { createStackNavigator } from '@react-navigation/stack';
 
-import { InvoiceDataTable } from '../../components/invoice/invoice-data-table';
-import { InvoiceItem } from './invoice-item-screen';
 import { InvoiceForm } from './invoice-form-screen';
-import { CoverImage } from '../../components/utils/cover-image';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
-import coverIMG from '../../assets/img/NutsAndBolts-7.jpg';
-import * as Style from '../../assets/styles';
+import { InvoiceItem } from './invoice-item-screen';
+import coverIMG from 'assets/img/NutsAndBolts-7.jpg';
+import * as Style from 'assets/styles';
+import { InvoiceDataTable } from 'components/invoice/invoice-data-table';
+import { CoverImage } from 'components/utils/cover-image';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
 
 /**
  * @constant InvoicesStack - The stack navigator for the invoices section.

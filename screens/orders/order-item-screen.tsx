@@ -7,6 +7,16 @@
  * available. The module allows the user to pack the order, send the order, or shows relevant
  * status messages based on the order status.
  */
+import {
+    CommonActions,
+    RouteProp,
+    useFocusEffect,
+    useNavigation,
+    useRoute,
+} from '@react-navigation/native';
+import * as Location from 'expo-location';
+import { LocationObject } from 'expo-location';
+import { StatusBar } from 'expo-status-bar';
 import React, {
     ReactElement,
     useCallback,
@@ -22,36 +32,26 @@ import {
     Text,
     View,
 } from 'react-native';
-import {
-    CommonActions,
-    RouteProp,
-    useFocusEffect,
-    useNavigation,
-    useRoute,
-} from '@react-navigation/native';
-import MapView, { Marker } from 'react-native-maps';
-import { StatusBar } from 'expo-status-bar';
 import { showMessage } from 'react-native-flash-message';
-import * as Location from 'expo-location';
-import { LocationObject } from 'expo-location';
+import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 
-import { useAppContext } from '../../context/app-provider';
-import * as APP_CONFIG from '../../config/config.json';
-import * as OrderInterfaces from '../../interfaces/order-interfaces';
+import * as Style from 'assets/styles';
+import { flash_message } from 'assets/utils/animation';
+import * as APP_CONFIG from 'config/config.json';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
+import { useAppContext } from 'contexts/app-provider';
+import * as OrderInterfaces from 'interfaces/order-interfaces';
 import {
     Order,
     OrderItemProps,
     OrderItemType,
-} from '../../interfaces/order-interfaces';
-import * as OrderModel from '../../models/orders-models';
-import * as ProductModel from '../../models/products-models';
-import * as NominatimModel from '../../models/nominatim-models';
-import { flash_message } from '../../assets/utils/animation';
-import { RouteParams } from '../../types/navigation-types';
-import * as Style from '../../assets/styles';
-import { Product } from '../../interfaces/product-interfaces';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
+} from 'interfaces/order-interfaces';
+import { Product } from 'interfaces/product-interfaces';
+import * as NominatimModel from 'models/nominatim-models';
+import * as OrderModel from 'models/orders-models';
+import * as ProductModel from 'models/products-models';
+import { RouteParams } from 'types/navigation-types';
 
 /**
  * OrderItemType screen/view.
@@ -95,7 +95,7 @@ export const OrderItem: React.FC<OrderItemProps> = (props: OrderItemProps) => {
      *
      * This function requests permission to access the user's location. If granted, it
      * retrieves the current location coordinates and sets the user position in the application
-     * context. It also fetches the coordinates for the order address using the Nominatim model
+     * contexts. It also fetches the coordinates for the order address using the Nominatim model
      * and sets the order location marker on the map. If the order address is not found, the
      * order location marker is set to null. Additionally, it sets the user location marker on
      * the map.
@@ -249,7 +249,7 @@ export const OrderItem: React.FC<OrderItemProps> = (props: OrderItemProps) => {
      * order locations. After fetching the data, it resets the reload parameter to false.
      *
      * Dependencies:
-     * - `appContext.userPosition`: The current user position from the application context.
+     * - `appContext.userPosition`: The current user position from the application contexts.
      * - `reload`: A boolean indicating if a reload is required.
      * - `navigation.setParams`: Function to update the navigation parameters.
      */
@@ -678,7 +678,7 @@ export const OrderItem: React.FC<OrderItemProps> = (props: OrderItemProps) => {
      * location if available.
      *
      * Dependencies:
-     * - `appContext.userPosition`: The current user position from the application context.
+     * - `appContext.userPosition`: The current user position from the application contexts.
      * - `userPositionMarker`: The marker element for the user's position.
      * - `orderLocationMarker`: The marker element for the order location.
      *

@@ -19,7 +19,7 @@ import {
     NumKeyNumValueAttributeType,
     StrKeyNumValueAttributeType,
     StrKeyStrValueAttributeType,
-} from '../../interfaces/style-interfaces';
+} from 'interfaces/style-interfaces';
 
 export const TypographyStyles = StyleSheet.create({
     /**

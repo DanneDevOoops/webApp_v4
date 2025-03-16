@@ -3,9 +3,9 @@
 // /**
 //  * A functional component that renders a list of invoices.
 //  *
-//  * This component utilizes the application context to manage and display invoices. It listens
+//  * This component utilizes the application contexts to manage and display invoices. It listens
 //  * for focus events to determine when to reload invoices, either based on a specific request or
-//  * the absence of invoices in the context. The component provides functionality to refresh the
+//  * the absence of invoices in the contexts. The component provides functionality to refresh the
 //  * invoice list manually. Each invoice item is rendered as a pressable component, allowing users
 //  * to navigate to a detailed view upon interaction.
 //  *
@@ -15,14 +15,14 @@
 //  *
 //  * Key Functions:
 //  * - `loadInvoices`: Asynchronously fetches invoices from the server and updates the
-//  *      application context.
+//  *      application contexts.
 //  * - `useFocusEffect`: React hook that triggers `loadInvoices` based on component focus and
 //  *      specific conditions.
 //  * - `renderItem`: Renders individual invoice items as pressable components for interaction.
 //  *
 //  * Usage:
-//  * This component should be used within a navigation context where the invoice list needs to be
-//  * displayed and interacted with. It requires the application context to be properly initialized
+//  * This component should be used within a navigation contexts where the invoice list needs to be
+//  * displayed and interacted with. It requires the application contexts to be properly initialized
 //  * and available.
 //  *
 //  * @returns {ReactElement} A component that displays a list of invoices or a loading indicator
@@ -35,12 +35,12 @@
 //     const reload: boolean | null = route.params?.reload ?? false;
 //
 //     /**
-//      * Asynchronously loads invoices from the server and updates the application context.
+//      * Asynchronously loads invoices from the server and updates the application contexts.
 //      *
 //      * This function attempts to fetch invoices using the InvoiceModel's getInvoices method.
-//      * Upon calling, it first sets the application context's isRefreshing state to true,
+//      * Upon calling, it first sets the application contexts's isRefreshing state to true,
 //      * indicating that an invoice loading process is underway. If the invoices are successfully
-//      * fetched, they are set in the application context to be accessed by other components. If
+//      * fetched, they are set in the application contexts to be accessed by other components. If
 //      * an error occurs during the fetch process, the error is logged to the console. Finally,
 //      * regardless of the outcome, the isRefreshing state is set to false, indicating
 //      * that the loading process has completed.

@@ -1,4 +1,5 @@
 import { StyleSheet, ViewStyle } from 'react-native';
+
 import * as Color from './colors';
 
 export const MenuStyles = StyleSheet.create({

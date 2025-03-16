@@ -7,32 +7,29 @@
  * the user's login status.
  */
 
-import React, { ReactElement, useEffect } from 'react';
+import { FontAwesome5 } from '@expo/vector-icons';
 import {
     BottomTabNavigationOptions,
     createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import { ParamListBase, RouteProp } from '@react-navigation/native';
-import { FontAwesome5 } from '@expo/vector-icons';
 import * as SecureStore from 'expo-secure-store';
+import React, { ReactElement, useEffect } from 'react';
 
-import * as AuthModel from '../models/auth-models';
-import { useAuthContext } from '../context/auth-provider';
-import { useAppContext } from '../context/app-provider';
 import { Home } from './home-screen';
-import { DeliveryNavigator } from './deliveries/delivery-navigator';
+import * as AuthModel from '../models/auth-models';
 import { AuthNavigator } from './auth/auth-navigator';
+import { DeliveryNavigator } from './deliveries/delivery-navigator';
+import { InvoiceNavigator } from './invoices/invoices-navigator';
 import { OrderNavigator } from './orders/order-navigator';
 import { ProductsNavigator } from './products/products-navigator';
-import { InvoiceNavigator } from './invoices/invoices-navigator';
-import { LoadingIndicator } from '../components/utils/loading-indicator';
-import {
-    NavigationPathKeys,
-    routeIcons,
-} from '../constants/navigation-constants';
-import { AppContextType } from '../interfaces/app-interfaces';
-import { AuthContextType } from '../interfaces/auth-interfaces';
-import * as Style from '../assets/styles/index';
+import * as Style from 'assets/styles/index';
+import { LoadingIndicator } from 'components/utils/loading-indicator';
+import { NavigationPathKeys, routeIcons } from 'constants/navigation-constants';
+import { useAppContext } from 'contexts/app-provider';
+import { useAuthContext } from 'contexts/auth-provider';
+import { AppContextType } from 'interfaces/app-interfaces';
+import { AuthContextType } from 'interfaces/auth-interfaces';
 
 /**
  * @constant BottomTabs - The bottom tab navigator for the application.
@@ -71,10 +68,10 @@ export const BottomTabsNavigator: React.FC = (): ReactElement => {
 };
 
 /**
- * Checks the user's login status and updates the authentication context.
+ * Checks the user's login status and updates the authentication contexts.
  *
  * @function
- * @param {AuthContextType} authContext - The authentication context.
+ * @param {AuthContextType} authContext - The authentication contexts.
  * @returns {Promise<void>} A promise that resolves when the login status is checked.
  */
 const checkUserLoginStatus = async (
@@ -124,7 +121,7 @@ const getScreenOptions = ({
  * Returns the bottom tab screens based on the user's login status.
  *
  * @function
- * @param {AuthContextType} authContext - The authentication context.
+ * @param {AuthContextType} authContext - The authentication contexts.
  * @returns {ReactElement} The bottom tab screens.
  */
 const getBottomTabScreens: React.FC<AuthContextType> = (

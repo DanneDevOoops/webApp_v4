@@ -1,3 +1,10 @@
+import {
+    CommonActions,
+    RouteProp,
+    useFocusEffect,
+    useNavigation,
+    useRoute,
+} from '@react-navigation/native';
 import React, { ReactElement, useCallback, useMemo } from 'react';
 import {
     Pressable,
@@ -6,33 +13,27 @@ import {
     Text,
     View,
 } from 'react-native';
-import {
-    CommonActions,
-    RouteProp,
-    useFocusEffect,
-    useNavigation,
-    useRoute,
-} from '@react-navigation/native';
 import { DataTable } from 'react-native-paper';
-import { useAppContext } from '../../context/app-provider';
-import { useAuthContext } from '../../context/auth-provider';
+
 import { LoadingIndicator } from '../utils/loading-indicator';
-import { getInvoices } from '../../models/invoices-models';
-import { Invoice } from '../../interfaces/invoice-interfaces';
-import { RouteParams } from '../../types/navigation-types';
-import { FunctionVoidType } from '../../types/utils-types';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
-import * as Style from '../../assets/styles';
+import * as Style from 'assets/styles';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
+import { useAppContext } from 'contexts/app-provider';
+import { useAuthContext } from 'contexts/auth-provider';
+import { Invoice } from 'interfaces/invoice-interfaces';
+import { getInvoices } from 'models/invoices-models';
+import { RouteParams } from 'types/navigation-types';
+import { FunctionVoidType } from 'types/utils-types';
 
 /**
  * `InvoiceDataTable` is a functional component that displays a table of invoices. It
- * integrates with the application's context to fetch and display invoice data, leveraging React
+ * integrates with the application's contexts to fetch and display invoice data, leveraging React
  * Navigation for navigation and using focus effects to reload data as needed. This component is
  * responsible for fetching invoice data asynchronously, handling user interactions to navigate
  * to detailed views, and providing visual feedback during data loading states.
  *
  * The component performs the following key functions:
- * - Fetches invoice data asynchronously from a model and updates the application context with
+ * - Fetches invoice data asynchronously from a model and updates the application contexts with
  *      this data.
  * - Utilizes the `useFocusEffect` hook to reload data when the component gains focus, based on
  *      specific conditions such as the `reload` flag being true or the invoices list being empty.
@@ -45,7 +46,7 @@ import * as Style from '../../assets/styles';
  * Props: None
  *
  * State:
- * - Uses context state for managing invoices, authentication, and the refreshing state.
+ * - Uses contexts state for managing invoices, authentication, and the refreshing state.
  * - Local state `reload` is derived from navigation parameters to determine if data should be
  *      reloaded.
  *
@@ -65,9 +66,9 @@ export const InvoiceDataTable: React.FC = (): ReactElement => {
     let reload: boolean = route.params?.reload ?? false;
 
     /**
-     * Asynchronously fetches invoices from the backend and updates the application context
+     * Asynchronously fetches invoices from the backend and updates the application contexts
      * with the fetched data. It attempts to fetch invoices using the `InvoiceModel.getInvoices`
-     * method. Upon success, the fetched invoices are stored in the application context. It also
+     * method. Upon success, the fetched invoices are stored in the application contexts. It also
      * manages the refreshing state of the application by setting `isRefreshing` to true at the
      * beginning of the fetch operation and to false upon completion, regardless of the outcome.
      * If an error occurs during the fetch operation, it is logged to the console. The `reload`
@@ -124,7 +125,7 @@ export const InvoiceDataTable: React.FC = (): ReactElement => {
 
     /**
      * Triggers the `loadInvoices` function when the component gains focus and either the
-     * `reload` flag is set to true or there are no invoices in the app context. This effect is
+     * `reload` flag is set to true or there are no invoices in the app contexts. This effect is
      * designed to ensure that the invoice list is up-to-date whenever the user navigates to the
      * component. After successfully loading the invoices, it resets the `reload` parameter to
      * false to prevent unnecessary reloads on subsequent focus events.
@@ -145,7 +146,7 @@ export const InvoiceDataTable: React.FC = (): ReactElement => {
 
     /**
      * Memoizes and constructs a data table of invoices or a fallback message based on the
-     * presence of invoices. If there are no invoices available in the application context, a
+     * presence of invoices. If there are no invoices available in the application contexts, a
      * message suggesting the creation of invoices is displayed. Otherwise, it generates a list
      * of pressable rows, each representing an invoice with key details such as ID, name, order
      * ID, total price, and creation date. Pressing a row navigates to a detailed view of the

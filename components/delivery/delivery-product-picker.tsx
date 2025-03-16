@@ -1,12 +1,13 @@
+import { Picker } from '@react-native-picker/picker';
 import React, { ReactElement, useEffect } from 'react';
 import { Text, View } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import { useAppContext } from '../../context/app-provider';
-import { Product } from '../../interfaces/product-interfaces';
-import * as ProductModel from '../../models/products-models';
-import { AppContextType } from '../../interfaces/app-interfaces';
-import { NewDeliveryPropsType } from '../../interfaces/delivery-interfaces';
-import * as Style from '../../assets/styles/index';
+
+import * as Style from 'assets/styles/index';
+import { useAppContext } from 'contexts/app-provider';
+import { AppContextType } from 'interfaces/app-interfaces';
+import { NewDeliveryPropsType } from 'interfaces/delivery-interfaces';
+import { Product } from 'interfaces/product-interfaces';
+import * as ProductModel from 'models/products-models';
 
 /**
  * Picker Component for product to add to a new delivery.

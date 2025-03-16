@@ -1,4 +1,4 @@
-import { stdErrorType } from '../../types/utils-types';
+import { stdErrorType } from 'types/utils-types';
 
 /**
  * Error Handler for API requests.

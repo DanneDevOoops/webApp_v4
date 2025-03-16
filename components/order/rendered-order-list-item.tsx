@@ -1,14 +1,15 @@
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
     ListRenderItem,
     Pressable,
     PressableStateCallbackType,
 } from 'react-native';
-import { CommonActions, useNavigation } from '@react-navigation/native';
+
 import { OrderListItem } from './order-list-item';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
-import { Order, OrderItemProp } from '../../interfaces/order-interfaces';
-import * as Style from '../../assets/styles';
+import * as Style from 'assets/styles';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
+import { Order, OrderItemProp } from 'interfaces/order-interfaces';
 
 function navigateToOrderItem(item: OrderItemProp['item']): void {
     const navigation = useNavigation();

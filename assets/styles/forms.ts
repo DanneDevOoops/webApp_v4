@@ -10,9 +10,10 @@
  */
 
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
-import { TypographyStyles as Typography } from './typography';
-import * as Container from './containers';
+
 import * as Color from './colors';
+import * as Container from './containers';
+import { TypographyStyles as Typography } from './typography';
 
 export const FormStyles = StyleSheet.create({
     /**

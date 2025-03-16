@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Pressable, Text } from 'react-native';
-import * as Style from '../../assets/styles';
+
+import * as Style from 'assets/styles';
 
 type Props = {
     onPress: () => void;

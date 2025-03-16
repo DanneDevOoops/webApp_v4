@@ -15,17 +15,17 @@
  * - calcOrderTotalPrice: Calculates the total price of an order.
  */
 
-import config from '../config/config.json';
-import { RequestErrorHandler } from '../components/utils/error-handler';
 import * as ProductModel from './products-models';
-import { ProductUpdate } from '../interfaces/product-interfaces';
+import config from '../config/config.json';
+import { RequestErrorHandler } from 'components/utils/error-handler';
 import {
     MultipleOrdersDataResponse,
     Order,
     OrderItemType,
     OrderUpdate,
     SingleOrderDataResponse,
-} from '../interfaces/order-interfaces';
+} from 'interfaces/order-interfaces';
+import { ProductUpdate } from 'interfaces/product-interfaces';
 
 /**
  * Fetches all orders from the API.

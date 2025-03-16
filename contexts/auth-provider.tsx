@@ -1,38 +1,35 @@
 /**
- * Provides a React context for authentication, encapsulating the logic for user login, logout, and
- * registration. This context makes user authentication state and functions available
+ * Provides a React contexts for authentication, encapsulating the logic for user login, logout, and
+ * registration. This contexts makes user authentication state and functions available
  * throughout the component tree.
  *
  * The `AuthProvider` component wraps the application's component tree to provide every child
- * component access to the authentication context. It maintains the state of the current user,
+ * component access to the authentication contexts. It maintains the state of the current user,
  * whether the user is logged in, and any authentication-related loading or error states.
  * Functions for login, logout, and registration are provided to manipulate the authentication
  * state.
  *
  * @module AuthProvider
  */
+import * as SecureStore from 'expo-secure-store';
 import React, {
-    createContext,
-    FC,
     ReactElement,
+    createContext,
     useContext,
     useState,
 } from 'react';
-import * as SecureStore from 'expo-secure-store';
-import {
-    AuthContextType,
-    AuthProviderProps,
-} from '../interfaces/auth-interfaces';
-import * as AuthModel from '../models/auth-models';
+
+import { AuthContextType, AuthProviderProps } from 'interfaces/auth-interfaces';
+import * as AuthModel from 'models/auth-models';
 
 /**
- * Authentication context.
+ * Authentication contexts.
  *
- * This context initializes with default values and provides types for the
+ * This contexts initializes with default values and provides types for the
  * authentication-related state and functions. It includes the current user, login state, and
  * functions for login, logout, and registration.
  *
- * @context
+ * @contexts
  */
 const AuthContext: React.Context<AuthContextType> =
     createContext<AuthContextType>({
@@ -52,7 +49,7 @@ const AuthContext: React.Context<AuthContextType> =
     });
 
 /**
- * Authentication context provider.
+ * Authentication contexts provider.
  *
  * This component manages the authentication state, including the current user, login status,
  * and any authentication errors. It provides functions to login, logout, and register, which
@@ -60,11 +57,11 @@ const AuthContext: React.Context<AuthContextType> =
  * authentication state and functions through the `useAuthContext` hook.
  *
  * @param children - The child components that will have access to the authentication
- *      context.
+ *      contexts.
  * @returns {ReactElement} The provider component wrapping its children, providing them access to
- *      the authentication context.
+ *      the authentication contexts.
  */
-export const AuthProvider: FC<AuthProviderProps> = ({
+export const AuthProvider: React.FC<AuthProviderProps> = ({
     children,
 }: AuthProviderProps): ReactElement => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -145,11 +142,11 @@ export const AuthProvider: FC<AuthProviderProps> = ({
 /**
  * useAuthContext hook.
  *
- * A custom hook that provides access to the authentication context.
+ * A custom hook that provides access to the authentication contexts.
  * Components using this hook can access the current user, authentication state, and functions
  * for login, logout, and registration.
  *
- * @returns {AuthContextType} The authentication context, including the current user,
+ * @returns {AuthContextType} The authentication contexts, including the current user,
  * authentication state, and related functions.
  */
 export const useAuthContext: () => AuthContextType = (): AuthContextType =>

@@ -3,8 +3,9 @@
  */
 import React from 'react';
 import { Text, View } from 'react-native';
-import { DeliveryListItemProps } from '../../interfaces/delivery-interfaces';
-import * as Style from '../../assets/styles';
+
+import * as Style from 'assets/styles';
+import { DeliveryListItemProps } from 'interfaces/delivery-interfaces';
 
 /**
  * Component to display a delivery item in a list.

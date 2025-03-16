@@ -5,14 +5,12 @@
  * It includes the delivery's ID, product ID, product name, amount, and comment.
  * The screen is styled using the application's style constants.
  */
+import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement } from 'react';
 import { Text, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import {
-    Delivery,
-    DeliveryItemProps,
-} from '../../interfaces/delivery-interfaces';
-import * as Style from '../../assets/styles';
+
+import * as Style from 'assets/styles';
+import { Delivery, DeliveryItemProps } from 'interfaces/delivery-interfaces';
 
 /**
  * DeliveryItem screen/view.

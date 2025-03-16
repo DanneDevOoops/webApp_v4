@@ -14,12 +14,13 @@
  */
 
 import * as SecureStore from 'expo-secure-store';
-import config from '../config/config.json';
+
+import config from 'config/config.json';
 import {
     Invoice,
     InvoiceDataResponse,
     NewInvoice,
-} from '../interfaces/invoice-interfaces';
+} from 'interfaces/invoice-interfaces';
 
 /**
  * Fetches all invoices from the API.

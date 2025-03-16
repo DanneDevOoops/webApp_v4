@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
 import { ImageBackground, ImageSourcePropType, Text, View } from 'react-native';
-import { ScreenCoverArguments } from '../../interfaces/utils-interfaces';
-import * as Style from '../../assets/styles';
+
+import * as Style from 'assets/styles';
+import { ScreenCoverArguments } from 'interfaces/utils-interfaces';
 
 /**
  * Renders a cover image with an overlay text.

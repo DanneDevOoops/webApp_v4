@@ -2,8 +2,9 @@
  * Module imports.
  */
 import { StyleSheet, ViewStyle } from 'react-native';
-import { TypographyStyles as Typography } from './typography';
+
 import * as Color from './colors';
+import { TypographyStyles as Typography } from './typography';
 
 type GridColStyle = {
     [key: number]: ViewStyle;

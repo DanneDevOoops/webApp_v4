@@ -10,6 +10,7 @@
  */
 
 import { StyleSheet } from 'react-native';
+
 import * as Abstract from './abstracts';
 import * as Color from './colors';
 import { TypographyStyles as Typography } from './typography';

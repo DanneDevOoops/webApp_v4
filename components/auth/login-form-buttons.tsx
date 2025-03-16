@@ -1,14 +1,15 @@
-import React, { ReactElement } from 'react';
-import { FunctionVoidType } from '../../types/utils-types';
 import { CommonActions, useNavigation } from '@react-navigation/native';
+import React, { ReactElement } from 'react';
 import {
     Pressable,
     PressableStateCallbackType,
     Text,
     View,
 } from 'react-native';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
-import * as Style from '../../assets/styles';
+
+import * as Style from 'assets/styles';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
+import { FunctionVoidType } from 'types/utils-types';
 
 export const LoginFormButtons: React.FC<{
     signInUserCallback: FunctionVoidType;

@@ -7,7 +7,8 @@
  */
 
 import { showMessage } from 'react-native-flash-message';
-import { FlashMessageType, MessageType } from '../../types/animation-types';
+
+import { FlashMessageType, MessageType } from 'types/animation-types';
 
 /**
  * Displays a flash message using the `react-native-flash-message` library.

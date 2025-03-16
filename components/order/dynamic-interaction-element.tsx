@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import * as Style from '../../assets/styles';
+
+import * as Style from 'assets/styles';
 
 export const OrderStatusMessage = (
     message: string,

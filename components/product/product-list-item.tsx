@@ -3,8 +3,9 @@
  */
 import React, { ReactElement } from 'react';
 import { Text, View } from 'react-native';
-import { ProductListItemProps } from '../../interfaces/product-interfaces';
-import * as Style from '../../assets/styles';
+
+import * as Style from 'assets/styles';
+import { ProductListItemProps } from 'interfaces/product-interfaces';
 
 /**
  * ProductListItem object to return a touchable link element to item detail view.

@@ -1,4 +1,3 @@
-import React, { ReactElement, useCallback } from 'react';
 import {
     CommonActions,
     RouteProp,
@@ -6,6 +5,7 @@ import {
     useNavigation,
     useRoute,
 } from '@react-navigation/native';
+import React, { ReactElement, useCallback } from 'react';
 import {
     FlatList,
     ListRenderItemInfo,
@@ -13,16 +13,17 @@ import {
     PressableStateCallbackType,
     ViewStyle,
 } from 'react-native';
-import { useAppContext } from '../../context/app-provider';
-import { LoadingIndicator } from '../utils/loading-indicator';
-import { getProducts } from '../../models/products-models';
+
 import { ProductListItem } from './product-list-item';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
-import { RouteParams } from '../../types/navigation-types';
-import { AppContextType } from '../../interfaces/app-interfaces';
-import { Product } from '../../interfaces/product-interfaces';
-import * as Style from '../../assets/styles';
-import { FunctionVoidType } from '../../types/utils-types';
+import * as Style from 'assets/styles';
+import { LoadingIndicator } from 'components/utils/loading-indicator';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
+import { useAppContext } from 'contexts/app-provider';
+import { AppContextType } from 'interfaces/app-interfaces';
+import { Product } from 'interfaces/product-interfaces';
+import { getProducts } from 'models/products-models';
+import { RouteParams } from 'types/navigation-types';
+import { FunctionVoidType } from 'types/utils-types';
 
 /**
  * `ProductList` is a functional component that displays a list of products fetched from an API.
@@ -45,12 +46,12 @@ export const ProductList: React.FC = (): ReactElement => {
     let reload: boolean = route.params?.reload ?? false;
 
     /**
-     * Asynchronously fetches products from an API and updates the application context with the fetched
+     * Asynchronously fetches products from an API and updates the application contexts with the fetched
      * products. It manages the loading state by setting `isRefreshing` to true at the start of the
      * operation and back to false upon completion. If an error occurs during the fetch operation, the
      * error is logged to the console.
      *
-     * This function is crucial for ensuring that the application's context holds the latest products data,
+     * This function is crucial for ensuring that the application's contexts holds the latest products data,
      * allowing for a dynamic and responsive user interface.
      */
     async function loadProducts(): Promise<void> {
@@ -72,7 +73,7 @@ export const ProductList: React.FC = (): ReactElement => {
     /**
      * Utilizes the `useFocusEffect` hook to reload products when the component is focused.
      * This effect is triggered if the products are not loaded or if the `reload` flag is true.
-     * It calls the `loadProducts` function to fetch and update the products in the application context.
+     * It calls the `loadProducts` function to fetch and update the products in the application contexts.
      * After fetching the products, it resets the `reload` flag to false to prevent unnecessary reloads
      * on subsequent focus events. It also updates the navigation parameters to reflect this change.
      *

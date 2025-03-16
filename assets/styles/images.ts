@@ -9,6 +9,7 @@
  */
 
 import { Dimensions, ImageStyle } from 'react-native';
+
 import { TypographyStyles as Typography } from './typography';
 // import * as Typography from './typography';  // Uncomment this line to import full typography
 // styles module.

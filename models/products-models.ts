@@ -11,12 +11,12 @@
  * - updateProduct: Updates an existing product in the API.
  */
 
+import config from '../config/config.json';
 import {
     Product,
-    ProductsDataResponse,
     ProductUpdate,
+    ProductsDataResponse,
 } from '../interfaces/product-interfaces';
-import config from '../config/config.json';
 
 /**
  * Fetches all products from the API.

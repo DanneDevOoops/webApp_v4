@@ -6,18 +6,19 @@
  * detailed information about a selected delivery, and a form for creating new deliveries.
  */
 
-import React, { ReactElement } from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
+import React, { ReactElement } from 'react';
+import { SafeAreaView, Text, View } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
-import { DeliveryList } from '../../components/delivery/delivery-list';
-import { DeliveryItem } from './delivery-item-screen';
+
 import { DeliveryCreationForm } from './delivery-form-screen';
-import { CoverImage } from '../../components/utils/cover-image';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
-import coverIMG from '../../assets/img/NutsAndBolts-6.jpg';
-import * as Style from '../../assets/styles';
+import { DeliveryItem } from './delivery-item-screen';
+import coverIMG from 'assets/img/NutsAndBolts-6.jpg';
+import * as Style from 'assets/styles';
+import { DeliveryList } from 'components/delivery/delivery-list';
+import { CoverImage } from 'components/utils/cover-image';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
 
 /**
  * @constant DeliveriesStack - The stack navigator for the deliveries section.

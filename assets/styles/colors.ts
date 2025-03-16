@@ -14,7 +14,7 @@ import {
     ColorScheme,
     ColorSchemeGroupInterface,
     TextColorInterface,
-} from '../../interfaces/style-interfaces';
+} from 'interfaces/style-interfaces';
 
 /**
  * Color Scheme One.

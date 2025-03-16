@@ -7,8 +7,9 @@
  */
 
 import { StyleSheet, TextStyle } from 'react-native';
-import { TypographyStyles as Typography } from './typography';
+
 import * as Color from './colors';
+import { TypographyStyles as Typography } from './typography';
 
 export const UtilityStyles = StyleSheet.create({
     loadingIndicator: {

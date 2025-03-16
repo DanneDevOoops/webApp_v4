@@ -9,9 +9,9 @@
 import React, { ReactElement } from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 
-import { CoverImage } from '../components/utils/cover-image';
-import coverIMG from '../assets/img/NutsAndBolts-4.jpg';
-import * as Style from '../assets/styles';
+import coverIMG from 'assets/img/NutsAndBolts-4.jpg';
+import * as Style from 'assets/styles';
+import { CoverImage } from 'components/utils/cover-image';
 
 /**
  * Home screen component.

@@ -1,10 +1,11 @@
-import React, { ReactElement, useCallback, useMemo, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
 import {
     useFocusEffect,
     useNavigation,
     useRoute,
 } from '@react-navigation/native';
+import React, { ReactElement, useCallback, useMemo, useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
 import {
     NavigationState,
     Route,
@@ -13,15 +14,15 @@ import {
     TabBar,
     TabView,
 } from 'react-native-tab-view';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { useAppContext } from '../../context/app-provider';
-import { LoadingIndicator } from '../utils/loading-indicator';
-import * as OrderModel from '../../models/orders-models';
-import { Order } from '../../interfaces/order-interfaces';
-import { FunctionVoidType } from '../../types/utils-types';
+
 import { renderItem } from './rendered-order-list-item';
-import { TabBarStyle } from '../../assets/styles/typography';
-import * as Style from '../../assets/styles';
+import * as Style from 'assets/styles';
+import { TabBarStyle } from 'assets/styles/typography';
+import { LoadingIndicator } from 'components/utils/loading-indicator';
+import { useAppContext } from 'contexts/app-provider';
+import { Order } from 'interfaces/order-interfaces';
+import * as OrderModel from 'models/orders-models';
+import { FunctionVoidType } from 'types/utils-types';
 
 /**
  * Represents a tab view containing lists of orders categorized by their status (New, Packed,
@@ -50,14 +51,14 @@ export const OrderList: React.FC = (): ReactElement => {
     // let reload: boolean = route.params?.reload ?? false;
 
     /**
-     * Asynchronously fetches orders from an API and updates the application context with the
+     * Asynchronously fetches orders from an API and updates the application contexts with the
      * fetched orders. Sets the refreshing state during the loading process and logs any errors
      * encountered.
      *
      * @async
      * @function loadOrders
      * @returns {Promise<void>} A promise that resolves when orders have been fetched and the
-     * application context has been updated.
+     * application contexts has been updated.
      */
     const loadOrders = async (): Promise<void> => {
         appContext.setIsRefreshing(true);

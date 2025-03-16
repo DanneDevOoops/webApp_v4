@@ -6,19 +6,19 @@
  * detailed information about a selected product.
  */
 
+import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement } from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
-import { createStackNavigator } from '@react-navigation/stack';
 
-import { ProductList } from '../../components/product/product-list';
-import { CoverImage } from '../../components/utils/cover-image';
 import { StockItem } from './product-item-screen';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
-import { ProductsNavigatorParams } from '../../interfaces/product-interfaces';
-import coverIMG from '../../assets/img/NutsAndBolts-5.jpg';
-import * as Style from '../../assets/styles';
+import coverIMG from 'assets/img/NutsAndBolts-5.jpg';
+import * as Style from 'assets/styles';
+import { ProductList } from 'components/product/product-list';
+import { CoverImage } from 'components/utils/cover-image';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
+import { ProductsNavigatorParams } from 'interfaces/product-interfaces';
 
 /**
  * @constant ProductsStack - The stack navigator for the products section.

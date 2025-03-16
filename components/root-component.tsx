@@ -1,13 +1,3 @@
-import React, { ReactElement } from 'react';
-import { LogBox } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { NavigationContainer } from '@react-navigation/native';
-import { BottomTabsNavigator } from '../screens/bottom-tabs-navigator';
-import {
-    OleoScriptSwashCaps_400Regular,
-    OleoScriptSwashCaps_700Bold,
-    useFonts,
-} from '@expo-google-fonts/oleo-script-swash-caps';
 import {
     JosefinSans_400Regular,
     JosefinSans_500Medium,
@@ -21,10 +11,21 @@ import {
     Merriweather_700Bold,
     Merriweather_700Bold_Italic,
 } from '@expo-google-fonts/merriweather';
-import { useAppContext } from '../context/app-provider';
+import {
+    OleoScriptSwashCaps_400Regular,
+    OleoScriptSwashCaps_700Bold,
+    useFonts,
+} from '@expo-google-fonts/oleo-script-swash-caps';
+import { NavigationContainer } from '@react-navigation/native';
+import React, { ReactElement } from 'react';
+import { LogBox } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 import { LoadingIndicator } from './utils/loading-indicator';
-import { AppContextType } from '../interfaces/app-interfaces';
-import * as Style from '../assets/styles';
+import * as Style from 'assets/styles';
+import { useAppContext } from 'contexts/app-provider';
+import { AppContextType } from 'interfaces/app-interfaces';
+import { BottomTabsNavigator } from 'screens/bottom-tabs-navigator';
 
 /**
  * LogBox ignore logs.

@@ -9,10 +9,10 @@
 import React, { ReactElement } from 'react';
 import { View } from 'react-native';
 
-import { RegisterForm } from '../../components/auth/register-form';
-import { CoverImage } from '../../components/utils/cover-image';
-import coverIMG from '../../assets/img/NutsAndBolts-5.jpg';
-import * as Style from '../../assets/styles';
+import coverIMG from 'assets/img/NutsAndBolts-5.jpg';
+import * as Style from 'assets/styles';
+import { RegisterForm } from 'components/auth/register-form';
+import { CoverImage } from 'components/utils/cover-image';
 
 /**
  * Register component.

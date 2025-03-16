@@ -4,16 +4,16 @@
  * This module defines the navigator for the authentication section of the application.
  * It sets up a stack navigator with screens for user login and registration.
  */
-import React, { ReactElement } from 'react';
-import { SafeAreaView } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
+import React, { ReactElement } from 'react';
+import { SafeAreaView } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 
 import { Login } from './login-screen';
 import { Register } from './register-form-screen';
-import { NavigationPathKeys as NavPath } from '../../constants/navigation-constants';
-import * as Style from '../../assets/styles';
+import * as Style from 'assets/styles';
+import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
 
 /**
  * @constant AuthStack - The stack navigator for the authentication section.

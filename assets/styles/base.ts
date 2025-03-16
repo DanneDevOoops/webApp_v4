@@ -1,13 +1,14 @@
 /**
- * @module base
+ * @module base.ts
  * This module defines base style attributes for UI components.
  *
  * It includes objects that specify the layout and appearance properties for the main container and content elements.
  * These attributes are used to style the visual appearance and layout behavior of these components in the user interface.
  */
-// import * as Color from './colors';  // Use this if more colors are needed in the module styles.
-import { background as bgColors } from './colors';
+
 import { ViewStyle } from 'react-native';
+
+import { background as bgColors } from './colors';
 
 /**
  * Main Container attributes.
