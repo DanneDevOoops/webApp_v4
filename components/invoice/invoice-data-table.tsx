@@ -15,8 +15,8 @@ import {
 } from 'react-native';
 import { DataTable } from 'react-native-paper';
 
-import { LoadingIndicator } from 'components/utils/loading-indicator';
 import * as Style from 'assets/styles';
+import { LoadingIndicator } from 'components/utils/loading-indicator';
 import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
 import { useAppContext } from 'contexts/app-provider';
 import { useAuthContext } from 'contexts/auth-provider';
