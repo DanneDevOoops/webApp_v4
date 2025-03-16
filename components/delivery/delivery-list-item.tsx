@@ -1,6 +1,10 @@
 /**
- * Module imports.
+ * @module delivery-list-item.tsx
+ *
+ * This module defines the component for displaying a delivery item in a list.
+ * It renders the delivery details including the product name, delivery date, and comments.
  */
+
 import React from 'react';
 import { Text, View } from 'react-native';
 
@@ -8,10 +12,15 @@ import * as Style from 'assets/styles';
 import { DeliveryListItemProps } from 'interfaces/delivery-interfaces';
 
 /**
- * Component to display a delivery item in a list.
+ * DeliveryListItem component.
  *
+ * This component displays a delivery item in a list. It shows the delivery ID, product name,
+ * delivery date, and any comments associated with the delivery.
+ *
+ * @component
  * @param {DeliveryListItemProps} props - The properties for the DeliveryListItem component.
- * @returns The rendered React component.
+ * @param {DeliveriesInterfaces.Delivery} props.item - The delivery item to be displayed.
+ * @returns {ReactElement} The rendered DeliveryListItem component.
  */
 export const DeliveryListItem = (
     props: DeliveryListItemProps,

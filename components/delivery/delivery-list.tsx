@@ -1,3 +1,10 @@
+/**
+ * @module delivery-list.tsx
+ *
+ * This module defines the list component for displaying and managing deliveries.
+ * It handles loading, refreshing, and navigating to delivery details and forms.
+ */
+
 import {
     CommonActions,
     RouteProp,
@@ -26,6 +33,16 @@ import * as DeliveryModel from 'models/deliveries-models';
 import * as ProductModel from 'models/products-models';
 import { RouteParams } from 'types/navigation-types';
 
+/**
+ * DeliveryList component.
+ *
+ * This component is responsible for displaying and managing a list of deliveries.
+ * It handles loading deliveries, refreshing the list, and navigating to delivery details
+ * and forms.
+ *
+ * @component
+ * @returns {ReactElement} The rendered DeliveryList component.
+ */
 export const DeliveryList: React.FC = (): ReactElement => {
     const appContext: AppContextType = useAppContext();
     const navigation = useNavigation();
@@ -36,6 +53,14 @@ export const DeliveryList: React.FC = (): ReactElement => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     let reload: boolean = route.params?.reload ?? false;
 
+    /**
+     * Loads the deliveries and products from the server and updates the app context.
+     *
+     * @async
+     * @function loadDeliveries
+     * @returns {Promise<void>} A promise that resolves when the deliveries and products are
+     * loaded.
+     */
     async function loadDeliveries(): Promise<void> {
         appContext.setIsRefreshing(true);
 
@@ -50,12 +75,30 @@ export const DeliveryList: React.FC = (): ReactElement => {
         }
     }
 
+    /**
+     * Handles refreshing the deliveries list.
+     *
+     * @function handleRefreshDeliveries
+     * @returns {void}
+     */
     const handleRefreshDeliveries = (): void => {
         loadDeliveries().catch((error: Error): void => {
             console.error(error);
         });
     };
 
+    /**
+     * Focus effect to load deliveries when the screen is focused or when reload is true.
+     *
+     * This effect is triggered when the screen gains focus. It checks if the deliveries
+     * are not loaded or if a reload is required, and then loads the deliveries. After
+     * loading, it resets the reload parameter to false.
+     *
+     * @function useFocusEffect
+     * @param {Function} useCallback - The callback function to be executed when the screen is
+     * focused.
+     * @returns {void}
+     */
     useFocusEffect(
         useCallback((): void => {
             if (!appContext.deliveries || reload) {
@@ -69,6 +112,14 @@ export const DeliveryList: React.FC = (): ReactElement => {
         }, [appContext.deliveries, reload, navigation]),
     );
 
+    /**
+     * Renders a delivery item.
+     *
+     * @function renderItem
+     * @param {Object} param0 - The parameter object.
+     * @param {DeliveriesInterfaces.Delivery} param0.item - The delivery item to be rendered.
+     * @returns {ReactElement} The rendered delivery item.
+     */
     const renderItem = ({
         item,
     }: {

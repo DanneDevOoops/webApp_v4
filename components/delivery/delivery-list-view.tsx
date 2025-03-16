@@ -1,3 +1,10 @@
+/**
+ * @module delivery-list-view.tsx
+ *
+ * This module defines the list view component for displaying a list of deliveries.
+ * It uses a FlatList to render the deliveries and provides a refresh mechanism.
+ */
+
 import React, { ReactElement, useMemo } from 'react';
 import { FlatList, Text, View } from 'react-native';
 
@@ -14,13 +21,13 @@ import { DeliveryListViewProps } from 'interfaces/delivery-interfaces';
  * @component
  * @param {DeliveryListViewProps} props - The properties for the DeliveryListView component.
  * @param {DeliveriesInterfaces.Delivery[]} props.deliveries - The list of deliveries to be
- *      displayed.
+ * displayed.
  * @param {boolean} props.isRefreshing - A boolean indicating whether the list is currently
  * being refreshed.
- * @param {() => void} props.onRefresh - A callback function to be called when the list needs
- * to be refreshed.
- * @param {(item: DeliveriesInterfaces.Delivery) => ReactElement} props.renderItem -
- *      A function to render each delivery item.
+ * @param {() => void} props.onRefresh - A callback function to be called when the list needs to
+ * be refreshed.
+ * @param {(item: DeliveriesInterfaces.Delivery) => ReactElement} props.renderItem - A function
+ * to render each delivery item.
  * @returns {ReactElement} The rendered DeliveryListView component.
  */
 export const DeliveryListView: React.FC<DeliveryListViewProps> = ({
