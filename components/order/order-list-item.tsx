@@ -1,3 +1,10 @@
+/**
+ * @module order-list-item.tsx
+ *
+ * This module defines the OrderListItem component for rendering individual order items.
+ * It sets up a view component for each order item, displaying its ID, name, and status.
+ */
+
 import React, { ReactElement } from 'react';
 import { Text, View } from 'react-native';
 
@@ -5,12 +12,15 @@ import * as Style from 'assets/styles';
 import { OrderListItemPropsType } from 'interfaces/order-interfaces';
 
 /**
- * OrderListItem object to return a touchable link element to order detail view.
+ * OrderListItem component.
  *
- * @constructor
- * @param {OrderListItemPropsType} props - The props of the component.
- * @returns {ReactElement} - A React element representing a touchable link to order detail view.
- * @exports OrderListItem
+ * This component renders an individual order item within a view. It displays the order item's
+ * ID, name, and status using styled text components.
+ *
+ * @component
+ * @param {OrderListItemPropsType} props - The props of the component, containing the order
+ * item details.
+ * @returns {ReactElement} A React element representing a view with the order item's details.
  */
 export const OrderListItem: React.FC<OrderListItemPropsType> = (
     props: OrderListItemPropsType,

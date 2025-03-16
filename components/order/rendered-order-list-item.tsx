@@ -1,3 +1,11 @@
+/**
+ * @module rendered-order-list-item.tsx
+ *
+ * This module defines the renderItem function for rendering individual order items.
+ * It sets up a pressable component for each order item, which navigates to the order
+ * details screen when pressed.
+ */
+
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
@@ -11,6 +19,16 @@ import * as Style from 'assets/styles';
 import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
 import { Order, OrderItemProp } from 'interfaces/order-interfaces';
 
+/**
+ * Navigates to the order item screen with the given order item.
+ *
+ * This function uses the navigation object to dispatch a navigation action
+ * to the 'Orderhanterare' screen, passing the selected order item as a parameter.
+ *
+ * @function
+ * @param {OrderItemProp['item']} item - The order item to navigate to.
+ * @returns {void}
+ */
 function navigateToOrderItem(item: OrderItemProp['item']): void {
     const navigation = useNavigation();
 
@@ -30,6 +48,7 @@ function navigateToOrderItem(item: OrderItemProp['item']): void {
  * based on the press state to provide visual feedback to the user. Upon pressing, it
  * navigates to the 'Orderhanterare' screen with the pressed order item as a parameter.
  *
+ * @function
  * @param {OrderItemProp} {item} - The order item to be rendered. It is an object
  * containing order details.
  * @returns {ReactElement} A pressable component representing an individual order item.

@@ -1,3 +1,10 @@
+/**
+ * @module order-list.tsx
+ *
+ * This module defines the OrderList component for rendering lists of orders categorized by their status.
+ * It sets up a tab view with lists for new, packed, sent, and return orders, and handles data fetching and refreshing.
+ */
+
 import { FontAwesome5 } from '@expo/vector-icons';
 import {
     useFocusEffect,
@@ -25,11 +32,14 @@ import * as OrderModel from 'models/orders-models';
 import { FunctionVoidType } from 'types/utils-types';
 
 /**
- * Represents a tab view containing lists of orders categorized by their status (New, Packed,
- * Sent, Returns). Utilizes the React Native Tab View for navigation between these lists. Each
- * list can refresh to fetch the latest orders. Handles loading states and displays a loading
- * indicator accordingly.
+ * OrderList component.
  *
+ * This component renders a tab view containing lists of orders categorized by their status
+ * (New, Packed, Sent, Returns). It utilizes the React Native Tab View for navigation between
+ * these lists. Each list can refresh to fetch the latest orders. Handles loading states and
+ * displays a loading indicator accordingly.
+ *
+ * @component
  * @returns {ReactElement} A component that renders a tab view with lists of orders.
  */
 export const OrderList: React.FC = (): ReactElement => {
@@ -51,14 +61,14 @@ export const OrderList: React.FC = (): ReactElement => {
     // let reload: boolean = route.params?.reload ?? false;
 
     /**
-     * Asynchronously fetches orders from an API and updates the application contexts with the
+     * Asynchronously fetches orders from an API and updates the application context with the
      * fetched orders. Sets the refreshing state during the loading process and logs any errors
      * encountered.
      *
      * @async
      * @function loadOrders
      * @returns {Promise<void>} A promise that resolves when orders have been fetched and the
-     * application contexts has been updated.
+     * application context has been updated.
      */
     const loadOrders = async (): Promise<void> => {
         appContext.setIsRefreshing(true);
@@ -72,6 +82,16 @@ export const OrderList: React.FC = (): ReactElement => {
         }
     };
 
+    /**
+     * Handles the refresh action for the order list.
+     *
+     * This function clears the current orders in the application context and triggers
+     * the reloading of orders from the API. It is typically used for pull-to-refresh
+     * functionality in the order list component.
+     *
+     * @function handleRefreshOrders
+     * @returns {void}
+     */
     const handleRefreshOrders: FunctionVoidType = (): void => {
         appContext.setOrders(null);
         void loadOrders();
