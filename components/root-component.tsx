@@ -1,3 +1,12 @@
+/**
+ * @module root-component.tsx
+ *
+ * This module defines the root component of the application.
+ * It sets up the main structure of the app, including loading custom fonts,
+ * providing a safe area view for the app content, and setting up the navigation container
+ * with bottom tabs.
+ */
+
 import {
     JosefinSans_400Regular,
     JosefinSans_500Medium,
@@ -45,6 +54,7 @@ LogBox.ignoreLogs([
  * - Providing a safe area view for the app content.
  * - Setting up the navigation container with bottom tabs.
  *
+ * @component
  * @returns {ReactElement} The root element of the application.
  */
 export const App: React.FC = (): ReactElement => {
