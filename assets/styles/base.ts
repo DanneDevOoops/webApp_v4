@@ -1,5 +1,5 @@
 /**
- * @module base.ts
+ * @module assets/styles/base.ts
  *
  * This module defines base style attributes for UI components.
  * It includes objects that specify the layout and appearance properties for the main container
@@ -17,7 +17,6 @@ import { background as bgColors } from './colors';
  *
  * This object defines the style attributes for the main container.
  *
- * @constant
  * @type {ViewStyle}
  * @property {string} width - The width of the main container.
  * @property {string} height - The height of the main container.
@@ -50,7 +49,6 @@ export const mainContainer: ViewStyle = {
  *
  * This object defines the style attributes for the content.
  *
- * @constant
  * @type {ViewStyle}
  * @property {number} flex - The flex grow factor of the content.
  * @property {string} backgroundColor - The background color of the content.

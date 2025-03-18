@@ -1,5 +1,5 @@
 /**
- * @module product-item-screen.tsx
+ * @module screens/products/product-item-screen.tsx
  *
  * This module defines the screen for displaying detailed information about a selected product.
  * It includes the product's name, ID, article number, location, stock, price, description, and
@@ -21,7 +21,7 @@ import { Product, ProductListItemProps } from 'interfaces/product-interfaces';
  * It retrieves the product data from the route parameters and displays various attributes of
  * the product.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered product item screen component.
  */
 export const StockItem: React.FC = (): ReactElement => {

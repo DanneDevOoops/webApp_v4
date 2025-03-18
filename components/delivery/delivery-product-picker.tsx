@@ -1,5 +1,5 @@
 /**
- * @module delivery-product-picker.tsx
+ * @module components/delivery/delivery-product-picker.tsx
  *
  * This module defines the picker component for selecting a product to add to a new delivery.
  * It fetches the list of products and displays them in a picker component.
@@ -12,9 +12,9 @@ import { Text, View } from 'react-native';
 import * as Style from 'assets/styles/index';
 import { useAppContext } from 'contexts/app-provider';
 import { AppContextType } from 'interfaces/app-interfaces';
-import { NewDeliveryPropsType } from 'interfaces/delivery-interfaces';
 import { Product } from 'interfaces/product-interfaces';
 import * as ProductModel from 'models/products-models';
+import { NewDeliveryPropsType } from 'types/delivery-types';
 
 /**
  * DeliveryProductPicker component.
@@ -22,7 +22,7 @@ import * as ProductModel from 'models/products-models';
  * This component renders a picker for selecting a product to add to a new delivery.
  * It fetches the list of products from the app context and displays them in a picker.
  *
- * @component
+ * @function
  * @param {NewDeliveryPropsType} props - The properties passed to the component.
  * @returns {ReactElement} The rendered delivery product picker component.
  */

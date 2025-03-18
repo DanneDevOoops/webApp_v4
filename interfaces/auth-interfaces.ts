@@ -1,5 +1,5 @@
 /**
- * @module auth-interfaces.ts
+ * @module interfaces/auth-interfaces.ts
  *
  * This module defines a cohesive set of TypeScript interfaces that outline the structure and
  * types of data involved in authentication processes within the application. It includes

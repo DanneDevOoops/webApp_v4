@@ -1,5 +1,5 @@
 /**
- * @module order-navigator.tsx
+ * @module screens/orders/order-navigator.tsx
  *
  * This module defines the navigator for the orders section of the application.
  * It sets up a stack navigator with screens for displaying a list of orders and
@@ -32,7 +32,7 @@ const OrderStack = createStackNavigator();
  * It includes screens for displaying a list of orders and detailed information about a
  * selected order.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered orders navigator component.
  */
 export const OrderNavigator: React.FC = (): ReactElement => {

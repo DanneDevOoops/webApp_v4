@@ -1,5 +1,5 @@
 /**
- * @module login-form.tsx
+ * @module components/auth/login-form.tsx
  *
  * This module defines the form component for user login.
  * It handles user input for email and password, and manages the login process.
@@ -20,7 +20,7 @@ import { FunctionVoidType } from 'types/utils-types';
  * This component renders a form for user login. It handles user input for email
  * and password, and manages the login process.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered LoginForm component.
  */
 export const LoginForm: React.FC = (): ReactElement => {

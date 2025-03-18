@@ -1,5 +1,5 @@
 /**
- * @module OrderItem
+ * @module screens/orders/order-item-screen.tsx
  *
  * This module provides a detailed view of a specific order. It includes information about the
  * order such as order ID, status, customer name, address, postal code, and city. It also

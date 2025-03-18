@@ -1,5 +1,5 @@
 /**
- * @module invoice-data-table.tsx
+ * @module components/invoice/invoice-data-table.tsx
  *
  * This module defines the InvoiceDataTable component for rendering a table of invoices.
  * It integrates with the application's contexts to fetch and display invoice data, leveraging
@@ -40,7 +40,7 @@ import { FunctionVoidType } from 'types/utils-types';
  * handles user interactions to navigate to detailed views, and provides visual feedback
  * during data loading states.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered invoice data table component.
  */
 export const InvoiceDataTable: React.FC = (): ReactElement => {

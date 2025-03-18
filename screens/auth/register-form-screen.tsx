@@ -1,5 +1,5 @@
 /**
- * @module register-form-screen.tsx
+ * @module screens/auth/register-form-screen.tsx
  *
  * This module defines the screen for user registration.
  * It includes a form for users to input their registration details.
@@ -20,7 +20,7 @@ import { CoverImage } from 'components/utils/cover-image';
  * This component sets up the screen for user registration.
  * It includes a form for users to input their registration details.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered registration screen component.
  */
 export const Register: React.FC = (): ReactElement => {

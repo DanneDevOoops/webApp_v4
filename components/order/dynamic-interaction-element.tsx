@@ -1,5 +1,5 @@
 /**
- * @module dynamic-interaction-element.tsx
+ * @module components/order/dynamic-interaction-element.tsx
  *
  * This module defines the OrderStatusMessage component for rendering status messages
  * with different levels of importance. It sets up a view component with customizable
@@ -18,7 +18,7 @@ import * as Style from 'assets/styles';
  * The message is displayed within a styled view, with the style changing based on the
  * provided message level.
  *
- * @component
+ * @function
  * @param {string} message - The message to be displayed.
  * @param {MessageLevel} level - The level of the message, which determines the styling.
  * @returns {ReactElement} A view component displaying the status message.

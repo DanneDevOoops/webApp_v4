@@ -1,5 +1,5 @@
 /**
- * @module user-interfaces.ts
+ * @module interfaces/user-interfaces.ts
  *
  * This module defines various interfaces related to user data and interactions.
  * These interfaces include properties for user positions.

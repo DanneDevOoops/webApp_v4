@@ -1,5 +1,5 @@
 /**
- * @module order-list.tsx
+ * @module components/order/order-list.tsx
  *
  * This module defines the OrderList component for rendering lists of orders categorized by their status.
  * It sets up a tab view with lists for new, packed, sent, and return orders, and handles data fetching and refreshing.
@@ -39,7 +39,7 @@ import { FunctionVoidType } from 'types/utils-types';
  * these lists. Each list can refresh to fetch the latest orders. Handles loading states and
  * displays a loading indicator accordingly.
  *
- * @component
+ * @function
  * @returns {ReactElement} A component that renders a tab view with lists of orders.
  */
 export const OrderList: React.FC = (): ReactElement => {
@@ -193,7 +193,7 @@ export const OrderList: React.FC = (): ReactElement => {
      * `renderItem` function. The list supports pull-to-refresh, which triggers the `loadOrders`
      * function to reload the orders from the API.
      *
-     * @component
+     * @function
      * @returns {ReactElement} A FlatList component displaying new orders.
      */
     const NewOrdersList = (): ReactElement => (
@@ -215,7 +215,7 @@ export const OrderList: React.FC = (): ReactElement => {
      * using the `renderItem` function. The list supports pull-to-refresh, which triggers the
      * `loadOrders` function to reload the orders from the API.
      *
-     * @component
+     * @function
      * @returns {ReactElement} A FlatList component displaying packed orders.
      */
     const PackedOrdersList = (): ReactElement => (
@@ -237,7 +237,7 @@ export const OrderList: React.FC = (): ReactElement => {
      * `renderItem` function. The list supports pull-to-refresh, which triggers the `loadOrders`
      * function to reload the orders from the API.
      *
-     * @component
+     * @function
      * @returns {ReactElement} A FlatList component displaying sent orders.
      */
     const SentOrdersList = (): ReactElement => (
@@ -259,7 +259,7 @@ export const OrderList: React.FC = (): ReactElement => {
      * using the `renderItem` function. The list supports pull-to-refresh, which triggers the
      * `loadOrders` function to reload the orders from the API.
      *
-     * @component
+     * @function
      * @returns {ReactElement} A FlatList component displaying return orders.
      */
     const ReturnOrdersList = (): ReactElement => (

@@ -1,4 +1,6 @@
-// hooks/useSignInUser.ts
+/**
+ * @module hooks/auth-hooks.ts
+ */
 import { CommonActions, useNavigation } from '@react-navigation/native';
 
 import { flash_message } from 'assets/utils/animation';

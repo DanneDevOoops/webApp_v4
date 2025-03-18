@@ -1,12 +1,12 @@
 /**
- * @module variables.ts
+ * @module assets/styles/variables.ts
  *
  * This module defines various style variables used throughout the application.
  * It includes border radius values for different UI components.
  */
 
 /**
- * @constant borderRadius - An object containing border radius values for various UI components.
+ * @type borderRadius - An object containing border radius values for various UI components.
  * @property {number} button - The border radius for buttons.
  * @property {number} card - The border radius for cards.
  * @property {number} container - The border radius for containers.

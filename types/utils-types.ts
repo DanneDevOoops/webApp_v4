@@ -1,4 +1,6 @@
 /**
+ * @module types/utils-types.ts
+ *
  * Utility types for the application.
  *
  * This module contains type definitions for standard error handling and common function types.
@@ -26,3 +28,12 @@ export type stdErrorType =
  * This type represents a function that takes no arguments and returns no value.
  */
 export type FunctionVoidType = () => void;
+
+/**
+ * Type definition for the loading indicator argument types.
+ *
+ * This type represents the props that can be passed to the LoadingIndicator component.
+ *
+ * @property {string | undefined} loadingType - The type of loading process (optional).
+ */
+export type LoadingIndicatorArgumentTypes = { loadingType: string | undefined };

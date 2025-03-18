@@ -1,5 +1,5 @@
 /**
- * @module bottom-tabs-navigator.tsx
+ * @module screens/bottom-tabs-navigator.tsx
  *
  * This module defines the bottom tab navigator for the application.
  * It sets up a bottom tab navigator with screens for home, products, orders,
@@ -43,7 +43,7 @@ const BottomTabs = createBottomTabNavigator();
  * It includes screens for home, products, orders, deliveries, and conditional
  * screens for invoices or authentication based on the user's login status.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered bottom tabs navigator component.
  */
 export const BottomTabsNavigator: React.FC = (): ReactElement => {

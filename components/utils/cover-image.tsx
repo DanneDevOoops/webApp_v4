@@ -1,5 +1,5 @@
 /**
- * @module cover-image.tsx
+ * @module components/utils/cover-image.tsx
  *
  * This module defines the CoverImage component.
  * It renders a cover image with an overlay text.
@@ -19,7 +19,7 @@ import { ScreenCoverArguments } from 'interfaces/utils-interfaces';
  * on the type of the `image` prop. The component is styled using predefined styles from the
  * `Style` module.
  *
- * @component
+ * @function
  * @param {ScreenCoverArguments} props - The component props.
  * @param {string | ImageSourcePropType} props.image - The source of the image. Can be a URI
  * string for

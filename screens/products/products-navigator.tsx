@@ -1,5 +1,5 @@
 /**
- * @module products-navigator.tsx
+ * @module screens/products/products-navigator.tsx
  *
  * This module defines the navigator for the products section of the application.
  * It sets up a stack navigator with screens for displaying a list of products and
@@ -33,7 +33,7 @@ const ProductsStack = createStackNavigator<ProductsNavigatorParams>();
  * It includes screens for displaying a list of products and detailed information about a
  * selected product.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered products navigator component.
  */
 export const ProductsNavigator: React.FC = (): ReactElement => {

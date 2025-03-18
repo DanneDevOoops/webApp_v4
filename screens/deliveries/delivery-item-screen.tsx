@@ -1,5 +1,5 @@
 /**
- * @module delivery-item-screen.tsx
+ * @module screens/deliveriesdelivery-item-screen.tsx
  *
  * This module defines the screen for displaying detailed information about a selected delivery.
  * It includes the delivery's ID, product ID, product name, amount, and comment.
@@ -19,7 +19,7 @@ import { Delivery, DeliveryItemProps } from 'interfaces/delivery-interfaces';
  * It retrieves the delivery data from the route parameters and displays various attributes of
  * the delivery.
  *
- * @component
+ * @function
  * @param {DeliveryItemProps} props - The properties for the DeliveryItem component.
  * @returns {ReactElement} The rendered delivery item screen component.
  */

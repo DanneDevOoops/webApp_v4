@@ -1,5 +1,5 @@
 /**
- * @module auth-models
+ * @module models/auth-models.ts
  *
  * This module provides functions to interact with the authentication-related endpoints of the API.
  * It includes functions to check login status, handle user login, register a new user, and log
@@ -29,7 +29,6 @@ import {
  * If a token exists, it implies the user is logged in, returning true. Otherwise, it returns
  * false.
  *
- * @async
  * @function checkLoggedInStatus
  * @returns {Promise<boolean>} A promise that resolves to a boolean indicating the login status.
  */
@@ -46,7 +45,6 @@ export async function checkLoggedInStatus(): Promise<boolean> {
  * in secure storage and returns a success message. Throws an error if the login fails for any
  * reason, including server errors or incorrect login details.
  *
- * @async
  * @function login
  * @param {string} email - The user's email address.
  * @param {string} password - The user's password.
@@ -110,7 +108,6 @@ export async function login(email: string, password: string) {
  * response, which typically includes a success message. Throws an error if the registration
  * fails for any reason, such as server errors or validation issues.
  *
- * @async
  * @function register
  * @param {string} email - The email address for the new account.
  * @param {string} password - The password for the new account.
@@ -159,7 +156,6 @@ export async function register(
  * This function removes the authentication token from secure storage, effectively logging the
  * user out. It does not return any value.
  *
- * @async
  * @function logout
  * @returns {Promise<void>} A promise that resolves when the token is removed from secure storage.
  */

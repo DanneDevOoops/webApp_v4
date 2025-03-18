@@ -1,5 +1,5 @@
 /**
- * @module nominatim-models.ts
+ * @module models/nominatim-models.ts
  *
  * This module provides functions to interact with the Nominatim API for geocoding.
  * It includes functions to fetch geographical coordinates for a given address.
@@ -20,7 +20,6 @@ import { CoordinatesResponse } from 'interfaces/utils-interfaces';
  * If the request is successful, it returns the coordinates data. In case of an error, it catches
  * the error and logs it.
  *
- * @async
  * @function getCoordinates
  * @param {string} address - The address for which to fetch coordinates.
  * @returns {Promise<CoordinatesResponse[] | undefined>} A promise that resolves to the JSON

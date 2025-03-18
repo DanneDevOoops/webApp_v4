@@ -1,5 +1,5 @@
 /**
- * @module deliveries-models.ts
+ * @module models/deliveries-models.ts
  *
  * This module provides functions to interact with the delivery-related endpoints of the API.
  * It includes functions to fetch all deliveries and create a new delivery.
@@ -21,7 +21,6 @@ import { DeliveryDataResponse } from 'interfaces/delivery-interfaces';
  * If the request is successful, it returns the delivery data. In case of an error, it catches
  * the error and logs it, returning an empty array.
  *
- * @async
  * @function getDeliveries
  * @returns {Promise<DeliveriesInterfaces.Delivery[]>} The response data from the API, which
  * contains an array of deliveries, or an empty array if an error occurs.
@@ -52,7 +51,6 @@ export async function getDeliveries(): Promise<
  * delivery details. If the request is successful, it returns the newly created delivery object.
  * In case of an error, it catches the error and logs it.
  *
- * @async
  * @function createDelivery
  * @param {Partial<DeliveriesInterfaces.Delivery>} delivery - The details of the new delivery
  * to create.

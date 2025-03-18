@@ -9,7 +9,7 @@
 //  * @param dynamicInteractionElement
 //  * @constructor
 //  * @return {ReactElement} OrderDetails component
-//  * @component
+//  * @function
 //  * @exports OrderDetails - Component
 //  */
 // export const OrderDetails = ({

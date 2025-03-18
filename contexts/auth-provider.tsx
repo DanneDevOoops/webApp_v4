@@ -1,5 +1,5 @@
 /**
- * @module auth-provider.tsx
+ * @module contexts/auth-provider.tsx
  *
  * This module provides a React context for authentication, encapsulating the logic for user
  * login, logout, and registration. It makes user authentication state and functions available
@@ -51,7 +51,7 @@ const AuthContext: React.Context<AuthContextType> =
  * update the authentication state accordingly. Children components can access the
  * authentication state and functions through the `useAuthContext` hook.
  *
- * @component
+ * @function
  * @param {AuthProviderProps} props - The properties for the AuthProvider component.
  * @returns {ReactElement} The provider component wrapping its children, providing them access
  * to the authentication context.

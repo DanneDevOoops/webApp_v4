@@ -1,5 +1,5 @@
 /**
- * @module delivery-list.tsx
+ * @module components/delivery/delivery-list.tsx
  *
  * This module defines the list component for displaying and managing deliveries.
  * It handles loading, refreshing, and navigating to delivery details and forms.
@@ -40,7 +40,7 @@ import { RouteParams } from 'types/navigation-types';
  * It handles loading deliveries, refreshing the list, and navigating to delivery details
  * and forms.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered DeliveryList component.
  */
 export const DeliveryList: React.FC = (): ReactElement => {

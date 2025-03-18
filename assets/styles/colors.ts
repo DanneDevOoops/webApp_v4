@@ -1,5 +1,5 @@
 /**
- * @module colors.ts
+ * @module assets/styles/colors.ts
  *
  * This module defines the color attributes for the application.
  * It includes objects that specify various properties related to color. These attributes are
@@ -18,7 +18,6 @@ import {
 /**
  * Color Scheme One.
  *
- * @constant
  * @type {ColorSchemeGroupInterface}
  * @property {Object} primary - Primary colors.
  * @property {string} primary.100 - Lightest primary color.
@@ -92,7 +91,6 @@ export const schemeOne: ColorSchemeGroupInterface = {
 /**
  * Background colors.
  *
- * @constant
  * @type {BgColorInterface}
  * @property {string} light - The light background color.
  * @property {string} dark - The dark background color.
@@ -105,7 +103,6 @@ export const background: BgColorInterface = {
 /**
  * Text colors.
  *
- * @constant
  * @type {TextColorInterface}
  * @property {string} dark - The dark text color.
  * @property {string} disabled - The disabled text color.
@@ -120,7 +117,6 @@ export const text: TextColorInterface = {
 /**
  * Gray Scale colors.
  *
- * @constant
  * @type {ColorScheme}
  * @property {string} 50 - The lightest gray color.
  * @property {string} 100 - A light gray color.
@@ -151,7 +147,6 @@ export const grayScale: ColorScheme = {
 /**
  * Indicator colors, good for user guidance.
  *
- * @constant
  * @type {ColorResponseInterface}
  * @property {Object} info - Information indicator colors.
  * @property {string} info.50 - Lightest info color.
@@ -300,7 +295,6 @@ export const indicator: ColorResponseInterface = {
 /**
  * Shadow colors.
  *
- * @constant
  * @type {ColorScheme}
  * @property {string} 100 - The lightest shadow color.
  * @property {string} 200 - A light shadow color.

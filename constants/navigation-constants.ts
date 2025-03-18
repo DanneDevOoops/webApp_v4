@@ -1,5 +1,5 @@
 /**
- * @module navigation-constants.ts
+ * @module constants/navigation-constants.ts
  *
  * This module stores constants related to navigation, including navigation keys and icons
  * for various screens in the application. It ensures consistency and manageability of
@@ -8,7 +8,7 @@
  */
 
 /**
- * @constant NavigationPathKeys
+ * NavigationPathKeys
  *
  * This constant defines the navigation keys for various screens in the application.
  * It is organized into namespaces for different sections of the application, such as
@@ -17,7 +17,7 @@
 export const NavigationPathKeys = {
     /**
      * @namespace Auth
-     * @description Navigation keys for authentication-related screens.
+     * Navigation keys for authentication-related screens.
      */
     Auth: {
         /** @property {string} title - Key for the authentication screen key. */
@@ -38,7 +38,7 @@ export const NavigationPathKeys = {
 
     /**
      * @namespace Delivery
-     * @description Navigation keys for delivery-related screens.
+     * Navigation keys for delivery-related screens.
      */
     Delivery: {
         /** @property {string} key - Key for the deliveries screen key. */
@@ -62,7 +62,7 @@ export const NavigationPathKeys = {
 
     /**
      * @namespace Home
-     * @description Navigation keys for home-related screens.
+     * Navigation keys for home-related screens.
      */
     Home: {
         /** @property {string} key - Key for the home screen key. */
@@ -80,7 +80,7 @@ export const NavigationPathKeys = {
 
     /**
      * @namespace Invoices
-     * @description Navigation keys for invoice-related screens.
+     * Navigation keys for invoice-related screens.
      */
     Invoices: {
         /** @property {string} key - Key for the home screen key. */
@@ -104,7 +104,7 @@ export const NavigationPathKeys = {
 
     /**
      * @namespace Orders
-     * @description Navigation keys for order-related screens.
+     * Navigation keys for order-related screens.
      */
     Orders: {
         /** @property {string} key - Key for the orders screen key. */
@@ -125,7 +125,7 @@ export const NavigationPathKeys = {
 
     /**
      * @namespace Products
-     * @description Navigation keys for product-related screens.
+     * Navigation keys for product-related screens.
      */
     Products: {
         /** @property {string} key - Key for the orders screen key. */
@@ -146,7 +146,7 @@ export const NavigationPathKeys = {
 };
 
 /**
- * @constant routeIcons
+ * @type routeIcons
  *
  * This constant defines the icons for the bottom tabs navigator.
  * It maps screen keys to their corresponding icon names.

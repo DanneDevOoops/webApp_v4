@@ -1,5 +1,5 @@
 /**
- * @module invoice-item-screen.tsx
+ * @module screens/invoices/invoice-item-screen.tsx
  *
  * This module defines the screen for displaying detailed information about a selected invoice.
  * It includes the invoice's ID, order ID, customer name, address, zip code, city, country,
@@ -21,7 +21,7 @@ import { Invoice, InvoiceItemProps } from 'interfaces/invoice-interfaces';
  * It retrieves the invoice data from the route parameters and displays various attributes of
  * the invoice.
  *
- * @component
+ * @function
  * @param {InvoiceItemProps} props - The properties for the InvoiceItem component.
  * @returns {ReactElement} The rendered invoice item screen component.
  */

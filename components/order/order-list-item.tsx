@@ -1,5 +1,5 @@
 /**
- * @module order-list-item.tsx
+ * @module components/order/order-list-item.tsx
  *
  * This module defines the OrderListItem component for rendering individual order items.
  * It sets up a view component for each order item, displaying its ID, name, and status.
@@ -17,7 +17,7 @@ import { OrderListItemPropsType } from 'interfaces/order-interfaces';
  * This component renders an individual order item within a view. It displays the order item's
  * ID, name, and status using styled text components.
  *
- * @component
+ * @function
  * @param {OrderListItemPropsType} props - The props of the component, containing the order
  * item details.
  * @returns {ReactElement} A React element representing a view with the order item's details.

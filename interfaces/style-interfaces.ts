@@ -1,5 +1,5 @@
 /**
- * @module style-interfaces.ts
+ * @module interfaces/style-interfaces.ts
  *
  * This module defines various TypeScript interfaces for styling attributes.
  * It includes interfaces for objects with numeric and string keys and values, as well as interfaces

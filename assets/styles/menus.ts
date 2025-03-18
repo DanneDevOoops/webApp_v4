@@ -1,5 +1,5 @@
 /**
- * @module menus.ts
+ * @module assets/styles/menus.ts
  *
  * This module defines the styles for various menu components in the application.
  * It includes styles for the tab bar, individual tabs, and the tab indicator.
@@ -15,7 +15,6 @@ import * as Color from './colors';
  * This object contains style definitions for various menu components in the application.
  * It includes styles for the tab bar, individual tabs, and the tab indicator.
  *
- * @constant
  * @type {object}
  * @property {object} tabBar - Styles for the tab bar container.
  * @property {string} tabBar.width - Sets the width of the tab bar to 100%.

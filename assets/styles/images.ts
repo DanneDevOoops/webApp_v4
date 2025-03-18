@@ -1,5 +1,5 @@
 /**
- * @module images.ts
+ * @module assets/styles/images.ts
  *
  * This module defines style attributes for various image components.
  * It includes objects that specify the layout, appearance, and properties for images and image
@@ -16,7 +16,6 @@ import { TypographyStyles as Typography } from './typography';
  *
  * This object defines the aspect ratio for cover images.
  *
- * @constant
  * @type {object}
  * @property {number} aspectRation - The aspect ratio of the cover, calculated as 16:6.
  */
@@ -31,7 +30,6 @@ export const coverAspectRation: {
  *
  * This object defines the style attributes for images.
  *
- * @constant
  * @type {ImageStyle}
  * @property {number} flex - Sets the flex value to 1, allowing the image to grow and shrink as
  * needed.
@@ -53,7 +51,6 @@ export const image: ImageStyle = {
  *
  * This object defines the style attributes for image containers.
  *
- * @constant
  * @type {ImageStyle}
  * @property {string} alignItems - Aligns the items in the center horizontally.
  * @property {number} width - Sets the width of the image container to the screen width.

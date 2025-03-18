@@ -19,7 +19,7 @@ import { AuthProvider } from 'contexts/auth-provider';
  * ensuring that authentication and application state are available throughout the app.
  * It then renders the `Root` component, which contains the main navigation and screens of the app.
  *
- * @component
+ * @function
  * @returns {React.ReactElement} The root element of the application.
  */
 export default function App(): React.ReactElement {

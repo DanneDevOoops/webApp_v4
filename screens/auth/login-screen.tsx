@@ -1,5 +1,5 @@
 /**
- * @module login-screen.tsx
+ * @module screens/auth/login-screen.tsx
  *
  * This module defines the screen for user login.
  * It includes a form for users to input their login details.
@@ -20,7 +20,7 @@ import { CoverImage } from 'components/utils/cover-image';
  * This component sets up the screen for user login.
  * It includes a form for users to input their login details.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered login screen component.
  */
 export const Login: React.FC = (): ReactElement => {

@@ -1,5 +1,5 @@
 /**
- * @module containers.ts
+ * @module assets/styles/containers.ts
  *
  * This module defines style attributes for various container components.
  * It includes objects that specify the layout, appearance, and properties for different
@@ -10,10 +10,7 @@ import { StyleSheet, ViewStyle } from 'react-native';
 
 import * as Color from './colors';
 import { TypographyStyles as Typography } from './typography';
-
-type GridColStyle = {
-    [key: number]: ViewStyle;
-};
+import { GridColStyle } from 'types/style-types';
 
 /**
  * ContainerStyles object.
@@ -22,7 +19,6 @@ type GridColStyle = {
  * It includes styles for content, map containers, introductory screens, scroll views, rows,
  * columns, grids, and message containers.
  *
- * @constant
  * @type {object}
  * @property {object} content - Styles for the main content container.
  * @property {string} content.width - Sets the width of the content container to 100%.
@@ -338,7 +334,6 @@ ContainerStyles.cautionMsgContainer = {
 /**
  * Border radius options.
  *
- * @constant
  * @type {object}
  * @property {number} msgContainer - Sets the border radius for message containers.
  * @property {number} button - Sets the border radius for buttons.

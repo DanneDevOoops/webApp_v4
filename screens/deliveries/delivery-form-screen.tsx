@@ -1,5 +1,5 @@
 /**
- * @module DeliveryCreationForm
+ * @module screens/deliveries/delivery-form-screen.tsx
  *
  * This module provides a form for creating a new delivery. It includes fields for product selection,
  * amount, delivery date, and comments. The form also includes a date picker for selecting the delivery date.
@@ -41,7 +41,7 @@ import * as ProductModel from 'models/products-models';
  * amount, delivery date, and comments. The form also includes a date picker for selecting the delivery date.
  * Upon form submission, a new delivery is created and the selected product's stock is updated.
  *
- * @constructor
+ * @function
  * @returns {ReactElement} The delivery creation form component.
  */
 export const DeliveryCreationForm: React.FC = (): ReactElement => {

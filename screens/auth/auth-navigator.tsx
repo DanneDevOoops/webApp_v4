@@ -1,5 +1,5 @@
 /**
- * @module auth-navigator.tsx
+ * @module screens/auth/auth-navigator.tsx
  *
  * This module defines the navigator for the authentication section of the application.
  * It sets up a stack navigator with screens for user login and registration.
@@ -26,7 +26,7 @@ const AuthStack = createStackNavigator();
  * This component sets up a stack navigator for the authentication-related screens.
  * It includes screens for user login and registration.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered authentication navigator component.
  */
 export const AuthNavigator: React.FC = (): ReactElement => {

@@ -1,10 +1,11 @@
 /**
+ * @module types/animation-types.ts
+ *
  * This module defines types for flash messages used in the application.
  *
  * It includes type definitions for `MessageType` and `FlashMessageType`, which represent the
  * type of flash message and its configuration, respectively.
  *
- * @module AnimationTypes
  */
 
 /**

@@ -1,5 +1,5 @@
 /**
- * @module typography.ts
+ * @module assets/styles/typography.ts
  *
  * This module defines various typography-related styles used throughout the application.
  * It includes definitions for font sizes, font weights, font families, white space values,
@@ -27,7 +27,6 @@ export const TypographyStyles = StyleSheet.create({
      * application. The keys represent different scales, and the values are the corresponding
      * white space amounts.
      *
-     * @constant
      * @type {NumKeyNumValueAttributeType}
      * @property {number} 10 - White space value for scale 10.
      * @property {number} 25 - White space value for scale 25.
@@ -51,7 +50,6 @@ export const TypographyStyles = StyleSheet.create({
      * This object defines various font size values used for text elements in the application.
      * The keys represent different text elements, and the values are the corresponding font sizes.
      *
-     * @constant
      * @type {StrKeyNumValueAttributeType}
      * @property {number} h1 - Font size for heading 1.
      * @property {number} h2 - Font size for heading 2.
@@ -82,7 +80,6 @@ export const TypographyStyles = StyleSheet.create({
      * The keys represent different text elements, and the values are the corresponding font
      * weights.
      *
-     * @constant
      * @type {StrKeyStrValueAttributeType}
      * @property {string} h1 - Font weight for heading 1.
      * @property {string} h2 - Font weight for heading 2.
@@ -109,7 +106,6 @@ export const TypographyStyles = StyleSheet.create({
      * The keys represent different text elements, and the values are the corresponding font
      * families.
      *
-     * @constant
      * @type {StrKeyStrValueAttributeType}
      * @property {string} header - Font family for headers.
      * @property {string} subHeader - Font family for sub-headers.
@@ -149,7 +145,6 @@ export const TypographyStyles = StyleSheet.create({
  * It includes properties for width, height, padding, text alignment, font size, font weight,
  * font family, and color.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} width - Sets the width of the header to 100%.
  * @property {undefined} height - Sets the height of the header to undefined, allowing it to be
@@ -186,7 +181,6 @@ TypographyStyles.header = {
  * It includes properties for alignment, padding, margin, font size, font family, color, and text
  * transformation.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} alignSelf - Aligns the sub-header in the center.
  * @property {number} paddingVertical - Sets the vertical padding of the sub-header based on the
@@ -217,7 +211,6 @@ TypographyStyles.subHeader = {
  * It includes properties for width, height, padding, text alignment, font size, font weight,
  * font family, and flex wrapping.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} width - Sets the width of the paragraph to 100%.
  * @property {string} height - Sets the height of the paragraph to auto, allowing it to be
@@ -253,7 +246,6 @@ TypographyStyles.paragraph = {
  * This object defines the style attributes for base data field text elements in the application.
  * It includes properties for flex wrapping, padding, font size, font weight, and font family.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} flexWrap - Allows the text to wrap within the data field.
  * @property {number} paddingHorizontal - Sets the horizontal padding of the data field based on
@@ -284,7 +276,6 @@ TypographyStyles.baseDataField = {
  * It includes properties for flex wrapping, padding, font size, font weight, font family, and
  * text alignment.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} flexWrap - Allows the text to wrap within the data field.
  * @property {number} paddingHorizontal - Sets the horizontal padding of the data field based on
@@ -312,7 +303,6 @@ TypographyStyles.dataLeft = {
  * application. It includes properties for flex wrapping, padding, font size, font weight, font
  * family, and text alignment.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} flexWrap - Allows the text to wrap within the data field.
  * @property {number} paddingHorizontal - Sets the horizontal padding of the data field based on
@@ -340,7 +330,6 @@ TypographyStyles.dataCenter = {
  *  application. It includes properties for flex wrapping, padding, font size, font weight, font
  *  family, and text alignment.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} flexWrap - Allows the text to wrap within the data field.
  * @property {number} paddingHorizontal - Sets the horizontal padding of the data field based on
@@ -366,7 +355,6 @@ TypographyStyles.dataRight = {
  * This object defines the style attributes for text elements with a bottom margin in the
  * application. It includes a property for the bottom margin.
  *
- * @constant
  * @type {TextStyle}
  * @property {number} marginBottom - Sets the bottom margin of the text based on the typography
  * whiteSpace scale.
@@ -382,7 +370,6 @@ TypographyStyles.endMarginText = {
  * It includes properties for width, height, padding, alignment, font size, font weight, font
  * family, and color.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} width - Sets the width of the button text to 100%.
  * @property {string} height - Sets the height of the button text to auto, allowing it to be
@@ -420,7 +407,6 @@ TypographyStyles.buttonText = {
  * This object defines the style attributes for base flash message text elements in the
  * application. It includes properties for text alignment, font weight, font family, and color.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} textAlign - Aligns the text in the center.
  * @property {string} fontWeight - Sets the font weight of the flash message text based on the
@@ -443,7 +429,6 @@ TypographyStyles.baseFlashMessage = {
  * application. It includes properties for text alignment, font weight, font family, font size,
  * and color.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} textAlign - Aligns the text in the center.
  * @property {string} fontWeight - Sets the font weight of the flash message text based on the
@@ -467,7 +452,6 @@ TypographyStyles.infoFlashMsg = {
  * application. It includes properties for text alignment, font weight, font family, font size,
  * and color.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} textAlign - Aligns the text in the center.
  * @property {string} fontWeight - Sets the font weight of the flash message text based on the
@@ -488,7 +472,6 @@ TypographyStyles.successFlashMsg = {
  * This object defines the style attributes for caution flash message text elements in the
  * application. It includes properties for text alignment, font weight, font family, and font size.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} textAlign - Aligns the text in the center.
  * @property {string} fontWeight - Sets the font weight of the flash message text based on the
@@ -509,7 +492,6 @@ TypographyStyles.cautionFlashMsg = {
  * This object defines the style attributes for warning flash message text elements in the
  * application. It includes properties for text alignment, font weight, font family, and font size.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} textAlign - Aligns the text in the center.
  * @property {string} fontWeight - Sets the font weight of the flash message text based on the
@@ -525,7 +507,7 @@ TypographyStyles.warningFlashMsg = {
 };
 
 /**
- * @constant TabBarStyle - Style definitions for the tab bar.
+ * TabBarStyle - Style definitions for the tab bar.
  *
  * This object contains style definitions for the tab bar in the application.
  * It includes styles for the tab bar label.

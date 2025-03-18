@@ -1,5 +1,5 @@
 /**
- * @module product-interfaces.ts
+ * @module interfaces/product-interfaces.ts
  *
  * This module defines various TypeScript interfaces related to product data and interactions.
  * These interfaces include properties for product entities, navigator parameters, and API

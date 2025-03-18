@@ -1,5 +1,5 @@
 /**
- * @module utils.ts
+ * @module assets/styles/utils.ts
  *
  * This module provides style definitions for application associated elements. It includes
  * styles for the loading indicator itself, its container, and any text associated with the
@@ -17,7 +17,6 @@ import { TypographyStyles as Typography } from './typography';
  * This object contains style definitions for various utility components in the application.
  * It includes styles for the loading indicator, its container, and associated text.
  *
- * @constant
  * @type {object}
  * @property {object} loadingIndicator - Styles for the loading indicator.
  * @property {object} loadingIndicatorContainer - Styles for the loading indicator container.

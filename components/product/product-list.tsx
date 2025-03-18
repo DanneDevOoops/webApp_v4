@@ -1,5 +1,5 @@
 /**
- * @module product-list.tsx
+ * @module components/product/product-list.tsx
  *
  * This module defines the ProductList component.
  * It displays a list of products fetched from an API and handles navigation to product details.
@@ -44,7 +44,7 @@ import { FunctionVoidType } from 'types/utils-types';
  * The component also handles loading states and displays a `LoadingIndicator` component while
  * products are being fetched.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered ProductList component.
  */
 export const ProductList: React.FC = (): ReactElement => {

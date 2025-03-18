@@ -1,5 +1,5 @@
 /**
- * @module delivery-interfaces.ts
+ * @module interfaces/delivery-interfaces.ts
  *
  * This module defines various TypeScript interfaces related to delivery data and interactions.
  * These interfaces include properties for delivery entities, navigator parameters, and API
@@ -8,8 +8,6 @@
 
 import { ParamListBase } from '@react-navigation/native';
 import { ReactElement } from 'react';
-
-import { Product } from './product-interfaces';
 
 /**
  * Represents the parameters for the `DeliveriesNavigator` stack navigator.

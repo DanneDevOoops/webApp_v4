@@ -1,8 +1,21 @@
 /**
- * @module index.ts
+ * @module assets/styles/index.ts
  *
  * This module bundles all style modules into a single main module for easy access.
  * It imports various style modules and exports them for easier usage throughout the application.
+ *
+ * Exports:
+ * - Abstract
+ * - Base
+ * - Button
+ * - Color
+ * - Container
+ * - Form
+ * - Image
+ * - Menu
+ * - Typography
+ * - Utils
+ * - Variable
  */
 
 import * as Abstract from './abstracts';
@@ -21,18 +34,6 @@ import * as Variable from './variables';
  * Module exports.
  *
  * Exports all imported stylesheets for easier usage throughout the application.
- *
- * @exports Abstract
- * @exports Base
- * @exports Button
- * @exports Color
- * @exports Container
- * @exports Form
- * @exports Image
- * @exports Menu
- * @exports Typography
- * @exports Utils
- * @exports Variable
  */
 export {
     Abstract,

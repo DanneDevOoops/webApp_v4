@@ -1,5 +1,5 @@
 /**
- * @module utils-interfaces.ts
+ * @module interfaces/utils-interfaces.ts
  *
  * This module defines various utility interfaces used throughout the application.
  * These interfaces include properties for screen covers, coordinates responses,

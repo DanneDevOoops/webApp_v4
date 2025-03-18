@@ -1,5 +1,5 @@
 /**
- * @module delivery-navigator.tsx
+ * @module screens/deliveries/delivery-navigator.tsx
  *
  * This module defines the navigator for the deliveries section of the application.
  * It sets up a stack navigator with screens for displaying a list of deliveries,
@@ -32,7 +32,7 @@ const DeliveriesStack = createStackNavigator();
  * It includes screens for displaying a list of deliveries, detailed information about a
  * selected delivery, and a form for creating new deliveries.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered deliveries navigator component.
  */
 export const DeliveryNavigator: React.FC = (): ReactElement => {

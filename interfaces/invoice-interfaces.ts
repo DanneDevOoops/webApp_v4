@@ -1,5 +1,5 @@
 /**
- * @module invoice-interfaces.ts
+ * @module interfaces/invoice-interfaces.ts
  *
  * This module defines various TypeScript interfaces related to invoice data and interactions.
  * These interfaces include properties for invoice entities, API responses, and invoice item types.

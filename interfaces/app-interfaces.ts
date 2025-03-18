@@ -1,5 +1,5 @@
 /**
- * @module app-interfaces.ts
+ * @module interfaces/app-interfaces.ts
  *
  * This module defines the interfaces for the application's global state management.
  * It includes interfaces for managing loading indicators, and the state for products, orders,

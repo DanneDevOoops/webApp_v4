@@ -1,5 +1,5 @@
 /**
- * @module loading-indicator.tsx
+ * @module components/utils/loading-indicator.tsx
  *
  * This module defines the loading indicator component.
  * It displays an activity indicator with an optional loading message.
@@ -9,8 +9,7 @@ import React from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 
 import * as Style from 'assets/styles';
-
-type ArgumentTypes = { loadingType: string | undefined };
+import { LoadingIndicatorArgumentTypes } from 'types/utils-types';
 
 /**
  * LoadingIndicator component.
@@ -18,14 +17,14 @@ type ArgumentTypes = { loadingType: string | undefined };
  * This component displays an activity indicator with an optional loading message.
  * It is used to indicate that a loading process is ongoing.
  *
- * @component
+ * @function
  * @param {ArgumentTypes} props - The props for the component.
  * @param {string | undefined} props.loadingType - The type of loading process (optional).
  * @returns {React.ReactElement} The rendered loading indicator component.
  */
 export function LoadingIndicator({
     loadingType = undefined,
-}: ArgumentTypes): React.ReactElement {
+}: LoadingIndicatorArgumentTypes): React.ReactElement {
     if (loadingType !== undefined) {
         return (
             <View style={Style.Utils.loadingIndicatorContainer}>

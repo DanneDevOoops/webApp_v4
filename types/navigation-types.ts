@@ -1,4 +1,6 @@
 /**
+ * @module types/navigation-types.ts
+ *
  * Type definitions for navigation parameters used in the application.
  *
  * This module contains type definitions for route parameters and the root stack parameter list,
@@ -26,6 +28,7 @@ export interface RouteParams extends ParamListBase {
  *
  * This type represents the possible routes and their parameters in the root stack navigator.
  *
+ * @type RootStackParamList
  * @property {undefined} AuthScreen - Parameter for AuthScreen.
  * @property {undefined} RegisterNewUser - Parameter for RegisterNewUser.
  * @property {undefined} DeliveriesScreen - Parameter for DeliveriesScreen.

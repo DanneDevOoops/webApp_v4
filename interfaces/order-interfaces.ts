@@ -1,5 +1,5 @@
 /**
- * @module order-interfaces.ts
+ * @module interfaces/order-interfaces.ts
  *
  * This module defines various TypeScript interfaces related to order data and interactions.
  * These interfaces include properties for order entities, API responses, and order item types.

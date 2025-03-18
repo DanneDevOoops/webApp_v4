@@ -1,5 +1,5 @@
 /**
- * @module orders-models.ts
+ * @module models/orders-models.ts
  *
  * This module provides functions to interact with the order-related endpoints of the API.
  * It includes functions to fetch all orders, fetch a specific order by its ID, pick an order,
@@ -34,7 +34,6 @@ import { ProductUpdate } from 'interfaces/product-interfaces';
  * If the request is successful, it returns the order data. In case of an error, it catches
  * the error and logs it, returning an empty array.
  *
- * @async
  * @function getOrders
  * @returns {Promise<Order[]>} The response data from the API, which contains an array of orders,
  * or an empty array if an error occurs.
@@ -64,7 +63,6 @@ export const getOrders = async (): Promise<Order[]> => {
  * If the request is successful, it returns the order data. In case of an error, it catches
  * the error and logs it, returning void.
  *
- * @async
  * @function getOrderById
  * @param {number} orderId - The ID of the order to fetch.
  * @returns {Promise<Order | void>} The response data from the API, which contains the order,
@@ -95,7 +93,6 @@ export const getOrderById = async (orderId: number): Promise<Order | void> => {
  * This function loops through all items in the order, updates the stock of each product, and
  * updates the order status. If an error occurs during the process, it is caught and logged.
  *
- * @async
  * @function pickOrder
  * @param {Order} order - The order to process.
  * @returns {Promise<void>} A promise that resolves when the order is processed.
@@ -150,7 +147,6 @@ export async function pickOrder(order: Order): Promise<void> {
  * provided details. If the request is successful, it returns void. In case of an error, it
  * catches the error and logs it.
  *
- * @async
  * @function updateOrderStatus
  * @param {number} order_id - The ID of the order to update.
  * @param {string} order_name - The name of the order to update.

@@ -1,5 +1,5 @@
 /**
- * @module forms.ts
+ * @module assets/styles/forms.ts
  *
  * This module defines style attributes for various form components.
  * It includes objects that specify the layout, appearance, and properties for input fields,
@@ -21,7 +21,6 @@ import { TypographyStyles as Typography } from './typography';
  * It includes styles for input fields, text input fields, label input fields, picker components,
  * and TabBar components.
  *
- * @constant
  * @type {object}
  * @property {object} baseInput - Base style for input fields.
  * @property {string} baseInput.width - Sets the width of the input field to 100%.
@@ -129,7 +128,6 @@ export const FormStyles = StyleSheet.create({
  *
  * This object defines the style attributes for text input fields.
  *
- * @constant
  * @type {TextStyle}
  * @property {string} width - Sets the width of the text input field to 100%.
  * @property {string} height - Sets the height of the text input field to auto.

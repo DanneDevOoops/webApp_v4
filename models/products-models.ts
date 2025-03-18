@@ -1,5 +1,5 @@
 /**
- * @module products-models.ts
+ * @module models/products-models.ts
  *
  * This module provides functions to interact with the product-related endpoints of the API.
  * It includes functions to fetch all products, fetch a specific product by its ID, and update an existing product.
@@ -25,7 +25,6 @@ import {
  * If the request is successful, it returns the product data. In case of an error, it catches
  * the error and logs it, returning an empty array.
  *
- * @async
  * @function getProducts
  * @returns {Promise<Product[]>} The response data from the API, which contains an array of products,
  * or an empty array if an error occurs.
@@ -53,7 +52,6 @@ export async function getProducts(): Promise<Product[]> {
  * If the request is successful, it returns the product data. In case of an error, it catches
  * the error and logs it.
  *
- * @async
  * @function getProductById
  * @param {string} product_id - The unique identifier of the product to fetch.
  * @returns {Promise<any>} A promise that resolves to the product data if successful, or
@@ -81,7 +79,6 @@ export async function getProducts(): Promise<Product[]> {
  * product details. If the request is successful, it returns the response. In case of an error,
  * it catches the error and logs it.
  *
- * @async
  * @function updateProduct
  * @param {ProductUpdate} updated_product - The updated details of the product.
  * @returns {Promise<Response | undefined>} The response from the API, or undefined if an error

@@ -1,5 +1,5 @@
 /**
- * @module invoices-models.ts
+ * @module models/invoices-models.ts
  *
  * This module provides functions to interact with the invoice-related endpoints of the API.
  * It includes functions to fetch all invoices, fetch a specific invoice by its ID, create a
@@ -30,7 +30,6 @@ import {
  * error occurs during the request, it is caught and logged. In the case of an error, the
  * function returns an empty array.
  *
- * @async
  * @function getInvoices
  * @returns {Promise<Invoice[]>} The response data from the API, which contains an array of
  * invoices, or an empty array if an error occurs.
@@ -76,7 +75,6 @@ export async function getInvoices(): Promise<Invoice[]> {
  * data. If an error occurs during the request, it is caught and logged. In the case of an
  * error, the function returns void.
  *
- * @async
  * @function getInvoiceById
  * @param {number} invoice_id - The ID of the invoice to fetch.
  * @returns {Promise<Invoice | void>} The response data from the API, which contains
@@ -128,7 +126,6 @@ export async function getInvoiceById(
  * returns the response data. If an error occurs during the request, it is caught and logged. In
  * the case of an error, the function returns void.
  *
- * @async
  * @function createInvoice
  * @param {Partial<NewInvoice>} invoice - The details of the new invoice to create.
  * @returns {Promise<Invoice | void>} The response data from the API, which contains the
@@ -181,7 +178,6 @@ export async function createInvoice(
  * and returns the status of the response. If an error occurs during the request, it is caught
  * and logged. In the case of an error, the function returns void.
  *
- * @async
  * @function updateInvoice
  * @param {Partial<Invoice>} updated_invoice - The updated details of the invoice.
  * @returns {Promise<number | void>} The status of the response from the API, or void if an

@@ -1,5 +1,5 @@
 /**
- * @module buttons.ts
+ * @module assets/styles/buttons.ts
  *
  * This module defines style attributes for various button components.
  * It includes objects that specify the layout, appearance, and shadow properties for base
@@ -17,7 +17,6 @@ import * as Variable from './variables';
 /**
  * Base button properties.
  *
- * @constant
  * @type {object}
  * @property {string} overflow - The overflow behavior of the button.
  * @property {string} width - The width of the button.
@@ -64,7 +63,6 @@ const ButtonBase = StyleSheet.create({
  * This object contains style definitions for various button components in the application.
  * It includes styles for list buttons and button containers.
  *
- * @constant
  * @type {object}
  * @property {object} listButton - Styles for list buttons.
  * @property {string} listButton.backgroundColor - The background color of the list button.

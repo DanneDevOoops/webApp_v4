@@ -1,5 +1,5 @@
 /**
- * @module error-handler.tsx
+ * @module components/utils/error-handler.tsx
  *
  * This module defines the error handler for API requests.
  * It logs detailed error information to the console.

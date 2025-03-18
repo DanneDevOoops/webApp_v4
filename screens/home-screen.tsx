@@ -1,5 +1,5 @@
 /**
- * @module home-screen.tsx
+ * @module screens/home-screen.tsx
  *
  * This module defines the home screen component for the application.
  * It displays a welcome message and an image, providing information about the current
@@ -19,7 +19,7 @@ import { CoverImage } from 'components/utils/cover-image';
  * This component represents the home screen of the application, displaying a welcome message
  * and an image. It provides information about the current functionality and future updates.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered home screen component.
  */
 export const Home: React.FC = (): ReactElement => {

@@ -1,7 +1,9 @@
 /**
- * @module register-form.tsx
+ * @module components/auth/register-form.tsx
  *
  * This module defines the form component for user registration.
+ *
+ * @remarks
  * It handles user input for email, password, and password confirmation,
  * and manages the registration process.
  */
@@ -11,7 +13,7 @@ import {
     NavigationProp,
     useNavigation,
 } from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { Pressable, Text, TextInput, View } from 'react-native';
 
 import * as Style from 'assets/styles/index';
@@ -26,10 +28,10 @@ import type { RootStackParamList } from 'types/navigation-types';
  * This component renders a form for user registration. It handles user input for email,
  * password, and password confirmation, and manages the registration process.
  *
- * @component
+ * @function RegisterForm
  * @returns {ReactElement} The rendered RegisterForm component.
  */
-export const RegisterForm: React.FC = () => {
+export const RegisterForm: React.FC = (): ReactElement => {
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
     const authContext = useAuthContext();
     const [email, setEmail] = useState('');

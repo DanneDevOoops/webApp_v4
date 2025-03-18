@@ -1,5 +1,5 @@
 /**
- * @module invoices-navigator.tsx
+ * @module screens/invoices/invoices-navigator.tsx
  *
  * This module defines the navigator for the invoices section of the application.
  * It sets up a stack navigator with screens for displaying a list of invoices,
@@ -32,7 +32,7 @@ const InvoicesStack = createStackNavigator();
  * It includes screens for displaying a list of invoices, detailed information about a
  * selected invoice, and a form for creating new invoices.
  *
- * @component
+ * @function
  * @returns {ReactElement} The rendered invoices navigator component.
  */
 export const InvoiceNavigator: React.FC = (): ReactElement => {

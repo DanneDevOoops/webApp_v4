@@ -1,5 +1,5 @@
 /**
- * @module app-provider.tsx
+ * @module contexts/app-provider.tsx
  *
  * This module defines the application-wide context and provides mechanisms
  * for managing and accessing application state such as loading indicators,
@@ -61,7 +61,7 @@ const AppContext = createContext<AppContextType>({
  * update these states. Children components can access the application state and
  * functions through the `useAppContext` hook.
  *
- * @component
+ * @function
  * @param {AppProviderProps} props - The properties for the AppProvider component.
  * @returns {ReactElement} The provider component wrapping its children, providing them access
  * to the application context.
