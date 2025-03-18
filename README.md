@@ -20,7 +20,7 @@ for the project but relativly free hands are given if so wished.
 - Expo Go app installed on your mobile device.
 - Expo-CLI installed on your machine.
 
-### Guidence on installing the prerequisites
+### Guidance on installing the prerequisites
 
 [//]: # ( ---------- NV & NODE JS INSTALLATION ---------- START ---------- )
 <details><summary style="font-size: 14px; font-weight: bold; color: lightgreen;"> Install Node 
@@ -199,6 +199,9 @@ Done installing Expo Go on your mobile device!
 
 ## Check out the application
 
+There are different ways to access this application. You can either open the application directly
+with the Expo Go app or you can spin up a local development server and open the application in the
+Expo Go app or in a simulation on your machine. Below you will find instructions on how to do both.
 
 <details><summary style="font-size: 14px; font-weight: bold; color: lightskyblue;"> Alt. 1 - 
 Open directly with Expo Go</summary>
@@ -318,6 +321,9 @@ Hope you enjoy the application!
 
 To move forward on this project there are some things you might want to know about regarding 
 the standard, tooling and what have been done at a prior stage to make it what it currently is.
+
+Make sure to check out the projects [development documentation](https://dannedevooops.github.io/webApp_v4/)
+for references and description on the code base.
 
 <details><summary style="font-size: 16px; font-weight: bold; color: lightgoldenrodyellow;">Project 
 standards, tooling and workflows / actions</summary>
