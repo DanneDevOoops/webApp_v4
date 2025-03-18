@@ -1,0 +1,30 @@
+name: Jest Test Runner
+
+on:
+  push:
+    branches:
+      - main
+      - stage
+  pull_request:
+    branches:
+      - main
+      - stage
+
+jobs:
+  lint_and_ts_check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js - LTS/iron -> v20.19.0
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.19.0'
+
+      - name: Install dev dependencies
+        run: yarn install --dev
+
+      - name: Run Jest Test Runner
+        run: yarn run test
