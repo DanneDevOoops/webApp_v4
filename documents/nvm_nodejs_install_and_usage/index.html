@@ -1,0 +1,78 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../.././"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>nvm_nodejs_install_and_usage | Lager - v5.2.0</title><meta name="description" content="Documentation for Lager"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../../assets/style.css"/><link rel="stylesheet" href="../../assets/highlight.css"/><script defer src="../../assets/main.js"></script><script async src="../../assets/icons.js" id="tsd-icons-script"></script><script async src="../../assets/search.js" id="tsd-search-script"></script><script async src="../../assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="../../index.html" class="title">Lager - v5.2.0</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../../assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><ul class="tsd-breadcrumb" aria-label="Breadcrumb"><li><a href="" aria-current="page">nvm_nodejs_install_and_usage</a></li></ul></div><div class="tsd-panel tsd-typography"><img src="../../media/nvm-logo.png" alt="Node.js Logo" style="max-width: 200px;">  
+<h1 id="install-and-use-node-version-manager-and-nodejs" class="tsd-anchor-link">Install and use Node Version Manager and Node.JS<a href="#install-and-use-node-version-manager-and-nodejs" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../../assets/icons.svg#icon-anchor"></use></svg></a></h1><p>Node Version Manager (<code>NVM</code>) is a great tool under <a href="https://en.wikipedia.org/wiki/MIT_License">MIT licence</a>
+for easy install and management of Node.js versions. Due to the fact that the version of Node.
+js you may need for a project is not the latest or nor the same as another project, you may want
+to use NVM to install and manage versions of Node.js to overcome some cumbersome manual steps
+you would need to do without it.</p>
+<h2 id="prerequisites" class="tsd-anchor-link">Prerequisites<a href="#prerequisites" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../../assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>You need a terminal (CLI)</li>
+</ul>
+<h2 id="step-1-install-nvm" class="tsd-anchor-link">Step 1: Install NVM<a href="#step-1-install-nvm" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../../assets/icons.svg#icon-anchor"></use></svg></a></h2><p>There are different ways to install NVM. It can be installed in a
+containerized environment or directly on your local machine. Choose your preferred method from the
+<a href="https://github.com/nvm-sh/nvm?tab=readme-ov-file#about">official NVM repository</a> and install it
+accordingly.</p>
+<img src="../../media/node-js-logo.png" alt="Node.js Logo" style="max-width: 200px;">
+<h2 id="step-2-install--verify-a-lts-version-of-nodejs" class="tsd-anchor-link">Step 2: Install &amp; Verify a LTS version of Node.js<a href="#step-2-install--verify-a-lts-version-of-nodejs" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../../assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Once <code>NVM</code> is installed you can install one or more versions of Node.js. Read the usage section
+in the <a href="https://github.com/nvm-sh/nvm?tab=readme-ov-file#usage">official NVM repository</a>
+to learn how to install a specific version of Node.js.</p>
+<p>In short these are the steps to install a new version of node.js:</p>
+<p>First check for the LTS versions available to install from remote. We want a <code>long term support</code>
+(LTS) version because it is more stable and has a longer support period then other versions of
+<code>Node.js</code>.</p>
+<pre><code class="bash"><span class="hl-0">nvm</span><span class="hl-1"> </span><span class="hl-2">ls-remote</span><span class="hl-1"> </span><span class="hl-3">--lts</span>
+</code><button type="button">Copy</button></pre>
+
+<p>If you need to know the latest version of each LTS release, you can check the latest LTS release
+list in at the bottom of the output of the <code>nvm list</code> command. When you have one of the latest LTS
+releases installed, you can see the version number it in the list. For each of the latest LTS
+releases that have not been installed yet, they will be marked <code>(-&gt; N/A)</code> for <code>not available</code>.</p>
+<p>Now when you know which version you want to install you can run the following command to install it.</p>
+<pre><code class="bash"><span class="hl-0">nvm</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> &lt;</span><span class="hl-2">node.js</span><span class="hl-1"> </span><span class="hl-2">versio</span><span class="hl-1">n&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>After you have installed a version of Node.js that you like to use you can activate it by running
+the <code>nvm use</code> command in your terminal.</p>
+<p>Check to see that the version you selected and installed is indeed installed on you system. The
+version you just installed should be listed among the version numbers in the list at the top
+before all the aliases and LTS releases.</p>
+<pre><code class="bash"><span class="hl-0">nvm</span><span class="hl-1"> </span><span class="hl-2">list</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="step-3-activate-the-installed-nodejs-version" class="tsd-anchor-link">Step 3: Activate the installed Node.js version<a href="#step-3-activate-the-installed-nodejs-version" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../../assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Now you can activate the version you want to use by running the <code>nvm use</code> command.</p>
+<pre><code class="bash"><span class="hl-0">nvm</span><span class="hl-1"> </span><span class="hl-2">use</span><span class="hl-1"> &lt;</span><span class="hl-2">node.js</span><span class="hl-1"> </span><span class="hl-2">versio</span><span class="hl-1">n&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>To check that the version is activated you can use the <code>nvm current</code> command</p>
+<pre><code class="bash"><span class="hl-0">nvm</span><span class="hl-1"> </span><span class="hl-2">current</span>
+</code><button type="button">Copy</button></pre>
+
+<p>If you want to set the version you just activated as the default version to use, you can run the
+following command.</p>
+<pre><code class="bash"><span class="hl-0">nvm</span><span class="hl-1"> </span><span class="hl-2">alias</span><span class="hl-1"> </span><span class="hl-2">default</span><span class="hl-1"> &lt;</span><span class="hl-2">node.js</span><span class="hl-1"> </span><span class="hl-2">versio</span><span class="hl-1">n&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>In case you work on sevral projects using different versions of Node.js, you can create a alias
+for each version you use. This way you can easily switch between the versions you use for different
+projects.</p>
+<p>Another way to manage the versions you use is to create a <a href="https://github.com/nvm-sh/nvm?tab=readme-ov-file#nvmrc"><code>.nvmrc</code> file</a>
+in the root of your project. This file should contain the version number of the Node.js version
+you want to use for that project. When you navigate to the project folder in your terminal, NVM
+will automatically activate the version of Node.js you specified in the <code>.nvmrc</code> file. There is
+a caveat to this approach, your terminal needs to be POSTIX compliant.</p>
+<p>To create a <code>.nvmrc</code> file you simply add the <code>--save</code> flag to the <code>nvm use</code> command when
+activating the version of Node.js you want to use for the project.</p>
+<pre><code class="bash"><span class="hl-0">nvm</span><span class="hl-1"> </span><span class="hl-2">use</span><span class="hl-1"> &lt;</span><span class="hl-2">node.js</span><span class="hl-1"> </span><span class="hl-2">versio</span><span class="hl-1">n&gt; </span><span class="hl-3">--save</span>
+</code><button type="button">Copy</button></pre>
+
+<h4 id="tip-install-latest-version-of-npm-using-nvm" class="tsd-anchor-link">Tip: Install latest version of NPM using NVM<a href="#tip-install-latest-version-of-npm-using-nvm" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>If you want to install the latest version of NPM you can run the following command.</p>
+<pre><code class="bash"><span class="hl-0">nvm</span><span class="hl-1"> </span><span class="hl-2">install-latest-npm</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Node version manager is capable of many nice features when it comes to Node.js and its
+surrounding ecosystem. As an example it is also able to upgrade the version of NPM you have
+installed globally. Be sure to checkout the <code>help command</code> for more information on how to use the
+<code>nvm</code> command or simply <a href="https://github.com/nvm-sh/nvm?tab=readme-ov-file#nvmrc">RTFM</a>.</p>
+<pre><code class="bash"><span class="hl-0">nvm</span><span class="hl-1"> </span><span class="hl-2">help</span>
+</code><button type="button">Copy</button></pre>
+
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../../assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../../assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#install-and-use-node-version-manager-and-nodejs"><span>Install and use <wbr/>Node <wbr/>Version <wbr/>Manager and <wbr/>Node.JS</span></a><ul><li><a href="#prerequisites"><span>Prerequisites</span></a></li><li><a href="#step-1-install-nvm"><span>Step 1: <wbr/>Install NVM</span></a></li><li><a href="#step-2-install--verify-a-lts-version-of-nodejs"><span>Step 2: <wbr/>Install &amp; <wbr/>Verify a LTS version of <wbr/>Node.js</span></a></li><li><a href="#step-3-activate-the-installed-nodejs-version"><span>Step 3: <wbr/>Activate the installed <wbr/>Node.js version</span></a></li><li><ul><li><a href="#tip-install-latest-version-of-npm-using-nvm"><span>Tip: <wbr/>Install latest version of NPM using NVM</span></a></li></ul></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="../../modules.html">Lager - v5.2.0</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>

@@ -1,0 +1,15 @@
+@startuml
+skinparam RoundCorner 0
+hide empty fields
+hide empty methods
+skinparam ClassAttributeIconSize 0
+skinparam Shadowing true
+skinparam BackgroundColor transparent
+interface "LoadingIndicatorStyleType" {
+    +color : string
+    +size : string
+}
+class "ViewStyle"
+hide "ViewStyle" circle
+"ViewStyle" <|-- "LoadingIndicatorStyleType"
+@enduml

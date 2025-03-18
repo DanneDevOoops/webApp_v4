@@ -1,0 +1,15 @@
+@startuml
+skinparam RoundCorner 0
+hide empty fields
+hide empty methods
+skinparam ClassAttributeIconSize 0
+skinparam Shadowing true
+skinparam BackgroundColor transparent
+interface "ProductsNavigatorParams" {
+    +ProductItem : { item: Product }
+    +ProductsList : undefined
+}
+class "ParamListBase"
+hide "ParamListBase" circle
+"ParamListBase" <|-- "ProductsNavigatorParams"
+@enduml
