@@ -11,7 +11,7 @@ on:
       - stage
 
 jobs:
-  lint_and_ts_check:
+  jest_test_runner:
     runs-on: ubuntu-latest
 
     steps:
