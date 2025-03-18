@@ -7,6 +7,7 @@ import pluginPrettier from 'eslint-plugin-prettier';
 import jsdoc from 'eslint-plugin-jsdoc';
 import reactNative from 'eslint-plugin-react-native';
 import importPlugin from 'eslint-plugin-import';
+import tsdoc from 'eslint-plugin-tsdoc';
 
 /**
  * @type {import('eslint').Linter.Config[]}
@@ -45,6 +46,7 @@ export default [
             prettier: pluginPrettier,
             jsdoc: jsdoc,
             'react-native': reactNative,
+            tsdoc: tsdoc,
         },
         rules: {
             // eslint-plugin-react
@@ -55,8 +57,11 @@ export default [
             'prettier/prettier': 'error',
 
             // eslint-plugin-jsdoc
-            'jsdoc/require-description': 'error',
-            'jsdoc/check-values': 'error',
+            'jsdoc/require-description': 'warn',
+            'jsdoc/check-values': 'warn',
+
+            // eslint-plugin-tsdoc
+            // 'tsdoc/syntax': 'warn',
 
             // sort imports - https://eslint.org/docs/latest/rules/sort-imports
             'sort-imports': [
@@ -144,6 +149,9 @@ export default [
             },
         },
         settings: {
+            react: {
+                version: 'detect',
+            },
             'import/resolver': {
                 node: {
                     extensions: ['.js', '.jsx', '.ts', '.tsx'],

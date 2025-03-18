@@ -1,0 +1,70 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "entryPoints": [
+        "./App.tsx",
+        "assets/styles/*.{ts,tsx}",
+        "assets/utils/*.{ts,tsx}",
+        "components/**/*.{ts,tsx}",
+        "constants/**/*.{ts,tsx}",
+        "contexts/**/*.{ts,tsx}",
+        "hooks/**/*.{ts,tsx}",
+        "interfaces/**/*.{ts,tsx}",
+        "models/**/*.{ts,tsx}",
+        "screens/**/*.{ts,tsx}",
+        "types/**/*.{ts,tsx}"
+    ],
+    "includeVersion": true,
+    "excludeReferences": true,
+    "router": "kind-dir",
+    "projectDocuments": [
+        "docs/tutorials/expo_go_install.md",
+        "docs/tutorials/nvm_nodejs_install_and_usage.md"
+    ],
+    "plugin": [
+        "typedoc-plugin-coverage",
+        "typedoc-plugin-dt-links",
+        "typedoc-plugin-redirect",
+        "typedoc-plugin-rename-defaults",
+        "typedoc-umlclass"
+    ],
+    "outputs": [
+        {
+            "name": "html",
+            "path": "./docs/html",
+            "options": {}
+        }
+    ],
+    "coverageOutputPath": "./docs/coverage/docs_coverage.svg",
+    "coverageOutputType": "svg",
+    "coverageLabel": "Documentation Coverage",
+    "coverageSvgWidth": 190,
+    "umlClassDiagram": {
+        "type": "detailed",
+        "location": "embed",
+        "format": "png",
+        "legendType": "full",
+        "hideShadow": false,
+        "memberOrder": "private-to-public",
+        "topDownLayoutMaxSiblings": 10,
+        "visibilityStyle": "text",
+        "generatorProcessCount": 4,
+        "hideProgressBar": false,
+        "createPlantUmlFiles": true,
+        "position": "above",
+        "verboseOutput": true
+    },
+    "logLevel": "Verbose",
+    "exclude": [
+        ".expo/**/*",
+        ".expo-shared/**/*",
+        ".idea/**/*",
+        "android/**/*",
+        "assets/fonts/*.{ttf,otf,woff,woff2}",
+        "assets/img/*.{png,jpg,jpeg,svg}",
+        "dist/**/*",
+        "docs/**/*",
+        "ios/**/*",
+        "**/node_modules/**/*",
+        ".github/**/*"
+    ]
+}

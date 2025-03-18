@@ -148,5 +148,9 @@ prod/
 production/
 public/
 
-# Generate Docs
-docs/
+# TypeDoc - Generated Documentation
+docs/html
+docs/coverage/*
+!docs/coverage
+!docs/img/**/*.{png,jpg,jpeg,gif,svg}
+!docs/tutorials/
