@@ -210,15 +210,3 @@ export interface OrderListItemPropsType {
         status_id: number;
     };
 }
-
-/**
- * Type representing the properties for the `OrderItem` component.
- *
- * This type defines the structure of the props that are passed to the `OrderItem` component.
- *
- * @type OrderItemProp
- * @property {Order} item - The order item to be displayed by the `OrderItem` component.
- */
-export type OrderItemProp = {
-    item: Order;
-};
