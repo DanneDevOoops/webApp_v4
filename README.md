@@ -1,6 +1,6 @@
 [![ESLint and TypeScript Check](https://github.com/DanneDevOoops/webApp_v4/actions/workflows/lint_and_check_actions.yml/badge.svg)](https://github.com/DanneDevOoops/webApp_v4/actions/workflows/lint_and_check_actions.yml)
-
-[![Docs Coverage](docs/coverage/docs_coverage.svg)](docs/coverage/docs_coverage.svg)
+[![Jest Test Runner](https://github.com/DanneDevOoops/webApp_v4/actions/workflows/jest_test_runner.yml/badge.svg)](https://github.com/DanneDevOoops/webApp_v4/actions/workflows/jest_test_runner.yml)
+[![Docs Coverage](docs/coverage/docs_coverage.svg)](https://dannedevooops.github.io/webApp_v4/)
 
 
 # WebApp v4
