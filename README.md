@@ -29,7 +29,7 @@ dependencies to be installed and working on your machine before you can run the 
 <details><summary style="font-size: 14px; font-weight: bold; color: lightgreen;">Node 
 Version Manager and Node.js</summary>
 
-<img src="docs/img/nvm-logo.png" alt="Node.js Logo" style="max-width: 200px;">
+<img src="docs/img/nvm-logo.png" alt="Node Version Manager logotype" style="max-width: 200px;">
 
 # Install and use Node Version Manager and Node.JS
 Node Version Manager (`NVM`) is a great tool under [MIT licence](https://en.wikipedia.org/wiki/MIT_License) 
@@ -47,7 +47,7 @@ containerized environment or directly on your local machine. Choose your preferr
 [official NVM repository](https://github.com/nvm-sh/nvm?tab=readme-ov-file#about) and install it 
 accordingly.
 
-<img src="docs/img/node-js-logo.png" alt="Node.js Logo" style="max-width: 200px;">
+<img src="docs/img/node-js-logo.png" alt="Node.js logotype" style="max-width: 200px;">
 
 ## Step 2: Install & Verify a LTS version of Node.js
 Once `NVM` is installed you can install one or more versions of Node.js. Read the usage section 
@@ -146,14 +146,12 @@ nvm help
 
 </details>
 
-
-
 [//]: # ( ---------- NV & NODE JS INSTALLATION ---------- END ---------- )
 
 
-[//]: # ( ---------- Package Managers ---------- START ---------- )
+[//]: # ( ---------- PACKAGE MANAGERS ---------- START ---------- )
 
-<details><summary style="font-size: 14px; font-weight: bold; color: lightgreen;">JS/TS Package Manager</summary>
+<details><summary style="font-size: 14px; font-weight: bold; color: lightgreen;">Package Manager</summary>
 
 # Package Managers
 To install the required packages for the application we will need a package manager. There are 
@@ -169,7 +167,7 @@ running the `npm install` command.
 
 ## Node Package Manager (NPM)
 
-![NPM logotype](https://drive.google.com/file/d/1cxCA_3ctT6vem6IyzF2aPmtfn02WgwSf/view?usp=share_link)
+<img src="docs/img/npm-logo.png" alt="NPM logotype" style="max-width: 200px;">
 
 Place yourself at the `project root directory` and run the following command to install all
 dependencies using `npm` instead of `yarn`:
@@ -184,7 +182,7 @@ rm -rf yarn.lock && npm install --save-dev
 
 ## Yarn
 
-![Yarn logotype](https://drive.google.com/file/d/1cqubQ_kExwJSkG6x0W43ZfrTc3iqAMuQ/view?usp=share_link)
+<img src="docs/img/yarn-logo.png" alt="Yarn logotype" style="max-width: 200px;">
 
 If you prefer to use `yarn` and do not have it installed, there are two ways to install it. 
 Alternative one would be that you use `npm` to install `yarn` globally. This will place yarn in 
@@ -217,7 +215,8 @@ yarn --help
 ```
 
 ## Bun
-![Bun logotype](https://drive.google.com/file/d/1cbHq5teCLcn8N8N-t8gCioMph6CxmioX/view?usp=share_link)  
+
+<img src="docs/img/bun-logo.png" alt="Bun logotype" style="max-width: 200px;">  
 
 The `bun` package manager is a simple package manager for JavaScript that is written in `zig`. 
 This is last years new kid on the block as of the time of writing this tutorial. It is a very 
@@ -290,20 +289,14 @@ bun --help
 
 </details>
 
-[//]: # ( ---------- NV & NODE JS INSTALLATION ---------- END ---------- )
-
-
-
-
-
-
+[//]: # ( ---------- PACKAGE MANAGERS ---------- END ---------- )
 
 
 
 [//]: # ( ---------- EXPO GO INSTALLATION ---------- START ---------- )
 <details><summary style="font-size: 14px; font-weight: bold; color: lightgreen;">Expo Go app on 
 you mobile device</summary>
-<img src="docs/img/expo-go-logo.png" alt="Expo Go Logo" style="max-width: 200px;">
+<img src="docs/img/expo-go-logo.png" alt="Expo Go logotype" style="max-width: 200px;">
 
 ## Install Expo Go on your device
 Here you can follow a step by step guide on how to install Expo Go on your device. Expo Go is a
@@ -361,6 +354,50 @@ work on the application in the future. You can create an account by going to the
 
 <details><summary style="font-size: 14px; font-weight: bold; color: lightgreen;">Expo 
 Application Service</summary>
+
+<img src="docs/img/expo-logo.png" alt="Expo logotype" style="max-width: 200px;">  
+
+# Expo Application Service
+
+The Expo Application Service (`EAS`) is a service that allows you to run your Expo application as a 
+local dev server, manage deployment/prooduction builds, app store and google play store 
+publications etc. EAS is a tool to use when developing a your Expo application to manage the 
+things and you need it installed to use the Expo Go app in development mode.
+
+## Installation
+
+To install the Expo Application Service, you need to have a JavaScript package manager like
+`npm` or `yarn` installed on your machine. You can install the Expo Application Service by running
+the following command:
+
+```sh
+npm install -g eas-cli
+```
+
+When you have installed the Expo Application Service, you can verify the installation by running the
+following command:
+
+```sh
+which eas && eas --version
+```
+
+Now you need to login to the Expo Application Service. If you do not have a Expo account, you can create
+one by visiting the [Expo website](https://expo.dev/signup). Once you have an account, you can login to
+the Expo Application Service by running the following command:
+
+```sh
+eas login
+```
+
+You will be presented with a prompt to enter your Expo username/email, password and a 2FA-token 
+if you have configured one.
+
+
+> ---
+> ✅ **Done:**  
+> Now you should have installed the required Expo Application Service, EAS.
+> ---
+
 </details>
 
 [//]: # ( ---------- EXPO APPLICATION SERVICE INSTALLATION ---------- END ---------- )
