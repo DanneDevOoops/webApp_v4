@@ -1,7 +1,7 @@
 [![ESLint and TypeScript Check](https://github.com/DanneDevOoops/webApp_v4/actions/workflows/lint_and_check_actions.yml/badge.svg)](https://github.com/DanneDevOoops/webApp_v4/actions/workflows/lint_and_check_actions.yml)
 [![Jest Test Runner](https://github.com/DanneDevOoops/webApp_v4/actions/workflows/jest_test_runner.yml/badge.svg)](https://github.com/DanneDevOoops/webApp_v4/actions/workflows/jest_test_runner.yml)
 [![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/DanneDevOoops/webApp_v4)](https://github.com/DanneDevOoops/webApp_v4/issues)
-[![Docs Coverage](docs/coverage/docs_coverage.svg)](https://dannedevooops.github.io/webApp_v4/)
+[![Docs Coverage](docs/badges/docs_coverage_badge.svg)](https://dannedevooops.github.io/webApp_v4/)
 
 # WebApp v4
 

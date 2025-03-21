@@ -34,7 +34,7 @@
             "options": {}
         }
     ],
-    "coverageOutputPath": "./docs/coverage/docs_coverage.svg",
+    "coverageOutputPath": "./docs/badges/docs_coverage_badge.svg",
     "coverageOutputType": "svg",
     "coverageLabel": "Documentation Coverage",
     "coverageSvgWidth": 190,
