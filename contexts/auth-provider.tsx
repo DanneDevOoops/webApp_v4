@@ -62,7 +62,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-    const login = async (email: string, password: string) => {
+    const login = async (email: string, password: string): Promise<boolean> => {
         if (isLoading !== true) {
             setIsLoggedIn(true);
         }
@@ -96,12 +96,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
         try {
             await SecureStore.deleteItemAsync('token').then((): void => {
                 setIsLoggedIn(false);
-
-                return;
             });
         } catch (error) {
             console.error('AuthProvider -> logout -> error\n', error);
         }
+
+        return;
     };
 
     const register = async (email: string, password: string): Promise<void> => {
