@@ -11,16 +11,21 @@
  *
  * This type represents an error object that can optionally include a name, title, message,
  * stack trace, and a type indicating the nature of the error (either 'danger' or 'success').
+ *
+ * @interface stdErrorType
+ * @property {string} [name] - The name of the error.
+ * @property {string} [title] - The title of the error.
+ * @property {string} message - The message describing the error.
+ * @property {string} stack - The stack trace of the error.
+ * @property {'danger' | 'success'} type - The type indicating the nature of the error.
  */
-export type stdErrorType =
-    | {
-          name?: string;
-          title?: string;
-          message: string;
-          stack: string;
-          type: 'danger' | 'success';
-      }
-    | undefined;
+export interface stdErrorType {
+    name?: string;
+    title?: string;
+    message: string;
+    stack: string;
+    type: 'danger' | 'success';
+}
 
 /**
  * Type definition for a function that returns void.

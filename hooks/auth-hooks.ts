@@ -1,12 +1,53 @@
 /**
  * @module hooks/auth-hooks.ts
+ *
+ * @description
+ * This module provides custom hooks for handling authentication-related functionality
+ * within the application. It includes a hook for signing in a user using their email
+ * and password, and handles navigation to the invoices list screen upon successful login.
+ *
+ * @remarks
+ * The hooks in this module utilize the authentication context to perform login operations
+ * and manage user authentication state. They also handle navigation actions based on the
+ * authentication status.
+ *
+ * @example
+ * // Import the hook
+ * import { useSignInUser } from 'hooks/auth-hooks';
+ *
+ * // Use the hook in a component
+ * const { signInUser } = useSignInUser();
+ * signInUser('user@example.com', 'password123');
+ *
+ * @exports
+ * - useSignInUser: A custom hook to handle user sign-in functionality.
  */
+
 import { CommonActions, useNavigation } from '@react-navigation/native';
 
 import { flash_message } from 'assets/utils/animation';
 import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
 import { useAuthContext } from 'contexts/auth-provider';
 
+/**
+ * Custom hook to handle user sign-in functionality.
+ *
+ * @module hooks/auth-hooks.ts
+ *
+ * @remarks
+ * This hook provides a function to sign in a user using their email and password.
+ * It utilizes the authentication context to perform the login operation and navigates
+ * to the invoices list screen upon successful login.
+ *
+ * @returns {Object} An object containing the `signInUser` function.
+ *
+ * @function useSignInUser
+ * @returns {Object} An object containing the `signInUser` function.
+ *
+ * @example
+ * const { signInUser } = useSignInUser();
+ * signInUser('user@example.com', 'password123');
+ */
 export const useSignInUser = () => {
     const authContext = useAuthContext();
     const navigation = useNavigation();
