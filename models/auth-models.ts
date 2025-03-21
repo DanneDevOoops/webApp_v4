@@ -73,7 +73,6 @@ export async function login(email: string, password: string) {
         );
 
         const result: AuthResponse = (await response.json()) as AuthResponse;
-        console.log('3.2. AuthResponse: ', result);
 
         if ('errors' in result) {
             console.info('3.3. AuthResponse result.errors: ', result.errors);
@@ -85,7 +84,6 @@ export async function login(email: string, password: string) {
                 type: 'danger',
             };
         } else {
-            console.info('3.4. AuthResponse result.errors: ', result.errors);
             // @ts-expect-error  Some sort of type error here...
             await SecureStore.setItemAsync('token', result.data.token);
 
