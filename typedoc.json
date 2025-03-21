@@ -55,6 +55,7 @@
     },
     "logLevel": "Verbose",
     "exclude": [
+        "__tests__/**/*",
         ".expo/**/*",
         ".expo-shared/**/*",
         ".idea/**/*",

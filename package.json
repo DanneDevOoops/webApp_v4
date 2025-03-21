@@ -137,6 +137,23 @@
         "verbose": true,
         "bail": 0,
         "collectCoverage": true,
+        "collectCoverageFrom": [
+            "assets/styles/*.{ts,tsx}",
+            "assets/utils/*.{ts,tsx}",
+            "components/**/*.{ts,tsx}",
+            "constants/**/*.{ts,tsx}",
+            "contexts/**/*.{ts,tsx}",
+            "hooks/**/*.{ts,tsx}",
+            "interfaces/**/*.{ts,tsx}",
+            "models/**/*.{ts,tsx}",
+            "screens/**/*.{ts,tsx}",
+            "types/**/*.{ts,tsx}"
+        ],
+        "coverageThreshold": {
+            "global": {
+                "lines": 90
+            }
+        },
         "coverageDirectory": "./docs/coverage/tests/",
         "coveragePathIgnorePatterns": [],
         "detectOpenHandles": true

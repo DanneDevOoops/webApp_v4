@@ -591,6 +591,8 @@ right at home with `Jest` as the anatomy of the tests are quite similar.
 To execute the test runner `jest`, a script have been a configured in the `package.json` 
 file. Execute it with the following command from the project root folder.
 
+Check the [test coverage here](https://github.com/DanneDevOoops/webApp_v4/blob/main/docs/coverage/tests/index.html?raw=true).
+
 ```sh
 yarn test
 ```

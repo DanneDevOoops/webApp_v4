@@ -12,8 +12,4 @@ describe('Test suit example for whatever...', () => {
     it('should pass just pass...', () => {
         expect(1).toBe(1);
     });
-
-    it('this fails but is the world true or false, what is your world-view...', () => {
-        expect(true).toBe(false);
-    });
 });
