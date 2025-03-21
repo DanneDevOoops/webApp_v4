@@ -151,6 +151,7 @@ public/
 
 # TypeDoc - Generated Documentation
 docs/html
+docs/coverage/tests
 !docs/coverage
 !docs/img/**/*.{png,jpg,jpeg,gif,svg}
 !docs/tutorials/

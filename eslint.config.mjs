@@ -8,6 +8,7 @@ import jsdoc from 'eslint-plugin-jsdoc';
 import reactNative from 'eslint-plugin-react-native';
 import importPlugin from 'eslint-plugin-import';
 import tsdoc from 'eslint-plugin-tsdoc';
+import pluginJest from 'eslint-plugin-jest';
 
 /**
  * @type {import('eslint').Linter.Config[]}
@@ -47,6 +48,7 @@ export default [
             jsdoc: jsdoc,
             'react-native': reactNative,
             tsdoc: tsdoc,
+            jest: pluginJest,
         },
         rules: {
             // eslint-plugin-react
@@ -133,6 +135,13 @@ export default [
             'no-implied-eval': 'off',
             'no-loss-of-precision': 'off',
             'no-unused-vars': 'off',
+
+            // eslint-plugin-jest
+            'jest/no-disabled-tests': 'warn',
+            'jest/no-focused-tests': 'error',
+            'jest/no-identical-title': 'error',
+            'jest/prefer-to-have-length': 'warn',
+            'jest/valid-expect': 'error',
         },
         languageOptions: {
             parserOptions: {
