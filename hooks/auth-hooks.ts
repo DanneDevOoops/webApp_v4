@@ -60,15 +60,19 @@ export const useSignInUser = () => {
         let doNavigateToInvoices: boolean = false;
 
         try {
-            const authResponse = await authContext.login(email, password);
+            const authResponse: boolean = await authContext.login(
+                email,
+                password,
+            );
             console.log('1.2. User is signed in?', authResponse);
-            flash_message('success', 'Inloggning lyckades!');
 
             if (authResponse) {
                 authContext.setIsLoggedIn(true);
                 doNavigateToInvoices = true;
+                flash_message('success', 'Inloggning lyckades!');
             } else {
                 authContext.setIsLoggedIn(false);
+                flash_message('danger', 'Inloggning misslyckades!');
             }
         } catch (e) {
             console.error('Error in signInUser: ', e);
