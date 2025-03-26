@@ -37,7 +37,6 @@ import {
  */
 export async function getInvoices(): Promise<Invoice[]> {
     try {
-        console.log('getInvoices()');
         const jwtToken: string | null = await SecureStore.getItemAsync('token');
         const requestHeaders: Record<string, string> = {
             Accept: 'application/json',
@@ -56,8 +55,6 @@ export async function getInvoices(): Promise<Invoice[]> {
         );
 
         const result = (await response.json()) as InvoiceDataResponse;
-
-        console.log('result', result);
 
         return result.data;
     } catch (error) {
