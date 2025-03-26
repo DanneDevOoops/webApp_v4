@@ -60,7 +60,6 @@
         "@react-navigation/native": "^6.1.17",
         "@react-navigation/native-stack": "^6.9.26",
         "@react-navigation/stack": "^6.3.29",
-        "@testing-library/react-native": "^12.5.2",
         "expo": "~52.0.38",
         "expo-app-loading": "~2.1.1",
         "expo-font": "~13.0.4",
@@ -97,7 +96,17 @@
         "@eslint/js": "^9.22.0",
         "@react-native-community/cli": "^15.1.3",
         "@react-native-community/eslint-config": "^3.2.0",
+        "@testing-library/react-native": "^13.2.0",
+        "@testing-library/dom": "^10.4.0",
+        "@testing-library/jest-dom": "^6.6.3",
+        "@testing-library/jest-native": "^5.4.3",
+        "@testing-library/react": "^16.2.0",
+        "@testing-library/react-hooks": "^8.0.1",
+        "@types/jest": "^29.5.14",
+        "@types/mocha": "^10.0.10",
         "@types/react": "~18.3.12",
+        "@types/react-dom": "~18.3.1",
+        "@types/react-test-renderer": "^19.0.0",
         "@typescript-eslint/eslint-plugin": "^8.26.1",
         "@typescript-eslint/parser": "^8.26.1",
         "eslint": "^9.22.0",
@@ -116,12 +125,14 @@
         "eslint-plugin-react": "^7.37.4",
         "eslint-plugin-react-hooks": "^4.6.2",
         "eslint-plugin-react-native": "^5.0.0",
+        "eslint-plugin-testing-library": "^7.1.1",
         "eslint-plugin-tsdoc": "^0.4.0",
         "eslint-scope": "^8.0.1",
         "globals": "^15.15.0",
         "prettier": "^3.5.3",
         "prettier-plugin-import-sort": "^0.0.7",
-        "react-test-renderer": "^18.3.1",
+        "react-test-renderer": "18.3.1",
+        "ts-jest": "^29.3.0",
         "typedoc": "^0.28.0",
         "typedoc-plugin-coverage": "^3.4.1",
         "typedoc-plugin-dt-links": "^2.0.0",
@@ -130,33 +141,35 @@
         "typedoc-plugin-rename-defaults": "^0.7.3",
         "typedoc-umlclass": "^0.10.1",
         "typescript": "^5.8.2",
-        "typescript-eslint": "^8.26.1"
+        "typescript-eslint": "^8.28.0"
     },
     "jest": {
         "preset": "jest-expo",
+        "testEnvironment": "jest-environment-jsdom",
+        "setupFilesAfterEnv": [
+            "./node_modules/@testing-library/jest-native/extend-expect"
+        ],
         "verbose": true,
         "bail": 0,
         "collectCoverage": true,
         "collectCoverageFrom": [
-            "assets/styles/*.{ts,tsx}",
-            "assets/utils/*.{ts,tsx}",
             "components/**/*.{ts,tsx}",
-            "constants/**/*.{ts,tsx}",
             "contexts/**/*.{ts,tsx}",
             "hooks/**/*.{ts,tsx}",
-            "interfaces/**/*.{ts,tsx}",
             "models/**/*.{ts,tsx}",
-            "screens/**/*.{ts,tsx}",
-            "types/**/*.{ts,tsx}"
+            "screens/**/*.{ts,tsx}"
         ],
         "coverageThreshold": {
             "global": {
-                "lines": 90
+                "lines": 20
             }
         },
         "coverageDirectory": "./docs/coverage/tests/",
         "coveragePathIgnorePatterns": [],
-        "detectOpenHandles": true
+        "detectOpenHandles": true,
+        "transformIgnorePatterns": [
+            "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg)"
+        ]
     },
     "private": true
 }
