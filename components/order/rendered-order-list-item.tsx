@@ -39,9 +39,8 @@ import { OrderItemProp } from 'types/order-types';
  */
 export const renderItem: ListRenderItem<Order> = ({
     item,
+    navigation,
 }: OrderItemProp): React.ReactElement => {
-    const navigation = useNavigation();
-
     return (
         <Pressable
             key={item.id}

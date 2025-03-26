@@ -200,7 +200,7 @@ export const OrderList: React.FC = (): ReactElement => {
         <FlatList
             data={newOrders}
             keyExtractor={(item: Order) => item.id.toString()}
-            renderItem={renderItem}
+            renderItem={(props) => renderItem({ ...props, navigation })}
             onRefresh={handleRefreshOrders}
             refreshing={appContext.isRefreshing}
             style={Style.Container.flatList}
@@ -222,7 +222,7 @@ export const OrderList: React.FC = (): ReactElement => {
         <FlatList
             data={packedOrders}
             keyExtractor={(item: Order) => item.id.toString()}
-            renderItem={renderItem}
+            renderItem={(props) => renderItem({ ...props, navigation })}
             onRefresh={handleRefreshOrders}
             refreshing={appContext.isRefreshing}
             style={Style.Container.flatList}
@@ -244,7 +244,7 @@ export const OrderList: React.FC = (): ReactElement => {
         <FlatList
             data={sentOrders}
             keyExtractor={(item: Order) => item.id.toString()}
-            renderItem={renderItem}
+            renderItem={(props) => renderItem({ ...props, navigation })}
             onRefresh={handleRefreshOrders}
             refreshing={appContext.isRefreshing}
             style={Style.Container.flatList}
@@ -266,7 +266,7 @@ export const OrderList: React.FC = (): ReactElement => {
         <FlatList
             data={returnOrders}
             keyExtractor={(item: Order) => item.id.toString()}
-            renderItem={renderItem}
+            renderItem={(props) => renderItem({ ...props, navigation })}
             onRefresh={handleRefreshOrders}
             refreshing={appContext.isRefreshing}
             style={Style.Container.flatList}
@@ -314,42 +314,49 @@ export const OrderList: React.FC = (): ReactElement => {
      * @returns {ReactElement} A `TabBar` component with customized styling and behavior.
      */
     const renderTabBar = (
-        props: SceneRendererProps & { navigationState: NavigationState<Route> },
-    ): ReactElement => (
-        <TabBar
-            {...props}
-            indicatorStyle={{
-                backgroundColor: Style.Color.schemeOne.secondary[300],
-            }}
-            style={{
-                backgroundColor: Style.Color.background.light,
-            }}
-            renderIcon={({ route, focused }): ReactElement => (
-                <FontAwesome5
-                    name={route.icon}
-                    size={18}
-                    color={
-                        focused
-                            ? Style.Color.schemeOne.secondary[300]
-                            : Style.Color.text.dark
-                    }
-                />
-            )}
-            renderLabel={({ route, focused }): ReactElement => (
-                <Text
-                    style={[
-                        TabBarStyle.label,
-                        {
-                            color: focused
+        props: SceneRendererProps & {
+            navigationState: NavigationState<Route>;
+        },
+    ): ReactElement => {
+        console.info('TabBar props:', props);
+
+        return (
+            <TabBar
+                key={route.key}
+                {...props}
+                indicatorStyle={{
+                    backgroundColor: Style.Color.schemeOne.secondary[300],
+                }}
+                style={{
+                    backgroundColor: Style.Color.background.light,
+                }}
+                renderIcon={({ route, focused }): ReactElement => (
+                    <FontAwesome5
+                        name={route.icon}
+                        size={18}
+                        color={
+                            focused
                                 ? Style.Color.schemeOne.secondary[300]
-                                : Style.Color.text.dark,
-                        },
-                    ]}>
-                    {route.title}
-                </Text>
-            )}
-        />
-    );
+                                : Style.Color.text.dark
+                        }
+                    />
+                )}
+                renderLabel={({ route, focused }): ReactElement => (
+                    <Text
+                        style={[
+                            TabBarStyle.label,
+                            {
+                                color: focused
+                                    ? Style.Color.schemeOne.secondary[300]
+                                    : Style.Color.text.dark,
+                            },
+                        ]}>
+                        {route.title}
+                    </Text>
+                )}
+            />
+        );
+    };
 
     // Render LoadingIndicator if state is Refreshing else FlatList Component.
     return appContext.isRefreshing ? (
