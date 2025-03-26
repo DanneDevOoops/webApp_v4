@@ -32,6 +32,7 @@ export function LoadingIndicator({
                     size='large'
                     color={Style.Color.schemeOne.primary[300]}
                     style={Style.Utils.loadingIndicator}
+                    testID='activity-indicator'
                 />
 
                 <Text style={Style.Utils.loadingIndicatorText}>
@@ -45,6 +46,8 @@ export function LoadingIndicator({
                 <ActivityIndicator
                     size='large'
                     color={Style.Color.schemeOne.primary[300]}
+                    style={Style.Utils.loadingIndicator}
+                    testID='activity-indicator'
                 />
 
                 <Text style={Style.Utils.loadingIndicatorText}>Laddar...</Text>
