@@ -16,7 +16,6 @@
  */
 
 import * as ProductModel from './products-models';
-import { RequestErrorHandler } from 'components/utils/error-handler';
 import config from 'config/config.json';
 import {
     MultipleOrdersDataResponse,
@@ -109,9 +108,6 @@ export async function pickOrder(order: Order): Promise<void> {
 
                 if (leftOverStock <= 0) {
                     console.error('Not enough stock to pick order.');
-                    RequestErrorHandler(
-                        new Error('Not enough stock to pick order.'),
-                    );
                     continue;
                 }
 
