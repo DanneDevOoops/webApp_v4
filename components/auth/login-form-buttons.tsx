@@ -44,7 +44,7 @@ export const LoginFormButtons: React.FC<{
                 },
             ]}>
             <Pressable
-                style={({ pressed }) => [
+                style={({ pressed }: PressableStateCallbackType) => [
                     Style.Button.buttonContainer,
                     { opacity: pressed ? 0.5 : 1 },
                 ]}
