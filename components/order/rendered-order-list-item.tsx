@@ -24,30 +24,6 @@ import { Order } from 'interfaces/order-interfaces';
 import { OrderItemProp } from 'types/order-types';
 
 /**
- * Navigates to the order item screen with the given order item.
- *
- * @remarks
- * This function uses the navigation object to dispatch a navigation action
- * to the 'Orderhanterare' screen, passing the selected order item as a parameter.
- *
- * @function navigateToOrderItem
- * @param {OrderItemProp['item']} item - The order item to navigate to.
- * @returns {void}
- *
- * @author Daniel
- */
-export function navigateToOrderItem(item: OrderItemProp['item']): void {
-    const navigation = useNavigation();
-
-    navigation.dispatch(
-        CommonActions.navigate(NavPath.Orders.OrdersScreen, {
-            screen: NavPath.Orders.OrderItem,
-            params: { item, reload: true },
-        }),
-    );
-}
-
-/**
  * Renders an individual order item as a pressable component.
  *
  * @remarks
@@ -64,6 +40,8 @@ export function navigateToOrderItem(item: OrderItemProp['item']): void {
 export const renderItem: ListRenderItem<Order> = ({
     item,
 }: OrderItemProp): React.ReactElement => {
+    const navigation = useNavigation();
+
     return (
         <Pressable
             key={item.id}
@@ -76,7 +54,12 @@ export const renderItem: ListRenderItem<Order> = ({
                 },
             ]}
             onPress={(): void => {
-                navigateToOrderItem(item);
+                navigation.dispatch(
+                    CommonActions.navigate(NavPath.Orders.OrdersScreen, {
+                        screen: NavPath.Orders.OrderItem,
+                        params: { item, reload: true },
+                    }),
+                );
             }}>
             <OrderListItem item={item} />
         </Pressable>
