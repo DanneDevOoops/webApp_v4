@@ -36,4 +36,5 @@ export type FlashMessageType = {
     type: MessageType;
     description: string;
     message: string;
+    onPress?: () => void;
 };

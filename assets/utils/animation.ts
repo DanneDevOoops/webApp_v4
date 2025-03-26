@@ -8,6 +8,7 @@
 
 import { showMessage } from 'react-native-flash-message';
 
+import { messageTypes } from 'constants/message-constants';
 import { FlashMessageType, MessageType } from 'types/animation-types';
 
 /**
@@ -20,42 +21,29 @@ import { FlashMessageType, MessageType } from 'types/animation-types';
  * @returns {void}
  */
 export const flash_message = (type: MessageType, message: string) => {
-    const messageTypes: Record<MessageType, FlashMessageType> = {
-        info: {
-            duration: 5000,
-            type: 'info',
-            description: 'Informerande meddelande',
-            message: '',
-        },
-        warning: {
-            duration: 2500,
-            type: 'warning',
-            description: 'Varnande meddelande',
-            message: '',
-        },
-        danger: {
-            duration: 3500,
-            type: 'danger',
-            description: 'Farligt meddelande',
-            message: '',
-        },
-        success: {
-            duration: 2500,
-            type: 'success',
-            description: 'Lyckat meddelande',
-            message: '',
-        },
-        default: {
-            duration: 3500,
-            type: 'default',
-            description: 'Meddelande',
-            message: 'Standard meddelande...? 🤔',
-        },
-    };
-
     const messageConfig: FlashMessageType =
         messageTypes[type] || messageTypes.default;
     messageConfig.message = message;
 
     return showMessage(messageConfig);
+};
+
+export const flash_message_and_navigate = (
+    type: MessageType,
+    message: string,
+    navigateCallback: () => void,
+) => {
+    console.info('flash_message_and_navigate');
+
+    const messageConfig: FlashMessageType =
+        messageTypes[type] || messageTypes.default;
+    messageConfig.message = message;
+    messageConfig.onPress = navigateCallback;
+
+    return showMessage(messageConfig);
+};
+
+export const navigateToScreen = (destination: string) => {
+    console.log('Navigating to: ', destination);
+    // navigation.dispatch(CommonActions.navigate(destination));
 };
