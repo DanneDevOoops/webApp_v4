@@ -43,6 +43,8 @@ export const LoginForm: React.FC = (): ReactElement => {
         } else {
             flash_message('warning', 'E-post eller lösenord saknas');
         }
+
+        return;
     };
 
     return (
