@@ -38,7 +38,8 @@ export const CoverImage: React.FC<ScreenCoverArguments> = ({
         <View style={Style.Image.imageContainer}>
             <ImageBackground
                 source={imageSource}
-                style={Style.Image.image}>
+                style={Style.Image.image}
+                testID='cover-image'>
                 <Text style={Style.Typography.header}>{headerText}</Text>
             </ImageBackground>
         </View>
