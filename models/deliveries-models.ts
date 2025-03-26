@@ -11,8 +11,7 @@
  */
 
 import config from 'config/config.json';
-import * as DeliveriesInterfaces from 'interfaces/delivery-interfaces';
-import { DeliveryDataResponse } from 'interfaces/delivery-interfaces';
+import { Delivery, DeliveryDataResponse } from 'interfaces/delivery-interfaces';
 
 /**
  * Fetches all deliveries from the API.
@@ -22,13 +21,11 @@ import { DeliveryDataResponse } from 'interfaces/delivery-interfaces';
  * the error and logs it, returning an empty array.
  *
  * @function getDeliveries
- * @returns {Promise<DeliveriesInterfaces.Delivery[]>} The response data from the API, which
+ * @returns {Promise<Delivery[]>} The response data from the API, which
  * contains an array of deliveries, or an empty array if an error occurs.
  * @throws {Error} If there is an error during the request, it is caught and logged.
  */
-export async function getDeliveries(): Promise<
-    DeliveriesInterfaces.Delivery[]
-> {
+export async function getDeliveries(): Promise<Delivery[]> {
     try {
         const response = await fetch(
             `${config.base_url}/deliveries?api_key=${config.api_key}`,
@@ -52,17 +49,15 @@ export async function getDeliveries(): Promise<
  * In case of an error, it catches the error and logs it.
  *
  * @function createDelivery
- * @param {Partial<DeliveriesInterfaces.Delivery>} delivery - The details of the new delivery
+ * @param {Partial<Delivery>} delivery - The details of the new delivery
  * to create.
- * @returns {Promise<DeliveriesInterfaces.Delivery | void>} The response data from the API,
+ * @returns {Promise<Delivery | void>} The response data from the API,
  * which contains the created delivery, or void if an error occurs.
  * @throws {Error} If there is an error during the request, it is caught and logged.
  */
-export async function createDelivery(
-    delivery: Partial<DeliveriesInterfaces.Delivery>,
-) {
+export async function createDelivery(delivery: Partial<Delivery>) {
     try {
-        return await fetch(
+        const response = await fetch(
             `${config.base_url}/deliveries?api_key=${config.api_key}`,
             {
                 method: 'POST',
@@ -79,7 +74,13 @@ export async function createDelivery(
                 }),
             },
         );
+
+        if (response.ok) {
+            return (await response.json()) as Delivery;
+        }
     } catch (error) {
         console.error(error);
     }
+
+    return;
 }
