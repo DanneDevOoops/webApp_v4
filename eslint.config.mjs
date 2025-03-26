@@ -9,6 +9,7 @@ import reactNative from 'eslint-plugin-react-native';
 import importPlugin from 'eslint-plugin-import';
 import tsdoc from 'eslint-plugin-tsdoc';
 import pluginJest from 'eslint-plugin-jest';
+import pluginTestingLibrary from 'eslint-plugin-testing-library';
 
 /**
  * @type {import('eslint').Linter.Config[]}
@@ -38,6 +39,10 @@ export default [
             'gjslint.conf',
             'react-native.config.js',
             '.*.{js,mjs,cjs,ts}',
+            '__tests__',
+            '__test__',
+            'tests',
+            'test',
         ],
     },
     {
@@ -49,6 +54,7 @@ export default [
             'react-native': reactNative,
             tsdoc: tsdoc,
             jest: pluginJest,
+            'testing-library': pluginTestingLibrary,
         },
         rules: {
             // eslint-plugin-react
@@ -182,5 +188,15 @@ export default [
                 },
             },
         },
+    },
+    {
+        files: [
+            '**/__tests__/**/*.[jt]s?(x)',
+            '**/?(*.)+(spec|test).[jt]s?(x)',
+        ],
+        plugins: {
+            'testing-library': pluginTestingLibrary,
+        },
+        extends: ['plugin:testing-library/react'],
     },
 ];
