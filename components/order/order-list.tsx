@@ -322,8 +322,6 @@ export const OrderList: React.FC = (): ReactElement => {
             navigationState: NavigationState<Route>;
         },
     ): ReactElement => {
-        console.info('TabBar props:', props);
-
         return (
             <TabBar
                 key={route.key}
