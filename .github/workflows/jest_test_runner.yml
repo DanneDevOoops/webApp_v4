@@ -27,4 +27,4 @@ jobs:
         run: yarn install --dev
 
       - name: Run Jest Test Runner
-        run: yarn run test
+        run: yarn run test-final
