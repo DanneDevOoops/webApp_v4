@@ -9,18 +9,13 @@
  * @author Daniel
  */
 
-import { CommonActions, useNavigation } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/native';
 import React from 'react';
-import {
-    ListRenderItem,
-    Pressable,
-    PressableStateCallbackType,
-} from 'react-native';
+import { Pressable, PressableStateCallbackType } from 'react-native';
 
 import { OrderListItem } from './order-list-item';
 import * as Style from 'assets/styles';
 import { NavigationPathKeys as NavPath } from 'constants/navigation-constants';
-import { Order } from 'interfaces/order-interfaces';
 import { OrderItemProp } from 'types/order-types';
 
 /**
@@ -37,7 +32,10 @@ import { OrderItemProp } from 'types/order-types';
  *
  * @author Daniel
  */
-export const renderItem: ListRenderItem<Order> = ({
+export const renderItem: ({
+    item,
+    navigation,
+}: OrderItemProp) => React.ReactElement = ({
     item,
     navigation,
 }: OrderItemProp): React.ReactElement => {
@@ -53,6 +51,8 @@ export const renderItem: ListRenderItem<Order> = ({
                 },
             ]}
             onPress={(): void => {
+                // @ts-expect-error  Unsafe call of a(n) `error` type typed value
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
                 navigation.dispatch(
                     CommonActions.navigate(NavPath.Orders.OrdersScreen, {
                         screen: NavPath.Orders.OrderItem,

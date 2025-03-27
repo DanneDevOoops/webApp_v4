@@ -28,4 +28,5 @@ export type OrderActionButtonProps = {
  */
 export type OrderItemProp = {
     item: Order;
+    navigation: never;
 };

@@ -200,6 +200,7 @@ export const OrderList: React.FC = (): ReactElement => {
         <FlatList
             data={newOrders}
             keyExtractor={(item: Order) => item.id.toString()}
+            // @ts-expect-error  Type 'Omit<NavigationProp<RootParamList>, "getState"> & { getState(): Readonly<{ key: string; index: number; routeNames: string[]; history?: unknown[] | undefined; routes: NavigationRoute<...>[]; type: string; stale: false; }> | undefined; }' is not assignable to type 'never'.
             renderItem={(props) => renderItem({ ...props, navigation })}
             onRefresh={handleRefreshOrders}
             refreshing={appContext.isRefreshing}
@@ -222,6 +223,7 @@ export const OrderList: React.FC = (): ReactElement => {
         <FlatList
             data={packedOrders}
             keyExtractor={(item: Order) => item.id.toString()}
+            // @ts-expect-error  Type 'Omit<NavigationProp<RootParamList>, "getState"> & { getState(): Readonly<{ key: string; index: number; routeNames: string[]; history?: unknown[] | undefined; routes: NavigationRoute<...>[]; type: string; stale: false; }> | undefined; }' is not assignable to type 'never'.
             renderItem={(props) => renderItem({ ...props, navigation })}
             onRefresh={handleRefreshOrders}
             refreshing={appContext.isRefreshing}
@@ -244,6 +246,7 @@ export const OrderList: React.FC = (): ReactElement => {
         <FlatList
             data={sentOrders}
             keyExtractor={(item: Order) => item.id.toString()}
+            // @ts-expect-error  Type 'Omit<NavigationProp<RootParamList>, "getState"> & { getState(): Readonly<{ key: string; index: number; routeNames: string[]; history?: unknown[] | undefined; routes: NavigationRoute<...>[]; type: string; stale: false; }> | undefined; }' is not assignable to type 'never'.
             renderItem={(props) => renderItem({ ...props, navigation })}
             onRefresh={handleRefreshOrders}
             refreshing={appContext.isRefreshing}
@@ -266,6 +269,7 @@ export const OrderList: React.FC = (): ReactElement => {
         <FlatList
             data={returnOrders}
             keyExtractor={(item: Order) => item.id.toString()}
+            // @ts-expect-error  Type 'Omit<NavigationProp<RootParamList>, "getState"> & { getState(): Readonly<{ key: string; index: number; routeNames: string[]; history?: unknown[] | undefined; routes: NavigationRoute<...>[]; type: string; stale: false; }> | undefined; }' is not assignable to type 'never'.
             renderItem={(props) => renderItem({ ...props, navigation })}
             onRefresh={handleRefreshOrders}
             refreshing={appContext.isRefreshing}
